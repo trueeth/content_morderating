@@ -11,6 +11,22 @@ body {
   color:#ececec;
   
 }
+:root{
+  --Primary1: #3EC0D8;
+  --Primary2: #75598D;
+  --Gradiant: linear-gradient(90deg, #75598D 0%, #3EC0D8 92.75%);
+  --Black: #424351;
+  --Body: #474747;
+  --Grey: #ADADAD;
+  --Primary1-L: #EBFAFD;
+  --Primary2-L: #F7F1FC;
+  --Secondry-L: #ECEDF9;
+  --Stroke: #E8E8E8;
+  --Grey-L: #F9F9FF;
+  --White: #FFF;
+}
+
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -178,3 +194,5 @@ input[type='number']::-webkit-outside-spin-button {
   --bs-btn-disabled-bg: #0d6efd;
   --bs-btn-disabled-border-color: #0d6efd;
 }
+
+@import url('./videoTable.css');

@@ -1,0 +1,59 @@
+.status-new{
+    color: var(--Primary2);
+    font-family: Raleway;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.875rem; /* 100% */
+}
+
+.status-processed{
+    color: var(--Primary1);
+    font-family: Raleway;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.875rem; /* 100% */
+    text-transform: uppercase;
+}
+
+.status-failed{
+    color: var(--Grey);
+    font-family: Raleway;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.875rem; /* 100% */
+    text-transform: uppercase;
+}
+
+.rating-r18{
+    color: var(--Black);
+    font-family: Raleway;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0.875rem;
+    text-transform: uppercase;
+}
+
+.rating-missing{
+    width: 3.375rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    border-radius: 0.1875rem;
+    background: #FF774B;
+    color: var(--White);
+    font-family: Raleway;
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0.625rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

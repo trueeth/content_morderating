@@ -9,7 +9,6 @@ import LoanDetail from './LoanDetail'
 import SupplyBox from './SupplyBox'
 import BorrowBox from './BorrowBox'
 
-import { DatePickerType, OrderType } from 'interfaces'
 
 interface IOpenProps {
   open: boolean
@@ -76,7 +75,7 @@ export default function LoanDialog({ open, handleClose }: IOpenProps) {
           Borrow
         </Button>
       </Box>
-      <Box
+      {/* <Box
         sx={{
           '& .MuiTypography-root': {
             mt: 2,
@@ -109,7 +108,7 @@ export default function LoanDialog({ open, handleClose }: IOpenProps) {
 
       <LoanDetail
         orderType={view === 'supply' ? OrderType.SUPPLY : OrderType.BORROW}
-      />
+      /> */}
       <Box
         sx={{
           display: 'flex',
