@@ -8,6 +8,7 @@ import { Container } from '@mui/material'
 import LoanDialog from '../components/loan/LoanDialog'
 import CustomCheckBox from '../components/styled/CheckBox'
 import OrderFilter from '../components/OrdersFilter'
+import  VideoTable  from "../components/videoTable/VideoTable";
 import Image from 'next/image'
 
 const Index = () => {
@@ -142,79 +143,7 @@ const Index = () => {
             border: '1px solid #141e2f',
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              px: 3,
-              alignItems: 'center',
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography sx={{ fontSize: '25px', mt: 1 }}>
-                Supply Market
-              </Typography>
-              <Typography
-                sx={{ fontSize: '12px', color: 'rgb(149, 151, 161)' }}
-              >
-                The escrow loan has already been added to the protocol.
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-                flexDirection: { xs: 'column', md: 'row' },
-                gap: 2,
-                py: 2,
-                '& .MuiButton-root': {
-                  minWidth: '100px',
-                },
-              }}
-            >
-              <FormControlLabel
-                control={<CustomCheckBox />}
-                label="History"
-                labelPlacement="start"
-              />
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
-                  gap: 2,
-                  '& .MuiButton-root': {
-                    width: 'fit-content',
-                    '&:hover': {
-                      borderColor: '#454f5b',
-                    },
-                  },
-                }}
-              >
-                <Button
-                  variant="outlined"
-                  onClick={() => setFilter({ ...filter, orderType: 0 })}
-                >
-                  Supply
-                </Button>
-                <Button
-                  variant="outlined"
-                  onClick={() => setFilter({ ...filter, orderType: 1 })}
-                >
-                  Borrow
-                </Button>
-                <Button
-                  variant="outlined"
-                  onClick={() => setFilter({ ...filter, orderType: null })}
-                >
-                  All
-                </Button>
-              </Box>
-            </Box>
-          </Box>
+          <VideoTable></VideoTable>
           <Divider sx={{ bgcolor: '#141e2f', p: '0.2px' }} />
         </Box>
         <LoanDialog open={visible} handleClose={() => setVisible(false)} />
