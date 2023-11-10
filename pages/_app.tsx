@@ -14,6 +14,21 @@ const theme = createTheme({
         disableRipple: true,
       },
     },
+    MuiTabs: {
+      defaultProps: {
+        TabIndicatorProps: { style: { backgroundColor: 'var(--Primary1)' } },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            color: 'var(--Primary1)',
+            borderRadius: '25px',
+          },
+        },
+      },
+    },
   },
 })
 

@@ -40,12 +40,12 @@ export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
           <CloseIcon
             onClick={handleClose}
             fontSize="small"
-            sx={{ cursor: 'pointer' }}
+            sx={{ cursor: 'pointer', mr: 2 }}
           />
         </Box>
 
-        <DrawerHeader></DrawerHeader>
-        <DrawerTab></DrawerTab>
+        <DrawerHeader />
+        <DrawerTab />
       </Box>
     </Drawer>
   )
