@@ -8,6 +8,15 @@ type Props = {
   title?: string
 }
 
+const Favicon = () => (
+  <>
+    <link
+      rel="icon"
+      href="/assets/images/favicon.ico"
+    />
+  </>
+);
+
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
 
   return (
@@ -15,7 +24,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     <div className={'pb-50 flex flex-col justify-center item-center'}>
       <Head>
         <title>{title}</title>
-        <meta charSet="utf-8" />
+        <link rel="icon" href="/favicon.ico" sizes='any' />
+        {/*<meta charSet="utf-8" />*/}
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <header className={'w-full'}>

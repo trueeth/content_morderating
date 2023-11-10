@@ -64,7 +64,7 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
     <Providers store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout title="Lending & Borrowing">
+        <Layout title="VideoApp">
           <Component {...pageProps} />
         </Layout>{' '}
       </ThemeProvider>
