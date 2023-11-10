@@ -1,11 +1,13 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Collapse from '@mui/material/Collapse'
-import IconButton from '@mui/material/IconButton'
-import TableCell from '@mui/material/TableCell'
-import TableRow from '@mui/material/TableRow'
-import { Delete, FileUpload, ManageSearch } from '@mui/icons-material'
-import { THistoryRowType, TVideoRowType } from '../../../../interfaces'
+import { Typography, TableRow, TableCell, IconButton } from '@mui/material'
+import {
+  Delete,
+  FileUpload,
+  ManageSearch,
+  Slideshow,
+} from '@mui/icons-material'
+import { THistoryRowType } from '../../../../interfaces'
 
 function HistoryRow(props: { row: THistoryRowType }) {
   const { row } = props
@@ -15,7 +17,6 @@ function HistoryRow(props: { row: THistoryRowType }) {
       {/*-------main row-----------*/}
       <TableRow
         sx={{
-          mt: 2,
           '& > .MuiTableCell-root': {
             textAlign: 'center',
             borderTop: '1px solid #ccc',
@@ -34,9 +35,19 @@ function HistoryRow(props: { row: THistoryRowType }) {
         }}
       >
         <TableCell sx={{ minWidth: '200px' }}>{row.name}</TableCell>
-        <TableCell />
-        <TableCell />
-        <TableCell />
+        <TableCell>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          ></Box>
+          <Slideshow sx={{ color: '#888' }} />
+          <Typography>{row.source}</Typography>
+        </TableCell>
+        <TableCell></TableCell>
+        <TableCell></TableCell>
         <TableCell>
           <Box sx={{ display: 'flex' }}>
             <IconButton aria-label="expand row" size="small">
@@ -50,6 +61,9 @@ function HistoryRow(props: { row: THistoryRowType }) {
             </IconButton>
           </Box>
         </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell sx={{ py: '5px' }} />
       </TableRow>
     </React.Fragment>
   )

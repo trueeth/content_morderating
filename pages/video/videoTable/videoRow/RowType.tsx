@@ -3,7 +3,7 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import { Slideshow } from '@mui/icons-material'
 
-const RowType = (props: { type: number }) => {
+const RowType = (props: { type: EVideoType }) => {
   if (props.type === EVideoType.video) {
     return (
       <React.Fragment>

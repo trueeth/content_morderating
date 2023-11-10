@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '../../../store/store'
 import { IAppSlice, openDialogUpload } from '../../../store/slices/app'
 import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
-import TabPanel from '../../TabPanel'
+import TabPanel from '../../styled/TabPanel'
 import UploadStepper from './uploadStepper/UploadStepper'
 import HistoryTable from './historyTable/HistoryTable'
 

@@ -4,7 +4,7 @@ import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
 import { CUploadSteps } from '../../../../interfaces'
-import TabPanel from '../../../TabPanel'
+import TabPanel from '../../../styled/TabPanel'
 import TypeStep from './TypeStep'
 import StatusStep from './StatusStep'
 import SourceStep from './SourceStep'
@@ -52,12 +52,14 @@ export default function UploadStepper() {
         ></StatusStep>
       </TabPanel>
       <TabPanel index={activeStep} value={2}>
-        <SourceStep handleBack={handleBack} handleNext={handleNext}></SourceStep>
+        <SourceStep
+          handleBack={handleBack}
+          handleNext={handleNext}
+        ></SourceStep>
       </TabPanel>
       <TabPanel index={activeStep} value={3}>
         <LaunchStep></LaunchStep>
       </TabPanel>
-
     </Box>
   )
 }

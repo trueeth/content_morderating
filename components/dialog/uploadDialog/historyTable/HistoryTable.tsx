@@ -4,17 +4,11 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import {
-  EApporval,
-  EClassification,
-  ERating,
-  EStatus,
   EHistoryData,
   EVideoType,
   THistoryRowType,
-  TVideoRowType,
 } from '../../../../interfaces'
 import TableBody from '@mui/material/TableBody'
-import VideoRow from '../../../../pages/video/videoTable/videoRow/VideoRow'
 import TableContainer from '@mui/material/TableContainer'
 import * as React from 'react'
 import HistoryRow from './HistoryRow'
@@ -48,7 +42,7 @@ const rows: THistoryRowType[] = [
 
 export default function HistoryTable() {
   return (
-    <TableContainer component={Paper} sx={{ borderRadius: '15px', px: 2 }}>
+    <TableContainer component={Paper} sx={{ borderRadius: '15px', p: 2 }}>
       <Table
         aria-label="collapsible table"
         sx={{
@@ -62,16 +56,14 @@ export default function HistoryTable() {
           <TableRow
             sx={{
               '& .MuiTableCell-root': {
-                whiteSpace: 'nowrap',
                 fontSize: '12px',
                 color: '#888',
+                textAlign: 'center',
               },
             }}
           >
             {Object.values(EHistoryData).map((item, index) => (
-              <TableCell key={index} align="center">
-                {item}
-              </TableCell>
+              <TableCell key={index}>{item}</TableCell>
             ))}
             <TableCell>ACTION</TableCell>
           </TableRow>

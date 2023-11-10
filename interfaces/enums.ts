@@ -25,7 +25,7 @@ export enum EVideoDetail {
 }
 
 export enum EVideoType {
-  video,
+  video = 'Video',
 }
 
 export enum EStatus {
