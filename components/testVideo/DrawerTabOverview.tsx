@@ -35,7 +35,7 @@ const itemData = [
 
 
 const ImageItem=styled('img')({
-  padding:'2rem',
+  padding:'.5rem',
   borderRadius:'1rem'
 })
 
@@ -52,7 +52,13 @@ export default function DrawerTabOverview(){
           Most Interest Frames
         </div>
         <div className='flex flex-wrap'>
+          {itemData.map((item,index)=>{
+            return(
+              <ImageItem key={index} src={item.img} alt={item.title}>
 
+              </ImageItem>
+            )
+          })}
         </div>
     </Box>
   )
