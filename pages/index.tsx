@@ -126,7 +126,7 @@ const Index = () => {
         </div>
 
         {/*---------dialog-----------*/}
-        <TestVideoDrawer open={true} handleClose={() => setVisible(false)} />
+        <TestVideoDrawer open={false} handleClose={() => setVisible(false)} />
       </Container>
     </>
   )
