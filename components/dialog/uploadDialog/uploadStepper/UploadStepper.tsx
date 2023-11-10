@@ -27,7 +27,13 @@ export default function UploadStepper() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep}>
+      <Stepper
+        activeStep={activeStep}
+        alternativeLabel
+        sx={{
+          px:'2rem'
+        }}
+      >
         {CUploadSteps.map((label, index) => {
           const stepProps: { completed?: boolean } = {}
           const labelProps: {
@@ -35,8 +41,16 @@ export default function UploadStepper() {
           } = {}
 
           return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+            <Step key={label} {...stepProps}
+                  sx={{
+                    '& span': {
+                      fontSize:'.7rem'
+                    }
+                  }}>
+              <StepLabel
+                {...labelProps}
+
+              >{label}</StepLabel>
             </Step>
           )
         })}
