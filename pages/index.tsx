@@ -10,6 +10,8 @@ import CustomCheckBox from '../components/styled/CheckBox'
 import OrderFilter from '../components/OrdersFilter'
 import  VideoTable  from "../components/videoTable/VideoTable";
 import Image from 'next/image'
+import { FilterList, Sort } from '@mui/icons-material'
+import VideoTableHeader from '../components/videoTable/VideoTableHeader'
 
 const Index = () => {
   //dialog
@@ -42,100 +44,9 @@ const Index = () => {
       >
 
         {/*-------------table header-----------*/}
-        <Box sx={{ display: 'flex', width: '100%' }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: { xs: 1, md: 4 },
-                  flexWrap: 'wrap',
-                  p: { xs: 1, md: 2 },
-                  bgcolor: '#1c2c42',
-                  borderRadius: 5,
+        <VideoTableHeader>
 
-                  '& .MuiBox-root': {
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 3,
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 3,
-                  }}
-                >
-                  <Image
-                    src="https://twopaws.io/token-icons/default.png"
-                    alt="img"
-                    width={30}
-                    height={30}
-                  />
-                  <OrderFilter
-                    tokenType="loan"
-                    filter={filter}
-                    setFilter={setFilter}
-                  />
-                </Box>
-
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 3,
-                  }}
-                >
-                  <Image
-                    src="https://twopaws.io/token-icons/default.png"
-                    alt="img"
-                    width={30}
-                    height={30}
-                  />
-                  <OrderFilter
-                    tokenType="collateral"
-                    filter={filter}
-                    setFilter={setFilter}
-                  />
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: { xs: 1, md: 3 },
-                  p: 2,
-                  bgcolor: '#1c2c42',
-                  minHeight: '68px !important',
-                  borderRadius: 5,
-                  '& .MuiButton-root': {
-                    whiteSpace: 'nowrap',
-                    padding: 'auto 20px',
-                    maxWidth: '140px',
-                  },
-                }}
-              >
-                <Link href="/">
-                  <Button variant="outlined">Orders Book</Button>
-                </Link>
-                <Link href="./account">
-                  <Button variant="outlined">My Account</Button>
-                </Link>
-                <Button variant="outlined" onClick={() => setVisible(true)}>
-                  New Loan
-                </Button>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
+        </VideoTableHeader>
 
         {/*----------main table----------*/}
         <Box
