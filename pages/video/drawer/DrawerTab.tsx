@@ -1,8 +1,8 @@
-import { Box, Tab, Tabs, Typography } from '@mui/material'
+import { Box, Tab, Tabs } from '@mui/material'
 import React from 'react'
-import DrawerTabOverview from './DrawerTabOverview'
-import DrawerTabPlayScene from './DrawerTabPlayScene'
-import DrawerTabActivities from './DrawerTabActivities'
+import DrawerTabOverview from './TabOverview'
+import DrawerTabPlayScene from './TabPlayScene'
+import DrawerTabActivities from './TabActivities'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -21,11 +21,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   )
 }
@@ -47,6 +43,7 @@ export default function DrawerTab() {
         aria-label="scrollable prevent tabs example"
         sx={{
           width: '100%',
+          backgroundColor: 'var(--Secondry-L)',
         }}
       >
         <Tab label="Overview" />

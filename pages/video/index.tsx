@@ -1,13 +1,12 @@
 'use client'
 import * as React from 'react'
-import { useState } from 'react'
 import { Box, Pagination, PaginationItem } from '@mui/material'
 import { Container } from '@mui/material'
 
 import { styled } from '@mui/material/styles'
 import VideoTable from './videoTable/VideoTable'
 import VideoTableHeader from './Header'
-import TestVideoDrawer from './drawer/TestVideoDrawer'
+import TestVideoDrawer from './drawer'
 import { useDispatch, useSelector } from 'react-redux'
 import { IAppSlice, openVideoDrawer } from '../../store/slices/app'
 import { IReduxState } from '../../store/store'
@@ -23,18 +22,13 @@ const TablePagination = styled('div')({
   lineHeight: 1.5,
 })
 
-
 const Index = () => {
   //dialog
 
   // const [vState, setState] = useState({open:false})
 
-
-  const dispatch=useDispatch();
-  const appState=useSelector<IReduxState,IAppSlice>(
-    (state)=>state.app
-  )
-
+  const dispatch = useDispatch()
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   return (
     <>
@@ -82,7 +76,10 @@ const Index = () => {
         </TablePagination>
 
         {/*---------drawer-----------*/}
-        <TestVideoDrawer open={appState.videoDrawerOpen} handleClose={() => dispatch(openVideoDrawer({open:false}))} />
+        <TestVideoDrawer
+          open={appState.videoDrawerOpen}
+          handleClose={() => dispatch(openVideoDrawer({ open: false }))}
+        />
       </Container>
     </>
   )

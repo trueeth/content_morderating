@@ -1,20 +1,20 @@
 import { Box } from '@mui/material'
-import { TimeIndicator } from 'react-all-player'
 
-function ReactAllPlayer(props: { components: { Controls: () => JSX.Element } }) {
+function ReactAllPlayer(props: {
+  components: { Controls: () => JSX.Element }
+}) {
   return null
 }
 
-export default function DrawerTabPlayScene(){
-
-  return(
+export default function DrawerTabPlayScene() {
+  return (
     <Box
       sx={{
-        display:'flex',
-        flexDirection:'column'
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-
+      {/* 
       <div className='player-wrapper'>
         <ReactAllPlayer
           sources={[
@@ -40,9 +40,7 @@ export default function DrawerTabPlayScene(){
             },
           ]}
         />
-      </div>
-
+      </div> */}
     </Box>
   )
-
 }
