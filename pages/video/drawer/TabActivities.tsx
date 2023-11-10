@@ -1,7 +1,16 @@
-import { Box, ButtonGroup, TextField, Typography, Button } from '@mui/material'
-import { styled } from '@mui/styles'
+import {
+  Box,
+  ToggleButtonGroup,
+  TextField,
+  Typography,
+  ToggleButton,
+  Button,
+} from '@mui/material'
+import { styled, withStyles } from '@mui/styles'
 import IconButton from '@mui/material/IconButton'
 import { Slideshow } from '@mui/icons-material'
+import { useState } from 'react'
+import { CSceneState } from 'interfaces'
 
 const historys: IHistoryRow[] = [
   {
@@ -32,7 +41,30 @@ interface IHistoryRow {
   description: string
 }
 
-const HistoryDescription = styled('div')({})
+const HistoryDescription = styled('div')({
+  backgroundColor: '#eee',
+  padding: '3px 5px',
+  borderRadius: '5px',
+  fontSize: '14px',
+  height: '36px',
+  lineHeight: '32px',
+})
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#eee',
+      },
+      '&:hover fieldset': {
+        borderColor: '#eee',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'var(--Primary1)',
+      },
+    },
+  },
+})(TextField)
 
 const HistoryRow = (props: IHistoryRow) => {
   return (
@@ -43,26 +75,25 @@ const HistoryRow = (props: IHistoryRow) => {
         borderBottom: '1px solid #E8E8E8',
       }}
     >
-      <Box>
-        <IconButton>
-          <Slideshow></Slideshow>
-        </IconButton>
-      </Box>
+      <IconButton sx={{ p: 1, bgcolor: '#eee', mr: 2 }}>
+        <Slideshow />
+      </IconButton>
+
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           width: '100%',
+          alignItems: 'center',
         }}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <Typography>{props.writerName}</Typography>
-          <Typography>{props.writeDate}</Typography>
+        <Box>
+          <Typography sx={{ fontSize: '14px', color: '#333' }}>
+            {props.writerName}
+          </Typography>
+          <Typography sx={{ fontSize: '12px', color: '#888' }}>
+            {props.writeDate}
+          </Typography>
         </Box>
 
         <HistoryDescription>{props.description}</HistoryDescription>
@@ -72,6 +103,14 @@ const HistoryRow = (props: IHistoryRow) => {
 }
 
 export default function DrawerTabActivities() {
+  const [vState, setState] = useState({ scene: 'Processing' })
+  const handleScenceState = (
+    event: React.MouseEvent<HTMLElement>,
+    newState: string | null
+  ) => {
+    setState({ scene: newState })
+  }
+
   return (
     <Box
       sx={{
@@ -85,14 +124,21 @@ export default function DrawerTabActivities() {
       {/*---------Button group---------*/}
       <Box
         sx={{
-          paddingLeft: '1rem',
+          pl: '1rem',
         }}
       >
-        <ButtonGroup variant="outlined" aria-label="outlined button group">
-          <Button>Processing</Button>
-          <Button>Approved</Button>
-          <Button>Unapproved</Button>
-        </ButtonGroup>
+        <ToggleButtonGroup
+          value={vState.scene}
+          exclusive
+          aria-label="text alignment"
+          onChange={handleScenceState}
+        >
+          {CSceneState.map((item, index) => (
+            <ToggleButton value={item} key={index}>
+              {item}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
       </Box>
 
       {/*  -----------update-----------*/}
@@ -103,15 +149,27 @@ export default function DrawerTabActivities() {
           padding: '1rem',
         }}
       >
-        <Box sx={{ width: '100%', pr: '5rem' }}>
-          <TextField fullWidth placeholder="Write your note"></TextField>
-        </Box>
-        <Button variant="contained">Update</Button>
+        <CssTextField
+          fullWidth
+          placeholder="Write your note"
+          sx={{ mr: 2 }}
+        ></CssTextField>
+
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: 'var(--Primary1)',
+            width: '180px',
+            '&:hover': { backgroundColor: 'var(--Primary1)' },
+          }}
+        >
+          Update
+        </Button>
       </Box>
 
       {/*  ------------History--------*/}
       <Box>
-        <Typography>History</Typography>
+        <Typography ml={3}>History</Typography>
         <Box>
           {historys.map((item, index) => (
             <HistoryRow

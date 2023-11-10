@@ -20,6 +20,7 @@ export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
           boxShadow: 'none',
           padding: '20px 0px',
           width: '50%',
+          color: '#333',
         },
       }}
     >

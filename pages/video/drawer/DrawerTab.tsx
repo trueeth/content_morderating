@@ -34,7 +34,7 @@ export default function DrawerTab() {
   }
 
   return (
-    <div className="w-full">
+    <Box className="w-full">
       <Tabs
         value={vState.tabIndex}
         onChange={handleChange}
@@ -59,6 +59,6 @@ export default function DrawerTab() {
       <TabPanel value={vState.tabIndex} index={2}>
         <DrawerTabActivities></DrawerTabActivities>
       </TabPanel>
-    </div>
+    </Box>
   )
 }
