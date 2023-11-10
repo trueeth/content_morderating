@@ -29,6 +29,21 @@ const theme = createTheme({
         },
       },
     },
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: 'var(--Secondry-L)',
+          },
+          backgroundColor: 'var(--Secondry-L)',
+          border: 'none',
+          '&.Mui-selected, &.Mui-selected:hover': {
+            color: 'white',
+            backgroundColor: 'var(--Primary1)',
+          },
+        },
+      },
+    },
   },
 })
 
