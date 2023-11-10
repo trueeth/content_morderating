@@ -1,8 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { Box, Drawer } from '@mui/material'
 
-import { useState } from 'react'
-import DrawerHeader from './DrawerHeader'
+import DrawerHeader from './Header'
 import DrawerTab from './DrawerTab'
 
 interface IOpenProps {
@@ -11,7 +10,6 @@ interface IOpenProps {
 }
 
 export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
-
   return (
     <Drawer
       anchor="right"
@@ -20,9 +18,8 @@ export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
       PaperProps={{
         style: {
           boxShadow: 'none',
-          color: '#ececec',
           padding: '20px 0px',
-          width: '60%',
+          width: '50%',
         },
       }}
     >
@@ -43,12 +40,11 @@ export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
           <CloseIcon
             onClick={handleClose}
             fontSize="small"
-            sx={{ cursor: 'pointer', color: 'red' }}
+            sx={{ cursor: 'pointer' }}
           />
         </Box>
 
         <DrawerHeader></DrawerHeader>
-
         <DrawerTab></DrawerTab>
       </Box>
     </Drawer>

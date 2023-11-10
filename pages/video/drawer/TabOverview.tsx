@@ -1,5 +1,4 @@
-import { Box } from '@mui/material'
-import { styled } from '@mui/styles'
+import { Box, Typography } from '@mui/material'
 import Image from 'next/image'
 
 import overview1 from '/assets/images/overview/overview-01.png'
@@ -14,8 +13,6 @@ import overview9 from '/assets/images/overview/overview-09.png'
 import overview10 from '/assets/images/overview/overview-10.png'
 import overview11 from '/assets/images/overview/overview-11.png'
 import overview12 from '/assets/images/overview/overview-12.png'
-
-
 
 const itemData = [
   {
@@ -66,48 +63,52 @@ const itemData = [
     img: overview12,
     title: 'overview',
   },
-];
+]
 
-
-const ImageItemStyle={
-  margin:'.3rem',
-  borderRadius:'.3rem',
-  width:'10rem',
-  height:'7.5rem',
+const ImageItemStyle = {
+  margin: '.3rem',
+  borderRadius: '.3rem',
+  width: '10rem',
+  height: '7.5rem',
 }
 
-export default function DrawerTabOverview(){
-
-  return(
+export default function DrawerTabOverview() {
+  return (
     <Box
       sx={{
-        display:'flex',
-        flexDirection:'column'
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-        <div>
-          Most Interest Frames
-        </div>
-        <div className='flex flex-wrap'>
-          {itemData.map((item,index)=>{
-            return(
-              <Image
-                key={index}
-                src={item.img}
-                alt={item.title}
-                style={ImageItemStyle}
-                width={80}
-                height={50}
-              />
-            )
-          })}
-        </div>
-      <div>AI Description</div>
-
-      <div>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem  Ipsum is simply dummy text of the best ipsum has been the top offer industry's standard printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem  Ipsum is simply dummy text of the best ipsum has been the top industry's standard printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem  Ipsum is simply dummy text of the best ipsum has been the top offer industry's standard printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      <Typography>Most Interest Frames</Typography>
+      <div className="flex flex-wrap">
+        {itemData.map((item, index) => {
+          return (
+            <Image
+              key={index}
+              src={item.img}
+              alt={item.title}
+              style={ImageItemStyle}
+              width={80}
+              height={50}
+            />
+          )
+        })}
       </div>
+      <Typography>AI Description</Typography>
+
+      <Typography>
+        This is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum is simply dummy text of the best ipsum has been the top
+        offer industry's standard printing and typesetting industry. Lorem Ipsum
+        is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum is simply dummy text of the best ipsum has been the top industry's
+        standard printing and type setting industry. Lorem Ipsum is simply dummy
+        text of the printing and typesetting industry. Lorem Ipsum is simply
+        dummy text of the best ipsum has been the top offer industry's standard
+        printing and typesetting industry. Lorem Ipsum is simply dummy text of
+        the printing and typesetting industry.
+      </Typography>
     </Box>
   )
-
 }
