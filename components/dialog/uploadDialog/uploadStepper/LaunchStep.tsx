@@ -35,7 +35,11 @@ export default function LaunchStep() {
           Video Upload
         </Typography>
         <Box sx={{ width: '100%' }}>
-          <LinearProgress variant="determinate" value={vState.progress} />
+          <LinearProgress
+            variant="determinate"
+            value={vState.progress}
+            sx={{ backgroundColor: 'white' }}
+          />
         </Box>
         <Box
           sx={{
@@ -54,7 +58,13 @@ export default function LaunchStep() {
         </Box>
 
         <Typography
-          sx={{ mt: 3, textAlign: 'center', width: '80%', color: '#666' }}
+          sx={{
+            mt: 3,
+            textAlign: 'center',
+            width: '80%',
+            color: '#889',
+            fontSize: '15px',
+          }}
         >
           Disclaimer: He should not leave this page until the first stage of
           upload is done.

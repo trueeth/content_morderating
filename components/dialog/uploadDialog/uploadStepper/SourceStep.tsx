@@ -18,10 +18,10 @@ const baseStyle: CSSProperties = {
   borderRadius: 2,
   borderColor: '#eeeeee',
   borderStyle: 'dashed',
-  backgroundColor: '#fafafa',
+  backgroundColor: 'white',
   color: '#bdbdbd',
   outline: 'none',
-  width:'100%',
+  width: '100%',
   transition: 'border .24s ease-in-out',
 }
 
@@ -63,26 +63,30 @@ const UploadPc = () => {
     </li>
   ))
   return (
-      <div {...getRootProps({ style })}>
-        <input {...getInputProps()} />
-        <div className='flex'>
-          <div className='flex item-center mr-5'>
-            <FileUpload  fontSize='large'/>
-          </div>
-          <div className='flex flex-col'>
-            <div className='flex'>
-              <p className='mr-3'>
-
-                Drag your file here or{' '}
-              </p>
-              <p style={{ color: 'var(--Primary1)' }}>Browse</p>
-            </div>
-            <div>
-              Maximum file size 2GB
-            </div>
-          </div>
-        </div>
-      </div>
+    <Box {...getRootProps({ style })}>
+      <input {...getInputProps()} />
+      <Box className="flex">
+        <Box className="flex item-center mr-5">
+          <FileUpload fontSize="large" />
+        </Box>
+        <Box className="flex flex-col">
+          <Box className="flex">
+            <Typography
+              sx={{
+                mr: 1,
+                fontSize: '16px',
+                whiteSpace: 'nowrap',
+                color: '#333',
+              }}
+            >
+              Drag your file here or
+            </Typography>
+            <Typography style={{ color: 'var(--Primary1)' }}>Browse</Typography>
+          </Box>
+          <Typography>Maximum file size 2GB</Typography>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

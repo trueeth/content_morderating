@@ -101,15 +101,15 @@ export default function DrawerTabOverview() {
         sx={{ my: 1, p: 1, border: '1px solid #ccc', borderRadius: '10px' }}
       >
         This is simply dummy text of the printing and typesetting industry. is
-        simply dummy text of the best ipsum has been the top offer industry's
-        standard printing and typesetting industry. This is simply dummy text of
-        the printing and typesetting industry. This is simply dummy text of the
-        best ipsum has been the top industry's standard printing and type
-        setting industry. Here is simply dummy text of the printing and
-        typesetting industry. Here is simply dummy text of the best ipsum has
-        been the top offer industry's standard printing and typesetting
-        industry. Here is simply dummy text of the printing and typesetting
-        industry.
+        simply dummy text of the best ipsum has been the top offer
+        industry&apos;s standard printing and typesetting industry. This is
+        simply dummy text of the printing and typesetting industry. This is
+        simply dummy text of the best ipsum has been the top industry&apos;s
+        standard printing and type setting industry. Here is simply dummy text
+        of the printing and typesetting industry. Here is simply dummy text of
+        the best ipsum has been the top offer industry&apos;s standard printing
+        and typesetting industry. Here is simply dummy text of the printing and
+        typesetting industry.
       </Typography>
     </Box>
   )

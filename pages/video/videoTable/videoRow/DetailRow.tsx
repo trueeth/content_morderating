@@ -13,6 +13,10 @@ import { openVideoDrawer } from '../../../../store/slices/app'
 const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
   const [checked, setChecked] = React.useState(false)
 
+  const dispatch = useDispatch()
+  const handleDetail = () => {
+    dispatch(openVideoDrawer({ open: true }))
+  }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked)
   }
@@ -23,10 +27,6 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
     return null
   }
 
-  const dispatch = useDispatch()
-  const handleDetail = () => {
-    dispatch(openVideoDrawer({ open: true }))
-  }
   return (
     <Table
       size="small"
