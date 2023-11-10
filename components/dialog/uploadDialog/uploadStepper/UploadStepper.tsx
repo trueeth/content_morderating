@@ -45,6 +45,12 @@ export default function UploadStepper() {
                 '& span': {
                   fontSize: '.7rem',
                 },
+                '& .Mui-completed path': {
+                  color: 'var(--Primary1)',
+                },
+                '& .Mui-active circle': {
+                  color: 'var(--Primary1)',
+                },
               }}
             >
               <StepLabel {...labelProps}>{label}</StepLabel>
