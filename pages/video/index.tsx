@@ -8,6 +8,9 @@ import { styled } from '@mui/material/styles'
 import VideoTable from './videoTable/VideoTable'
 import VideoTableHeader from './Header'
 import TestVideoDrawer from './drawer/TestVideoDrawer'
+import { useDispatch, useSelector } from 'react-redux'
+import { IAppSlice, openVideoDrawer } from '../../store/slices/app'
+import { IReduxState } from '../../store/store'
 
 const TablePagination = styled('div')({
   marginTop: '1rem',
@@ -20,10 +23,18 @@ const TablePagination = styled('div')({
   lineHeight: 1.5,
 })
 
+
 const Index = () => {
   //dialog
 
-  const [visible, setVisible] = useState(false)
+  // const [vState, setState] = useState({open:false})
+
+
+  const dispatch=useDispatch();
+  const appState=useSelector<IReduxState,IAppSlice>(
+    (state)=>state.app
+  )
+
 
   return (
     <>
@@ -70,8 +81,8 @@ const Index = () => {
           ></Pagination>
         </TablePagination>
 
-        {/*---------dialog-----------*/}
-        <TestVideoDrawer open={false} handleClose={() => setVisible(false)} />
+        {/*---------drawer-----------*/}
+        <TestVideoDrawer open={appState.videoDrawerOpen} handleClose={() => dispatch(openVideoDrawer({open:false}))} />
       </Container>
     </>
   )

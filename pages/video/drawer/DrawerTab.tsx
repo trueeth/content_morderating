@@ -31,16 +31,16 @@ function TabPanel(props: TabPanelProps) {
 }
 
 export default function DrawerTab() {
-  const [VState, setState] = React.useState({ tabIndex: 0 })
+  const [vState, setState] = React.useState({ tabIndex: 0 })
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setState({ ...VState, tabIndex: newValue })
+    setState({ ...vState, tabIndex: newValue })
   }
 
   return (
     <div className="w-full">
       <Tabs
-        value={VState.tabIndex}
+        value={vState.tabIndex}
         onChange={handleChange}
         // variant="fullWidth"
         scrollButtons="auto"
@@ -53,13 +53,13 @@ export default function DrawerTab() {
         <Tab label="Play teh Scene" />
         <Tab label="Activities" />
       </Tabs>
-      <TabPanel value={VState.tabIndex} index={0}>
+      <TabPanel value={vState.tabIndex} index={0}>
         <DrawerTabOverview></DrawerTabOverview>
       </TabPanel>
-      <TabPanel value={VState.tabIndex} index={1}>
+      <TabPanel value={vState.tabIndex} index={1}>
         <DrawerTabPlayScene></DrawerTabPlayScene>
       </TabPanel>
-      <TabPanel value={VState.tabIndex} index={2}>
+      <TabPanel value={vState.tabIndex} index={2}>
         <DrawerTabActivities></DrawerTabActivities>
       </TabPanel>
     </div>

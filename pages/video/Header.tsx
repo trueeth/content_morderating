@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton'
 import StyledButton from 'components/styled/StyledButton'
 
 const VideoTableHeader = () => {
-  const [VState, setState] = React.useState({ groupBy: 0 })
+  const [vState, setState] = React.useState({ groupBy: 0 })
 
   const handleGroupByChange = (event: any) => {
     setState({ groupBy: event.target.value })
@@ -62,7 +62,7 @@ const VideoTableHeader = () => {
         >
           <Typography>Group by:</Typography>
           <Select
-            value={VState.groupBy}
+            value={vState.groupBy}
             onChange={handleGroupByChange}
             sx={{
               ml: 2,

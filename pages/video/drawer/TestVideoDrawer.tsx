@@ -11,7 +11,6 @@ interface IOpenProps {
 }
 
 export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
-  const [view, setview] = useState('supply')
 
   return (
     <Drawer

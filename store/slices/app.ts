@@ -2,10 +2,6 @@ import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import { IReduxState } from 'store/store'
 import { setAll } from 'utils/setAll'
 
-export const loadAppDetails = createAsyncThunk(
-  'app/loadAppDetails',
-  async () => {}
-)
 
 const initialState = {
   loading: true,
@@ -26,22 +22,9 @@ const appSlice = createSlice({
     fetchAppSuccess(state, action) {
       setAll(state, action.payload)
     },
-    openVideoDrawer(state, action) {
+    openVideoDrawer(state,action) {
       state.videoDrawerOpen = action.payload.open
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(loadAppDetails.pending, (state, action) => {
-        state.loading = true
-      })
-      .addCase(loadAppDetails.fulfilled, (state, action) => {
-        state.loading = false
-      })
-      .addCase(loadAppDetails.rejected, (state, { error }) => {
-        state.loading = false
-        console.log(error)
-      })
   },
 })
 
