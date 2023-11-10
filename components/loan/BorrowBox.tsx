@@ -38,7 +38,7 @@ const BorrowBox = () => {
           borderRadius: '10px',
         }}
       >
-        <TokenSelector orderType={OrderType.BORROW} tokenType="collateral" />
+        <TokenSelector orderType="borrow" tokenType="collateral" />
         <StyledTextField
           value={actionState.borrow.collateralAmount}
           onChange={(e) => {
@@ -62,11 +62,7 @@ const BorrowBox = () => {
               color: '#9597a1',
             },
           }}
-        >
-          {/* <Typography>1 USDC =</Typography>
-          <Typography>0.99</Typography>
-          <Typography>$</Typography> */}
-        </Box>
+        ></Box>
       </Box>
       <Box
         sx={{
@@ -79,7 +75,7 @@ const BorrowBox = () => {
           borderRadius: '10px',
         }}
       >
-        <TokenSelector orderType={OrderType.BORROW} tokenType="loan" />
+        <TokenSelector orderType="borrow" tokenType="loan" />
         <StyledTextField
           value={actionState.borrow.loanAmount}
           onChange={(e) => {

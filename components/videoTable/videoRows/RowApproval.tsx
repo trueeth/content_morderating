@@ -7,12 +7,17 @@ const RowApproval = (props: { approval: number }) => {
   return (
     <React.Fragment>
       <Box
-        className={clsx((props.approval === EApporval.approve) && 'approve', (props.approval === EApporval.reject) && 'reject', (props.approval === EApporval.pending) && 'pending', (props.approval===EApporval.review)&&'review')}>
+        className={clsx(
+          props.approval === EApporval.approve && 'approve',
+          props.approval === EApporval.reject && 'reject',
+          props.approval === EApporval.pending && 'pending',
+          props.approval === EApporval.review && 'review'
+        )}
+      >
         {VApproval[props.approval]}
       </Box>
     </React.Fragment>
   )
-
 }
 
 export default RowApproval

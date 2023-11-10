@@ -9,14 +9,12 @@ import {
 } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { StyledTextField } from 'components/styled/CustomTextField'
-import { OrderType } from 'interfaces'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
 import { IActionSlice } from 'store/slices/action'
 import { IReduxState } from 'store/store'
-import { trim } from 'utils/trim'
 
-const LoanDetail = ({ orderType }: { orderType: OrderType }) => {
+const LoanDetail = ({ orderType }: { orderType: string }) => {
   const actionState = useSelector<IReduxState, IActionSlice>(
     (state) => state.action
   )

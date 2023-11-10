@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
+import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -185,14 +185,25 @@ const rows: TVideoRowType[] = [
 
 export default function VideoTable() {
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
+    <TableContainer component={Paper} sx={{ borderRadius: '15px', px: 2 }}>
+      <Table
+        aria-label="collapsible table"
+        sx={{
+          [`& .${tableCellClasses.root}`]: {
+            borderBottom: 'none',
+          },
+        }}
+      >
         <TableHead>
           <TableRow>
             <TableCell />
-            {Object.values(EVideoColumns).map((cell, index) => (
-              <TableCell key={index} align="left">
-                {cell}
+            {Object.values(EVideoColumns).map((item, index) => (
+              <TableCell
+                key={index}
+                align="center"
+                sx={{ whiteSpace: 'nowrap', fontSize: '12px' }}
+              >
+                {item}
               </TableCell>
             ))}
           </TableRow>

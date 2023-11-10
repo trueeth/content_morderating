@@ -4,7 +4,6 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export * from "./enums";
-export * from "./types";
+export * from './enums'
+export * from './types'
 export * from './constant'
-

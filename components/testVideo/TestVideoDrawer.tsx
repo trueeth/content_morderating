@@ -1,11 +1,9 @@
 import CloseIcon from '@mui/icons-material/Close'
-import { Typography, Dialog, Box, Button, Drawer } from '@mui/material'
+import { Box, Drawer } from '@mui/material'
 
 import { useState } from 'react'
 import DrawerHeader from './DrawerHeader'
 import DrawerTab from './DrawerTab'
-
-
 
 interface IOpenProps {
   open: boolean
@@ -17,7 +15,7 @@ export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
 
   return (
     <Drawer
-      anchor='right'
+      anchor="right"
       onClose={handleClose}
       open={open}
       PaperProps={{
@@ -25,37 +23,34 @@ export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
           boxShadow: 'none',
           color: '#ececec',
           padding: '20px 0px',
-          width:'60%'
+          width: '60%',
         },
       }}
-      scroll={'body'}
     >
       <Box
         sx={{
           display: 'flex',
           alignItems: 'center',
-          flexDirection:'column'
+          flexDirection: 'column',
         }}
       >
         <Box
           sx={{
-            display:'flex',
-            flexDirection:'row-reverse',
-            width:'100%'
+            display: 'flex',
+            flexDirection: 'row-reverse',
+            width: '100%',
           }}
         >
-           <CloseIcon onClick={handleClose} fontSize='very small' sx={{ cursor: 'pointer', color:'red' }} />
-
+          <CloseIcon
+            onClick={handleClose}
+            fontSize="small"
+            sx={{ cursor: 'pointer', color: 'red' }}
+          />
         </Box>
 
-        <DrawerHeader>
+        <DrawerHeader></DrawerHeader>
 
-        </DrawerHeader>
-
-        <DrawerTab>
-
-        </DrawerTab>
-
+        <DrawerTab></DrawerTab>
       </Box>
     </Drawer>
   )

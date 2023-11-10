@@ -1,29 +1,25 @@
-
 export enum EVideoColumns {
-  name='NAME',
-  type='TYPE',
-  status='STATUS',
-  rating='RATING',
-  classification='CLASSIFICATION',
-  submissionDate='SUBMISSION DATE',
-  approval='APPROVAL',
-  flaggedScenes='FLAGGED SCENES',
-  actions='ACTIONS'
+  name = 'NAME',
+  type = 'TYPE',
+  status = 'STATUS',
+  rating = 'RATING',
+  classification = 'CLASSIFICATION',
+  submissionDate = 'SUBMISSION DATE',
+  approval = 'APPROVAL',
+  flaggedScenes = 'FLAGGED SCENES',
+  actions = 'ACTIONS',
 }
 
 export enum EVideoSubColumns {
-  sceneNumber='SCENE NUMBER',
-  violationType='VIOLATION TYPE',
-  category='CATEGORY',
-  description='DESCRIPTION',
-  actions='ACTIONS'
+  sceneNumber = 'SCENE NUMBER',
+  violationType = 'VIOLATION TYPE',
+  category = 'CATEGORY',
+  description = 'DESCRIPTION',
 }
 
-
-export enum EVideoType{
-  video
+export enum EVideoType {
+  video,
 }
-
 
 export enum EStatus {
   new,
@@ -36,16 +32,15 @@ export enum ERating {
   missing,
 }
 
-export enum EClassification{
-  h='H',
-  s='S',
-  sh='SH'
+export enum EClassification {
+  h = 'H',
+  s = 'S',
+  sh = 'SH',
 }
 
-export enum EApporval{
+export enum EApporval {
   review,
   approve,
   reject,
   pending,
 }
-

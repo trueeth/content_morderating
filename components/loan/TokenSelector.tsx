@@ -1,13 +1,11 @@
 import * as React from 'react'
 import { FormControl, Select } from '@mui/material'
 
-import { OrderType } from 'interfaces'
-
 const TokenSelector = ({
   orderType,
   tokenType,
 }: {
-  orderType: OrderType
+  orderType: string
   tokenType: string
 }) => {
   return (

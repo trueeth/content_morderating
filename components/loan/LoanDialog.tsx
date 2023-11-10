@@ -1,14 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { Typography, Dialog, Box, Button } from '@mui/material'
-import DatePicker from '../styled/DatePicker'
 
 import { useState } from 'react'
-
-import LoanDetail from './LoanDetail'
-
-import SupplyBox from './SupplyBox'
-import BorrowBox from './BorrowBox'
-
 
 interface IOpenProps {
   open: boolean
@@ -75,40 +68,7 @@ export default function LoanDialog({ open, handleClose }: IOpenProps) {
           Borrow
         </Button>
       </Box>
-      {/* <Box
-        sx={{
-          '& .MuiTypography-root': {
-            mt: 2,
-            mb: 0.5,
-            fontSize: { xs: '15px', md: '15px' },
-            letterSpacing: 1,
-          },
-        }}
-      >
-        {view === 'supply' ? <SupplyBox /> : <BorrowBox />}
-        <Typography ml={2} mb={0.5}>
-          The repayment period for this credit starts on:
-        </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <DatePicker
-            pickerType={DatePickerType.START}
-            orderType={view === 'supply' ? OrderType.SUPPLY : OrderType.BORROW}
-          />
-        </Box>
-        <Typography ml={2} mb={0.5}>
-          Ends on:
-        </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <DatePicker
-            pickerType={DatePickerType.END}
-            orderType={view === 'supply' ? OrderType.SUPPLY : OrderType.BORROW}
-          />
-        </Box>
-      </Box>
 
-      <LoanDetail
-        orderType={view === 'supply' ? OrderType.SUPPLY : OrderType.BORROW}
-      /> */}
       <Box
         sx={{
           display: 'flex',

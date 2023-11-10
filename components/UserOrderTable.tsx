@@ -10,10 +10,8 @@ import {
   Box,
   Modal,
 } from '@mui/material'
-import { Order, OrderRole } from 'interfaces'
 
 import CloseIcon from '@mui/icons-material/Close'
-import { formatTimestamp } from 'utils/time'
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -28,9 +26,9 @@ const modalStyle = {
   padding: '20px 20px',
 }
 
-function OrderTable({ orders }: { orders: Array<Order> }) {
+function OrderTable({ orders }: { orders: Array<string> }) {
   const [open, setOpen] = useState(false)
-  const [order, setOrder] = useState<Order | null>(null)
+  const [order, setOrder] = useState<string | null>(null)
 
   return (
     <TableContainer
@@ -79,12 +77,7 @@ function OrderTable({ orders }: { orders: Array<Order> }) {
               alignItems="center"
               mb={3}
             >
-              <Typography fontSize="20px">
-                {order.role === OrderRole.SUPPLY
-                  ? 'Supply Order '
-                  : 'Borrow Order '}
-                Info
-              </Typography>
+              <Typography fontSize="20px">Info</Typography>
               <CloseIcon
                 onClick={() => setOpen(false)}
                 sx={{ cursor: 'pointer' }}
@@ -119,10 +112,7 @@ function OrderTable({ orders }: { orders: Array<Order> }) {
                 <Typography>0</Typography>
               </Box>
               <Box>
-                <Typography>
-                  {order.role === OrderRole.SUPPLY ? 'Borrower ' : 'Lender '}
-                  will get
-                </Typography>
+                <Typography>will get</Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <Typography
                     sx={{
@@ -131,11 +121,7 @@ function OrderTable({ orders }: { orders: Array<Order> }) {
                       maxWidth: '150px',
                       textAlign: 'right',
                     }}
-                  >
-                    {order.role === OrderRole.SUPPLY
-                      ? 'Loan Amount - (Lender Fee + Protocol Fee)'
-                      : 'Your Deposit + Lender Fee'}
-                  </Typography>
+                  ></Typography>
                 </Box>
               </Box>
               <Box
@@ -149,7 +135,6 @@ function OrderTable({ orders }: { orders: Array<Order> }) {
                 }}
               >
                 <Typography mb={1}>
-                  {order.role === OrderRole.SUPPLY ? 'You ' : 'Borrowers '}
                   have from
                   <span
                     style={{
@@ -157,9 +142,7 @@ function OrderTable({ orders }: { orders: Array<Order> }) {
                       color: '#ccc',
                       padding: '0 5px',
                     }}
-                  >
-                    {formatTimestamp(Number(order.timestamps[0]) * 1000)}
-                  </span>
+                  ></span>
                   to repay your loan, with the deadline being
                   <span
                     style={{
@@ -167,9 +150,7 @@ function OrderTable({ orders }: { orders: Array<Order> }) {
                       color: '#ccc',
                       padding: '0 5px',
                     }}
-                  >
-                    {formatTimestamp(Number(order.timestamps[1]) * 1000)}
-                  </span>
+                  ></span>
                 </Typography>
                 <Typography>
                   If the repayment is not completed, all collateral amount go to
