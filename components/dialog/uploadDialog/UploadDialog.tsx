@@ -15,7 +15,7 @@ import Switch from '@mui/material/Switch';
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '../../../store/store'
 import { IAppSlice, openDialogUpload } from '../../../store/slices/app'
-import { ButtonGroup, Tab, Tabs } from '@mui/material'
+import { ButtonGroup, Tab, Tabs, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import DrawerTabOverview from '../../../pages/video/drawer/TabOverview'
 import DrawerTabPlayScene from '../../../pages/video/drawer/TabPlayScene'
 import TabPanel from '../../TabPanel'
@@ -37,7 +37,7 @@ export default function UploadDialog() {
 
   const [vState, setState] = React.useState({ tabIndex: 0 })
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: React.MouseEvent<HTMLElement>, newValue: number) => {
     setState({ ...vState, tabIndex: newValue })
   }
 
@@ -59,10 +59,16 @@ export default function UploadDialog() {
         {/*  -----------select tab----------*/}
           <Box>
             <Box>
-              <ButtonGroup variant="outlined" aria-label="outlined button group">
-                <Button onClick={()=>setState({...vState,tabIndex: 0})}>Upload</Button>
-                <Button onClick={()=>setState({...vState,tabIndex: 1})}>History</Button>
-              </ButtonGroup>
+              <ToggleButtonGroup
+                color="primary"
+                value={vState.tabIndex}
+                exclusive
+                onChange={handleChange}
+                aria-label="Platform"
+              >
+                <ToggleButton value={0}>Upload</ToggleButton>
+                <ToggleButton value={1}>History</ToggleButton>
+              </ToggleButtonGroup>
             </Box>
             <TabPanel value={vState.tabIndex} index={0}>
               <UploadStepper></UploadStepper>
