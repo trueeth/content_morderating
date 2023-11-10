@@ -1,9 +1,71 @@
 import { StepWrapper } from './index'
 import { Box, Radio, TextField } from '@mui/material'
 import * as React from 'react'
-import { useState } from 'react'
-import StyledButton from '../../../styled/StyledButton'
+import { useMemo, useState } from 'react'
+import { StyledButton } from '../../../styled/StyledButton'
+import { useDropzone } from 'react-dropzone'
 
+
+const baseStyle = {
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '20px',
+  borderWidth: 2,
+  borderRadius: 2,
+  borderColor: '#eeeeee',
+  borderStyle: 'dashed',
+  backgroundColor: '#fafafa',
+  color: '#bdbdbd',
+  outline: 'none',
+  transition: 'border .24s ease-in-out'
+};
+
+const focusedStyle = {
+  borderColor: '#2196f3'
+};
+
+const acceptStyle = {
+  borderColor: '#00e676'
+};
+
+const rejectStyle = {
+  borderColor: '#ff1744'
+};
+
+const UploadPc=()=>{
+  const {acceptedFiles, getRootProps, getInputProps,isFocused,isDragAccept,isDragReject} = useDropzone();
+
+  const style = useMemo(() => ({
+    ...baseStyle,
+    ...(isFocused ? focusedStyle : {}),
+    ...(isDragAccept ? acceptStyle : {}),
+    ...(isDragReject ? rejectStyle : {})
+  }), [
+    isFocused,
+    isDragAccept,
+    isDragReject
+  ]);
+
+  const files = acceptedFiles.map((file:any) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
+  return(
+    <section className="container">
+      <div {...getRootProps({style})}>
+        <input {...getInputProps()} />
+        <p>Drag your file here or <p style={{color:'var(--Primary1)'}}>Browse</p></p>
+      </div>
+      {/*<aside>*/}
+      {/*  <h4>Files</h4>*/}
+      {/*  <ul>{files}</ul>*/}
+      {/*</aside>*/}
+    </section>
+  )
+}
 
 export default function SourceStep (props:{handleBack:()=>void, handleNext:()=>void}) {
 
@@ -49,9 +111,7 @@ export default function SourceStep (props:{handleBack:()=>void, handleNext:()=>v
             value={'pc'}
           />
         </div>
-        <TextField
-          fullWidth={true}
-        />
+        <UploadPc/>
 
 
         <div className='flex justify-between'>
