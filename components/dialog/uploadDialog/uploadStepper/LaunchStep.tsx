@@ -1,22 +1,20 @@
 import { StepWrapper } from './index'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import LinearProgress from '@mui/material/LinearProgress'
 import React from 'react'
 
-
 export default function LaunchStep() {
-
-  const [vState, setState] = React.useState({ progress:0 })
+  const [vState, setState] = React.useState({ progress: 0 })
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      const setProgress=(state) => {
+      const setProgress = (state) => {
         if (state.progress === 100) {
           return 0
         }
         const diff = Math.random() * 10
-        return { ...state,progress:Math.min(state.progress + diff, 100) }
-      };
+        return { ...state, progress: Math.min(state.progress + diff, 100) }
+      }
       setState(setProgress)
     }, 500)
 
@@ -30,33 +28,38 @@ export default function LaunchStep() {
         sx={{
           display: 'flex',
           flexDirection: 'column',
+          rowGap: 1,
         }}
       >
-        <div>
+        <Typography textAlign="center" my={2} variant="h6">
           Video Upload
-        </div>
+        </Typography>
         <Box sx={{ width: '100%' }}>
           <LinearProgress variant="determinate" value={vState.progress} />
         </Box>
-        <div className='flex justify-between'>
-          <div>
-            Uploading
-          </div>
-          <div>
-            Analyzing
-          </div>
-          <div>
-            Indexing
-          </div>
-          <div>
-            Scoring
-          </div>
-        </div>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            '& .MuiTypography-root': {
+              fontSize: '12px',
+              color: '#333',
+            },
+          }}
+        >
+          <Typography>Uploading</Typography>
+          <Typography>Analyzing</Typography>
+          <Typography>Indexing</Typography>
+          <Typography>Scoring</Typography>
+        </Box>
 
-        <div>
-          Disclaimer: He should not leave this page until the first stage of upload is done.
-        </div>
-
+        <Typography
+          sx={{ mt: 3, textAlign: 'center', width: '80%', color: '#666' }}
+        >
+          Disclaimer: He should not leave this page until the first stage of
+          upload is done.
+        </Typography>
       </Box>
-    </StepWrapper>)
+    </StepWrapper>
+  )
 }

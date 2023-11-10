@@ -1,12 +1,13 @@
 import { StepWrapper } from './index'
-import { Box, Radio, TextField } from '@mui/material'
+import { Box, Radio, Typography } from '@mui/material'
 import * as React from 'react'
 import { useMemo, useState } from 'react'
-import { StyledButton } from '../../../styled/StyledButton'
+import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
 import { CSSProperties } from 'styled-components'
+import { PrimaryTextField } from 'components/styled/TextField'
 
-const baseStyle:CSSProperties = {
+const baseStyle: CSSProperties = {
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
@@ -68,10 +69,6 @@ const UploadPc = () => {
           <p style={{ color: 'var(--Primary1)' }}>Browse</p>
         </p>
       </div>
-      {/*<aside>*/}
-      {/*  <h4>Files</h4>*/}
-      {/*  <ul>{files}</ul>*/}
-      {/*</aside>*/}
     </section>
   )
 }
@@ -89,46 +86,72 @@ export default function SourceStep(props: {
     <StepWrapper>
       <Box
         sx={{
+          width: '80%',
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          rowGap: 1,
+          '& > .MuiBox-root': {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            '& .MuiTypography-root': {
+              fontSize: '14px',
+              width: '100%',
+            },
+          },
         }}
       >
-        <div>Where is the source file</div>
+        <Typography>Where is the source file</Typography>
 
-        <div className="flex justify-between">
-          <div>Upload from URL option</div>
+        <Box>
+          <Typography>Upload from URL option</Typography>
           <Radio
             checked={vState.type === 'url'}
             onChange={handleType}
             value={'url'}
           />
-        </div>
-        <TextField fullWidth={true} />
+        </Box>
+        <PrimaryTextField
+          fullWidth={true}
+          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
+        />
 
-        <div className="flex justify-between">
-          <div>Upload from your PC</div>
+        <Box>
+          <Typography>Upload from your PC</Typography>
           <Radio
             checked={vState.type === 'pc'}
             onChange={handleType}
             value={'pc'}
           />
-        </div>
+        </Box>
         <UploadPc />
 
-        <div className="flex justify-between">
-          <div>From Netflix</div>
+        <Box>
+          <Typography>From Netflix</Typography>
           <Radio
             checked={vState.type === 'netflix'}
             onChange={handleType}
             value={'netflix'}
           />
-        </div>
-        <TextField fullWidth={true} />
+        </Box>
+        <PrimaryTextField
+          fullWidth={true}
+          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
+        />
 
-        <div>
-          <StyledButton onClick={props.handleBack}>Back</StyledButton>
-          <StyledButton onClick={props.handleNext}>Next</StyledButton>
-        </div>
+        <Box
+          sx={{
+            mt: 2,
+            justifyContent: 'center !important',
+            '& .MuiButton-root': { width: '100px' },
+          }}
+        >
+          <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
+        </Box>
       </Box>
     </StepWrapper>
   )
