@@ -2,50 +2,44 @@ import { StepWrapper } from './index'
 import { Box, Radio, Select, TextField } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
-import StyledButton from '../../../styled/StyledButton'
 import { useState } from 'react'
+import { PrimaryButton } from 'components/styled/StyledButton'
 
+export default function StatusStep(props: {
+  handleNext: () => void
+  handleBack: () => void
+}) {
+  const [vState, setState] = useState({ replace: 0, type: 'new' })
 
-
-export default function StatusStep (props:{handleNext:()=>void, handleBack:()=>void}) {
-
-  const [vState, setState]=useState({replace:0, type:'new'})
-
-  const handleReplace = (event:any) => {
-    setState({...vState,replace: event.target.value})
+  const handleReplace = (event: any) => {
+    setState({ ...vState, replace: event.target.value })
   }
-  const handleType=(event:React.ChangeEvent<HTMLInputElement>)=>{
-    setState({...vState,type: event.target.value})
+  const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({ ...vState, type: event.target.value })
   }
 
-  return(
-
+  return (
     <StepWrapper>
       <Box
-      sx={{
-        display:'flex',
-        flexDirection:'column'
-      }}>
-        <div className='flex justify-between'>
-          <div>
-            New Media
-          </div>
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div className="flex justify-between">
+          <div>New Media</div>
           <Radio
-            checked={vState.type==='new'}
+            checked={vState.type === 'new'}
             onChange={handleType}
             value={'new'}
           />
         </div>
-        <TextField
-          fullWidth={true}
-        />
+        <TextField fullWidth={true} />
         <div>OR</div>
-        <div className='flex justify-between'>
-          <div>
-            Replace existing one
-          </div>
+        <div className="flex justify-between">
+          <div>Replace existing one</div>
           <Radio
-            checked={vState.type==='old'}
+            checked={vState.type === 'old'}
             onChange={handleType}
             value={'old'}
           />
@@ -61,12 +55,8 @@ export default function StatusStep (props:{handleNext:()=>void, handleBack:()=>v
           <MenuItem value={1}>Poppy</MenuItem>
         </Select>
         <div>
-          <StyledButton onClick={props.handleBack} type='back'>
-            Back
-          </StyledButton>
-          <StyledButton onClick={props.handleNext}>
-            Next
-          </StyledButton>
+          <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
         </div>
       </Box>
     </StepWrapper>

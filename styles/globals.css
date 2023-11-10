@@ -47,6 +47,7 @@ body::-webkit-scrollbar {
 * {
   box-sizing: border-box;
   font-family: 'Square' !important;
+  text-transform: none !important;
 }
 
 @font-face {

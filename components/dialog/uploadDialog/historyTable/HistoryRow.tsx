@@ -41,12 +41,14 @@ function HistoryRow(props: { row: THistoryRowType }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              gap: 0.5,
             }}
-          ></Box>
-          <Slideshow sx={{ color: '#888' }} />
-          <Typography>{row.source}</Typography>
+          >
+            <Slideshow sx={{ color: '#888' }} />
+            <Typography>{row.source}</Typography>
+          </Box>
         </TableCell>
-        <TableCell></TableCell>
+        <TableCell>{row.date}</TableCell>
         <TableCell></TableCell>
         <TableCell>
           <Box sx={{ display: 'flex' }}>

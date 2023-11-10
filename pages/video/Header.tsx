@@ -5,7 +5,7 @@ import * as React from 'react'
 import { Select } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
-import StyledButton from 'components/styled/StyledButton'
+import { StyledButton } from 'components/styled/StyledButton'
 
 const VideoTableHeader = () => {
   const [vState, setState] = React.useState({ groupBy: 0 })

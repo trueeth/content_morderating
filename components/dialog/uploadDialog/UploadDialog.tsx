@@ -24,8 +24,7 @@ export default function UploadDialog() {
     event: React.MouseEvent<HTMLElement>,
     newValue: number
   ) => {
-    if (newValue!==null)
-      setState({ ...vState, tabIndex: newValue })
+    if (newValue !== null) setState({ ...vState, tabIndex: newValue })
   }
 
   return (
@@ -49,9 +48,10 @@ export default function UploadDialog() {
           <Typography
             sx={{
               fontSize: '1.3rem',
-              fontWeight:' 700',
+              fontWeight: ' 600',
               paddingTop: '4rem',
               paddingBottom: '2rem',
+              color: '#333',
             }}
           >
             {vState.tabIndex === 0 ? 'Upload Media' : 'History'}
@@ -60,10 +60,10 @@ export default function UploadDialog() {
           {/*  -----------select tab----------*/}
           <Box>
             <Box
-            sx={{
-              display:'flex',
-              justifyContent:'center'
-            }}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
             >
               <ToggleButtonGroup
                 color="primary"
@@ -71,13 +71,12 @@ export default function UploadDialog() {
                 exclusive
                 onChange={handleChange}
                 sx={{
-                  borderRadius:'.3rem',
-                  overflow:'hidden',
-                  '& button':{
-                    px:'3rem',
-                    py:'.3rem',
-                    textTransform:'none'
-                  }
+                  borderRadius: '.3rem',
+                  overflow: 'hidden',
+                  '& button': {
+                    px: '3rem',
+                    py: '.5rem',
+                  },
                 }}
               >
                 <ToggleButton value={0}>Upload</ToggleButton>

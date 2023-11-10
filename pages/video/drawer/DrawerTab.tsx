@@ -26,7 +26,7 @@ export default function DrawerTab() {
         }}
       >
         <Tab label="Overview" />
-        <Tab label="Play teh Scene" />
+        <Tab label="Play the Scene" />
         <Tab label="Activities" />
       </Tabs>
       <TabPanel value={vState.tabIndex} index={0}>

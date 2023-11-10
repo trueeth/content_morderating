@@ -1,10 +1,9 @@
 import { StepWrapper } from './index'
-import { Box, Radio, RadioGroup } from '@mui/material'
+import { Box, Radio, RadioGroup, Typography, Button } from '@mui/material'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import StyledButton from '../../../styled/StyledButton'
+import { PrimaryButton } from 'components/styled/StyledButton'
 
-
-export default function TypeStep(props:{handleNext:()=>void}) {
+export default function TypeStep(props: { handleNext: () => void }) {
   return (
     <StepWrapper>
       <Box
@@ -13,23 +12,21 @@ export default function TypeStep(props:{handleNext:()=>void}) {
           flexDirection: 'column',
         }}
       >
-        <div>
-          What do you want to upload?
-        </div>
+        <Typography>What do you want to upload?</Typography>
         <RadioGroup
           row
-          aria-labelledby='demo-row-radio-buttons-group-label'
-          name='row-radio-buttons-group'
+          aria-labelledby="demo-row-radio-buttons-group-label"
+          name="row-radio-buttons-group"
         >
-          <FormControlLabel value='female' control={<Radio />} label='Video' />
-          <FormControlLabel value='male' control={<Radio />} label='Audio' />
-          <FormControlLabel value='other' control={<Radio />} label='Book' />
+          <FormControlLabel value="female" control={<Radio />} label="Video" />
+          <FormControlLabel value="male" control={<Radio />} label="Audio" />
+          <FormControlLabel value="other" control={<Radio />} label="Book" />
         </RadioGroup>
-        <div>
-          <StyledButton onClick={props.handleNext}>
+        <Box>
+          <PrimaryButton onClick={props.handleNext} sx={{ width: '100px' }}>
             Next
-          </StyledButton>
-        </div>
+          </PrimaryButton>
+        </Box>
       </Box>
     </StepWrapper>
   )

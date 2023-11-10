@@ -11,4 +11,19 @@ const StyledButton = styled(Button)({
   margin: '0 10px',
   color: 'white',
 })
-export default StyledButton
+
+const PrimaryButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'capitalize',
+  fontSize: 16,
+  padding: '6px 12px',
+  lineHeight: 1.5,
+  backgroundColor: 'var(--Primary1)',
+  margin: '0 10px',
+  color: 'white',
+  '&:hover': {
+    backgroundColor: 'var(--Primary1)',
+  },
+})
+
+export { StyledButton, PrimaryButton }
