@@ -74,7 +74,15 @@ const VideoTableHeader = () => {
             <MenuItem value={1}> Videos</MenuItem>
           </Select>
 
-          <Paper sx={{ ml: 2, height: '36px', boxShadow: 0 }}>
+          <Paper
+            sx={{
+              ml: 2,
+              height: '36px',
+              boxShadow: 0,
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
             <InputBase
               sx={{ ml: 1, height: 'inherit' }}
               placeholder="Search"
