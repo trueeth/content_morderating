@@ -1,0 +1,49 @@
+
+.flex{
+    display: flex;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.w-full{
+    width: 100%;
+}
+
+.h-full{
+    height: 100%;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.align-center{
+    align-content: center;
+}
+
+.item-center{
+    align-items: center;
+}
+
+.ml-3{
+    margin-left: 0.3rem;
+}
+
+.text-6{
+    font-size: .6rem;
+}
+.p-10{
+    padding: 1rem;
+}
+.pb-20{
+    padding-bottom: 2rem;
+}
+.pb-50{
+    padding-bottom: 5rem;
+}

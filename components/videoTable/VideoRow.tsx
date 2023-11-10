@@ -10,72 +10,17 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { ERating, EStatus, EVideoType, TVideoRowType } from '../../interfaces'
-import { Icon } from '@mui/material'
-import { Slideshow } from '@mui/icons-material'
+import { EApporval, EClassification, ERating, EStatus, EVideoType, TVideoRowType } from '../../interfaces'
+import RowType from './videoRows/RowType'
+import RowStatus from './videoRows/RowStatus'
+import RowRating from './videoRows/RowRating'
+import RowClassification from './videoRows/RowClassification'
+import RowApproval from './videoRows/RowApproval'
+import RowFlaggedScenes from './videoRows/RowFlaggedScenes'
+import RowAction from './videoRows/RowAction'
+import VideoSubTable from './VideoSubTable'
 
 
-const RowType=(props:{type:number})=>{
-  if(props.type===EVideoType.video){
-    return(
-      <React.Fragment>
-        <Box sx={{ display: 'flex' }}>
-          <Slideshow />
-          Video
-        </Box>
-      </React.Fragment>
-    )
-  }
-}
-
-const RowStatus=(props: { status:number })=>{
-  if(props.status===EStatus.new){
-    return(
-      <React.Fragment>
-        <Box className={'status-new'}>
-          new
-        </Box>
-      </React.Fragment>
-    )
-  } else if(props.status===EStatus.failed){
-    return(
-      <React.Fragment>
-        <Box className={'status-failed'}>
-          failed
-        </Box>
-      </React.Fragment>
-    )
-  } else if(props.status===EStatus.processed){
-    return(
-      <React.Fragment>
-        <Box className={'status-processed'}>
-          processed
-        </Box>
-      </React.Fragment>
-    )
-  }
-}
-
-
-const RowRating=(props: { rating:number })=>{
-  if(props.rating===ERating.r18){
-    return(
-      <React.Fragment>
-        <Box className={'rating-r18'}>
-          r18
-        </Box>
-      </React.Fragment>
-    )
-  } else if(props.rating===ERating.missing){
-    return(
-      <React.Fragment>
-        <Box className={'rating-missing'}>
-          missing
-        </Box>
-      </React.Fragment>
-    )
-  }
-}
 
 
 function VideoRow(props: { row: TVideoRowType }) {
@@ -113,40 +58,43 @@ function VideoRow(props: { row: TVideoRowType }) {
             <RowRating rating={row.rating}></RowRating>
           </TableCell>
 
+          <TableCell>
+            <div className={'flex'}>
+
+            <RowClassification classifications={row.classification}></RowClassification>
+            </div>
+          </TableCell>
+
+          <TableCell>
+            <div className={'flex'}>
+              {row.submissionDate}
+            </div>
+          </TableCell>
+
+          <TableCell >
+            <div className={'flex justify-center item-center approval'}>
+
+            <RowApproval approval={row.approval}></RowApproval>
+            </div>
+          </TableCell>
+
+          <TableCell>
+            <RowFlaggedScenes value={row.flaggedScenes}></RowFlaggedScenes>
+          </TableCell>
+
+          <TableCell>
+            <RowAction></RowAction>
+          </TableCell>
+
+
         </TableRow>
 
         {/*---------sub rows--------*/}
         <TableRow>
-          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <TableCell style={{ paddingBottom: 5, paddingTop: 5, marginLeft:20 }} colSpan={12}>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <Box sx={{ margin: 1 }}>
-                <Typography variant="h6" gutterBottom component="div">
-                  History
-                </Typography>
-                <Table size="small" aria-label="purchases">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Date</TableCell>
-                      <TableCell>Customer</TableCell>
-                      <TableCell align="right">Amount</TableCell>
-                      <TableCell align="right">Total price ($)</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {/*{row.subRows.map((historyRow) => (*/}
-                    {/*  <TableRow key={historyRow.date}>*/}
-                    {/*    <TableCell component="th" scope="row">*/}
-                    {/*      {historyRow.date}*/}
-                    {/*    </TableCell>*/}
-                    {/*    <TableCell>{historyRow.customerId}</TableCell>*/}
-                    {/*    <TableCell align="right">{historyRow.amount}</TableCell>*/}
-                    {/*    <TableCell align="right">*/}
-                    {/*      {Math.round(historyRow.amount * row.price * 100) / 100}*/}
-                    {/*    </TableCell>*/}
-                    {/*  </TableRow>*/}
-                    {/*))}*/}
-                  </TableBody>
-                </Table>
+               <VideoSubTable value={row.subRows}></VideoSubTable>
               </Box>
             </Collapse>
           </TableCell>

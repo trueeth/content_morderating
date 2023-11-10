@@ -38,7 +38,7 @@ export enum ERating {
 export enum EClassification{
   h='H',
   s='S',
-  sh='sh'
+  sh='SH'
 }
 
 export enum EApporval{
@@ -47,3 +47,4 @@ export enum EApporval{
   reject,
   pending,
 }
+

@@ -20,6 +20,7 @@ const Account = () => {
           width: '100%',
           fontFamily: 'Rubik',
         }}
+
       >
         <Box sx={{ display: 'flex', width: '100%' }}>
           <Grid container spacing={2}>

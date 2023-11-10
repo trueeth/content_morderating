@@ -3,7 +3,8 @@ body {
   height: 100vh;
   padding: 0;
   margin: 0;
-  background-image: linear-gradient(90deg,#243b55,#182539);
+  /*background-image: linear-gradient(90deg,#243b55,#182539);*/
+  background-color: var(--White-L);
   font-size: 1rem;
   letter-spacing: 1px;
   overflow-x: hidden;
@@ -11,19 +12,23 @@ body {
   color:#ececec;
   
 }
+
 :root{
   --Primary1: #3EC0D8;
   --Primary2: #75598D;
+  --Primary3:#313773;
   --Gradiant: linear-gradient(90deg, #75598D 0%, #3EC0D8 92.75%);
   --Black: #424351;
   --Body: #474747;
   --Grey: #ADADAD;
   --Primary1-L: #EBFAFD;
   --Primary2-L: #F7F1FC;
+  --White-L: #F8F8F8;
   --Secondry-L: #ECEDF9;
   --Stroke: #E8E8E8;
   --Grey-L: #F9F9FF;
   --White: #FFF;
+  --Secondry:#1A2057;
 }
 
 
@@ -32,40 +37,39 @@ body::-webkit-scrollbar {
 }
 
 
-.MuiTypography-root {
-  font-family: Square !important;
-}
+/*.MuiTypography-root {*/
+/*  font-family: Square !important;*/
+/*}*/
 
-.MuiButton-root {
-  border:1px solid #454f5b !important;
-  border-radius: 0.5rem !important;
-  background-color: #203349;
-  font-size:1rem;
-  color:#ececec !important;
-  letter-spacing: 1px;
-  padding: 0.5rem,1rem,0.5rem,1rem !important;
-  text-transform: capitalize !important;
-  /* margin:15px; */
-  cursor: pointer;
-  width:100%;
-  font-family: Square !important;
-}
-.MuiButton-root svg {
-  pointer-events: none;
-}
-.MuiButton-root:hover{
-  background-color: #182539 !important;
-}
-.MuiMenu-root .MuiPaper-root {
-  background-color:#203349 !important;
-  color:#ececec;
-  min-width: 150px;
-  border:1px solid #5a5b5f;
-  border-radius: 10px;
-  margin-top: 5px;
-  height: 250px !important;
-
-}
+/*.MuiButton-root {*/
+/*  border:1px solid #454f5b !important;*/
+/*  border-radius: 0.5rem !important;*/
+/*  background-color: #203349;*/
+/*  font-size:1rem;*/
+/*  color:#ececec !important;*/
+/*  letter-spacing: 1px;*/
+/*  padding: 0.5rem,1rem,0.5rem,1rem !important;*/
+/*  text-transform: capitalize !important;*/
+/*  !* margin:15px; *!*/
+/*  cursor: pointer;*/
+/*  width:100%;*/
+/*  font-family: Square !important;*/
+/*}*/
+/*.MuiButton-root svg {*/
+/*  pointer-events: none;*/
+/*}*/
+/*.MuiButton-root:hover{*/
+/*  background-color: #182539 !important;*/
+/*}*/
+/*.MuiMenu-root .MuiPaper-root {*/
+/*  background-color:#203349 !important;*/
+/*  color:#ececec;*/
+/*  min-width: 150px;*/
+/*  border:1px solid #5a5b5f;*/
+/*  border-radius: 10px;*/
+/*  margin-top: 5px;*/
+/*  height: 250px !important;*/
+/*}*/
 
 *::-webkit-scrollbar {
   width: 5px;
@@ -78,19 +82,19 @@ body::-webkit-scrollbar {
 }
 
 
-.MuiMenu-root ul li{
-  padding:0;
-  font-family: "Square" !important;
-  
-}
-.MuiMenu-root ul li:hover{
-  background-color: hsla(0,0%,100%,.15);
-  color:#ececec;
-}
-.MuiMenu-root ul li:active{
-  background-color: #0d6efd;
-  color:#fff;
-}
+/*.MuiMenu-root ul li{*/
+/*  padding:0;*/
+/*  font-family: "Square" !important;*/
+
+/*}*/
+/*.MuiMenu-root ul li:hover{*/
+/*  background-color: hsla(0,0%,100%,.15);*/
+/*  color:#ececec;*/
+/*}*/
+/*.MuiMenu-root ul li:active{*/
+/*  background-color: #0d6efd;*/
+/*  color:#fff;*/
+/*}*/
 /* .MuiMenuItem-root {
   width:100% !important;
   justify-content: center;
@@ -119,17 +123,17 @@ input[type='number']::-webkit-inner-spin-button {
   top: 0;
   right: 2px;
   bottom: 0;
-  overflow: hidden,
+  overflow: hidden;
 }
 
-input[type='number']::-webkit-outside-spin-button {
-  width: 20px;
-  position: absolute;
-  top: 0;
-  right: 2px;
-  bottom: 0;
-  overflow: hidden,
-}
+/*input[type='number']::-webkit-outside-spin-button {*/
+/*  width: 20px;*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  right: 2px;*/
+/*  bottom: 0;*/
+/*  overflow: hidden,*/
+/*}*/
 
 .form-check-input:checked[type=checkbox] {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E");
@@ -195,4 +199,17 @@ input[type='number']::-webkit-outside-spin-button {
   --bs-btn-disabled-border-color: #0d6efd;
 }
 
+
+/*----------------Header style start---------------------*/
+
+.top-header{
+  background-color: var(--Secondry);
+}
+
+.user-logo{
+  background-color: var(--Primary3);
+}
+/*----------------Header style end---------------------*/
+
 @import url('./videoTable.css');
+@import url('./common.css');

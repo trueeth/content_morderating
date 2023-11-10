@@ -33,12 +33,15 @@ const Index = () => {
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',
-          mt: 2,
+          mx:3,
+          backgroundColor:'white',
           width: '100%',
           fontFamily: 'Rubik',
           overflow: 'auto',
         }}
       >
+
+        {/*-------------table header-----------*/}
         <Box sx={{ display: 'flex', width: '100%' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
@@ -133,6 +136,8 @@ const Index = () => {
             </Grid>
           </Grid>
         </Box>
+
+        {/*----------main table----------*/}
         <Box
           mt={4}
           sx={{
@@ -146,6 +151,8 @@ const Index = () => {
           <VideoTable></VideoTable>
           <Divider sx={{ bgcolor: '#141e2f', p: '0.2px' }} />
         </Box>
+
+        {/*---------dialog-----------*/}
         <LoanDialog open={visible} handleClose={() => setVisible(false)} />
       </Container>
     </>

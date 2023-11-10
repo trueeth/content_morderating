@@ -4,6 +4,59 @@ import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import LogoImage from '../assets/images/logo.png'
+import UserLogo from '../assets/images/Ellipse 1.png'
+import {
+  FileUpload,
+  GridViewRounded,
+  HeadsetMic,
+  InsertDriveFileOutlined,
+  MoreHoriz,
+  Settings,
+  Slideshow, Update,
+} from '@mui/icons-material'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import TopButton from './styled/TopButton'
+
+
+
+
+function UserAction() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        <MoreHoriz className={'action-more-horiz'}></MoreHoriz>
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Log Out</MenuItem>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+      </Menu>
+    </div>
+  );
+}
 
 const Header = () => {
   const router = useRouter()
@@ -20,11 +73,8 @@ const Header = () => {
     <AppBar
       position="relative"
       elevation={0}
-      sx={{
-        backgroundImage: 'linear-gradient(90deg,#243b55,#182539)! important',
-      }}
+      className={'top-header w-full'}
     >
-      <Toolbar disableGutters variant="dense" sx={{ p: 3 }}>
         <Box
           sx={{
             width: '100%',
@@ -35,6 +85,7 @@ const Header = () => {
             flexDirection: { xs: 'column', md: 'row' },
           }}
         >
+          {/*-----logo----*/}
           <Box
             sx={{
               display: 'flex',
@@ -44,48 +95,84 @@ const Header = () => {
             }}
           >
             <Box>
-              <Image src={LogoImage} alt="logo" width={40} height={50} />
+              <Image src={LogoImage} alt="logo"  />
             </Box>
           </Box>
-          <Box>
-            <Typography
-              sx={{ fontSize: '40px', fontFamily: 'Square !important' }}
-            >
-              {router.pathname == '/'
-                ? 'Orders Book'
-                : router.pathname == '/account'
-                ? 'My Account'
-                : router.pathname == '/dashboard'
-                ? 'Dashboard'
-                : ''}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 2,
-              '& .MuiButton-root': {
-                minWidth: '120px',
-              },
-            }}
-          >
+
+          {/*----tool bar------*/}
+          <Box className={'flex h-full justify-center item-center'} sx={{flexDirection: { xs: 'column', md: 'row' },}}>
             <Box>
-              <Button
-                id="basic-button-2"
-                aria-controls={
-                  Boolean(anchorState.btn2) ? 'basic-menu-2' : undefined
-                }
-                aria-haspopup="true"
-                aria-expanded={Boolean(anchorState.btn2) ? 'true' : undefined}
-                onClick={handleClick}
-                name="btn2"
-              >
-                Avalanche
-              </Button>
+              <TopButton>
+                <GridViewRounded></GridViewRounded>
+                <div>
+                  Dashboard
+                </div>
+              </TopButton>
+            </Box>
+            <Box>
+              <TopButton>
+                <Slideshow></Slideshow>
+                <div>
+                  Videos
+                </div>
+              </TopButton>
+            </Box>
+            <Box>
+              <TopButton>
+                <InsertDriveFileOutlined></InsertDriveFileOutlined>
+                <div>
+                  Documents
+                </div>
+              </TopButton>
+            </Box>
+            <Box>
+              <TopButton>
+                <Update></Update>
+                <div>
+                  Reports
+                </div>
+              </TopButton>
+            </Box>
+            <Box>
+              <TopButton>
+                <HeadsetMic></HeadsetMic>
+                <div>
+                  Support
+                </div>
+              </TopButton>
+            </Box>
+            <Box>
+              <TopButton>
+                <Settings></Settings>
+                <div>
+                  Settings
+                </div>
+              </TopButton>
+            </Box>
+            <Box>
+              <TopButton>
+                <FileUpload></FileUpload>
+                <div>
+                  Upload
+                </div>
+              </TopButton>
+            </Box>
+
+            <Box className={'flex user-logo p-10'}>
+              <Image src={UserLogo} alt="logo"  />
+              <Box sx={{
+                // display:{xs:'none', md:'flex'}
+              }}>
+                <div>Mathew Salomon</div>
+                <div>Admin</div>
+              </Box>
+              <Box>
+                <UserAction></UserAction>
+              </Box>
             </Box>
           </Box>
+
         </Box>
-      </Toolbar>
     </AppBar>
   )
 }
