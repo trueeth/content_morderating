@@ -1,15 +1,22 @@
 import { EStatus } from '../../../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
+import clsx from 'clsx'
 
 const RowStatus = (props: { status: EStatus }) => {
-  if (props.status === EStatus.new) {
-    return <Box className={'status-new'}>new</Box>
-  } else if (props.status === EStatus.failed) {
-    return <Box className={'status-failed'}>failed</Box>
-  } else if (props.status === EStatus.processed) {
-    return <Box className={'status-processed'}>processed</Box>
-  }
+
+  return (
+    <Box
+      className={clsx(
+        props.status === EStatus.processed && 'status-processed',
+        props.status === EStatus.failed && 'status-failed',
+        props.status === EStatus.new && 'status-new',
+      )}
+    >
+      {props.status}
+    </Box>
+  )
+
 }
 
 export default RowStatus
