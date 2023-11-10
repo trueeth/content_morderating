@@ -6,6 +6,7 @@ import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
 import { CSSProperties } from 'styled-components'
 import { PrimaryTextField } from 'components/styled/TextField'
+import { FileUpload } from '@mui/icons-material'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -20,6 +21,7 @@ const baseStyle: CSSProperties = {
   backgroundColor: '#fafafa',
   color: '#bdbdbd',
   outline: 'none',
+  width:'100%',
   transition: 'border .24s ease-in-out',
 }
 
@@ -61,15 +63,26 @@ const UploadPc = () => {
     </li>
   ))
   return (
-    <section className="container">
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <p>
-          Drag your file here or{' '}
-          <p style={{ color: 'var(--Primary1)' }}>Browse</p>
-        </p>
+        <div className='flex'>
+          <div className='flex item-center mr-5'>
+            <FileUpload  fontSize='large'/>
+          </div>
+          <div className='flex flex-col'>
+            <div className='flex'>
+              <p className='mr-3'>
+
+                Drag your file here or{' '}
+              </p>
+              <p style={{ color: 'var(--Primary1)' }}>Browse</p>
+            </div>
+            <div>
+              Maximum file size 2GB
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
   )
 }
 
