@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'
 import { PrimaryButton } from 'components/styled/StyledButton'
+import { PrimaryTextField } from 'components/styled/TextField'
 
 export default function StatusStep(props: {
   handleNext: () => void
@@ -29,7 +30,7 @@ export default function StatusStep(props: {
           justifyContent: 'center',
           rowGap: 1,
           '& > .MuiBox-root': {
-            width: 'inherit',
+            width: '100%',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -44,7 +45,7 @@ export default function StatusStep(props: {
             value={'new'}
           />
         </Box>
-        <TextField
+        <PrimaryTextField
           fullWidth={true}
           inputProps={{ style: { height: '40px', padding: '0 10px' } }}
         />
@@ -63,6 +64,9 @@ export default function StatusStep(props: {
           fullWidth
           sx={{
             height: '40px',
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'var(--Primary1)',
+            },
           }}
         >
           <MenuItem value={0}>Trolls</MenuItem>
