@@ -10,6 +10,7 @@ export default function DrawerHeader() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        p: 2,
       }}
     >
       <header className="flex justify-between">

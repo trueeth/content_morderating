@@ -4,7 +4,7 @@ import { Box, Pagination, PaginationItem } from '@mui/material'
 import { Container } from '@mui/material'
 
 import { styled } from '@mui/material/styles'
-import VideoTable from './videoTable/VideoTable'
+import VideoTable from './videoTable'
 import VideoTableHeader from './Header'
 import TestVideoDrawer from './drawer'
 import { useDispatch, useSelector } from 'react-redux'

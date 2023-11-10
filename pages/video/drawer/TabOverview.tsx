@@ -81,7 +81,7 @@ export default function DrawerTabOverview() {
       }}
     >
       <Typography>Most Interest Frames</Typography>
-      <div className="flex flex-wrap">
+      <Box className="flex flex-wrap" mb={3}>
         {itemData.map((item, index) => {
           return (
             <Image
@@ -94,20 +94,22 @@ export default function DrawerTabOverview() {
             />
           )
         })}
-      </div>
+      </Box>
       <Typography>AI Description</Typography>
 
-      <Typography>
-        This is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum is simply dummy text of the best ipsum has been the top
-        offer industry's standard printing and typesetting industry. Lorem Ipsum
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum is simply dummy text of the best ipsum has been the top industry's
-        standard printing and type setting industry. Lorem Ipsum is simply dummy
-        text of the printing and typesetting industry. Lorem Ipsum is simply
-        dummy text of the best ipsum has been the top offer industry's standard
-        printing and typesetting industry. Lorem Ipsum is simply dummy text of
-        the printing and typesetting industry.
+      <Typography
+        sx={{ my: 1, p: 1, border: '1px solid #ccc', borderRadius: '10px' }}
+      >
+        This is simply dummy text of the printing and typesetting industry. is
+        simply dummy text of the best ipsum has been the top offer industry's
+        standard printing and typesetting industry. This is simply dummy text of
+        the printing and typesetting industry. This is simply dummy text of the
+        best ipsum has been the top industry's standard printing and type
+        setting industry. Here is simply dummy text of the printing and
+        typesetting industry. Here is simply dummy text of the best ipsum has
+        been the top offer industry's standard printing and typesetting
+        industry. Here is simply dummy text of the printing and typesetting
+        industry.
       </Typography>
     </Box>
   )

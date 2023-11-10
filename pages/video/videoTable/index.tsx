@@ -33,14 +33,14 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
       },
       {
         sceneNumber: 1,
