@@ -29,23 +29,26 @@ const rows: TVideoRowType[] = [
     flaggedScenes: 20,
     subRows: [
       {
-      sceneNumber: 1,
-      violationType: 'Nudity',
-      category: 'Content Video',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry\'s standard',
-    },
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
+      },
       {
-      sceneNumber: 2,
-      violationType: 'Nudity',
-      category: 'Content Video',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry\'s standard',
-    },
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
+      },
       {
-      sceneNumber: 1,
-      violationType: 'Nudity',
-      category: 'Content Video',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry\'s standard',
-    },
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
+      },
     ],
   },
   {
@@ -183,12 +186,14 @@ const rows: TVideoRowType[] = [
 export default function VideoTable() {
   return (
     <TableContainer component={Paper}>
-      <Table aria-label='collapsible table'>
+      <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />
             {Object.values(EVideoColumns).map((cell, index) => (
-              <TableCell key={index} align='left'>{cell}</TableCell>
+              <TableCell key={index} align="left">
+                {cell}
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
