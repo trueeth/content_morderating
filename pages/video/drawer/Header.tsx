@@ -2,6 +2,8 @@ import { Box, Typography } from '@mui/material'
 import RowAction from '../videoTable/videoRow/RowAction'
 import { EVideoColumns } from '../../../interfaces'
 
+
+
 export default function DrawerHeader() {
   return (
     <Box
@@ -25,14 +27,7 @@ export default function DrawerHeader() {
           flexWrap: 'wrap',
         }}
       >
-        {Object.values(EVideoColumns).map((item, index) => {
-          return (
-            <Box key={index} className="flex mr-5">
-              <Typography>{item + ':'}</Typography>
-              <Typography>{index}</Typography>
-            </Box>
-          )
-        })}
+
       </Box>
     </Box>
   )

@@ -8,10 +8,10 @@ import {
   SvgIconComponent,
   Update,
 } from '@mui/icons-material'
+import { EVideoColumns } from './enums'
 
-export const VApproval = ['In Review', 'Approved', 'Rejected', 'Pending']
 
-export const VHeaderTabs: Array<{ icon: SvgIconComponent; title: string }> = [
+export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string }> = [
   { icon: GridViewRounded, title: 'Dashboard' },
   { icon: Slideshow, title: 'Videos' },
   { icon: InsertDriveFileOutlined, title: 'Documents' },
@@ -19,6 +19,10 @@ export const VHeaderTabs: Array<{ icon: SvgIconComponent; title: string }> = [
   { icon: HeadsetMic, title: 'Support' },
   { icon: Settings, title: 'Settings' },
   { icon: FileUpload, title: 'Upload' },
+]
+
+export const CDrawerState=[
+  {title:EVideoColumns.status, value:1}
 ]
 
 export const CFlaggedScenesMax = 200

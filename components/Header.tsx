@@ -8,7 +8,7 @@ import { MoreHoriz } from '@mui/icons-material'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import TopButton from './styled/TopButton'
-import { VHeaderTabs } from 'interfaces'
+import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
 import { openDialogUpload } from '../store/slices/app'
 
@@ -85,7 +85,7 @@ const Header = () => {
           className={'flex h-full justify-center item-center'}
           sx={{ flexDirection: { xs: 'column', md: 'row' } }}
         >
-          {VHeaderTabs.map((item, index) => (
+          {CHeaderTabs.map((item, index) => (
             <Box key={index} onClick={handleHeader(item.title)}>
               <TopButton>
                 <SvgIcon component={item.icon} />

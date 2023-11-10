@@ -2,7 +2,7 @@ import { ERating } from '../../../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 
-const RowRating = (props: { rating: number }) => {
+const RowRating = (props: { rating: string }) => {
   if (props.rating === ERating.r18) {
     return (
       <React.Fragment>

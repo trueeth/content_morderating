@@ -1,9 +1,10 @@
-import { EApporval, VApproval } from '../../../../interfaces'
+import { EApporval } from '../../../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import clsx from 'clsx'
 
-const RowApproval = (props: { approval: number }) => {
+const RowApproval = (props: { approval: string }) => {
+  console.log(props.approval)
   return (
     <React.Fragment>
       <Box
@@ -14,7 +15,7 @@ const RowApproval = (props: { approval: number }) => {
           props.approval === EApporval.review && 'review'
         )}
       >
-        {VApproval[props.approval]}
+        {props.approval}
       </Box>
     </React.Fragment>
   )

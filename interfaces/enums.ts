@@ -22,14 +22,14 @@ export enum EVideoType {
 }
 
 export enum EStatus {
-  new,
-  processed,
-  failed,
+  new='NEW',
+  processed='PROCESSED',
+  failed='FAILED',
 }
 
 export enum ERating {
-  r18,
-  missing,
+  r18='R18',
+  missing='MISSING',
 }
 
 export enum EClassification {
@@ -39,8 +39,8 @@ export enum EClassification {
 }
 
 export enum EApporval {
-  review,
-  approve,
-  reject,
-  pending,
+  review='In Review',
+  approve='Approved',
+  reject='Rejected',
+  pending='Pending',
 }
