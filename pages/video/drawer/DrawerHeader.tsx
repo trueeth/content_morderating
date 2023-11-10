@@ -17,7 +17,7 @@ export default function DrawerHeader() {
       <div>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum is simply dummy text of the best ipsum has been
-        the industry's standard printing and typesetting industry.
+        the industry&apos;s standard printing and typesetting industry.
       </div>
       <Box
         sx={{

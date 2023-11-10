@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
-import { Order } from 'interfaces'
 import { IReduxState } from 'store/store'
 import { setAll } from 'utils/setAll'
 
@@ -15,7 +14,7 @@ const initialState = {
 
 export interface IAppSlice {
   loading: boolean
-  orders: Array<Order>
+  orders: Array<string>
 }
 
 const appSlice = createSlice({

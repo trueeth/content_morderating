@@ -67,8 +67,8 @@ const Header = () => {
           className={'flex h-full justify-center item-center'}
           sx={{ flexDirection: { xs: 'column', md: 'row' } }}
         >
-          {VHeaderTabs.map((item) => (
-            <Box>
+          {VHeaderTabs.map((item, index) => (
+            <Box key={index}>
               <TopButton>
                 <SvgIcon component={item.icon} />
                 <Typography ml={0.5}>{item.title}</Typography>
