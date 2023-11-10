@@ -9,11 +9,13 @@ export const loadAppDetails = createAsyncThunk(
 
 const initialState = {
   loading: true,
+  videoDrawerOpen: false,
   orders: [],
 }
 
 export interface IAppSlice {
   loading: boolean
+  videoDrawerOpen: boolean
   orders: Array<string>
 }
 
@@ -23,6 +25,9 @@ const appSlice = createSlice({
   reducers: {
     fetchAppSuccess(state, action) {
       setAll(state, action.payload)
+    },
+    openVideoDrawer(state, action) {
+      state.videoDrawerOpen = action.payload.open
     },
   },
   extraReducers: (builder) => {
@@ -44,6 +49,6 @@ const baseInfo = (state: IReduxState) => state.app
 
 export default appSlice.reducer
 
-export const { fetchAppSuccess } = appSlice.actions
+export const { fetchAppSuccess, openVideoDrawer } = appSlice.actions
 
 export const getAppState = createSelector(baseInfo, (app) => app)
