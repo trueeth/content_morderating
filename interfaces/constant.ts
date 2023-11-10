@@ -26,3 +26,5 @@ export const CDrawerState=[
 ]
 
 export const CFlaggedScenesMax = 200
+
+export const CUploadSteps = ['MEDIA TYPE', 'NEW OR OLD', 'SOURCE', 'LAUNCH'];

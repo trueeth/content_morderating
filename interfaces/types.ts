@@ -18,6 +18,13 @@ export type TVideoRowType = {
   subRows?: TVideoSubRowType[]
 }
 
+export type THistoryRowType = {
+  name: string
+  source: EVideoType
+  status: number
+  date:string
+}
+
 export type TVideoSubRowType = {
   sceneNumber: number
   violationType: string

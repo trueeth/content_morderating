@@ -3,28 +3,8 @@ import React from 'react'
 import DrawerTabOverview from './TabOverview'
 import DrawerTabPlayScene from './TabPlayScene'
 import DrawerTabActivities from './TabActivities'
+import TabPanel from '../../../components/TabPanel'
 
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  )
-}
 
 export default function DrawerTab() {
   const [vState, setState] = React.useState({ tabIndex: 0 })

@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import clsx from 'clsx'
 
 const RowApproval = (props: { approval: string }) => {
-  console.log(props.approval)
+  // console.log(props.approval)
   return (
     <React.Fragment>
       <Box

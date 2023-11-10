@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import Head from 'next/head'
 import Header from './Header'
-import UploadDialog from './dialog/UploadDialog'
+import UploadDialog from './dialog/uploadDialog/UploadDialog'
 
 type Props = {
   children?: ReactNode

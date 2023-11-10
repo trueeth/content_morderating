@@ -2,6 +2,9 @@ import { ERating } from '../../../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 
+
+//@TODO modify rating
+//modify rating
 const RowRating = (props: { rating: string }) => {
   if (props.rating === ERating.r18) {
     return (
