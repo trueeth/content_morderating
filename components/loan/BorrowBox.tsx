@@ -9,7 +9,7 @@ import {
   setBorrowCollateralAmount,
   setBorrowLoanAmount,
 } from 'store/slices/action'
-import { OrderType } from 'interfaces'
+
 const BorrowBox = () => {
   const dispatch = useDispatch()
   const actionState = useSelector<IReduxState, IActionSlice>(
