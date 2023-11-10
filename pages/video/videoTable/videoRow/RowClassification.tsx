@@ -1,4 +1,4 @@
-import { EClassification } from '../../../interfaces'
+import { EClassification } from '../../../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 

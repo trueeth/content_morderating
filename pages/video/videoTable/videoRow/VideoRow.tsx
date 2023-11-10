@@ -5,15 +5,15 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
-import { TVideoRowType } from '../../interfaces'
-import RowType from './videoRows/RowType'
-import RowStatus from './videoRows/RowStatus'
-import RowRating from './videoRows/RowRating'
-import RowClassification from './videoRows/RowClassification'
-import RowApproval from './videoRows/RowApproval'
-import RowFlaggedScenes from './videoRows/RowFlaggedScenes'
-import RowAction from './videoRows/RowAction'
-import VideoSubTable from './VideoSubTable'
+import { TVideoRowType } from '../../../../interfaces'
+import RowType from './RowType'
+import RowStatus from './RowStatus'
+import RowRating from './RowRating'
+import RowClassification from './RowClassification'
+import RowApproval from './RowApproval'
+import RowFlaggedScenes from './RowFlaggedScenes'
+import RowAction from './RowAction'
+import VideoSubTable from './DetailRow'
 
 function VideoRow(props: { row: TVideoRowType }) {
   const { row } = props
@@ -26,7 +26,18 @@ function VideoRow(props: { row: TVideoRowType }) {
         sx={{
           '& > .MuiTableCell-root': {
             textAlign: 'center',
-            border: '1px solid #ccc',
+            borderTop: '1px solid #ccc',
+            borderBottom: '1px solid #ccc',
+            '&:first-of-type': {
+              borderLeft: '1px solid #ccc',
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+            },
+            '&:last-of-type': {
+              borderRight: '1px solid #ccc',
+              borderTopRightRadius: '10px',
+              borderBottomRightRadius: '10px',
+            },
           },
         }}
       >

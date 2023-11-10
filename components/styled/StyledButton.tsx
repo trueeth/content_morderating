@@ -8,5 +8,6 @@ const StyledButton = styled(Button)({
   padding: '6px 12px',
   lineHeight: 1.5,
   backgroundColor: 'linear-gradient(90deg, #75598d 0%, #3ec0d8 92.75%)',
+  margin: '0 10px',
 })
 export default StyledButton

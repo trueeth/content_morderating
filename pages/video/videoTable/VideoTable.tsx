@@ -14,8 +14,8 @@ import {
   EVideoColumns,
   EVideoType,
   TVideoRowType,
-} from '../../interfaces'
-import VideoRow from './VideoRow'
+} from '../../../interfaces'
+import VideoRow from './videoRow/VideoRow'
 
 const rows: TVideoRowType[] = [
   {
@@ -26,7 +26,7 @@ const rows: TVideoRowType[] = [
     classification: [EClassification.h, EClassification.s],
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
-    flaggedScenes: 20,
+    flaggedScenes: 40,
     subRows: [
       {
         sceneNumber: 1,
@@ -40,29 +40,29 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text best Ipsum has been the industry's standard",
+          "This simply dummy text best Ipsum has been the industry's standard",
       },
     ],
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'SAW X Video for the design',
     type: EVideoType.video,
     status: EStatus.failed,
     rating: ERating.r18,
     classification: [EClassification.h, EClassification.sh, EClassification.s],
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
-    flaggedScenes: 20,
+    flaggedScenes: 80,
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'Test Video for the project',
     type: EVideoType.video,
     status: EStatus.failed,
     rating: ERating.missing,
@@ -72,7 +72,7 @@ const rows: TVideoRowType[] = [
     flaggedScenes: 120,
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'Test Video for the project',
     type: EVideoType.video,
     status: EStatus.failed,
     rating: ERating.missing,
@@ -82,7 +82,7 @@ const rows: TVideoRowType[] = [
     flaggedScenes: 80,
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'SAW X Video',
     type: EVideoType.video,
     status: EStatus.new,
     rating: ERating.missing,
@@ -102,7 +102,7 @@ const rows: TVideoRowType[] = [
     flaggedScenes: 120,
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'SAW X Video',
     type: EVideoType.video,
     status: EStatus.new,
     rating: ERating.r18,
@@ -132,7 +132,7 @@ const rows: TVideoRowType[] = [
     flaggedScenes: 170,
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'Test Video for the project',
     type: EVideoType.video,
     status: EStatus.processed,
     rating: ERating.r18,
@@ -142,7 +142,7 @@ const rows: TVideoRowType[] = [
     flaggedScenes: 120,
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'SAW X Video for the design',
     type: EVideoType.video,
     status: EStatus.new,
     rating: ERating.missing,
@@ -159,17 +159,17 @@ const rows: TVideoRowType[] = [
     classification: [EClassification.h],
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.approve,
-    flaggedScenes: 30,
+    flaggedScenes: 60,
   },
   {
-    name: 'Content Moderation System UI/UX Design',
+    name: 'Test Video for the project',
     type: EVideoType.video,
     status: EStatus.failed,
     rating: ERating.missing,
     classification: [EClassification.h],
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.approve,
-    flaggedScenes: 30,
+    flaggedScenes: 80,
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -185,13 +185,17 @@ const rows: TVideoRowType[] = [
 
 export default function VideoTable() {
   return (
-    <TableContainer component={Paper} sx={{ borderRadius: '15px', px: 2 }}>
+    <TableContainer
+      component={Paper}
+      sx={{ borderRadius: '15px', px: 2, width: 'fit-content' }}
+    >
       <Table
         aria-label="collapsible table"
         sx={{
           [`& .${tableCellClasses.root}`]: {
             borderBottom: 'none',
           },
+          borderCollapse: 'unset',
         }}
       >
         <TableHead>
@@ -201,7 +205,7 @@ export default function VideoTable() {
               <TableCell
                 key={index}
                 align="center"
-                sx={{ whiteSpace: 'nowrap', fontSize: '12px' }}
+                sx={{ whiteSpace: 'nowrap', fontSize: '12px', color: '#888' }}
               >
                 {item}
               </TableCell>

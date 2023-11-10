@@ -1,4 +1,4 @@
-import { EVideoType } from '../../../interfaces'
+import { EVideoType } from '../../../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import { Slideshow } from '@mui/icons-material'
@@ -8,7 +8,7 @@ const RowType = (props: { type: number }) => {
     return (
       <React.Fragment>
         <Box className={'flex'}>
-          <Slideshow />
+          <Slideshow sx={{ color: '#888' }} />
           <div className={'flex justify-center item-center ml-3'}>Video</div>
         </Box>
       </React.Fragment>

@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
-import RowAction from '../videoTable/videoRows/RowAction'
-import { EVideoColumns } from '../../interfaces'
+import RowAction from '../videoTable/videoRow/RowAction'
+import { EVideoColumns } from '../../../interfaces'
 
 export default function DrawerHeader() {
   return (

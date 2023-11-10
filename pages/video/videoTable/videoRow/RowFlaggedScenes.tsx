@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import LinearProgress from '@mui/material/LinearProgress'
 import clsx from 'clsx'
-import { CFlaggedScenesMax } from '../../../interfaces'
+import { CFlaggedScenesMax } from '../../../../interfaces'
 
 export default function RowFlaggedScenes(props: { value: number }) {
   const percent = (props.value / CFlaggedScenesMax) * 100

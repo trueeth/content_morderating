@@ -5,9 +5,9 @@ import { Box, Pagination } from '@mui/material'
 import { Container } from '@mui/material'
 
 import { styled } from '@mui/material/styles'
-import VideoTable from '../../components/videoTable/VideoTable'
-import VideoTableHeader from '../../components/videoTable/VideoTableHeader'
-import TestVideoDrawer from '../../components/testVideo/TestVideoDrawer'
+import VideoTable from './videoTable/VideoTable'
+import VideoTableHeader from './Header'
+import TestVideoDrawer from './drawer/TestVideoDrawer'
 
 const TablePagination = styled('div')({
   marginTop: '2rem',
@@ -31,10 +31,8 @@ const Index = () => {
       <Container
         sx={{
           mt: 3,
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
           width: '100%',
+          maxWidth: '1400px !important',
           overflow: 'auto',
         }}
       >
