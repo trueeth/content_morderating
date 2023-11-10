@@ -1,12 +1,13 @@
 import { StepWrapper } from './index'
-import { Box, Radio, TextField, Typography } from '@mui/material'
+import { Box, Radio, Typography } from '@mui/material'
 import * as React from 'react'
 import { useMemo, useState } from 'react'
-import { PrimaryButton, StyledButton } from '../../../styled/StyledButton'
+import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
+import { CSSProperties } from 'styled-components'
 import { PrimaryTextField } from 'components/styled/TextField'
 
-const baseStyle = {
+const baseStyle: CSSProperties = {
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
@@ -68,10 +69,6 @@ const UploadPc = () => {
           <p style={{ color: 'var(--Primary1)' }}>Browse</p>
         </p>
       </div>
-      {/*<aside>*/}
-      {/*  <h4>Files</h4>*/}
-      {/*  <ul>{files}</ul>*/}
-      {/*</aside>*/}
     </section>
   )
 }
