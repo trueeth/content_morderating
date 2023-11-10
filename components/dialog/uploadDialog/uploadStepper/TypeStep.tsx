@@ -10,19 +10,16 @@ export default function TypeStep(props: { handleNext: () => void }) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
+          rowGap: 2,
         }}
       >
         <Typography>What do you want to upload?</Typography>
-        <RadioGroup
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          name="row-radio-buttons-group"
-        >
+        <RadioGroup row>
           <FormControlLabel value="female" control={<Radio />} label="Video" />
           <FormControlLabel value="male" control={<Radio />} label="Audio" />
           <FormControlLabel value="other" control={<Radio />} label="Book" />
         </RadioGroup>
-        <Box>
+        <Box sx={{ textAlign: 'center' }}>
           <PrimaryButton onClick={props.handleNext} sx={{ width: '100px' }}>
             Next
           </PrimaryButton>

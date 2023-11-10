@@ -44,6 +44,16 @@ const theme = createTheme({
         },
       },
     },
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          color: 'var(--Primary1)',
+          '&.Mui-checked': {
+            color: 'var(--Primary1)',
+          },
+        },
+      },
+    },
   },
 })
 

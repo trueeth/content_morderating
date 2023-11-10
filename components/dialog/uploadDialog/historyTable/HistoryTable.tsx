@@ -17,7 +17,7 @@ const rows: THistoryRowType[] = [
   {
     name: 'SAW X Video for the design',
     source: EVideoType.video,
-    status: 20,
+    status: 70,
     date: 'Sep, 29, 2023 07:55PM',
   },
   {

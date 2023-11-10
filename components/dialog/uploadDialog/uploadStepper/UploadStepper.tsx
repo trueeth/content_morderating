@@ -13,10 +13,6 @@ import LaunchStep from './LaunchStep'
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
 
-  const isStepOptional = (step: number) => {
-    return step === 1
-  }
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
@@ -31,7 +27,8 @@ export default function UploadStepper() {
         activeStep={activeStep}
         alternativeLabel
         sx={{
-          px:'2rem'
+          px: '2rem',
+          '& .MuiStepIcon-active': { color: 'red' },
         }}
       >
         {CUploadSteps.map((label, index) => {
@@ -41,16 +38,16 @@ export default function UploadStepper() {
           } = {}
 
           return (
-            <Step key={label} {...stepProps}
-                  sx={{
-                    '& span': {
-                      fontSize:'.7rem'
-                    }
-                  }}>
-              <StepLabel
-                {...labelProps}
-
-              >{label}</StepLabel>
+            <Step
+              key={index}
+              {...stepProps}
+              sx={{
+                '& span': {
+                  fontSize: '.7rem',
+                },
+              }}
+            >
+              <StepLabel {...labelProps}>{label}</StepLabel>
             </Step>
           )
         })}

@@ -1,5 +1,5 @@
 import { StepWrapper } from './index'
-import { Box, Radio, Select, TextField } from '@mui/material'
+import { Box, Radio, Select, TextField, Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'
@@ -22,42 +22,62 @@ export default function StatusStep(props: {
     <StepWrapper>
       <Box
         sx={{
+          width: '80%',
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          rowGap: 1,
+          '& > .MuiBox-root': {
+            width: 'inherit',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          },
         }}
       >
-        <div className="flex justify-between">
-          <div>New Media</div>
+        <Box>
+          <Typography>New Media</Typography>
           <Radio
             checked={vState.type === 'new'}
             onChange={handleType}
             value={'new'}
           />
-        </div>
-        <TextField fullWidth={true} />
-        <div>OR</div>
-        <div className="flex justify-between">
-          <div>Replace existing one</div>
+        </Box>
+        <TextField
+          fullWidth={true}
+          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
+        />
+        <Typography>OR</Typography>
+        <Box mt={-2}>
+          <Typography>Replace existing one</Typography>
           <Radio
             checked={vState.type === 'old'}
             onChange={handleType}
             value={'old'}
           />
-        </div>
+        </Box>
         <Select
           value={vState.replace}
           onChange={handleReplace}
+          fullWidth
           sx={{
-            height: '36px',
+            height: '40px',
           }}
         >
           <MenuItem value={0}>Trolls</MenuItem>
           <MenuItem value={1}>Poppy</MenuItem>
         </Select>
-        <div>
+        <Box
+          sx={{
+            mt: 2,
+            justifyContent: 'center !important',
+            '& .MuiButton-root': { width: '100px' },
+          }}
+        >
           <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>
           <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
-        </div>
+        </Box>
       </Box>
     </StepWrapper>
   )

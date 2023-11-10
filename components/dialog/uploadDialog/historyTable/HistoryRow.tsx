@@ -7,18 +7,14 @@ import {
   ManageSearch,
   Slideshow,
 } from '@mui/icons-material'
-import { CFlaggedScenesMax, THistoryRowType } from '../../../../interfaces'
+import { THistoryRowType } from '../../../../interfaces'
 import LinearProgress from '@mui/material/LinearProgress'
 import clsx from 'clsx'
 
-
-
-
-export  function UploadStatus(props: { value: number }) {
+export function UploadStatus(props: { value: number }) {
   const percent = (props.value / 100) * 100
-  const label=['Uploading','Analyzing','Indexing','Scoring']
-  const labelIndex=Math.ceil((props.value / 100 )*4)-1
-  console.log(labelIndex)
+  const label = ['Uploading', 'Analyzing', 'Indexing', 'Scoring']
+  const labelIndex = Math.ceil((props.value / 100) * 4) - 1
   return (
     <Box sx={{ flexGrow: 1 }} display={'flex'}>
       <LinearProgress
@@ -27,14 +23,12 @@ export  function UploadStatus(props: { value: number }) {
           percent <= 25 && 'flagged-quarter',
           percent > 25 && percent <= 50 && 'flagged-half',
           percent > 50 && percent < 100 && 'flagged-half-over',
-          percent == 100 && 'flagged-complete',
+          percent == 100 && 'flagged-complete'
         )}
         variant="determinate"
         value={percent}
       />
-      <div className={'text-6 ml-3'}>
-        {label[labelIndex]}
-      </div>
+      <div className={'text-6 ml-3'}>{label[labelIndex]}</div>
     </Box>
   )
 }
@@ -80,7 +74,7 @@ function HistoryRow(props: { row: THistoryRowType }) {
         </TableCell>
         <TableCell>{row.date}</TableCell>
         <TableCell>
-          <UploadStatus value={row.status}/>
+          <UploadStatus value={row.status} />
         </TableCell>
         <TableCell>
           <Box sx={{ display: 'flex' }}>
