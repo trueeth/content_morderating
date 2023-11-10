@@ -32,7 +32,7 @@ export default function UploadDialog() {
   };
 
   const handleClose = () => {
-    dispatch(openDialogUpload({open:false}));
+    dispatch(openDialogUpload({ open: false }));
   };
 
   const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {
