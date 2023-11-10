@@ -8,6 +8,7 @@ import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
 import { Checkbox } from '@mui/material'
 import { EVideoSubColumns, TVideoSubRowType } from '../../interfaces'
+import RowAction from './videoRows/RowAction'
 
 const VideoSubTable=(props:{value:TVideoSubRowType[]})=>{
   const [checked, setChecked] = React.useState(false);
@@ -60,21 +61,13 @@ const VideoSubTable=(props:{value:TVideoSubRowType[]})=>{
               <TableCell>
                 {row.description}
               </TableCell>
+              <TableCell>
+                <RowAction></RowAction>
+              </TableCell>
             </TableRow>
           )
         })}
-        {/*{row.subRows.map((historyRow) => (*/}
-        {/*  <TableRow key={historyRow.date}>*/}
-        {/*    <TableCell component="th" scope="row">*/}
-        {/*      {historyRow.date}*/}
-        {/*    </TableCell>*/}
-        {/*    <TableCell>{historyRow.customerId}</TableCell>*/}
-        {/*    <TableCell align="right">{historyRow.amount}</TableCell>*/}
-        {/*    <TableCell align="right">*/}
-        {/*      {Math.round(historyRow.amount * row.price * 100) / 100}*/}
-        {/*    </TableCell>*/}
-        {/*  </TableRow>*/}
-        {/*))}*/}
+
       </TableBody>
     </Table>
   )

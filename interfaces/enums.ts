@@ -16,6 +16,7 @@ export enum EVideoSubColumns {
   violationType='VIOLATION TYPE',
   category='CATEGORY',
   description='DESCRIPTION',
+  actions='ACTIONS'
 }
 
 
