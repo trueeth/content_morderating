@@ -144,9 +144,9 @@ export default function DrawerTabActivities() {
       {/*  -----------update-----------*/}
       <Box
         sx={{
+          m: '1rem',
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '1rem',
         }}
       >
         <CssTextField

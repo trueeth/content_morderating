@@ -11,7 +11,7 @@ import {
   EClassification,
   ERating,
   EStatus,
-  EVideoColumns,
+  EVideoData,
   EVideoType,
   TVideoRowType,
 } from '../../../interfaces'
@@ -60,6 +60,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
     flaggedScenes: 80,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Test Video for the project',
@@ -70,6 +93,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.reject,
     flaggedScenes: 120,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Test Video for the project',
@@ -80,6 +126,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.reject,
     flaggedScenes: 80,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'SAW X Video',
@@ -90,6 +159,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.reject,
     flaggedScenes: 80,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -100,6 +192,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
     flaggedScenes: 120,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'SAW X Video',
@@ -110,6 +225,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
     flaggedScenes: 30,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -120,6 +258,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.review,
     flaggedScenes: 170,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -130,6 +291,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.review,
     flaggedScenes: 170,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Test Video for the project',
@@ -140,6 +324,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
     flaggedScenes: 120,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'SAW X Video for the design',
@@ -150,6 +357,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
     flaggedScenes: 120,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -160,6 +390,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.approve,
     flaggedScenes: 60,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Test Video for the project',
@@ -170,6 +423,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.approve,
     flaggedScenes: 80,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -180,6 +456,29 @@ const rows: TVideoRowType[] = [
     submissionDate: 'Sep, 26, 2023 07:55PM',
     approval: EApporval.pending,
     flaggedScenes: 120,
+    subRows: [
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 2,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+      },
+      {
+        sceneNumber: 1,
+        violationType: 'Nudity',
+        category: 'Content Video',
+        description:
+          "This simply dummy text best Ipsum has been the industry's standard",
+      },
+    ],
   },
 ]
 
@@ -201,7 +500,7 @@ export default function VideoTable() {
         <TableHead>
           <TableRow>
             <TableCell />
-            {Object.values(EVideoColumns).map((item, index) => (
+            {Object.values(EVideoData).map((item, index) => (
               <TableCell
                 key={index}
                 align="center"

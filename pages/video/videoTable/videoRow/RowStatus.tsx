@@ -2,7 +2,7 @@ import { EStatus } from '../../../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 
-const RowStatus = (props: { status: number }) => {
+const RowStatus = (props: { status: EStatus }) => {
   if (props.status === EStatus.new) {
     return <Box className={'status-new'}>new</Box>
   } else if (props.status === EStatus.failed) {

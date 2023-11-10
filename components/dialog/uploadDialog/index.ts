@@ -1,1 +1,1 @@
-export * from './uploadDialog'
+export * from './UploadDialog'

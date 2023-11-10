@@ -1,8 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import RowAction from '../videoTable/videoRow/RowAction'
-import { EVideoColumns } from '../../../interfaces'
-
-
+import { EVideoData } from '../../../interfaces'
 
 export default function DrawerHeader() {
   return (
@@ -28,7 +26,6 @@ export default function DrawerHeader() {
           flexWrap: 'wrap',
         }}
       >
-
         {/*//@TODO insert dialog state*/}
       </Box>
     </Box>

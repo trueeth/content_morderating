@@ -47,24 +47,23 @@ function UserAction() {
 }
 
 const Header = () => {
-
-  const dispatch=useDispatch();
+  const dispatch = useDispatch()
   // const handleUpload=()=>{
   //   dispatch(openDialogUpload({open:true}));
   // }
 
-  const handleHeader=(title:string)=>()=>{
-    switch (title){
+  const handleHeader = (title: string) => () => {
+    switch (title) {
       case 'Upload':
-        dispatch(openDialogUpload({open:true}));
-        break;
+        dispatch(openDialogUpload({ open: true }))
+        break
       default:
-        break;
+        break
     }
   }
 
   return (
-    <AppBar position="relative" elevation={0} className={'top-header w-full'}>
+    <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
       <Box
         sx={{
           width: '100%',

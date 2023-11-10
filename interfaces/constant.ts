@@ -8,7 +8,7 @@ import {
   SvgIconComponent,
   Update,
 } from '@mui/icons-material'
-import { EVideoColumns } from './enums'
+import { EVideoData } from './enums'
 
 export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string }> = [
   { icon: GridViewRounded, title: 'Dashboard' },
@@ -20,11 +20,11 @@ export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string }> = [
   { icon: FileUpload, title: 'Upload' },
 ]
 
-export const CDrawerState = [{ title: EVideoColumns.status, value: 1 }]
+export const CDrawerState = [{ title: EVideoData.status, value: 1 }]
 
 // @TODO can be delete
 export const CSceneState = ['Processing', 'Approved', 'Unapproved']
 
 export const CFlaggedScenesMax = 200
 
-export const CUploadSteps = ['MEDIA TYPE', 'NEW OR OLD', 'SOURCE', 'LAUNCH'];
+export const CUploadSteps = ['MEDIA TYPE', 'NEW OR OLD', 'SOURCE', 'LAUNCH']
