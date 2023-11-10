@@ -5,7 +5,7 @@ const TopButton = styled(Button)({
   color: '#eee',
   boxShadow: 'none',
   textTransform: 'capitalize',
-  margin: '0 10px',
+  margin: '0 5px',
   fontSize: 16,
   padding: '6px 12px',
   lineHeight: 1.5,

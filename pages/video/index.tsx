@@ -48,13 +48,11 @@ const Index = () => {
             width: '100%',
             minHeight: '60vh',
             borderRadius: '20px',
-            bgcolor: 'rgb(31, 48, 74)',
           }}
         >
           <VideoTable />
+          {/*---------table pagination----------*/}
         </Box>
-
-        {/*---------table pagination----------*/}
         <TablePagination>
           <Pagination
             count={4}
