@@ -24,7 +24,7 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
   }
 
   const dispatch=useDispatch();
-  const handleDetail=(event:any) => {
+  const handleDetail=() => {
     dispatch(openVideoDrawer({open:true}));
   }
   return (

@@ -9,6 +9,8 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import TopButton from './styled/TopButton'
 import { VHeaderTabs } from 'interfaces'
+import { useDispatch } from 'react-redux'
+import { openDialogUpload } from '../store/slices/app'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -45,6 +47,22 @@ function UserAction() {
 }
 
 const Header = () => {
+
+  const dispatch=useDispatch();
+  // const handleUpload=()=>{
+  //   dispatch(openDialogUpload({open:true}));
+  // }
+
+  const handleHeader=(title:string)=>()=>{
+    switch (title){
+      case 'Upload':
+        dispatch(openDialogUpload({open:true}));
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <AppBar position="relative" elevation={0} className={'top-header w-full'}>
       <Box
@@ -68,7 +86,7 @@ const Header = () => {
           sx={{ flexDirection: { xs: 'column', md: 'row' } }}
         >
           {VHeaderTabs.map((item, index) => (
-            <Box key={index}>
+            <Box key={index} onClick={handleHeader(item.title)}>
               <TopButton>
                 <SvgIcon component={item.icon} />
                 <Typography ml={0.5}>{item.title}</Typography>

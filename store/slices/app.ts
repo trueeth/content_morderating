@@ -6,12 +6,14 @@ import { setAll } from 'utils/setAll'
 const initialState = {
   loading: true,
   videoDrawerOpen: false,
+  dialogUpload:false,
   orders: [],
 }
 
 export interface IAppSlice {
   loading: boolean
   videoDrawerOpen: boolean
+  dialogUpload:boolean
   orders: Array<string>
 }
 
@@ -25,6 +27,9 @@ const appSlice = createSlice({
     openVideoDrawer(state,action) {
       state.videoDrawerOpen = action.payload.open
     },
+    openDialogUpload(state,action) {
+      state.dialogUpload = action.payload.open
+    },
   },
 })
 
@@ -32,6 +37,6 @@ const baseInfo = (state: IReduxState) => state.app
 
 export default appSlice.reducer
 
-export const { fetchAppSuccess, openVideoDrawer } = appSlice.actions
+export const { fetchAppSuccess, openVideoDrawer ,openDialogUpload} = appSlice.actions
 
 export const getAppState = createSelector(baseInfo, (app) => app)
