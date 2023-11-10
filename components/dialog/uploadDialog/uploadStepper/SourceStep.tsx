@@ -4,8 +4,9 @@ import * as React from 'react'
 import { useMemo, useState } from 'react'
 import { StyledButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
+import { CSSProperties } from 'styled-components'
 
-const baseStyle = {
+const baseStyle:CSSProperties = {
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
