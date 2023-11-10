@@ -4,7 +4,7 @@ import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { Delete, FileUpload, KeyboardArrowDown, KeyboardArrowRight, ManageSearch } from '@mui/icons-material'
+import { Delete, FileUpload, ManageSearch } from '@mui/icons-material'
 import { THistoryRowType, TVideoRowType } from '../../../../interfaces'
 
 function HistoryRow(props: { row: THistoryRowType }) {
@@ -15,6 +15,7 @@ function HistoryRow(props: { row: THistoryRowType }) {
       {/*-------main row-----------*/}
       <TableRow
         sx={{
+          mt: 2,
           '& > .MuiTableCell-root': {
             textAlign: 'center',
             borderTop: '1px solid #ccc',
@@ -32,32 +33,24 @@ function HistoryRow(props: { row: THistoryRowType }) {
           },
         }}
       >
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-          >
-            <Delete></Delete>
-          </IconButton>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-          >
-            <FileUpload></FileUpload>
-          </IconButton>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-          >
-            <ManageSearch></ManageSearch>
-          </IconButton>
-        </TableCell>
-
         <TableCell sx={{ minWidth: '200px' }}>{row.name}</TableCell>
-
-
+        <TableCell />
+        <TableCell />
+        <TableCell />
+        <TableCell>
+          <Box sx={{ display: 'flex' }}>
+            <IconButton aria-label="expand row" size="small">
+              <Delete></Delete>
+            </IconButton>
+            <IconButton aria-label="expand row" size="small">
+              <FileUpload></FileUpload>
+            </IconButton>
+            <IconButton aria-label="expand row" size="small">
+              <ManageSearch></ManageSearch>
+            </IconButton>
+          </Box>
+        </TableCell>
       </TableRow>
-
     </React.Fragment>
   )
 }

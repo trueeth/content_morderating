@@ -22,7 +22,7 @@ export type THistoryRowType = {
   name: string
   source: EVideoType
   status: number
-  date:string
+  date: string
 }
 
 export type TVideoSubRowType = {
@@ -30,4 +30,11 @@ export type TVideoSubRowType = {
   violationType: string
   category: string
   description: string
+}
+
+export type THistoryData = {
+  name: string
+  type: EVideoType
+  status: EStatus
+  submissionDate: string
 }

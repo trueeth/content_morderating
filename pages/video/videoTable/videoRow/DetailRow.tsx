@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
 import { Checkbox } from '@mui/material'
-import { EVideoSubColumns, TVideoSubRowType } from '../../../../interfaces'
+import { EVideoDetail, TVideoSubRowType } from '../../../../interfaces'
 import RowAction from './RowAction'
 import { useDispatch } from 'react-redux'
 import { openVideoDrawer } from '../../../../store/slices/app'
@@ -23,16 +23,16 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
     return null
   }
 
-  const dispatch=useDispatch();
-  const handleDetail=() => {
-    dispatch(openVideoDrawer({open:true}));
+  const dispatch = useDispatch()
+  const handleDetail = () => {
+    dispatch(openVideoDrawer({ open: true }))
   }
   return (
     <Table
       size="small"
       sx={{
-      cursor:'pointer'
-    }}
+        cursor: 'pointer',
+      }}
       onClick={handleDetail}
     >
       <TableHead>
@@ -52,7 +52,7 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </TableCell>
-          {Object.values(EVideoSubColumns).map((item, index) => {
+          {Object.values(EVideoDetail).map((item, index) => {
             return <TableCell key={index}>{item}</TableCell>
           })}
         </TableRow>

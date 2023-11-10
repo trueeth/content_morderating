@@ -8,8 +8,9 @@ import {
   EClassification,
   ERating,
   EStatus,
-  EVideoColumns,
-  EVideoType, THistoryRowType,
+  EHistoryData,
+  EVideoType,
+  THistoryRowType,
   TVideoRowType,
 } from '../../../../interfaces'
 import TableBody from '@mui/material/TableBody'
@@ -18,27 +19,26 @@ import TableContainer from '@mui/material/TableContainer'
 import * as React from 'react'
 import HistoryRow from './HistoryRow'
 
-
 const rows: THistoryRowType[] = [
-   {
+  {
     name: 'SAW X Video for the design',
     source: EVideoType.video,
     status: 20,
     date: 'Sep, 29, 2023 07:55PM',
   },
-   {
+  {
     name: 'Test Video for the design',
     source: EVideoType.video,
     status: 40,
     date: 'Sep, 29, 2023 07:55PM',
   },
-   {
+  {
     name: 'UI UX design for the project',
     source: EVideoType.video,
     status: 60,
     date: 'Sep, 29, 2023 07:55PM',
   },
-   {
+  {
     name: 'Best Tourism places',
     source: EVideoType.video,
     status: 100,
@@ -46,12 +46,9 @@ const rows: THistoryRowType[] = [
   },
 ]
 
-export default function HistoryTable(){
-  return(
-    <TableContainer
-      component={Paper}
-      sx={{ borderRadius: '15px', px: 2, width: 'fit-content' }}
-    >
+export default function HistoryTable() {
+  return (
+    <TableContainer component={Paper} sx={{ borderRadius: '15px', px: 2 }}>
       <Table
         aria-label="collapsible table"
         sx={{
@@ -62,17 +59,21 @@ export default function HistoryTable(){
         }}
       >
         <TableHead>
-          <TableRow>
-            <TableCell />
-            {Object.values(EVideoColumns).map((item, index) => (
-              <TableCell
-                key={index}
-                align="center"
-                sx={{ whiteSpace: 'nowrap', fontSize: '12px', color: '#888' }}
-              >
+          <TableRow
+            sx={{
+              '& .MuiTableCell-root': {
+                whiteSpace: 'nowrap',
+                fontSize: '12px',
+                color: '#888',
+              },
+            }}
+          >
+            {Object.values(EHistoryData).map((item, index) => (
+              <TableCell key={index} align="center">
                 {item}
               </TableCell>
             ))}
+            <TableCell>ACTION</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
