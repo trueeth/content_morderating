@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem'
 import TopButton from './styled/TopButton'
 import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
-import { openDialogUpload } from '../store/slices/app'
+import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -55,7 +55,7 @@ const Header = () => {
   const handleHeader = (title: string) => () => {
     switch (title) {
       case 'Upload':
-        dispatch(openDialogUpload({ open: true }))
+        dispatch(openVideoUploadDialog({ open: true }))
         break
       default:
         break

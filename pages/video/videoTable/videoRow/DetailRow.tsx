@@ -8,7 +8,7 @@ import { Checkbox } from '@mui/material'
 import { EVideoDetail, TVideoSubRowType } from '../../../../interfaces'
 import RowAction from './RowAction'
 import { useDispatch } from 'react-redux'
-import { openVideoDrawer } from '../../../../store/slices/app'
+import { openVideoSubDrawer } from '../../../../store/reducers/drawer.reducers'
 
 const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
   const [checked, setChecked] = React.useState(false)
@@ -25,7 +25,7 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
 
   const dispatch = useDispatch()
   const handleDetail = () => {
-    dispatch(openVideoDrawer({ open: true }))
+    dispatch(openVideoSubDrawer({ open: true }))
   }
   return (
     <Table

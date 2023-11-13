@@ -8,8 +8,9 @@ import VideoTable from './videoTable'
 import VideoTableHeader from './Header'
 import TestVideoDrawer from './drawer'
 import { useDispatch, useSelector } from 'react-redux'
-import { IAppSlice, openVideoDrawer } from '../../store/slices/app'
-import { IReduxState } from '../../store/store'
+import { IAppSlice } from '../../store/reducers'
+import { IReduxState } from '../../store'
+import { openVideoSubDrawer } from '../../store/reducers/drawer.reducers'
 
 const TablePagination = styled('div')({
   marginTop: '1rem',
@@ -29,6 +30,7 @@ const Index = () => {
 
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+  // console.log(appState)
 
   return (
     <>
@@ -77,8 +79,8 @@ const Index = () => {
 
         {/*---------drawer-----------*/}
         <TestVideoDrawer
-          open={appState.videoDrawerOpen}
-          handleClose={() => dispatch(openVideoDrawer({ open: false }))}
+          open={appState.drawer.videoSub}
+          handleClose={() => dispatch(openVideoSubDrawer({ open: false }))}
         />
       </Container>
     </>
