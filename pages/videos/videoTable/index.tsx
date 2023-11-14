@@ -494,7 +494,6 @@ export default function VideoTable() {
           [`& .${tableCellClasses.root}`]: {
             borderBottom: 'none'
           },
-          borderCollapse: 'unset',
           borderSpacing: 0
         }}
       >

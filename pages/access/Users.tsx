@@ -13,7 +13,7 @@ import {
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox,
+  Checkbox
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EUserData, EUserRole, EUserType, TUserData } from 'interfaces'
@@ -29,7 +29,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap,
+    type: EUserType.ldap
   },
   {
     name: 'Darlene Robertson',
@@ -38,7 +38,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml,
+    type: EUserType.saml
   },
   {
     name: 'Floyd Miles',
@@ -47,7 +47,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.user,
-    type: EUserType.ldap,
+    type: EUserType.ldap
   },
   {
     name: 'Darlene Robertson',
@@ -56,7 +56,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.user,
-    type: EUserType.saml,
+    type: EUserType.saml
   },
   {
     name: 'Floyd Miles',
@@ -65,7 +65,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap,
+    type: EUserType.ldap
   },
   {
     name: 'Darlene Robertson',
@@ -74,7 +74,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.user,
-    type: EUserType.saml,
+    type: EUserType.saml
   },
   {
     name: 'Floyd Miles',
@@ -83,7 +83,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.manager,
-    type: EUserType.ldap,
+    type: EUserType.ldap
   },
   {
     name: 'Darlene Robertson',
@@ -92,7 +92,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.manager,
-    type: EUserType.saml,
+    type: EUserType.saml
   },
   {
     name: 'Floyd Miles',
@@ -101,7 +101,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.manager,
-    type: EUserType.ldap,
+    type: EUserType.ldap
   },
   {
     name: 'Darlene Robertson',
@@ -110,7 +110,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml,
+    type: EUserType.saml
   },
   {
     name: 'Floyd Miles',
@@ -119,7 +119,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap,
+    type: EUserType.ldap
   },
   {
     name: 'Darlene Robertson',
@@ -128,7 +128,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml,
+    type: EUserType.saml
   },
   {
     name: 'Floyd Miles',
@@ -137,7 +137,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap,
+    type: EUserType.ldap
   },
   {
     name: 'Darlene Robertson',
@@ -146,8 +146,8 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml,
-  },
+    type: EUserType.saml
+  }
 ]
 
 export default function Users() {
@@ -162,7 +162,7 @@ export default function Users() {
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black',
+          color: 'black'
         }}
       >
         <Grid
@@ -170,14 +170,14 @@ export default function Users() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2,
+            p: 2
           }}
         >
           <Grid
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Users</Typography>
@@ -186,7 +186,7 @@ export default function Users() {
                 ml: 2,
                 bgcolor: '#ff1313a0',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' },
+                '&:hover': { bgcolor: '#ff1313a0' }
               }}
             >
               Delete
@@ -197,7 +197,7 @@ export default function Users() {
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Sort by:</Typography>
@@ -221,17 +221,16 @@ export default function Users() {
           width: '100%',
           '& .MuiTableCell-root': {
             textAlign: 'left',
-            whiteSpace: 'nowrap',
-          },
+            whiteSpace: 'nowrap'
+          }
         }}
       >
         <Table
           aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
-            },
-            borderCollapse: 'unset',
+              borderBottom: 'none'
+            }
           }}
         >
           <TableHead>

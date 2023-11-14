@@ -154,8 +154,7 @@ export default function Groups() {
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none'
-            },
-            borderCollapse: 'unset'
+            }
           }}
         >
           <TableHead>

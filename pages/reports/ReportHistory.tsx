@@ -206,8 +206,7 @@ export default function ReportHistory() {
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none'
-            },
-            borderCollapse: 'unset'
+            }
           }}
         >
           <TableHead>
