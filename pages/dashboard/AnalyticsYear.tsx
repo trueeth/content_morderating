@@ -70,7 +70,7 @@ const options: ApexOptions = {
     max:70,
     tickAmount:7,
     labels:{
-      formatter:(value:any)=>Math.round(value)
+      formatter:(value:any)=>String(Math.round(value))
     }
   },
   legend: {
@@ -104,11 +104,11 @@ export default function() {
     year:'2023',
     series: [
       {
-        name: "Sales",
+        name: "Videos",
         data: labels.map(() => Math.random() * 70),
       },
       {
-        name: "Revenue",
+        name: "Documents",
         data: labels.map(() => Math.random() * 70),
       },
     ],
