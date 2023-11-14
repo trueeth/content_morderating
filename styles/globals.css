@@ -1,0 +1,154 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: var(--White-L);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  overflow-x: hidden;
+  font-family: Square !important;
+  color: #ececec;
+}
+
+:root {
+  --Primary1: #3ec0d8;
+  --Primary2: #75598d;
+  --Primary3: #313773;
+  --Gradiant: linear-gradient(90deg, #75598d 0%, #3ec0d8 92.75%);
+  --Black: #424351;
+  --Body: #474747;
+  --Grey: #adadad;
+  --Primary1-L: #ebfafd;
+  --Primary2-L: #f7f1fc;
+  --White-L: #f8f8f8;
+  --Secondry-L: #ecedf9;
+  --Stroke: #e8e8e8;
+  --Grey-L: #f9f9ff;
+  --White: #fff;
+  --Secondry: #1a2057;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #dadde4;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Square' !important;
+  text-transform: none !important;
+}
+
+@font-face {
+  font-family: 'Square';
+  src: url('../assets/fonts/EuclidSquare-Medium.woff') format('opentype');
+}
+
+input[type='number']::-webkit-clear-button {
+  display: none;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  width: 20px;
+  position: absolute;
+  top: 0;
+  right: 2px;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.form-check-input:checked[type='checkbox'] {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E");
+}
+
+.form-check-input:checked {
+  background-color: #182539;
+  border-color: #182539 !important;
+}
+
+.form-check-input[type='checkbox'] {
+  border-radius: 0.25em;
+}
+
+.form-check-input {
+  width: 20px !important;
+  height: 20px !important;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  height: 1em;
+  margin-top: 0.25em;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  vertical-align: top;
+  width: 1em;
+  background-color: #454f5b;
+  margin-left: 5px;
+}
+
+.form-check-input:focus {
+  border-color: white;
+  outline: 3px solid #063c79;
+}
+.btn {
+  color: #ececec;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0d6efd;
+  --bs-btn-border-color: #0d6efd;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0b5ed7;
+  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0a58ca;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
+}
+
+.upload-status{
+  background-color: #3ec0d82b;
+}
+
+.upload-status span.MuiLinearProgress-bar{
+  background-color: var(--Primary1);
+}
+/*----------------Header style start---------------------*/
+
+.top-header {
+  background-color: var(--Secondry);
+}
+
+.user-logo {
+  background-color: var(--Primary3);
+}
+/*----------------Header style end---------------------*/
+
+@import url('./videoTable.css');
+@import url('./common.css');
