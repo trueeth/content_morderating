@@ -10,6 +10,15 @@ export enum EVideoData {
   actions = 'ACTIONS'
 }
 
+export enum ENewVideoData {
+  name = 'NAME',
+  date='DATE',
+  rating = 'RATING',
+  classification = 'CLASSIFICATION',
+  approval = 'APPROVAL',
+}
+
+
 export enum EReportHistory {
   name = 'REPORT NAME',
   type = 'TYPE',

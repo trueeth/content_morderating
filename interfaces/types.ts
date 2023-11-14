@@ -22,6 +22,14 @@ export type TVideoRowType = {
   subRows?: TVideoSubRowType[]
 }
 
+export type TNewVideoRowType = {
+  name: string
+  rating: ERating
+  classification: EClassification[]
+  date: string
+  approval: EApporval
+}
+
 export type TReportHistory = {
   name: string
   type: string

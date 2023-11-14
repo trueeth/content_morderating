@@ -54,6 +54,8 @@ const options: ApexOptions = {
       horizontal: false,
       borderRadius: 3,
       columnWidth: '25%'
+      // borderRadiusApplication: "end",
+      // borderRadiusWhenStacked: "last",
     }
   },
   grid: {
@@ -65,7 +67,10 @@ const options: ApexOptions = {
   xaxis: {
     categories: labels,
     labels: {
-      show: true
+      show: true,
+      style: {
+        fontSize: '.7rem'
+      }
     },
     axisBorder: {
       show: false
@@ -109,11 +114,11 @@ export default function () {
     year: '2023',
     series: [
       {
-        name: 'Sales',
+        name: 'Videos',
         data: labels.map(() => Math.random() * 70)
       },
       {
-        name: 'Revenue',
+        name: 'Documents',
         data: labels.map(() => Math.random() * 70)
       }
     ]
@@ -125,22 +130,24 @@ export default function () {
   }
 
   return (
-    <div className="bg-white border-radius-5">
-      <Select
-        value={vState.year}
-        onChange={handleSelect}
-        fullWidth
-        sx={{
-          height: '40px',
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'var(--Primary1)'
-          }
-        }}
-      >
-        <MenuItem value={2023}>2023</MenuItem>
-        <MenuItem value={2022}>2022</MenuItem>
-        <MenuItem value={2021}>2021</MenuItem>
-      </Select>
+    <div className="bg-white border-radius-5 h-full p-15 text-black">
+      <div className="flex row justify-between">
+        <div>Analytics of Year</div>
+        <Select
+          value={vState.year}
+          onChange={handleSelect}
+          sx={{
+            height: '30px',
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'var(--Primary1)'
+            }
+          }}
+        >
+          <MenuItem value={2023}>Year 2023</MenuItem>
+          <MenuItem value={2022}>Year 2022</MenuItem>
+          <MenuItem value={2021}>Year 2021</MenuItem>
+        </Select>
+      </div>
 
       <div>
         <ApexCharts
@@ -149,6 +156,18 @@ export default function () {
           type="bar"
           height={350}
         />
+      </div>
+
+      <div className="flex justify-center">
+        <div className="mr-15 flex item-center">
+          <span className="flex chart-item-label bg-primary1 mr-3"></span>
+          <div>Documents</div>
+        </div>
+
+        <div className="mr-15 flex item-center">
+          <span className="flex chart-item-label bg-primary2 mr-3"></span>
+          <div>Videos</div>
+        </div>
       </div>
     </div>
   )
