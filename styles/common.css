@@ -71,3 +71,23 @@
 .pb-50{
     padding-bottom: 5rem;
 }
+
+.bg-white{
+    background-color: white;
+}
+
+.border-radius-5{
+    border-radius: .5rem;
+}
+.border-radius-3{
+    border-radius: .3rem;
+}
+.border-radius-10{
+    border-radius: 1rem;
+}
+.border-radius-20{
+    border-radius: 2rem;
+}
+.border-radius-30{
+    border-radius: 3rem;
+}
