@@ -11,6 +11,7 @@ import TopButton from './styled/TopButton'
 import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
 import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
+import Link from 'next/link'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -86,10 +87,12 @@ const Header = () => {
         >
           {CHeaderTabs.map((item, index) => (
             <Box key={index} onClick={handleHeader(item.title)}>
-              <TopButton>
-                <SvgIcon component={item.icon} />
-                <Typography ml={0.5}>{item.title}</Typography>
-              </TopButton>
+              <Link href={item.title.toLowerCase()}>
+                <TopButton>
+                  <SvgIcon component={item.icon} />
+                  <Typography ml={0.5}>{item.title}</Typography>
+                </TopButton>
+              </Link>
             </Box>
           ))}
         </Box>
