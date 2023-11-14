@@ -3,14 +3,19 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import { Table, TableContainer } from '@mui/material'
 import TableBody from '@mui/material/TableBody'
-import VideoRow from '../videos/videoTable/videoRow/VideoRow'
-import { EApporval, EClassification, ENewVideoData, ERating, EVideoData, TNewVideoRowType } from '../../interfaces'
+import {
+  EApporval,
+  EClassification,
+  ENewVideoData,
+  ERating,
+  EVideoData,
+  TNewVideoRowType
+} from '../../interfaces'
 import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
 import RowRating from '../videos/videoTable/videoRow/RowRating'
 import RowClassification from '../videos/videoTable/videoRow/RowClassification'
 import RowApproval from '../videos/videoTable/videoRow/RowApproval'
-
 
 const rows = [
   {
@@ -18,40 +23,40 @@ const rows = [
     date: '25/10/2023',
     rating: ERating.r18,
     classification: [EClassification.h, EClassification.s, EClassification.sh],
-    approval: EApporval.review,
+    approval: EApporval.review
   },
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
     rating: ERating.r18,
     classification: [EClassification.h, EClassification.s, EClassification.sh],
-    approval: EApporval.review,
+    approval: EApporval.review
   },
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.missing,
     classification: [EClassification.h, EClassification.s, EClassification.sh],
-    approval: EApporval.reject,
+    approval: EApporval.reject
   },
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
     rating: ERating.missing,
     classification: [EClassification.h, EClassification.s, EClassification.sh],
-    approval: EApporval.pending,
+    approval: EApporval.pending
   },
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.r18,
     classification: [EClassification.h, EClassification.s, EClassification.sh],
-    approval: EApporval.approve,
-  },
+    approval: EApporval.approve
+  }
 ]
 
-const NewVideoRow=(props:{row:TNewVideoRowType})=>{
-  return(
+const NewVideoRow = (props: { row: TNewVideoRowType }) => {
+  return (
     <React.Fragment>
       <TableRow
         sx={{
@@ -62,27 +67,25 @@ const NewVideoRow=(props:{row:TNewVideoRowType})=>{
             '&:first-of-type': {
               borderLeft: '1px solid #ccc',
               borderTopLeftRadius: '10px',
-              borderBottomLeftRadius: '10px',
+              borderBottomLeftRadius: '10px'
             },
             '&:last-of-type': {
               borderRight: '1px solid #ccc',
               borderTopRightRadius: '10px',
-              borderBottomRightRadius: '10px',
-            },
-          },
+              borderBottomRightRadius: '10px'
+            }
+          }
         }}
       >
-        <TableCell>
-          {props.row.name}
-        </TableCell>
-        <TableCell>
-          {props.row.date}
-        </TableCell>
+        <TableCell>{props.row.name}</TableCell>
+        <TableCell>{props.row.date}</TableCell>
         <TableCell>
           <RowRating rating={props.row.rating}></RowRating>
         </TableCell>
         <TableCell>
-          <RowClassification classifications={props.row.classification}></RowClassification>
+          <RowClassification
+            classifications={props.row.classification}
+          ></RowClassification>
         </TableCell>
         <TableCell>
           <RowApproval approval={props.row.approval}></RowApproval>
@@ -92,23 +95,21 @@ const NewVideoRow=(props:{row:TNewVideoRowType})=>{
   )
 }
 
-export default function() {
+export default function () {
   return (
-     <div className='bg-white border-radius-5 h-full p-15 text-black'>
-      <div>
-        New Videos
-      </div>
+    <div className="bg-white border-radius-5 h-full p-15 text-black">
+      <div>New Videos</div>
       <TableContainer
         component={Paper}
         sx={{ borderRadius: '15px', px: 2, width: 'fit-content' }}
       >
         <Table
-          aria-label='collapsible table'
+          aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
+              borderBottom: 'none'
             },
-            borderCollapse: 'unset',
+            borderCollapse: 'unset'
           }}
         >
           <TableHead>

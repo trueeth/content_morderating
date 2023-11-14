@@ -6,23 +6,20 @@ import {
   HourglassEmptyOutlined,
   InsertDriveFileOutlined,
   Slideshow,
-  StarBorder,
-  StarBorderPurple500,
+  StarBorder
 } from '@mui/icons-material'
 
-type TStatisticsItem={
-  children:React.ReactElement
-  downloads:number
-  title:string
+type TStatisticsItem = {
+  children: React.ReactElement
+  downloads: number
+  title: string
 }
 
-const StatisticsItem=(props:TStatisticsItem)=>{
-  const ItemIcon=props.children;
-  return(
+const StatisticsItem = (props: TStatisticsItem) => {
+  const ItemIcon = props.children
+  return (
     <div>
-      <IconButton>
-        {ItemIcon}
-      </IconButton>
+      <IconButton>{ItemIcon}</IconButton>
 
       <div>
         <div>{props.downloads}</div>
@@ -31,26 +28,26 @@ const StatisticsItem=(props:TStatisticsItem)=>{
     </div>
   )
 }
-export default function() {
-  return(
-     <div className='bg-white border-radius-5 h-full p-15 text-black'>
+export default function () {
+  return (
+    <div className="bg-white border-radius-5 h-full p-15 text-black">
       <StatisticsItem downloads={856} title={'Submited Videos'}>
-        <Slideshow ></Slideshow>
+        <Slideshow></Slideshow>
       </StatisticsItem>
       <StatisticsItem downloads={428} title={'Submited Documents'}>
-        <InsertDriveFileOutlined ></InsertDriveFileOutlined>
+        <InsertDriveFileOutlined></InsertDriveFileOutlined>
       </StatisticsItem>
       <StatisticsItem downloads={85} title={'In Review'}>
-        <StarBorder ></StarBorder>
+        <StarBorder></StarBorder>
       </StatisticsItem>
       <StatisticsItem downloads={265} title={'Approved'}>
-        <Check ></Check>
+        <Check></Check>
       </StatisticsItem>
       <StatisticsItem downloads={23} title={'Rejected'}>
-        <Block ></Block>
+        <Block></Block>
       </StatisticsItem>
       <StatisticsItem downloads={136} title={'Pending'}>
-        <HourglassEmptyOutlined ></HourglassEmptyOutlined>
+        <HourglassEmptyOutlined></HourglassEmptyOutlined>
       </StatisticsItem>
     </div>
   )
