@@ -76,26 +76,27 @@
   color: #ff9432;
   background: #ffe6c9;
   padding: 0.3rem;
+  border-radius: 8px;
 }
 
 .approve {
   color: var(--Primary1);
   background: var(--Primary1-L);
-  padding: 0.5rem;
+  padding: 0.3rem;
   border-radius: 8px;
 }
 
 .reject {
   color: #f40000;
   background: #fdebeb;
-  padding: 0.5rem;
+  padding: 0.3rem;
   border-radius: 8px;
 }
 
 .pending {
   color: var(--Primary2);
   background: var(--Secondry-L);
-  padding: 0.5rem;
+  padding: 0.3rem;
   border-radius: 8px;
 }
 

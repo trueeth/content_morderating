@@ -6,7 +6,7 @@ import TableRow from '@mui/material/TableRow'
 import {
   EHistoryData,
   EVideoType,
-  THistoryRowType,
+  THistoryRowType
 } from '../../../../interfaces'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
@@ -18,26 +18,26 @@ const rows: THistoryRowType[] = [
     name: 'SAW X Video for the design',
     source: EVideoType.video,
     status: 70,
-    date: 'Sep, 29, 2023 07:55PM',
+    date: 'Sep, 29, 2023 07:55PM'
   },
   {
     name: 'Test Video for the design',
     source: EVideoType.video,
     status: 40,
-    date: 'Sep, 29, 2023 07:55PM',
+    date: 'Sep, 29, 2023 07:55PM'
   },
   {
     name: 'UI UX design for the project',
     source: EVideoType.video,
     status: 60,
-    date: 'Sep, 29, 2023 07:55PM',
+    date: 'Sep, 29, 2023 07:55PM'
   },
   {
     name: 'Best Tourism places',
     source: EVideoType.video,
     status: 100,
-    date: 'Sep, 29, 2023 07:55PM',
-  },
+    date: 'Sep, 29, 2023 07:55PM'
+  }
 ]
 
 export default function HistoryTable() {
@@ -47,9 +47,8 @@ export default function HistoryTable() {
         aria-label="collapsible table"
         sx={{
           [`& .${tableCellClasses.root}`]: {
-            borderBottom: 'none',
-          },
-          borderCollapse: 'unset',
+            borderBottom: 'none'
+          }
         }}
       >
         <TableHead>
@@ -58,8 +57,8 @@ export default function HistoryTable() {
               '& .MuiTableCell-root': {
                 fontSize: '12px',
                 color: '#888',
-                textAlign: 'center',
-              },
+                textAlign: 'center'
+              }
             }}
           >
             {Object.values(EHistoryData).map((item, index) => (

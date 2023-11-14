@@ -192,8 +192,7 @@ export default function ScheduledReport() {
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none'
-            },
-            borderCollapse: 'unset'
+            }
           }}
         >
           <TableHead>

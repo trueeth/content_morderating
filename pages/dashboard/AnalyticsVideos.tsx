@@ -8,13 +8,11 @@ import {
   EClassification,
   ENewVideoData,
   ERating,
-  EVideoData,
   TNewVideoRowType
 } from '../../interfaces'
 import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
 import RowRating from '../videos/videoTable/videoRow/RowRating'
-import RowClassification from '../videos/videoTable/videoRow/RowClassification'
 import RowApproval from '../videos/videoTable/videoRow/RowApproval'
 
 const rows = [
@@ -57,41 +55,17 @@ const rows = [
 
 const NewVideoRow = (props: { row: TNewVideoRowType }) => {
   return (
-    <React.Fragment>
-      <TableRow
-        sx={{
-          '& > .MuiTableCell-root': {
-            textAlign: 'center',
-            borderTop: '1px solid #ccc',
-            borderBottom: '1px solid #ccc',
-            '&:first-of-type': {
-              borderLeft: '1px solid #ccc',
-              borderTopLeftRadius: '10px',
-              borderBottomLeftRadius: '10px'
-            },
-            '&:last-of-type': {
-              borderRight: '1px solid #ccc',
-              borderTopRightRadius: '10px',
-              borderBottomRightRadius: '10px'
-            }
-          }
-        }}
-      >
-        <TableCell>{props.row.name}</TableCell>
-        <TableCell>{props.row.date}</TableCell>
-        <TableCell>
-          <RowRating rating={props.row.rating}></RowRating>
-        </TableCell>
-        <TableCell>
-          <RowClassification
-            classifications={props.row.classification}
-          ></RowClassification>
-        </TableCell>
-        <TableCell>
-          <RowApproval approval={props.row.approval}></RowApproval>
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
+    <TableRow>
+      <TableCell>{props.row.name}</TableCell>
+      <TableCell>{props.row.date}</TableCell>
+      <TableCell>
+        <RowRating rating={props.row.rating}></RowRating>
+      </TableCell>
+      <TableCell>H.SH.V</TableCell>
+      <TableCell>
+        <RowApproval approval={props.row.approval}></RowApproval>
+      </TableCell>
+    </TableRow>
   )
 }
 
@@ -101,15 +75,14 @@ export default function () {
       <div>New Videos</div>
       <TableContainer
         component={Paper}
-        sx={{ borderRadius: '15px', px: 2, width: 'fit-content' }}
+        sx={{ borderRadius: '15px', px: 2, width: '100%', mt: '1rem' }}
       >
         <Table
           aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none'
-            },
-            borderCollapse: 'unset'
+            }
           }}
         >
           <TableHead>
@@ -117,7 +90,6 @@ export default function () {
               {Object.values(ENewVideoData).map((item, index) => (
                 <TableCell
                   key={index}
-                  align="center"
                   sx={{ whiteSpace: 'nowrap', fontSize: '12px', color: '#888' }}
                 >
                   {item}

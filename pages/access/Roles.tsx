@@ -99,8 +99,7 @@ export default function Roles() {
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none'
-            },
-            borderCollapse: 'unset'
+            }
           }}
         >
           <TableHead>
