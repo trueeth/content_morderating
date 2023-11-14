@@ -19,7 +19,7 @@ const labels = [
   'SEP',
   'OCT',
   'NOV',
-  'DEC',
+  'DEC'
 ]
 
 const options: ApexOptions = {
@@ -29,11 +29,11 @@ const options: ApexOptions = {
     type: 'bar',
     stacked: false,
     toolbar: {
-      show: false,
+      show: false
     },
     zoom: {
-      enabled: false,
-    },
+      enabled: false
+    }
   },
 
   responsive: [
@@ -43,51 +43,51 @@ const options: ApexOptions = {
         plotOptions: {
           bar: {
             borderRadius: 3,
-            columnWidth: '25%',
-          },
-        },
-      },
-    },
+            columnWidth: '25%'
+          }
+        }
+      }
+    }
   ],
   plotOptions: {
     bar: {
       horizontal: false,
       borderRadius: 3,
-      columnWidth: '25%',
-    },
+      columnWidth: '25%'
+    }
   },
   grid: {
-    strokeDashArray: 2,
+    strokeDashArray: 2
   },
   dataLabels: {
-    enabled: false,
+    enabled: false
   },
   xaxis: {
     categories: labels,
     labels: {
-      show: true,
+      show: true
     },
     axisBorder: {
-      show: false,
+      show: false
     },
     axisTicks: {
-      show: false,
-    },
+      show: false
+    }
   },
   yaxis: {
     min: 0,
     max: 70,
     tickAmount: 7,
     labels: {
-      formatter: (value: any) => String(Math.round(value)),
-    },
+      formatter: (value: any) => String(Math.round(value))
+    }
   },
   legend: {
-    show: false,
+    show: false
   },
   fill: {
-    opacity: 1,
-  },
+    opacity: 1
+  }
 }
 
 export const data = {
@@ -95,13 +95,13 @@ export const data = {
   datasets: [
     {
       data: labels.map(() => Math.random() * 70),
-      backgroundColor: '#313773',
+      backgroundColor: '#313773'
     },
     {
       data: labels.map(() => Math.random() * 70),
-      backgroundColor: '#3ec0d8',
-    },
-  ],
+      backgroundColor: '#3ec0d8'
+    }
+  ]
 }
 
 export default function () {
@@ -110,13 +110,13 @@ export default function () {
     series: [
       {
         name: 'Sales',
-        data: labels.map(() => Math.random() * 70),
+        data: labels.map(() => Math.random() * 70)
       },
       {
         name: 'Revenue',
-        data: labels.map(() => Math.random() * 70),
-      },
-    ],
+        data: labels.map(() => Math.random() * 70)
+      }
+    ]
   })
 
   const handleSelect = (event: SelectChangeEvent) => {
@@ -133,8 +133,8 @@ export default function () {
         sx={{
           height: '40px',
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'var(--Primary1)',
-          },
+            borderColor: 'var(--Primary1)'
+          }
         }}
       >
         <MenuItem value={2023}>2023</MenuItem>

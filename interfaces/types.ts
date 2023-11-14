@@ -7,7 +7,7 @@ import {
   EStatus,
   EUserRole,
   EUserType,
-  EVideoType,
+  EVideoType
 } from './enums'
 
 export type TVideoRowType = {
@@ -28,6 +28,11 @@ export type TReportHistory = {
   date: string
   createdby: string
   status: EReportHistoryStatus
+}
+
+export type TRole = {
+  name: string
+  description: string
 }
 
 export type TScheduledReports = {
@@ -67,4 +72,10 @@ export type TUserData = {
   group: string
   role: EUserRole
   type: EUserType
+}
+
+export type TGroupData = {
+  name: string
+  owner: string
+  member: number
 }

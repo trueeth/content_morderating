@@ -12,7 +12,7 @@ import {
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox,
+  Checkbox
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EReportHistory, EScheduleType, TScheduledReports } from 'interfaces'
@@ -25,99 +25,99 @@ const ScheduledReports: Array<TScheduledReports> = [
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.daily,
+    scheduleType: EScheduleType.daily
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.daily,
+    scheduleType: EScheduleType.daily
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.daily,
+    scheduleType: EScheduleType.daily
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.daily,
+    scheduleType: EScheduleType.daily
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.weekly,
+    scheduleType: EScheduleType.weekly
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.monthly,
+    scheduleType: EScheduleType.monthly
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.weekly,
+    scheduleType: EScheduleType.weekly
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.weekly,
+    scheduleType: EScheduleType.weekly
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.daily,
+    scheduleType: EScheduleType.daily
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.monthly,
+    scheduleType: EScheduleType.monthly
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.monthly,
+    scheduleType: EScheduleType.monthly
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.daily,
+    scheduleType: EScheduleType.daily
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.weekly,
+    scheduleType: EScheduleType.weekly
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    scheduleType: EScheduleType.daily,
-  },
+    scheduleType: EScheduleType.daily
+  }
 ]
 
 export default function ScheduledReport() {
@@ -127,7 +127,7 @@ export default function ScheduledReport() {
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black',
+          color: 'black'
         }}
       >
         <Grid
@@ -135,14 +135,14 @@ export default function ScheduledReport() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2,
+            p: 2
           }}
         >
           <Grid
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Scheduled Reports</Typography>
@@ -151,7 +151,7 @@ export default function ScheduledReport() {
                 ml: 2,
                 bgcolor: '#ff1313a0',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' },
+                '&:hover': { bgcolor: '#ff1313a0' }
               }}
             >
               Delete
@@ -162,7 +162,7 @@ export default function ScheduledReport() {
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Sort by:</Typography>
@@ -183,17 +183,17 @@ export default function ScheduledReport() {
           width: '100%',
           '& .MuiTableCell-root': {
             textAlign: 'left',
-            whiteSpace: 'nowrap',
-          },
+            whiteSpace: 'nowrap'
+          }
         }}
       >
         <Table
           aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
+              borderBottom: 'none'
             },
-            borderCollapse: 'unset',
+            borderCollapse: 'unset'
           }}
         >
           <TableHead>
@@ -206,7 +206,9 @@ export default function ScheduledReport() {
                 >
                   <Checkbox
                     color="primary"
-                    sx={{ display: index !== 0 ? 'none' : 'inline' }}
+                    sx={{
+                      display: index !== 0 ? 'none' : 'inline'
+                    }}
                   />
                   {item}
                 </TableCell>
@@ -215,19 +217,21 @@ export default function ScheduledReport() {
           </TableHead>
           <TableBody>
             {ScheduledReports.map((item, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  <Checkbox color="primary" checked={false} />
-                  {item.name}
-                </TableCell>
-                <TableCell>{item.type}</TableCell>
-                <TableCell>{item.date}</TableCell>
-                <TableCell>{item.createdby}</TableCell>
-                <TableCell>{item.scheduleType}</TableCell>
-                <TableCell>
-                  <Action />
-                </TableCell>
-              </TableRow>
+              <>
+                <TableRow key={index}>
+                  <TableCell>
+                    <Checkbox color="primary" checked={false} />
+                    {item.name}
+                  </TableCell>
+                  <TableCell>{item.type}</TableCell>
+                  <TableCell>{item.date}</TableCell>
+                  <TableCell>{item.createdby}</TableCell>
+                  <TableCell>{item.scheduleType}</TableCell>
+                  <TableCell>
+                    <Action />
+                  </TableCell>
+                </TableRow>
+              </>
             ))}
           </TableBody>
         </Table>

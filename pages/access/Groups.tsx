@@ -13,117 +13,65 @@ import {
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox,
+  Checkbox
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
-import {
-  EReportHistory,
-  EReportHistoryStatus,
-  TReportHistory,
-} from 'interfaces'
+import { EGroupData, TGroupData } from 'interfaces'
 import Action from './components/Action'
 import AddGroupDlg from './components/AddGroupDlg'
 import SearchInput from 'components/styled/SearchInput'
 
-const HistoryData: Array<TReportHistory> = [
+const GroupData: Array<TGroupData> = [
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    name: 'Moderators Group 1',
+    owner: 'Mark Mohammad',
+    member: 231
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    name: 'Moderators Group Backend Development',
+    owner: 'Mark Mohammad',
+    member: 758
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    name: 'Moderators Frontend Development',
+    owner: 'Hamza M',
+    member: 6
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    name: 'Moderators Group 1',
+    owner: 'Hamza M',
+    member: 43
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    name: 'Moderators Group 1',
+    owner: 'Mark Mohammad',
+    member: 231
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    name: 'Moderators Group 1',
+    owner: 'Mark Mohammad',
+    member: 21
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    name: 'Moderators Group 1',
+    owner: 'Mark Mohammad',
+    member: 90
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    name: 'Moderators Group UI/UX',
+    owner: 'Hamza M',
+    member: 231
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    name: 'Moderators Group 1',
+    owner: 'Mark Mohammad',
+    member: 100
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
-  },
+    name: 'Moderators Group UI/UX',
+    owner: 'Mark Mohammad',
+    member: 45
+  }
 ]
 
 export default function Groups() {
@@ -138,7 +86,7 @@ export default function Groups() {
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black',
+          color: 'black'
         }}
       >
         <Grid
@@ -146,14 +94,14 @@ export default function Groups() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2,
+            p: 2
           }}
         >
           <Grid
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Groups</Typography>
@@ -162,7 +110,7 @@ export default function Groups() {
                 ml: 2,
                 bgcolor: '#ff1313a0',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' },
+                '&:hover': { bgcolor: '#ff1313a0' }
               }}
             >
               Delete
@@ -173,7 +121,7 @@ export default function Groups() {
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Sort by:</Typography>
@@ -197,22 +145,22 @@ export default function Groups() {
           width: '100%',
           '& .MuiTableCell-root': {
             textAlign: 'left',
-            whiteSpace: 'nowrap',
-          },
+            whiteSpace: 'nowrap'
+          }
         }}
       >
         <Table
           aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
+              borderBottom: 'none'
             },
-            borderCollapse: 'unset',
+            borderCollapse: 'unset'
           }}
         >
           <TableHead>
             <TableRow>
-              {Object.values(EReportHistory).map((item, index) => (
+              {Object.values(EGroupData).map((item, index) => (
                 <TableCell
                   key={index}
                   align="center"
@@ -228,34 +176,15 @@ export default function Groups() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {HistoryData.map((item, index) => (
+            {GroupData.map((item, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <Checkbox color="primary" checked={false} />
                   {item.name}
                 </TableCell>
-                <TableCell>{item.type}</TableCell>
-                <TableCell>{item.date}</TableCell>
-                <TableCell>{item.createdby}</TableCell>
-                <TableCell>
-                  <Box
-                    sx={{
-                      p: 0.5,
-                      borderRadius: '5px',
-                      width: 'fit-content',
-                      bgcolor:
-                        item.status === EReportHistoryStatus.processing
-                          ? '#FFE6C9'
-                          : 'var(--Primary1-L)',
-                      color:
-                        item.status === EReportHistoryStatus.processing
-                          ? '#FF9432'
-                          : 'var(--Primary1)',
-                    }}
-                  >
-                    {item.status}
-                  </Box>
-                </TableCell>
+                <TableCell>{item.owner}</TableCell>
+                <TableCell>{item.member}</TableCell>
+
                 <TableCell>
                   <Action />
                 </TableCell>

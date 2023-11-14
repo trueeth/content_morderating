@@ -1,13 +1,12 @@
 import {
   FileUpload,
   GridViewRounded,
-  HeadsetMic,
   InsertDriveFileOutlined,
   Settings,
   Slideshow,
   SvgIconComponent,
   Update,
-  Lock,
+  Lock
 } from '@mui/icons-material'
 import { EVideoData } from './enums'
 
@@ -18,7 +17,7 @@ export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string }> = [
   { icon: Update, title: 'Reports' },
   { icon: Lock, title: 'Access' },
   { icon: Settings, title: 'Settings' },
-  { icon: FileUpload, title: 'Upload' },
+  { icon: FileUpload, title: 'Upload' }
 ]
 
 export const CDrawerState = [{ title: EVideoData.status, value: 1 }]

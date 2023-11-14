@@ -12,7 +12,7 @@ const options: ApexOptions = {
     type: "pie",
   },
   colors: ["#75598d", "#80CAEE"],
-  labels: ["Remote", "Hybrid" ],
+  labels: ["Videos", "Documents" ],
   legend: {
     show: true,
     position: "bottom",

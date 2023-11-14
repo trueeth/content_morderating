@@ -22,25 +22,7 @@ function VideoRow(props: { row: TVideoRowType }) {
   return (
     <React.Fragment>
       {/*-------main row-----------*/}
-      <TableRow
-        sx={{
-          '& > .MuiTableCell-root': {
-            textAlign: 'center',
-            borderTop: '1px solid #ccc',
-            borderBottom: '1px solid #ccc',
-            '&:first-of-type': {
-              borderLeft: '1px solid #ccc',
-              borderTopLeftRadius: '10px',
-              borderBottomLeftRadius: '10px',
-            },
-            '&:last-of-type': {
-              borderRight: '1px solid #ccc',
-              borderTopRightRadius: '10px',
-              borderBottomRightRadius: '10px',
-            },
-          },
-        }}
-      >
+      <TableRow>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -95,7 +77,12 @@ function VideoRow(props: { row: TVideoRowType }) {
       {/*---------sub rows--------*/}
       <TableRow>
         <TableCell
-          style={{ paddingBottom: 5, paddingTop: 5, marginLeft: 20 }}
+          style={{
+            paddingBottom: 5,
+            paddingTop: 5,
+            marginLeft: 20,
+            border: 'none'
+          }}
           colSpan={12}
         >
           <Collapse in={open} timeout="auto" unmountOnExit>

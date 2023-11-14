@@ -13,7 +13,7 @@ import {
   EStatus,
   EVideoData,
   EVideoType,
-  TVideoRowType,
+  TVideoRowType
 } from '../../../interfaces'
 import VideoRow from './videoRow/VideoRow'
 
@@ -33,23 +33,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'SAW X Video for the design',
@@ -66,23 +66,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Test Video for the project',
@@ -99,23 +99,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Test Video for the project',
@@ -132,23 +132,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'SAW X Video',
@@ -165,23 +165,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -198,23 +198,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'SAW X Video',
@@ -231,23 +231,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -264,23 +264,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -297,23 +297,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Test Video for the project',
@@ -330,23 +330,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'SAW X Video for the design',
@@ -363,23 +363,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -396,23 +396,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Test Video for the project',
@@ -429,23 +429,23 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -462,24 +462,24 @@ const rows: TVideoRowType[] = [
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "This is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 2,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard",
+          "Here is simply dummy text of the printing and typesetting industry. here is simply dummy text best Ipsum has been the industry's standard"
       },
       {
         sceneNumber: 1,
         violationType: 'Nudity',
         category: 'Content Video',
         description:
-          "This simply dummy text best Ipsum has been the industry's standard",
-      },
-    ],
-  },
+          "This simply dummy text best Ipsum has been the industry's standard"
+      }
+    ]
+  }
 ]
 
 export default function VideoTable() {
@@ -492,9 +492,10 @@ export default function VideoTable() {
         aria-label="collapsible table"
         sx={{
           [`& .${tableCellClasses.root}`]: {
-            borderBottom: 'none',
+            borderBottom: 'none'
           },
           borderCollapse: 'unset',
+          borderSpacing: 0
         }}
       >
         <TableHead>
@@ -503,7 +504,6 @@ export default function VideoTable() {
             {Object.values(EVideoData).map((item, index) => (
               <TableCell
                 key={index}
-                align="center"
                 sx={{ whiteSpace: 'nowrap', fontSize: '12px', color: '#888' }}
               >
                 {item}

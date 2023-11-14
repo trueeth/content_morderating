@@ -10,115 +10,27 @@ import {
   TableRow,
   TableHead,
   Table,
-  tableCellClasses,
-  Checkbox,
+  tableCellClasses
 } from '@mui/material'
-import {
-  EReportHistory,
-  EReportHistoryStatus,
-  TReportHistory,
-} from 'interfaces'
+import { TRole } from 'interfaces'
 import SearchInput from 'components/styled/SearchInput'
 
-const HistoryData: Array<TReportHistory> = [
+const RoleData: Array<TRole> = [
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    name: 'Administrator',
+    description:
+      'Your role as a Group administrator determines what you are able to do for that Group, like managing the users of the group dashboard.'
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    name: 'Auditor',
+    description:
+      'The group auditor must plan the audit procedures to be performed on the consolidation process.'
   },
   {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
-  },
-  {
-    name: 'Content Mordertion System UI/UX Report',
-    type: 'Company',
-    date: 'Sep, 30, 2023 05:35PM',
-    createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
-  },
+    name: 'Viewer',
+    description:
+      'The group auditor must plan the audit procedures to be performed on the consolidation process.'
+  }
 ]
 
 export default function Roles() {
@@ -128,7 +40,7 @@ export default function Roles() {
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black',
+          color: 'black'
         }}
       >
         <Grid
@@ -136,14 +48,14 @@ export default function Roles() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2,
+            p: 2
           }}
         >
           <Grid
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Roles </Typography>
@@ -152,7 +64,7 @@ export default function Roles() {
                 ml: 2,
                 bgcolor: '#ff1313a0',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' },
+                '&:hover': { bgcolor: '#ff1313a0' }
               }}
             >
               Delete
@@ -163,7 +75,7 @@ export default function Roles() {
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Sort by:</Typography>
@@ -176,68 +88,32 @@ export default function Roles() {
         sx={{
           borderRadius: '15px',
           px: 2,
-          width: '100%',
           '& .MuiTableCell-root': {
             textAlign: 'left',
-            whiteSpace: 'nowrap',
-          },
+            whiteSpace: 'nowrap'
+          }
         }}
       >
         <Table
           aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
+              borderBottom: 'none'
             },
-            borderCollapse: 'unset',
+            borderCollapse: 'unset'
           }}
         >
           <TableHead>
             <TableRow>
-              {Object.values(EReportHistory).map((item, index) => (
-                <TableCell
-                  key={index}
-                  align="center"
-                  sx={{ whiteSpace: 'nowrap', fontSize: '12px', color: '#888' }}
-                >
-                  <Checkbox
-                    color="primary"
-                    sx={{ display: index !== 0 ? 'none' : 'inline' }}
-                  />
-                  {item}
-                </TableCell>
-              ))}
+              <TableCell>Role Name</TableCell>
+              <TableCell>Role Description</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {HistoryData.map((item, index) => (
+            {RoleData.map((item, index) => (
               <TableRow key={index}>
-                <TableCell>
-                  <Checkbox color="primary" checked={false} />
-                  {item.name}
-                </TableCell>
-                <TableCell>{item.type}</TableCell>
-                <TableCell>{item.date}</TableCell>
-                <TableCell>{item.createdby}</TableCell>
-                <TableCell>
-                  <Box
-                    sx={{
-                      p: 0.5,
-                      borderRadius: '5px',
-                      width: 'fit-content',
-                      bgcolor:
-                        item.status === EReportHistoryStatus.processing
-                          ? '#FFE6C9'
-                          : 'var(--Primary1-L)',
-                      color:
-                        item.status === EReportHistoryStatus.processing
-                          ? '#FF9432'
-                          : 'var(--Primary1)',
-                    }}
-                  >
-                    {item.status}
-                  </Box>
-                </TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.description}</TableCell>
               </TableRow>
             ))}
           </TableBody>

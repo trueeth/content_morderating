@@ -7,7 +7,7 @@ export enum EVideoData {
   submissionDate = 'SUBMISSION DATE',
   approval = 'APPROVAL',
   flaggedScenes = 'FLAGGED SCENES',
-  actions = 'ACTIONS',
+  actions = 'ACTIONS'
 }
 
 export enum EReportHistory {
@@ -16,13 +16,13 @@ export enum EReportHistory {
   date = 'DATE',
   createdby = 'CREATED BY',
   status = 'STATUS',
-  action = 'ACTIONS',
+  action = 'ACTIONS'
 }
 
 export enum EUserRole {
   admin = 'Admin',
   user = 'User',
-  manager = 'Manager',
+  manager = 'Manager'
 }
 export enum EUserData {
   name = 'NAME',
@@ -31,64 +31,71 @@ export enum EUserData {
   group = 'GROUP NAME',
   role = 'ROLE',
   type = 'TYPE',
-  actions = 'ACTIONS',
+  actions = 'ACTIONS'
 }
 
 export enum EUserType {
   saml = 'SAML',
   ldap = 'LDAP',
-  local = 'Local',
+  local = 'Local'
+}
+
+export enum EGroupData {
+  name = 'Group Name',
+  owner = 'Group Owner',
+  member = 'Number of Member',
+  action = 'Actions'
 }
 
 export enum EReportHistoryStatus {
   processing = 'Processing',
-  view = 'View Report ',
+  view = 'View Report '
 }
 
 export enum EScheduleType {
   daily = 'Daily',
   weekly = 'Weekly',
-  monthly = 'Monthly',
+  monthly = 'Monthly'
 }
 
 export enum EHistoryData {
   name = 'NAME',
   source = 'SOURCE',
   data = 'DATA',
-  status = 'STATUS',
+  status = 'STATUS'
 }
 
 export enum EVideoDetail {
   sceneNumber = 'SCENE NUMBER',
   violationType = 'VIOLATION TYPE',
   category = 'CATEGORY',
-  description = 'DESCRIPTION',
+  description = 'DESCRIPTION'
 }
 
 export enum EVideoType {
-  video = 'Video',
+  video = 'Video'
 }
 
 export enum EStatus {
   new = 'NEW',
   processed = 'PROCESSED',
-  failed = 'FAILED',
+  failed = 'FAILED'
 }
 
 export enum ERating {
   r18 = 'R18',
-  missing = 'MISSING',
+  missing = 'MISSING'
 }
 
 export enum EClassification {
   h = 'H',
   s = 'S',
-  sh = 'SH',
+  sh = 'SH'
 }
 
 export enum EApporval {
   review = 'In Review',
   approve = 'Approved',
   reject = 'Rejected',
-  pending = 'Pending',
+  pending = 'Pending'
 }

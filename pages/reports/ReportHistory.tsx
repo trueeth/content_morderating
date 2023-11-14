@@ -13,13 +13,13 @@ import {
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox,
+  Checkbox
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import {
   EReportHistory,
   EReportHistoryStatus,
-  TReportHistory,
+  TReportHistory
 } from 'interfaces'
 import Action from './components/SelectAction'
 import AddReportDlg from './components/AddReportDlg'
@@ -31,99 +31,99 @@ const HistoryData: Array<TReportHistory> = [
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    status: EReportHistoryStatus.processing
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    status: EReportHistoryStatus.processing
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    status: EReportHistoryStatus.processing
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    status: EReportHistoryStatus.processing
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
+    status: EReportHistoryStatus.processing
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.view,
+    status: EReportHistoryStatus.view
   },
   {
     name: 'Content Mordertion System UI/UX Report',
     type: 'Company',
     date: 'Sep, 30, 2023 05:35PM',
     createdby: 'Mark Mohammad',
-    status: EReportHistoryStatus.processing,
-  },
+    status: EReportHistoryStatus.processing
+  }
 ]
 
 export default function ReportHistory() {
@@ -138,7 +138,7 @@ export default function ReportHistory() {
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black',
+          color: 'black'
         }}
       >
         <Grid
@@ -146,14 +146,14 @@ export default function ReportHistory() {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2,
+            p: 2
           }}
         >
           <Grid
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Reports History</Typography>
@@ -162,7 +162,7 @@ export default function ReportHistory() {
                 ml: 2,
                 bgcolor: '#ff1313a0',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' },
+                '&:hover': { bgcolor: '#ff1313a0' }
               }}
             >
               Delete
@@ -173,7 +173,7 @@ export default function ReportHistory() {
             item
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Typography>Sort by:</Typography>
@@ -197,17 +197,17 @@ export default function ReportHistory() {
           width: '100%',
           '& .MuiTableCell-root': {
             textAlign: 'left',
-            whiteSpace: 'nowrap',
-          },
+            whiteSpace: 'nowrap'
+          }
         }}
       >
         <Table
           aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
+              borderBottom: 'none'
             },
-            borderCollapse: 'unset',
+            borderCollapse: 'unset'
           }}
         >
           <TableHead>
@@ -220,7 +220,9 @@ export default function ReportHistory() {
                 >
                   <Checkbox
                     color="primary"
-                    sx={{ display: index !== 0 ? 'none' : 'inline' }}
+                    sx={{
+                      display: index !== 0 ? 'none' : 'inline'
+                    }}
                   />
                   {item}
                 </TableCell>
@@ -250,7 +252,7 @@ export default function ReportHistory() {
                       color:
                         item.status === EReportHistoryStatus.processing
                           ? '#FF9432'
-                          : 'var(--Primary1)',
+                          : 'var(--Primary1)'
                     }}
                   >
                     {item.status}

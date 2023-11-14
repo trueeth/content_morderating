@@ -17,8 +17,8 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
   const handleDetail = () => {
     dispatch(openVideoSubDrawer({ open: true }))
   }
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked)
+  const handleChange = (e: any) => {
+    setChecked(e.target.checked)
   }
 
   const rows = props.value
@@ -32,6 +32,9 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
       size="small"
       sx={{
         cursor: 'pointer',
+        '& .MuiTableCell-root': {
+          border: '#fff !important'
+        }
       }}
       onClick={handleDetail}
     >
@@ -41,8 +44,8 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
             '& .MuiTableCell-root': {
               whiteSpace: 'nowrap',
               color: '#333',
-              fontSize: '12px',
-            },
+              fontSize: '12px'
+            }
           }}
         >
           <TableCell>
