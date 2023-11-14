@@ -1,11 +1,11 @@
-import { Box, Grid, InputBase, Paper, Typography } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import Button from '@mui/material/Button'
-import { FilterList, GetApp, Search } from '@mui/icons-material'
+import { FilterList, GetApp } from '@mui/icons-material'
 import * as React from 'react'
 import { Select } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
-import IconButton from '@mui/material/IconButton'
-import { StyledButton } from 'components/styled/StyledButton'
+import { PrimaryButton } from 'components/styled/StyledButton'
+import SearchInput from 'components/styled/SearchInput'
 
 const VideoTableHeader = () => {
   const [vState, setState] = React.useState({ groupBy: 0 })
@@ -73,29 +73,11 @@ const VideoTableHeader = () => {
             <MenuItem value={0}>New Videos</MenuItem>
             <MenuItem value={1}> Videos</MenuItem>
           </Select>
-
-          <Paper
-            sx={{
-              ml: 2,
-              height: '36px',
-              boxShadow: 0,
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <InputBase
-              sx={{ ml: 1, height: 'inherit' }}
-              placeholder="Search"
-              inputProps={{ 'aria-label': 'search google maps' }}
-            />
-            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-              <Search />
-            </IconButton>
-          </Paper>
-          <StyledButton>
+          <SearchInput />
+          <PrimaryButton>
             <GetApp sx={{ color: 'white' }} />
             Export
-          </StyledButton>
+          </PrimaryButton>
         </Grid>
       </Grid>
     </Box>

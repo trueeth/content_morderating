@@ -10,6 +10,47 @@ export enum EVideoData {
   actions = 'ACTIONS',
 }
 
+export enum EReportHistory {
+  name = 'REPORT NAME',
+  type = 'TYPE',
+  date = 'DATE',
+  createdby = 'CREATED BY',
+  status = 'STATUS',
+  action = 'ACTIONS',
+}
+
+export enum EUserRole {
+  admin = 'Admin',
+  user = 'User',
+  manager = 'Manager',
+}
+export enum EUserData {
+  name = 'NAME',
+  email = 'EMAIL ADDRESS',
+  number = 'MOBILE NUMBER',
+  group = 'GROUP NAME',
+  role = 'ROLE',
+  type = 'TYPE',
+  actions = 'ACTIONS',
+}
+
+export enum EUserType {
+  saml = 'SAML',
+  ldap = 'LDAP',
+  local = 'Local',
+}
+
+export enum EReportHistoryStatus {
+  processing = 'Processing',
+  view = 'View Report ',
+}
+
+export enum EScheduleType {
+  daily = 'Daily',
+  weekly = 'Weekly',
+  monthly = 'Monthly',
+}
+
 export enum EHistoryData {
   name = 'NAME',
   source = 'SOURCE',

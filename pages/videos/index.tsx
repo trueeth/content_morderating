@@ -1,7 +1,6 @@
 'use client'
 import * as React from 'react'
 import { Box, Pagination, PaginationItem } from '@mui/material'
-import { Container } from '@mui/material'
 
 import { styled } from '@mui/material/styles'
 import VideoTable from './videoTable'
@@ -26,18 +25,12 @@ const TablePagination = styled('div')({
 const Video = () => {
   //dialog
 
-  // const [vState, setState] = useState({open:false})
-
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
-  // console.log(appState)
 
   return (
     <>
-      {/*-------------table header-----------*/}
       <VideoTableHeader />
-
-      {/*----------main table----------*/}
       <Box
         mt={2}
         sx={{
@@ -48,7 +41,6 @@ const Video = () => {
       >
         <VideoTable />
       </Box>
-      {/*---------table pagination----------*/}
       <TablePagination>
         <Pagination
           count={4}
@@ -59,7 +51,7 @@ const Video = () => {
               {...item}
               sx={{
                 '&.Mui-selected': {
-                  backgroundImage: 'var(--Gradiant)',
+                  bgcolor: 'var(--Primary1)',
                   color: '#fff',
                   border: 'none',
                 },
@@ -69,7 +61,6 @@ const Video = () => {
         ></Pagination>
       </TablePagination>
 
-      {/*---------drawer-----------*/}
       <TestVideoDrawer
         open={appState.drawer.videoSub}
         handleClose={() => dispatch(openVideoSubDrawer({ open: false }))}

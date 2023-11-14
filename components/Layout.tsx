@@ -9,12 +9,6 @@ type Props = {
   title?: string
 }
 
-const Favicon = () => (
-  <>
-    <link rel="icon" href="/assets/images/favicon.ico" />
-  </>
-)
-
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
   return (
     <div className={'pb-50 flex flex-col justify-center item-center'}>

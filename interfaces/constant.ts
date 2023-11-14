@@ -7,6 +7,7 @@ import {
   Slideshow,
   SvgIconComponent,
   Update,
+  Lock,
 } from '@mui/icons-material'
 import { EVideoData } from './enums'
 
@@ -15,7 +16,7 @@ export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string }> = [
   { icon: Slideshow, title: 'Videos' },
   { icon: InsertDriveFileOutlined, title: 'Documents' },
   { icon: Update, title: 'Reports' },
-  { icon: HeadsetMic, title: 'Support' },
+  { icon: Lock, title: 'Access' },
   { icon: Settings, title: 'Settings' },
   { icon: FileUpload, title: 'Upload' },
 ]

@@ -1,10 +1,11 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import TabPanel from 'components/styled/TabPanel'
 import { useState } from 'react'
-import ReportHistory from './ReportHistory'
-import ScheduledReport from './ScheduledReports'
+import Users from './Users'
+import Groups from './Groups'
+import Roles from './Roles'
 
-export default function Report() {
+export default function Access() {
   const [vState, setState] = useState({ tabIndex: 0 })
 
   const setTabIndex = (e: any, newValue: number) => {
@@ -18,14 +19,18 @@ export default function Report() {
         onChange={setTabIndex}
         exclusive
       >
-        <ToggleButton value={0}>Reports History</ToggleButton>
-        <ToggleButton value={1}>Scheduled Reports</ToggleButton>
+        <ToggleButton value={0}>Users</ToggleButton>
+        <ToggleButton value={1}>Groups</ToggleButton>
+        <ToggleButton value={2}>Roles</ToggleButton>
       </ToggleButtonGroup>
       <TabPanel value={vState.tabIndex} index={0}>
-        <ReportHistory />
+        <Users />
       </TabPanel>
       <TabPanel value={vState.tabIndex} index={1}>
-        <ScheduledReport />
+        <Groups />
+      </TabPanel>
+      <TabPanel value={vState.tabIndex} index={2}>
+        <Roles />
       </TabPanel>
     </div>
   )
