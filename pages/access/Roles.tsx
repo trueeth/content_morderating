@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { NoteAdd } from '@mui/icons-material'
 import {
   Box,
   Typography,
@@ -15,14 +13,11 @@ import {
   tableCellClasses,
   Checkbox,
 } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
 import {
   EReportHistory,
   EReportHistoryStatus,
   TReportHistory,
 } from 'interfaces'
-import Action from './components/Action'
-import AddReportDlg from './components/AddReportDlg'
 import SearchInput from 'components/styled/SearchInput'
 
 const HistoryData: Array<TReportHistory> = [
@@ -126,12 +121,7 @@ const HistoryData: Array<TReportHistory> = [
   },
 ]
 
-export default function ReportHistory() {
-  const [vState, setState] = useState({ openDlg: false })
-
-  const closeDlg = () => {
-    setState({ ...vState, openDlg: false })
-  }
+export default function Roles() {
   return (
     <div>
       <Box
@@ -156,7 +146,7 @@ export default function ReportHistory() {
               alignItems: 'center',
             }}
           >
-            <Typography>Reports History</Typography>
+            <Typography>Roles </Typography>
             <Button
               sx={{
                 ml: 2,
@@ -177,15 +167,7 @@ export default function ReportHistory() {
             }}
           >
             <Typography>Sort by:</Typography>
-
             <SearchInput />
-            <PrimaryButton
-              onClick={() => setState({ ...vState, openDlg: true })}
-            >
-              <NoteAdd sx={{ color: 'white' }} />
-              Add New Report
-            </PrimaryButton>
-            <AddReportDlg open={vState.openDlg} onClose={closeDlg} />
           </Grid>
         </Grid>
       </Box>
@@ -255,9 +237,6 @@ export default function ReportHistory() {
                   >
                     {item.status}
                   </Box>
-                </TableCell>
-                <TableCell>
-                  <Action />
                 </TableCell>
               </TableRow>
             ))}

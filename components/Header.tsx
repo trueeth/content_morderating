@@ -11,13 +11,13 @@ import TopButton from './styled/TopButton'
 import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
 import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
+  const handleClick = (e: any) => {
+    setAnchorEl(e.currentTarget)
   }
   const handleClose = () => {
     setAnchorEl(null)
@@ -49,9 +49,7 @@ function UserAction() {
 
 const Header = () => {
   const dispatch = useDispatch()
-  // const handleUpload=()=>{
-  //   dispatch(openDialogUpload({open:true}));
-  // }
+  const router = useRouter()
 
   const handleHeader = (title: string) => () => {
     switch (title) {
@@ -59,7 +57,7 @@ const Header = () => {
         dispatch(openVideoUploadDialog({ open: true }))
         break
       default:
-        break
+        router.push(`${title.toLowerCase()}`)
     }
   }
 
@@ -87,12 +85,10 @@ const Header = () => {
         >
           {CHeaderTabs.map((item, index) => (
             <Box key={index} onClick={handleHeader(item.title)}>
-              <Link href={item.title.toLowerCase()}>
-                <TopButton>
-                  <SvgIcon component={item.icon} />
-                  <Typography ml={0.5}>{item.title}</Typography>
-                </TopButton>
-              </Link>
+              <TopButton>
+                <SvgIcon component={item.icon} />
+                <Typography ml={0.5}>{item.title}</Typography>
+              </TopButton>
             </Box>
           ))}
         </Box>

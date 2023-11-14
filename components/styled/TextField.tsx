@@ -4,6 +4,8 @@ import { withStyles } from '@mui/styles'
 const PrimaryTextField = withStyles({
   root: {
     '& .MuiOutlinedInput-root': {
+      height: '45px',
+      padding: '0 10px',
       '& fieldset': {
         borderColor: '#eee',
         backgroundColor: '#fff',

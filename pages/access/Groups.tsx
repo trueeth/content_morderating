@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NoteAdd } from '@mui/icons-material'
+import { Group } from '@mui/icons-material'
 import {
   Box,
   Typography,
@@ -22,7 +22,7 @@ import {
   TReportHistory,
 } from 'interfaces'
 import Action from './components/Action'
-import AddReportDlg from './components/AddReportDlg'
+import AddGroupDlg from './components/AddGroupDlg'
 import SearchInput from 'components/styled/SearchInput'
 
 const HistoryData: Array<TReportHistory> = [
@@ -126,7 +126,7 @@ const HistoryData: Array<TReportHistory> = [
   },
 ]
 
-export default function ReportHistory() {
+export default function Groups() {
   const [vState, setState] = useState({ openDlg: false })
 
   const closeDlg = () => {
@@ -156,7 +156,7 @@ export default function ReportHistory() {
               alignItems: 'center',
             }}
           >
-            <Typography>Reports History</Typography>
+            <Typography>Groups</Typography>
             <Button
               sx={{
                 ml: 2,
@@ -182,10 +182,10 @@ export default function ReportHistory() {
             <PrimaryButton
               onClick={() => setState({ ...vState, openDlg: true })}
             >
-              <NoteAdd sx={{ color: 'white' }} />
-              Add New Report
+              <Group sx={{ color: 'white' }} />
+              Add New Group
             </PrimaryButton>
-            <AddReportDlg open={vState.openDlg} onClose={closeDlg} />
+            <AddGroupDlg open={vState.openDlg} onClose={closeDlg} />
           </Grid>
         </Grid>
       </Box>
