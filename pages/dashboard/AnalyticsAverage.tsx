@@ -5,6 +5,8 @@ import { Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
+import { PrimaryButton } from '../../components/styled/StyledButton'
+import { GetApp } from '@mui/icons-material'
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 const options: ApexOptions = {
@@ -27,7 +29,9 @@ const options: ApexOptions = {
     },
   },
   dataLabels: {
-    enabled: false,
+    enabled: true,
+    formatter:(val:any)=>val+"%",
+    textAnchor:'middle',
   },
   responsive: [
     {
@@ -62,28 +66,41 @@ export default function() {
   }
 
   return(
-    <div className='bg-white border-radius-5'>
-      <Select
-        value={vState.year}
-        onChange={handleSelect}
-        fullWidth
-        sx={{
-          height: '40px',
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'var(--Primary1)',
-          },
-        }}
-      >
-        <MenuItem value={2023}>2023</MenuItem>
-        <MenuItem value={2022}>2022</MenuItem>
-        <MenuItem value={2021}>2021</MenuItem>
-      </Select>
+     <div className='bg-white border-radius-5 h-full p-15 text-black'>
+      <div className='flex justify-between'>
+        <div>
+          Analytics Average
+        </div>
+        <Select
+          value={vState.year}
+          onChange={handleSelect}
+          sx={{
+            height: '40px',
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'var(--Primary1)',
+            },
+          }}
+        >
+          <MenuItem value={2023}>2023</MenuItem>
+          <MenuItem value={2022}>2022</MenuItem>
+          <MenuItem value={2021}>2021</MenuItem>
+        </Select>
+      </div>
       <div>
         <ReactApexChart
           options={options}
           series={vState.series}
           type="donut"
         />
+        <div>
+
+          <div className='flex justify-center mt-15'>
+          <PrimaryButton>
+            <GetApp sx={{ color: 'white' }} />
+            &nbsp;&nbsp;Download Report
+          </PrimaryButton>
+          </div>
+        </div>
       </div>
     </div>
   )
