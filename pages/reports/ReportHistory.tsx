@@ -21,7 +21,7 @@ import {
   EReportHistoryStatus,
   TReportHistory,
 } from 'interfaces'
-import Action from './components/Action'
+import Action from './components/SelectAction'
 import AddReportDlg from './components/AddReportDlg'
 import SearchInput from 'components/styled/SearchInput'
 

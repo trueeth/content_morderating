@@ -16,7 +16,7 @@ import {
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EReportHistory, EScheduleType, TScheduledReports } from 'interfaces'
-import Action from './components/Action'
+import Action from './components/SelectAction'
 import SearchInput from 'components/styled/SearchInput'
 
 const ScheduledReports: Array<TScheduledReports> = [

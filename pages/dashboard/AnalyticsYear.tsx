@@ -5,17 +5,28 @@ import { Select, SelectChangeEvent } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
 
+const ApexCharts = dynamic(() => import('react-apexcharts'), { ssr: false })
 
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
-
-const labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+const labels = [
+  'JAN',
+  'FEB',
+  'MAR',
+  'APR',
+  'MAY',
+  'JUN',
+  'JUL',
+  'AUG',
+  'SEP',
+  'OCT',
+  'NOV',
+  'DEC',
+]
 
 const options: ApexOptions = {
-
-  colors: ["#75598d", "#80CAEE"],
+  colors: ['#75598d', '#80CAEE'],
   chart: {
-    fontFamily: "Satoshi, sans-serif",
-    type: "bar",
+    fontFamily: 'Satoshi, sans-serif',
+    type: 'bar',
     stacked: false,
     toolbar: {
       show: false,
@@ -32,7 +43,7 @@ const options: ApexOptions = {
         plotOptions: {
           bar: {
             borderRadius: 3,
-            columnWidth: "25%",
+            columnWidth: '25%',
           },
         },
       },
@@ -42,46 +53,42 @@ const options: ApexOptions = {
     bar: {
       horizontal: false,
       borderRadius: 3,
-      columnWidth: "25%",
-      // borderRadiusApplication: "end",
-      // borderRadiusWhenStacked: "last",
+      columnWidth: '25%',
     },
   },
-  grid:{
-    strokeDashArray:2,
+  grid: {
+    strokeDashArray: 2,
   },
   dataLabels: {
     enabled: false,
   },
   xaxis: {
     categories: labels,
-    labels:{
-      show:true
+    labels: {
+      show: true,
     },
-    axisBorder:{
-      show:false
+    axisBorder: {
+      show: false,
     },
-    axisTicks:{
-      show:false
-    }
+    axisTicks: {
+      show: false,
+    },
   },
-  yaxis:{
-    min:0,
-    max:70,
-    tickAmount:7,
-    labels:{
-      formatter:(value:any)=>Math.round(value)
-    }
+  yaxis: {
+    min: 0,
+    max: 70,
+    tickAmount: 7,
+    labels: {
+      formatter: (value: any) => String(Math.round(value)),
+    },
   },
   legend: {
-    show:false
+    show: false,
   },
   fill: {
     opacity: 1,
   },
-};
-
-
+}
 
 export const data = {
   labels,
@@ -97,22 +104,20 @@ export const data = {
   ],
 }
 
-
-export default function() {
-
+export default function () {
   const [vState, setState] = useState({
-    year:'2023',
+    year: '2023',
     series: [
       {
-        name: "Sales",
+        name: 'Sales',
         data: labels.map(() => Math.random() * 70),
       },
       {
-        name: "Revenue",
+        name: 'Revenue',
         data: labels.map(() => Math.random() * 70),
       },
     ],
-  });
+  })
 
   const handleSelect = (event: SelectChangeEvent) => {
     if (event.target.value !== null)
@@ -120,7 +125,7 @@ export default function() {
   }
 
   return (
-    <div className='bg-white border-radius-5'>
+    <div className="bg-white border-radius-5">
       <Select
         value={vState.year}
         onChange={handleSelect}
@@ -145,7 +150,6 @@ export default function() {
           height={350}
         />
       </div>
-
     </div>
   )
 }
