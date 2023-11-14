@@ -3,19 +3,20 @@ import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { IReduxState } from '../../../store/store'
-import { IAppSlice, openDialogUpload } from '../../../store/slices/app'
+import { IReduxState } from '../../../store'
 import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
 import TabPanel from '../../styled/TabPanel'
 import UploadStepper from './uploadStepper/UploadStepper'
 import HistoryTable from './historyTable/HistoryTable'
+import { IAppSlice } from '../../../store/reducers'
+import { openVideoUploadDialog } from '../../../store/reducers/dialog.reducers'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   const handleClose = () => {
-    dispatch(openDialogUpload({ open: false }))
+    dispatch(openVideoUploadDialog({ open: false }))
   }
 
   const [vState, setState] = React.useState({ tabIndex: 0 })
@@ -32,7 +33,7 @@ export default function UploadDialog() {
       <Dialog
         fullWidth={true}
         maxWidth={'md'}
-        open={appState.dialogUpload}
+        open={appState.dialog.videoUpload}
         onClose={handleClose}
       >
         <Box

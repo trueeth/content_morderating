@@ -132,6 +132,13 @@ input[type='number']::-webkit-inner-spin-button {
   --bs-btn-disabled-border-color: #0d6efd;
 }
 
+.upload-status{
+  background-color: #3ec0d82b;
+}
+
+.upload-status span.MuiLinearProgress-bar{
+  background-color: var(--Primary1);
+}
 /*----------------Header style start---------------------*/
 
 .top-header {
