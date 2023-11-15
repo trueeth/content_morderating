@@ -92,10 +92,15 @@ export default function Groups() {
       >
         <Grid
           container
+          spacing={2}
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2
+            p: 2,
+            '& .MuiGrid-item': {
+              display: 'flex',
+              alignItems: 'center'
+            }
           }}
         >
           <Grid item>
@@ -111,11 +116,8 @@ export default function Groups() {
               Delete
             </Button>
           </Grid>
-          <Grid item>
-            <Typography
-              whiteSpace="nowrap"
-              sx={{ flexGrow: 1, justifyContent: 'end' }}
-            >
+          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
+            <Typography whiteSpace="nowrap" mr={2}>
               Sort by:
             </Typography>
             <SearchInput />

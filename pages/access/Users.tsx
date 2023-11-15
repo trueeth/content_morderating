@@ -191,11 +191,8 @@ export default function Users() {
               Delete
             </Button>
           </Grid>
-          <Grid item>
-            <Typography
-              whiteSpace="nowrap"
-              sx={{ flexGrow: 1, justifyContent: 'end' }}
-            >
+          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
+            <Typography whiteSpace="nowrap" mr={2}>
               Sort by:
             </Typography>
             <SearchInput />

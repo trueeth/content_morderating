@@ -22,22 +22,24 @@ export default function DrawerTab() {
         aria-label="scrollable prevent tabs example"
         sx={{
           width: '100%',
-          backgroundColor: 'var(--Secondry-L)',
+          backgroundColor: 'var(--Secondry-L)'
         }}
       >
         <Tab label="Overview" />
         <Tab label="Play the Scene" />
         <Tab label="Activities" />
       </Tabs>
-      <TabPanel value={vState.tabIndex} index={0}>
-        <DrawerTabOverview></DrawerTabOverview>
-      </TabPanel>
-      <TabPanel value={vState.tabIndex} index={1}>
-        <DrawerTabPlayScene></DrawerTabPlayScene>
-      </TabPanel>
-      <TabPanel value={vState.tabIndex} index={2}>
-        <DrawerTabActivities></DrawerTabActivities>
-      </TabPanel>
+      <Box sx={{ p: 2 }}>
+        <TabPanel value={vState.tabIndex} index={0}>
+          <DrawerTabOverview></DrawerTabOverview>
+        </TabPanel>
+        <TabPanel value={vState.tabIndex} index={1}>
+          <DrawerTabPlayScene></DrawerTabPlayScene>
+        </TabPanel>
+        <TabPanel value={vState.tabIndex} index={2}>
+          <DrawerTabActivities></DrawerTabActivities>
+        </TabPanel>
+      </Box>
     </Box>
   )
 }

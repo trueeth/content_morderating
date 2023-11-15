@@ -158,7 +158,9 @@ export default function ScheduledReport() {
           </Grid>
 
           <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
-            <Typography whiteSpace="nowrap">Sort by:</Typography>
+            <Typography whiteSpace="nowrap" mr={2}>
+              Sort by:
+            </Typography>
             <SearchInput />
           </Grid>
           <Grid item>

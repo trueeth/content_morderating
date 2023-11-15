@@ -9,5 +9,5 @@ export const StepWrapper = styled(Box)({
   backgroundColor: 'rgb(0 0 0 / 2%)',
   display: 'flex',
   justifyContent: 'center',
-  padding: '1.5rem'
+  padding: '1.5rem 0.5rem'
 })

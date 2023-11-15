@@ -28,7 +28,8 @@ export default function UploadStepper() {
         alternativeLabel
         sx={{
           px: '2rem',
-          '& .MuiStepIcon-active': { color: 'red' },
+          mb: 2,
+          '& .MuiStepIcon-active': { color: 'red' }
         }}
       >
         {CUploadSteps.map((label, index) => {
@@ -43,14 +44,14 @@ export default function UploadStepper() {
               {...stepProps}
               sx={{
                 '& span': {
-                  fontSize: '.7rem',
+                  fontSize: '.7rem'
                 },
                 '& .Mui-completed path': {
-                  color: 'var(--Primary1)',
+                  color: 'var(--Primary1)'
                 },
                 '& .Mui-active circle': {
-                  color: 'var(--Primary1)',
-                },
+                  color: 'var(--Primary1)'
+                }
               }}
             >
               <StepLabel {...labelProps}>{label}</StepLabel>
