@@ -98,13 +98,7 @@ export default function Groups() {
             p: 2
           }}
         >
-          <Grid
-            item
-            sx={{
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
+          <Grid item>
             <Typography>Groups</Typography>
             <Button
               sx={{
@@ -117,17 +111,16 @@ export default function Groups() {
               Delete
             </Button>
           </Grid>
-
-          <Grid
-            item
-            sx={{
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Typography>Sort by:</Typography>
-
+          <Grid item>
+            <Typography
+              whiteSpace="nowrap"
+              sx={{ flexGrow: 1, justifyContent: 'end' }}
+            >
+              Sort by:
+            </Typography>
             <SearchInput />
+          </Grid>
+          <Grid item>
             <PrimaryButton
               onClick={() => setState({ ...vState, openDlg: true })}
             >

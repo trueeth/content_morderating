@@ -12,6 +12,7 @@ import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
 import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
 import { useRouter } from 'next/router'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -61,6 +62,8 @@ const Header = () => {
     }
   }
 
+  const isXL = useMediaQuery('(min-width:1200px)')
+
   return (
     <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
       <Box
@@ -70,7 +73,7 @@ const Header = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           color: '#ececec',
-          flexDirection: { xs: 'column', md: 'row' },
+          flexDirection: { md: 'row' }
         }}
       >
         {/*-----logo----*/}
@@ -79,19 +82,21 @@ const Header = () => {
         </Box>
 
         {/*----tool bar------*/}
-        <Box
-          className={'flex h-full justify-center item-center'}
-          sx={{ flexDirection: { xs: 'column', md: 'row' } }}
-        >
-          {CHeaderTabs.map((item, index) => (
-            <Box key={index} onClick={handleHeader(item.title)}>
-              <TopButton>
-                <SvgIcon component={item.icon} />
-                <Typography ml={0.5}>{item.title}</Typography>
-              </TopButton>
-            </Box>
-          ))}
-        </Box>
+        {isXL && (
+          <Box
+            className={'flex h-full justify-center item-center'}
+            sx={{ flexDirection: { xs: 'column', md: 'row' } }}
+          >
+            {CHeaderTabs.map((item, index) => (
+              <Box key={index} onClick={handleHeader(item.title)}>
+                <TopButton>
+                  <SvgIcon component={item.icon} />
+                  <Typography ml={0.5}>{item.title}</Typography>
+                </TopButton>
+              </Box>
+            ))}
+          </Box>
+        )}
 
         {/* ---- profile --- */}
         <Box className={'flex user-logo p-10'}>
