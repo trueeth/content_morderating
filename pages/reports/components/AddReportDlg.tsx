@@ -25,8 +25,6 @@ export default function AddReportDlg({
     setState({ ...vState, [key]: value })
   }
 
-  console.log(vState.name)
-
   return (
     <Dialog fullWidth={true} maxWidth={'md'} open={open} onClose={onClose}>
       <Box

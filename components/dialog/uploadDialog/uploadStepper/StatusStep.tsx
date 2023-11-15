@@ -1,5 +1,5 @@
 import { StepWrapper } from './index'
-import { Box, Radio, Select, TextField, Typography } from '@mui/material'
+import { Box, Radio, Select, useMediaQuery, Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'
@@ -19,6 +19,8 @@ export default function StatusStep(props: {
     setState({ ...vState, type: event.target.value })
   }
 
+  const isXs = useMediaQuery('(max-width:500px)')
+
   return (
     <StepWrapper>
       <Box
@@ -33,8 +35,8 @@ export default function StatusStep(props: {
             width: '100%',
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
-          },
+            alignItems: 'center'
+          }
         }}
       >
         <Box>
@@ -51,7 +53,7 @@ export default function StatusStep(props: {
         />
         <Typography>OR</Typography>
         <Box mt={-2}>
-          <Typography>Replace existing one</Typography>
+          <Typography>Replace{!isXs && 'existing one'}</Typography>
           <Radio
             checked={vState.type === 'old'}
             onChange={handleType}
@@ -65,8 +67,8 @@ export default function StatusStep(props: {
           sx={{
             height: '40px',
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'var(--Primary1)',
-            },
+              borderColor: 'var(--Primary1)'
+            }
           }}
         >
           <MenuItem value={0}>Trolls</MenuItem>
@@ -76,7 +78,7 @@ export default function StatusStep(props: {
           sx={{
             mt: 2,
             justifyContent: 'center !important',
-            '& .MuiButton-root': { width: '100px' },
+            '& .MuiButton-root': { width: '100px' }
           }}
         >
           <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>

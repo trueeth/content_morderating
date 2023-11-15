@@ -167,19 +167,18 @@ export default function Users() {
       >
         <Grid
           container
+          spacing={2}
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2
-          }}
-        >
-          <Grid
-            item
-            sx={{
+            p: 2,
+            '& .MuiGrid-item': {
               display: 'flex',
               alignItems: 'center'
-            }}
-          >
+            }
+          }}
+        >
+          <Grid item>
             <Typography>Users</Typography>
             <Button
               sx={{
@@ -192,19 +191,16 @@ export default function Users() {
               Delete
             </Button>
           </Grid>
-
-          <Grid
-            item
-            sx={{
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Typography>Sort by:</Typography>
-
+          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
+            <Typography whiteSpace="nowrap" mr={2}>
+              Sort by:
+            </Typography>
             <SearchInput />
+          </Grid>
+          <Grid item>
             <PrimaryButton
               onClick={() => setState({ ...vState, openDlg: true })}
+              sx={{ whiteSpace: 'nowrap' }}
             >
               <Person sx={{ color: 'white' }} />
               Add New User

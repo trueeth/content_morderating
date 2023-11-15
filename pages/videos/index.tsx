@@ -19,7 +19,7 @@ const TablePagination = styled('div')({
   textTransform: 'capitalize',
   fontSize: 16,
   padding: '6px 12px',
-  lineHeight: 1.5,
+  lineHeight: 1.5
 })
 
 const Video = () => {
@@ -36,7 +36,7 @@ const Video = () => {
         sx={{
           width: '100%',
           minHeight: '60vh',
-          borderRadius: '20px',
+          borderRadius: '20px'
         }}
       >
         <VideoTable />
@@ -53,8 +53,8 @@ const Video = () => {
                 '&.Mui-selected': {
                   bgcolor: 'var(--Primary1)',
                   color: '#fff',
-                  border: 'none',
-                },
+                  border: 'none'
+                }
               }}
             />
           )}

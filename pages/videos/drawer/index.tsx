@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close'
-import { Box, Drawer } from '@mui/material'
+import { Box, Drawer, useMediaQuery } from '@mui/material'
 
 import DrawerHeader from './Header'
 import DrawerTab from './DrawerTab'
@@ -10,6 +10,8 @@ interface IOpenProps {
 }
 
 export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
+  const isXL = useMediaQuery('(min-width:800px)')
+
   return (
     <Drawer
       anchor="right"
@@ -19,23 +21,23 @@ export default function TestVideoDrawer({ open, handleClose }: IOpenProps) {
         style: {
           boxShadow: 'none',
           padding: '20px 0px',
-          width: '50%',
-          color: '#333',
-        },
+          width: isXL ? '50%' : '90%',
+          color: '#333'
+        }
       }}
     >
       <Box
         sx={{
           display: 'flex',
           alignItems: 'center',
-          flexDirection: 'column',
+          flexDirection: 'column'
         }}
       >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'row-reverse',
-            width: '100%',
+            width: '100%'
           }}
         >
           <CloseIcon

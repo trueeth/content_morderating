@@ -67,10 +67,13 @@ const UploadPc = () => {
       <input {...getInputProps()} />
       <Box className="flex">
         <Box className="flex item-center mr-5">
-          <FileUpload fontSize="large" />
+          <FileUpload
+            fontSize="large"
+            sx={{ display: { xs: 'none', md: 'block' } }}
+          />
         </Box>
-        <Box className="flex flex-col">
-          <Box className="flex">
+        <Box>
+          <Box>
             <Typography
               sx={{
                 mr: 1,
@@ -103,7 +106,7 @@ export default function SourceStep(props: {
     <StepWrapper>
       <Box
         sx={{
-          width: '80%',
+          width: '90%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

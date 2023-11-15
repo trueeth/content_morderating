@@ -5,11 +5,10 @@ export default function SearchInput() {
   return (
     <Paper
       sx={{
-        ml: 2,
         height: '36px',
         boxShadow: 0,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'center'
       }}
     >
       <InputBase
