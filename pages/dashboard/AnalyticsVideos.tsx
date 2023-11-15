@@ -1,7 +1,7 @@
 import React from 'react'
 import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-import { Table, TableContainer } from '@mui/material'
+import { Box, Table, TableContainer, Typography } from '@mui/material'
 import TableBody from '@mui/material/TableBody'
 import {
   EApporval,
@@ -69,10 +69,10 @@ const NewVideoRow = (props: { row: TNewVideoRowType }) => {
   )
 }
 
-export default function () {
+export default function AnalyticVideos() {
   return (
-    <div className="bg-white border-radius-5 h-full p-15 text-black">
-      <div>New Videos</div>
+    <Box className="bg-white border-radius-5 h-full p-15 text-black">
+      <Typography>New Videos</Typography>
       <TableContainer
         component={Paper}
         sx={{ borderRadius: '15px', px: 2, width: '100%', mt: '1rem' }}
@@ -104,6 +104,6 @@ export default function () {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   )
 }

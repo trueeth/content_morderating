@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import MenuItem from '@mui/material/MenuItem'
-import { Select, SelectChangeEvent } from '@mui/material'
+import { Box, Select, SelectChangeEvent, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
 
@@ -109,7 +109,7 @@ export const data = {
   ]
 }
 
-export default function () {
+export default function AnalyticsYear() {
   const [vState, setState] = useState({
     year: '2023',
     series: [
@@ -130,9 +130,9 @@ export default function () {
   }
 
   return (
-    <div className="bg-white border-radius-5 h-full p-15 text-black">
-      <div className="flex row justify-between">
-        <div>Analytics of Year</div>
+    <Box className="bg-white border-radius-5 h-full p-15 text-black">
+      <Box className="flex row justify-between">
+        <Typography>Analytics of Year</Typography>
         <Select
           value={vState.year}
           onChange={handleSelect}
@@ -147,28 +147,28 @@ export default function () {
           <MenuItem value={2022}>Year 2022</MenuItem>
           <MenuItem value={2021}>Year 2021</MenuItem>
         </Select>
-      </div>
+      </Box>
 
-      <div>
+      <Box>
         <ApexCharts
           options={options}
           series={vState.series}
           type="bar"
           height={350}
         />
-      </div>
+      </Box>
 
-      <div className="flex justify-center">
-        <div className="mr-15 flex item-center">
-          <span className="flex chart-item-label bg-primary1 mr-3"></span>
-          <div>Documents</div>
-        </div>
+      <Box className="flex justify-center">
+        <Box className="mr-15 flex item-center">
+          <Box className="flex chart-item-label bg-primary1 mr-3"></Box>
+          <Typography>Documents</Typography>
+        </Box>
 
-        <div className="mr-15 flex item-center">
-          <span className="flex chart-item-label bg-primary2 mr-3"></span>
-          <div>Videos</div>
-        </div>
-      </div>
-    </div>
+        <Box className="mr-15 flex item-center">
+          <Box className="flex chart-item-label bg-primary2 mr-3"></Box>
+          <Typography>Videos</Typography>
+        </Box>
+      </Box>
+    </Box>
   )
 }

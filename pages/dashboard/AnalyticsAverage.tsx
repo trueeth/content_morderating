@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Select, SelectChangeEvent } from '@mui/material'
+import { Box, Select, SelectChangeEvent, Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
@@ -52,7 +52,7 @@ const options: ApexOptions = {
   ]
 }
 
-export default function () {
+export default function AnalyticsAverage() {
   const [vState, setState] = useState({ year: '2023', series: [40, 60] })
 
   const handleSelect = (event: SelectChangeEvent) => {
@@ -61,9 +61,9 @@ export default function () {
   }
 
   return (
-    <div className="bg-white border-radius-5 h-full p-15 text-black">
-      <div className="flex justify-between">
-        <div>Analytics Average</div>
+    <Box className="bg-white border-radius-5 h-full p-15 text-black">
+      <Box className="flex justify-between">
+        <Typography>Analytics Average</Typography>
         <Select
           value={vState.year}
           onChange={handleSelect}
@@ -78,18 +78,18 @@ export default function () {
           <MenuItem value={2022}>2022</MenuItem>
           <MenuItem value={2021}>2021</MenuItem>
         </Select>
-      </div>
-      <div>
+      </Box>
+      <Box>
         <ReactApexChart options={options} series={vState.series} type="donut" />
-        <div>
-          <div className="flex justify-center mt-15">
+        <Box>
+          <Box className="flex justify-center mt-15">
             <PrimaryButton>
               <GetApp sx={{ color: 'white' }} />
               &nbsp;&nbsp;Download Report
             </PrimaryButton>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   )
 }
