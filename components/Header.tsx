@@ -185,13 +185,11 @@ const Header = () => {
               </Box>
 
               {CHeaderTabs.map((item, index) => (
-                <Box>
-                  <Box key={index} onClick={handleHeader(item.title)}>
-                    <TopButton>
-                      <SvgIcon component={item.icon} />
-                      <Typography ml={0.5}>{item.title}</Typography>
-                    </TopButton>
-                  </Box>
+                <Box key={index} onClick={handleHeader(item.title)}>
+                  <TopButton>
+                    <SvgIcon component={item.icon} />
+                    <Typography ml={0.5}>{item.title}</Typography>
+                  </TopButton>
                 </Box>
               ))}
             </Box>

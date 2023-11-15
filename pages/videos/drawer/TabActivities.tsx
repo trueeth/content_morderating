@@ -6,7 +6,7 @@ import {
   ToggleButton,
   Button
 } from '@mui/material'
-import { styled, withStyles } from '@mui/styles'
+import { styled } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import { Slideshow } from '@mui/icons-material'
 import { useState } from 'react'
@@ -49,21 +49,19 @@ const HistoryDescription = styled('div')({
   lineHeight: '32px'
 })
 
-const CssTextField = withStyles({
-  root: {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#eee'
-      },
-      '&:hover fieldset': {
-        borderColor: '#eee'
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'var(--Primary1)'
-      }
+const CssTextField = styled(TextField)({
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#eee'
+    },
+    '&:hover fieldset': {
+      borderColor: '#eee'
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'var(--Primary1)'
     }
   }
-})(TextField)
+})
 
 const HistoryRow = (props: IHistoryRow) => {
   return (
