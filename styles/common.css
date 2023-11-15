@@ -85,6 +85,18 @@
 .text-6{
     font-size: .6rem;
 }
+.p-3{
+    padding: .3rem;
+}
+.p-5{
+    padding: .5rem;
+}
+.p-7{
+    padding: .7rem;
+}
+.p-8{
+    padding: .8rem;
+}
 .p-10{
     padding: 1rem;
 }
