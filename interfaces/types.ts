@@ -2,8 +2,12 @@ import {
   EApporval,
   EClassification,
   ERating,
+  EReportHistoryStatus,
+  EScheduleType,
   EStatus,
-  EVideoType,
+  EUserRole,
+  EUserType,
+  EVideoType
 } from './enums'
 
 export type TVideoRowType = {
@@ -16,6 +20,35 @@ export type TVideoRowType = {
   approval: EApporval
   flaggedScenes: number
   subRows?: TVideoSubRowType[]
+}
+
+export type TNewVideoRowType = {
+  name: string
+  rating: ERating
+  classification: EClassification[]
+  date: string
+  approval: EApporval
+}
+
+export type TReportHistory = {
+  name: string
+  type: string
+  date: string
+  createdby: string
+  status: EReportHistoryStatus
+}
+
+export type TRole = {
+  name: string
+  description: string
+}
+
+export type TScheduledReports = {
+  name: string
+  type: string
+  date: string
+  createdby: string
+  scheduleType: EScheduleType
 }
 
 export type THistoryRowType = {
@@ -37,4 +70,20 @@ export type THistoryData = {
   type: EVideoType
   status: EStatus
   submissionDate: string
+}
+
+export type TUserData = {
+  name: string
+  photo: string
+  email: string
+  number: string
+  group: string
+  role: EUserRole
+  type: EUserType
+}
+
+export type TGroupData = {
+  name: string
+  owner: string
+  member: number
 }

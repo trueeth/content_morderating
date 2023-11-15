@@ -22,19 +22,19 @@ const baseStyle: CSSProperties = {
   color: '#bdbdbd',
   outline: 'none',
   width: '100%',
-  transition: 'border .24s ease-in-out',
+  transition: 'border .24s ease-in-out'
 }
 
 const focusedStyle = {
-  borderColor: '#2196f3',
+  borderColor: '#2196f3'
 }
 
 const acceptStyle = {
-  borderColor: '#00e676',
+  borderColor: '#00e676'
 }
 
 const rejectStyle = {
-  borderColor: '#ff1744',
+  borderColor: '#ff1744'
 }
 
 const UploadPc = () => {
@@ -44,7 +44,7 @@ const UploadPc = () => {
     getInputProps,
     isFocused,
     isDragAccept,
-    isDragReject,
+    isDragReject
   } = useDropzone()
 
   const style = useMemo(
@@ -52,7 +52,7 @@ const UploadPc = () => {
       ...baseStyle,
       ...(isFocused ? focusedStyle : {}),
       ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {}),
+      ...(isDragReject ? rejectStyle : {})
     }),
     [isFocused, isDragAccept, isDragReject]
   )
@@ -76,7 +76,7 @@ const UploadPc = () => {
                 mr: 1,
                 fontSize: '16px',
                 whiteSpace: 'nowrap',
-                color: '#333',
+                color: '#333'
               }}
             >
               Drag your file here or
@@ -116,9 +116,9 @@ export default function SourceStep(props: {
             alignItems: 'center',
             '& .MuiTypography-root': {
               fontSize: '14px',
-              width: '100%',
-            },
-          },
+              width: '100%'
+            }
+          }
         }}
       >
         <Typography>Where is the source file</Typography>
@@ -163,7 +163,7 @@ export default function SourceStep(props: {
           sx={{
             mt: 2,
             justifyContent: 'center !important',
-            '& .MuiButton-root': { width: '100px' },
+            '& .MuiButton-root': { width: '100px' }
           }}
         >
           <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>

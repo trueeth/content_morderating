@@ -10,13 +10,14 @@ import MenuItem from '@mui/material/MenuItem'
 import TopButton from './styled/TopButton'
 import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
-import { openDialogUpload } from '../store/slices/app'
+import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
+import { useRouter } from 'next/router'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
+  const handleClick = (e: any) => {
+    setAnchorEl(e.currentTarget)
   }
   const handleClose = () => {
     setAnchorEl(null)
@@ -48,17 +49,15 @@ function UserAction() {
 
 const Header = () => {
   const dispatch = useDispatch()
-  // const handleUpload=()=>{
-  //   dispatch(openDialogUpload({open:true}));
-  // }
+  const router = useRouter()
 
   const handleHeader = (title: string) => () => {
     switch (title) {
       case 'Upload':
-        dispatch(openDialogUpload({ open: true }))
+        dispatch(openVideoUploadDialog({ open: true }))
         break
       default:
-        break
+        router.push(`${title.toLowerCase()}`)
     }
   }
 
