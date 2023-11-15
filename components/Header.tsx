@@ -1,4 +1,12 @@
-import { AppBar, Box, Divider, Drawer, IconButton, SvgIcon, Typography } from '@mui/material'
+import {
+  AppBar,
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  SvgIcon,
+  Typography
+} from '@mui/material'
 import * as React from 'react'
 import Button from '@mui/material/Button'
 import Image from 'next/image'
@@ -30,16 +38,16 @@ function UserAction() {
   return (
     <div>
       <Button
-        id='basic-button'
+        id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
         <MoreHoriz sx={{ color: 'white' }}></MoreHoriz>
       </Button>
       <Menu
-        id='basic-menu'
+        id="basic-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -52,7 +60,6 @@ function UserAction() {
 }
 
 const Header = () => {
-
   const hasMounted = useMounted()
   const isDesktop = useMediaQuery('(min-width: 1224px)')
 
@@ -66,24 +73,22 @@ const Header = () => {
     switch (title) {
       case 'Upload':
         dispatch(openVideoUploadDialog({ open: true }))
-        if (!isDesktop) setState({...vState,mobileMenuOpen: false})
+        if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
       default:
         router.push(`${title.toLowerCase()}`)
-        if (!isDesktop) setState({...vState,mobileMenuOpen: false})
+        if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
     }
   }
-
 
   const handleMobileDrawer = (open: boolean) => () => {
     setState({ ...vState, mobileMenuOpen: open })
   }
 
-
   const HeaderDesktop = () => {
     return (
-      <AppBar position='fixed' elevation={0} className={'top-header w-full'}>
+      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
         <Box
           sx={{
             width: '100%',
@@ -91,12 +96,12 @@ const Header = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             color: '#ececec',
-            flexDirection: { md: 'row' },
+            flexDirection: { md: 'row' }
           }}
         >
           {/*-----logo----*/}
           <Box ml={4}>
-            <Image src={LogoImage} alt='logo' />
+            <Image src={LogoImage} alt="logo" />
           </Box>
 
           <Box
@@ -114,7 +119,7 @@ const Header = () => {
           </Box>
           {/* ---- profile --- */}
           <Box className={'flex user-logo p-10'}>
-            <Image src={UserLogo} alt='logo' />
+            <Image src={UserLogo} alt="logo" />
             <Box sx={{ ml: 1 }}>
               <Typography fontSize={14}>Mathew Salomon</Typography>
               <Typography fontSize={10}>Admin</Typography>
@@ -128,10 +133,9 @@ const Header = () => {
     )
   }
 
-
   const HeaderMobile = () => {
     return (
-      <AppBar position='fixed' elevation={0} className={'top-header w-full'}>
+      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
         <Box
           sx={{
             width: '100%',
@@ -139,58 +143,63 @@ const Header = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             color: '#ececec',
-            flexDirection: { md: 'row' },
+            flexDirection: { md: 'row' }
           }}
         >
-
-
-
           <IconButton
-            color='inherit'
-            aria-label='open drawer'
+            color="inherit"
+            aria-label="open drawer"
             onClick={handleMobileDrawer(true)}
-            edge='start'
+            edge="start"
             sx={{ ml: 2, ...(isDesktop && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
 
           <Drawer
-            anchor='left'
+            anchor="top"
             open={vState.mobileMenuOpen}
             onClose={handleMobileDrawer(false)}
             sx={{
-              '& .MuiPaper-root':{
-                backgroundColor:'var(--Primary3)'
-            }}}
+              '& .MuiPaper-root': {
+                backgroundColor: 'var(--Primary3)'
+              }
+            }}
           >
             {/*-----logo----*/}
-            <Box>
-              <Box sx={{
-                py:3,
-                paddingLeft:1
-              }}>
-                <Image src={LogoImage} alt='logo' />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: 1,
+                my: 2,
+                '& .MuiBox-root': {
+                  width: '150px'
+                }
+              }}
+            >
+              <Box>
+                <Image src={LogoImage} alt="logo" />
               </Box>
 
               {CHeaderTabs.map((item, index) => (
                 <Box>
-                <Box key={index} onClick={handleHeader(item.title)}>
-                  <TopButton>
-                    <SvgIcon component={item.icon} />
-                    <Typography ml={0.5}>{item.title}</Typography>
-                  </TopButton>
-                </Box>
+                  <Box key={index} onClick={handleHeader(item.title)}>
+                    <TopButton>
+                      <SvgIcon component={item.icon} />
+                      <Typography ml={0.5}>{item.title}</Typography>
+                    </TopButton>
+                  </Box>
                 </Box>
               ))}
             </Box>
-
           </Drawer>
-
 
           {/* ---- profile --- */}
           <Box className={'flex user-logo p-5'}>
-            <Image src={UserLogo} alt='logo' />
+            <Image src={UserLogo} alt="logo" />
             <Box sx={{ ml: 1 }}>
               <Typography fontSize={12}>Mathew Salomon</Typography>
               <Typography fontSize={8}>Admin</Typography>
