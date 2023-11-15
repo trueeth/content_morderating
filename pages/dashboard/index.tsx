@@ -12,19 +12,19 @@ export default function Report() {
   return (
     <Grid container spacing={2} alignItems="stretch" >
 
-      <Grid item xs={8} alignItems='stretch' >
+      <Grid item md={8} xs={12} alignItems='stretch' >
         <AnalyticsYear></AnalyticsYear>
       </Grid>
 
-      <Grid item xs={4} alignItems='stretch' direction='row' >
+      <Grid item md={4} xs={12} alignItems='stretch' direction='row' >
         <AnalyticsAverage></AnalyticsAverage>
       </Grid>
 
-      <Grid item xs={4}  alignItems='stretch' >
+      <Grid item md={4} xs={12} alignItems='stretch' >
         <AnalyticsStatistics></AnalyticsStatistics>
       </Grid>
 
-      <Grid  item xs={8} alignItems='stretch' >
+      <Grid  item md={8} xs={12} alignItems='stretch' >
         <AnalyticsVideos></AnalyticsVideos>
       </Grid>
 
