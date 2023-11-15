@@ -48,21 +48,21 @@ function VideoRow(props: { row: TVideoRowType }) {
         </TableCell>
 
         <TableCell>
-          <div className={'flex'}>
+          <Box className={'flex'}>
             <RowClassification
               classifications={row.classification}
             ></RowClassification>
-          </div>
+          </Box>
         </TableCell>
 
         <TableCell>
-          <div className={'flex'}>{row.submissionDate}</div>
+          <Box className={'flex'}>{row.submissionDate}</Box>
         </TableCell>
 
         <TableCell>
-          <div className={'flex justify-center item-center approval'}>
+          <Box className={'flex justify-center item-center approval'}>
             <RowApproval approval={row.approval}></RowApproval>
-          </div>
+          </Box>
         </TableCell>
 
         <TableCell>

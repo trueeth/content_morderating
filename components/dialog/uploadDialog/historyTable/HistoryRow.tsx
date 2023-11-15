@@ -28,7 +28,7 @@ export function UploadStatus(props: { value: number }) {
         variant="determinate"
         value={percent}
       />
-      <div className={'text-6 ml-3'}>{label[labelIndex]}</div>
+      <Typography className={'text-6 ml-3'}>{label[labelIndex]}</Typography>
     </Box>
   )
 }

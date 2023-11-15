@@ -27,7 +27,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
           mt: '100px',
           width: '100%',
           maxWidth: '1400px !important',
-          overflow: 'auto',
+          overflow: 'auto'
         }}
       >
         {children}

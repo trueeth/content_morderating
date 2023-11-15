@@ -3,6 +3,7 @@ import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { MoreHoriz } from '@mui/icons-material'
+import { Box } from '@mui/material'
 
 export default function RowAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -15,7 +16,7 @@ export default function RowAction() {
   }
 
   return (
-    <div>
+    <Box>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -31,12 +32,12 @@ export default function RowAction() {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          'aria-labelledby': 'basic-button'
         }}
       >
         <MenuItem onClick={handleClose}>Edit</MenuItem>
         <MenuItem onClick={handleClose}>Delete</MenuItem>
       </Menu>
-    </div>
+    </Box>
   )
 }

@@ -19,9 +19,9 @@ export default function RowFlaggedScenes(props: { value: number }) {
         variant="determinate"
         value={percent}
       />
-      <div className={'text-6 ml-3'}>
+      <Box className={'text-6 ml-3'}>
         {props.value + '/' + CFlaggedScenesMax}
-      </div>
+      </Box>
     </Box>
   )
 }

@@ -9,17 +9,18 @@ import {
   TableContainer,
   TableCell,
   TableBody,
-  TableRow,
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox
+  Checkbox,
+  TableRow
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EGroupData, TGroupData } from 'interfaces'
 import Action from './components/Action'
 import AddGroupDlg from './components/AddGroupDlg'
 import SearchInput from 'components/styled/SearchInput'
+import React from 'react'
 
 const GroupData: Array<TGroupData> = [
   {
