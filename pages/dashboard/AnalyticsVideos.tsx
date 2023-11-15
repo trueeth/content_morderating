@@ -56,7 +56,7 @@ const rows = [
 const NewVideoRow = (props: { row: TNewVideoRowType }) => {
   return (
     <TableRow>
-      <TableCell>{props.row.name}</TableCell>
+      <TableCell sx={{whiteSpace:'nowrap'}}>{props.row.name}</TableCell>
       <TableCell>{props.row.date}</TableCell>
       <TableCell>
         <RowRating rating={props.row.rating}></RowRating>
