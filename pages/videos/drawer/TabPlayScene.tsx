@@ -13,7 +13,7 @@ export default function DrawerTabPlayScene() {
 
   const [vState, setState]=useState({
     video:{
-      src:'/assets/video/video.mp4',
+      // src:'/assets/video/video.mp4',
       poster:'/assets/video/poster.png'
     }
   })
