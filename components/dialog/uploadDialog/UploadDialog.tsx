@@ -4,7 +4,12 @@ import Dialog from '@mui/material/Dialog'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '../../../store'
-import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
+import {
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+  useMediaQuery
+} from '@mui/material'
 import TabPanel from '../../styled/TabPanel'
 import UploadStepper from './uploadStepper/UploadStepper'
 import HistoryTable from './historyTable/HistoryTable'
@@ -28,6 +33,8 @@ export default function UploadDialog() {
     if (newValue !== null) setState({ ...vState, tabIndex: newValue })
   }
 
+  const isXs = useMediaQuery('(max-width:500px)')
+
   return (
     <React.Fragment>
       <Dialog
@@ -35,6 +42,12 @@ export default function UploadDialog() {
         maxWidth={'md'}
         open={appState.dialog.videoUpload}
         onClose={handleClose}
+        PaperProps={{
+          style: {
+            margin: '0px',
+            width: isXs ? '95%' : '80%'
+          }
+        }}
       >
         <Box
           sx={{
@@ -42,7 +55,7 @@ export default function UploadDialog() {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-            p: 3,
+            p: 3
           }}
         >
           {/*---------title-----------*/}
@@ -52,7 +65,7 @@ export default function UploadDialog() {
               fontWeight: ' 600',
               paddingTop: '4rem',
               paddingBottom: '2rem',
-              color: '#333',
+              color: '#333'
             }}
           >
             {vState.tabIndex === 0 ? 'Upload Media' : 'History'}
@@ -60,14 +73,15 @@ export default function UploadDialog() {
 
           {/*  -----------select tab----------*/}
           <Box
-          sx={{
-            width:'100%'
-          }}
+            sx={{
+              width: '100%'
+            }}
           >
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
+                mb: 3
               }}
             >
               <ToggleButtonGroup
@@ -80,8 +94,8 @@ export default function UploadDialog() {
                   overflow: 'hidden',
                   '& button': {
                     px: '3rem',
-                    py: '.5rem',
-                  },
+                    py: '.5rem'
+                  }
                 }}
               >
                 <ToggleButton value={0}>Upload</ToggleButton>

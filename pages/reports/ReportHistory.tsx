@@ -143,19 +143,18 @@ export default function ReportHistory() {
       >
         <Grid
           container
+          spacing={2}
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            p: 2
-          }}
-        >
-          <Grid
-            item
-            sx={{
+            p: 2,
+            '& .MuiGrid-item': {
               display: 'flex',
               alignItems: 'center'
-            }}
-          >
+            }
+          }}
+        >
+          <Grid item>
             <Typography>Reports History</Typography>
             <Button
               sx={{
@@ -168,19 +167,17 @@ export default function ReportHistory() {
               Delete
             </Button>
           </Grid>
-
-          <Grid
-            item
-            sx={{
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Typography>Sort by:</Typography>
+          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
+            <Typography whiteSpace="nowrap" mr={2}>
+              Sort by:
+            </Typography>
 
             <SearchInput />
+          </Grid>
+          <Grid item>
             <PrimaryButton
               onClick={() => setState({ ...vState, openDlg: true })}
+              sx={{ whiteSpace: 'nowrap' }}
             >
               <NoteAdd sx={{ color: 'white' }} />
               Add New Report
