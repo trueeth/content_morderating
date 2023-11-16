@@ -16,7 +16,7 @@ export default function Report() {
         <AnalyticsYear></AnalyticsYear>
       </Grid>
 
-      <Grid item md={4} xs={12} alignItems='stretch' direction='row' >
+      <Grid item md={4} xs={12} alignItems='stretch' >
         <AnalyticsAverage></AnalyticsAverage>
       </Grid>
 

@@ -1,6 +1,5 @@
 .status-new {
   color: var(--Primary2);
-  font-family: Raleway;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -10,29 +9,24 @@
 
 .status-processed {
   color: var(--Primary1);
-  font-family: Raleway;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
   text-transform: uppercase;
   line-height: 0.875rem; /* 100% */
-  text-transform: uppercase;
 }
 
 .status-failed {
   color: var(--Grey);
-  font-family: Raleway;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
   text-transform: uppercase;
   line-height: 0.875rem; /* 100% */
-  text-transform: uppercase;
 }
 
 .rating-r18 {
   color: var(--Black);
-  font-family: Raleway;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 600;
@@ -47,10 +41,9 @@
   border-radius: 0.1875rem;
   background: #ff774b;
   color: var(--White);
-  font-family: Raleway;
   font-size: 0.625rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 300;
   line-height: 0.625rem;
   text-transform: uppercase;
   display: flex;
@@ -65,7 +58,6 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  font-family: Raleway;
   font-size: 0.6875rem;
   font-style: normal;
   font-weight: 600;

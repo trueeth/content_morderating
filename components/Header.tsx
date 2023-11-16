@@ -23,7 +23,8 @@ import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useMounted from '../hooks/useMounted'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -65,7 +66,14 @@ const Header = () => {
 
   const router = useRouter()
 
-  const [vState, setState] = useState({ mobileMenuOpen: false })
+  const [vState, setState] = useState({ mobileMenuOpen: false})
+
+  // useEffect(()=>{
+  //     if (router.pathname!==vState.activeMenu){
+  //       // console.log(vState.activeMenu)
+  //       setState({...vState, activeMenu: router.pathname.replace('/','')})
+  //     }
+  // },[router.pathname])
 
   const dispatch = useDispatch()
 

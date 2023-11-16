@@ -6,6 +6,8 @@ import Providers from '../Providers'
 import index from '../store'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 const theme = createTheme({
   components: {
@@ -95,6 +97,13 @@ const theme = createTheme({
 
 function MyApp(props: AppProps<{ initialReduxState: any }>) {
   const { pageProps, Component } = props
+
+  const router = useRouter()
+
+
+  useEffect(()=>{
+    router.push('/dashboard')
+  },[])
 
   return (
     <Providers store={index}>

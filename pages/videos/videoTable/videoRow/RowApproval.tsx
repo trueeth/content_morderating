@@ -9,7 +9,8 @@ const RowApproval = (props: { approval: string }) => {
         props.approval === EApporval.approve && 'approve',
         props.approval === EApporval.reject && 'reject',
         props.approval === EApporval.pending && 'pending',
-        props.approval === EApporval.review && 'review'
+        props.approval === EApporval.review && 'review',
+        'text-center'
       )}
     >
       {props.approval}
