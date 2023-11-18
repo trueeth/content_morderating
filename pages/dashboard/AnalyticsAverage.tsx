@@ -83,7 +83,8 @@ export default function AnalyticsAverage() {
           value={vState.month}
           onChange={handleSelect}
           sx={{
-            height: '30px'
+            height: '30px',
+            width: '100px'
           }}
           MenuProps={{ sx: { height: '300px' } }}
         >

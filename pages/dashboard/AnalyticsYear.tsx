@@ -121,7 +121,8 @@ export default function AnalyticsYear() {
           value={vState.year}
           onChange={handleSelect}
           sx={{
-            height: '30px'
+            height: '30px',
+            width: '140px'
           }}
         >
           <MenuItem value={2023}>Year 2023</MenuItem>
