@@ -94,10 +94,12 @@ const theme = createTheme({
     },
     MuiSelect: {
       defaultProps: {
-        fullWidth: true
+        fullWidth: true,
+        displayEmpty: true
       },
       styleOverrides: {
         root: {
+          height: '40px',
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: 'var(--Primary1)'
           }

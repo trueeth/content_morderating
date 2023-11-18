@@ -2,13 +2,14 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
-import { Grid, Typography } from '@mui/material'
+import { Grid, Tooltip, Typography } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { PrimaryTextField } from 'components/styled/TextField'
+import InfoIcon from '@mui/icons-material/Info'
 
 export default function AddGroupDlg({
   open,
-  onClose,
+  onClose
 }: {
   open: boolean
   onClose: () => void
@@ -22,34 +23,48 @@ export default function AddGroupDlg({
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-            p: 3,
+            p: 3
           }}
         >
           {/*---------title-----------*/}
-          <Typography
-            sx={{
-              fontSize: '1.3rem',
-              fontWeight: ' 600',
-              py: '2rem',
-              color: '#333',
-            }}
-          >
-            Add New Group
-          </Typography>
+          <Box sx={{ display: 'flex', py: '2rem' }}>
+            <Typography
+              sx={{
+                fontSize: '1.3rem',
+                fontWeight: ' 600',
+                color: '#333'
+              }}
+            >
+              Add New Group
+            </Typography>
+            <Tooltip title="Add New User">
+              <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+            </Tooltip>
+          </Box>
 
           <Box>
-            <Grid container spacing={3}>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                '& .MuiGrid-item': {
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 1.5
+                }
+              }}
+            >
               <Grid item xs={12} md={6}>
                 <Typography>Group Name</Typography>
-                <PrimaryTextField />
+                <PrimaryTextField placeholder="Enter the group name" />
               </Grid>
               <Grid item xs={12} md={6}>
                 <Typography>Group Owner</Typography>
-                <PrimaryTextField />
+                <PrimaryTextField placeholder="Enter the group owner name" />
               </Grid>
               <Grid item xs={12} md={6}>
                 <Typography>Group Member</Typography>
-                <PrimaryTextField />
+                <PrimaryTextField placeholder="Enter the group member" />
               </Grid>
             </Grid>
           </Box>

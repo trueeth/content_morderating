@@ -12,12 +12,11 @@ export enum EVideoData {
 
 export enum ENewVideoData {
   name = 'NAME',
-  date='DATE',
+  date = 'DATE',
   rating = 'RATING',
   classification = 'CLASSIFICATION',
-  approval = 'APPROVAL',
+  approval = 'APPROVAL'
 }
-
 
 export enum EReportHistory {
   name = 'REPORT NAME',
@@ -65,6 +64,11 @@ export enum EScheduleType {
   daily = 'Daily',
   weekly = 'Weekly',
   monthly = 'Monthly'
+}
+
+export enum EReportType {
+  company = 'Company',
+  event = 'Events'
 }
 
 export enum EHistoryData {

@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog'
 import { Grid, Typography, MenuItem, Tooltip } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { PrimaryTextField } from 'components/styled/TextField'
-import { EScheduleType } from 'interfaces'
+import { EScheduleType, EReportType } from 'interfaces'
 import InfoIcon from '@mui/icons-material/Info'
 import CustomSelect from 'components/styled/Select'
 
@@ -55,7 +55,17 @@ export default function AddReportDlg({
         </Box>
 
         <Box>
-          <Grid container spacing={3}>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              '& .MuiGrid-item': {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.5
+              }
+            }}
+          >
             <Grid item xs={12} md={6}>
               <Typography>Report Name</Typography>
               <PrimaryTextField
@@ -66,19 +76,28 @@ export default function AddReportDlg({
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Report Type</Typography>
-              <PrimaryTextField />
+              <CustomSelect
+                value={vState.reportType}
+                onChange={(e) =>
+                  handleUserInput('scheduleType', e.target.value)
+                }
+                placeholder="Select from list"
+              >
+                {Object.values(EReportType).map((item, index) => (
+                  <MenuItem key={index} value={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Schedule Type</Typography>
               <CustomSelect
                 value={vState.scheduleType}
-                displayEmpty={true}
                 onChange={(e) =>
                   handleUserInput('scheduleType', e.target.value)
                 }
                 placeholder="Select from list"
-                fullWidth
-                sx={{ height: '40px' }}
               >
                 {Object.values(EScheduleType).map((item, index) => (
                   <MenuItem key={index} value={item}>
