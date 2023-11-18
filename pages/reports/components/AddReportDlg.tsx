@@ -2,11 +2,12 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
-import { Grid, Typography, Select, MenuItem, Tooltip } from '@mui/material'
+import { Grid, Typography, MenuItem, Tooltip } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { PrimaryTextField } from 'components/styled/TextField'
 import { EScheduleType } from 'interfaces'
 import InfoIcon from '@mui/icons-material/Info'
+import CustomSelect from 'components/styled/Select'
 
 export default function AddReportDlg({
   open,
@@ -69,19 +70,13 @@ export default function AddReportDlg({
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Schedule Type</Typography>
-              <Select
+              <CustomSelect
                 value={vState.scheduleType}
                 displayEmpty={true}
                 onChange={(e) =>
                   handleUserInput('scheduleType', e.target.value)
                 }
-                renderValue={(value) =>
-                  value !== '' ? (
-                    value
-                  ) : (
-                    <Typography color="grey">Select from list</Typography>
-                  )
-                }
+                placeholder="Select from list"
                 fullWidth
                 sx={{ height: '40px' }}
               >
@@ -90,7 +85,7 @@ export default function AddReportDlg({
                     {item}
                   </MenuItem>
                 ))}
-              </Select>
+              </CustomSelect>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Additional Delivery Methods</Typography>

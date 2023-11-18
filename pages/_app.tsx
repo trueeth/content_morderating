@@ -93,6 +93,9 @@ const theme = createTheme({
       }
     },
     MuiSelect: {
+      defaultProps: {
+        fullWidth: true
+      },
       styleOverrides: {
         root: {
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
