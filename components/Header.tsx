@@ -1,10 +1,14 @@
 import {
   AppBar,
-  Box, ClickAwayListener,
-  Drawer, Grow,
-  IconButton, MenuList, Popper,
+  Box,
+  ClickAwayListener,
+  Drawer,
+  Grow,
+  IconButton,
+  MenuList,
+  Popper,
   SvgIcon,
-  Typography,
+  Typography
 } from '@mui/material'
 import * as React from 'react'
 import Button from '@mui/material/Button'
@@ -15,7 +19,7 @@ import { ExpandMore, MoreHoriz, Slideshow } from '@mui/icons-material'
 import Menu from '@mui/material/Menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import TopButton from './styled/TopButton'
+import { TopButton } from './styled/StyledButton'
 import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
 import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
@@ -39,16 +43,16 @@ function UserAction() {
   return (
     <div>
       <Button
-        id='basic-button'
+        id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
         <MoreHoriz sx={{ color: 'white' }}></MoreHoriz>
       </Button>
       <Menu
-        id='basic-menu'
+        id="basic-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -60,11 +64,10 @@ function UserAction() {
   )
 }
 
-
 const DropMenu = () => {
   const anchorRef = React.useRef<HTMLButtonElement>(null)
   const [open, setOpen] = React.useState(false)
-  const router=useRouter()
+  const router = useRouter()
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen)
@@ -83,7 +86,10 @@ const DropMenu = () => {
     setOpen(false)
   }
 
-  const handleMenuClose=(event:Event|React.SyntheticEvent,type:string)=>{
+  const handleMenuClose = (
+    event: Event | React.SyntheticEvent,
+    type: string
+  ) => {
     router.push(type.toLowerCase())
     handleClose(event)
   }
@@ -111,23 +117,25 @@ const DropMenu = () => {
     <React.Fragment>
       <TopButton
         ref={anchorRef}
-        id='composition-button'
+        id="composition-button"
         aria-controls={open ? 'composition-menu' : undefined}
         aria-expanded={open ? 'true' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         onClick={handleToggle}
         primary={true}
-        active={(router.pathname === `/videos`||router.pathname === `/documents`)}
+        active={
+          router.pathname === `/videos` || router.pathname === `/documents`
+        }
       >
         <SvgIcon component={Slideshow} />
         <Typography ml={0.5}>Multimedia</Typography>
-        <SvgIcon component={ExpandMore} className='ml-5' />
+        <SvgIcon component={ExpandMore} className="ml-5" />
       </TopButton>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
-        placement='bottom-start'
+        placement="bottom-start"
         transition
         disablePortal
       >
@@ -136,24 +144,27 @@ const DropMenu = () => {
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === 'bottom-start' ? 'left top' : 'left bottom',
+                placement === 'bottom-start' ? 'left top' : 'left bottom'
             }}
           >
             <Paper
-
               sx={{
-                marginLeft:2
+                marginLeft: 2
               }}
             >
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
-                  id='composition-menu'
-                  aria-labelledby='composition-button'
+                  id="composition-menu"
+                  aria-labelledby="composition-button"
                   onKeyDown={handleListKeyDown}
                 >
-                  <MenuItem onClick={e=>handleMenuClose(e,'videos')}>Videos</MenuItem>
-                  <MenuItem onClick={e=>handleMenuClose(e,'documents')}>Documents</MenuItem>
+                  <MenuItem onClick={(e) => handleMenuClose(e, 'videos')}>
+                    Videos
+                  </MenuItem>
+                  <MenuItem onClick={(e) => handleMenuClose(e, 'documents')}>
+                    Documents
+                  </MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>
@@ -163,7 +174,6 @@ const DropMenu = () => {
     </React.Fragment>
   )
 }
-
 
 const Header = () => {
   const hasMounted = useMounted()
@@ -193,9 +203,8 @@ const Header = () => {
   }
 
   const HeaderDesktop = () => {
-
     return (
-      <AppBar position='fixed' elevation={0} className={'top-header w-full'}>
+      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
         <Box
           sx={{
             width: '100%',
@@ -203,12 +212,12 @@ const Header = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             color: '#ececec',
-            flexDirection: { md: 'row' },
+            flexDirection: { md: 'row' }
           }}
         >
           {/*-----logo----*/}
           <Box ml={4}>
-            <Image src={LogoImage} alt='logo' />
+            <Image src={LogoImage} alt="logo" />
           </Box>
 
           <Box
@@ -217,9 +226,7 @@ const Header = () => {
           >
             {CHeaderTabs.map((item, index) => {
               if (item.title === 'Videos') {
-                return (
-                  <DropMenu></DropMenu>
-                )
+                return <DropMenu></DropMenu>
               } else if (item.title === 'Documents') {
                 return null
               } else {
@@ -227,7 +234,9 @@ const Header = () => {
                   <Box key={index} onClick={handleHeader(item.title)}>
                     <TopButton
                       primary={item.title !== 'Upload'}
-                      active={router.pathname === `/${item.title.toLowerCase()}`}
+                      active={
+                        router.pathname === `/${item.title.toLowerCase()}`
+                      }
                     >
                       <SvgIcon component={item.icon} />
                       <Typography ml={0.5}>{item.title}</Typography>
@@ -243,13 +252,13 @@ const Header = () => {
               display: 'flex',
               justifyContent: 'right',
               bgcolor: 'var(--Primary3)',
-              width: '330px',
+              width: '330px'
             }}
           >
             <Box sx={{ p: 2, display: 'flex' }}>
-              <Image src={UserLogo} alt='logo' />
+              <Image src={UserLogo} alt="logo" />
               <Box sx={{ ml: 1 }}>
-                <Typography fontSize={14} whiteSpace='nowrap'>
+                <Typography fontSize={14} whiteSpace="nowrap">
                   Mathew Salomon
                 </Typography>
                 <Typography fontSize={10}>Admin</Typography>
@@ -267,7 +276,7 @@ const Header = () => {
 
   const HeaderMobile = () => {
     return (
-      <AppBar position='fixed' elevation={0} className={'top-header w-full'}>
+      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
         <Box
           sx={{
             width: '100%',
@@ -275,27 +284,27 @@ const Header = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             color: '#ececec',
-            flexDirection: { md: 'row' },
+            flexDirection: { md: 'row' }
           }}
         >
           <IconButton
-            color='inherit'
-            aria-label='open drawer'
+            color="inherit"
+            aria-label="open drawer"
             onClick={handleMobileDrawer(true)}
-            edge='start'
+            edge="start"
             sx={{ ml: 2, ...(isDesktop && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
 
           <Drawer
-            anchor='top'
+            anchor="top"
             open={vState.mobileMenuOpen}
             onClose={handleMobileDrawer(false)}
             sx={{
               '& .MuiPaper-root': {
-                backgroundColor: 'var(--Primary3)',
-              },
+                backgroundColor: 'var(--Primary3)'
+              }
             }}
           >
             {/*-----logo----*/}
@@ -308,12 +317,12 @@ const Header = () => {
                 gap: 1,
                 my: 2,
                 '& .MuiBox-root': {
-                  width: '150px',
-                },
+                  width: '150px'
+                }
               }}
             >
               <Box>
-                <Image src={LogoImage} alt='logo' />
+                <Image src={LogoImage} alt="logo" />
               </Box>
 
               {CHeaderTabs.map((item, index) => (
@@ -336,13 +345,13 @@ const Header = () => {
               display: 'flex',
               justifyContent: 'right',
               bgcolor: 'var(--Primary3)',
-              maxWidth: '300px',
+              maxWidth: '300px'
             }}
           >
             <Box sx={{ py: 2, px: 1, display: 'flex' }}>
-              <Image src={UserLogo} alt='logo' />
+              <Image src={UserLogo} alt="logo" />
               <Box sx={{ ml: 1 }}>
-                <Typography fontSize={14} whiteSpace='nowrap'>
+                <Typography fontSize={14} whiteSpace="nowrap">
                   Mathew Salomon
                 </Typography>
                 <Typography fontSize={10}>Admin</Typography>
