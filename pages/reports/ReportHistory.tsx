@@ -13,7 +13,10 @@ import {
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox
+  Checkbox,
+  Tooltip,
+  Pagination,
+  PaginationItem
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import {
@@ -24,6 +27,8 @@ import {
 import Action from './components/SelectAction'
 import AddReportDlg from './components/AddReportDlg'
 import SearchInput from 'components/styled/SearchInput'
+import InfoIcon from '@mui/icons-material/Info'
+import TablePagination from 'components/styled/TablePagination'
 
 const HistoryData: Array<TReportHistory> = [
   {
@@ -156,6 +161,9 @@ export default function ReportHistory() {
         >
           <Grid item>
             <Typography>Reports History</Typography>
+            <Tooltip title="Reports History">
+              <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+            </Tooltip>
             <Button
               sx={{
                 ml: 2,
@@ -262,6 +270,25 @@ export default function ReportHistory() {
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination>
+        <Pagination
+          count={4}
+          variant="outlined"
+          shape="rounded"
+          renderItem={(item) => (
+            <PaginationItem
+              {...item}
+              sx={{
+                '&.Mui-selected': {
+                  bgcolor: 'var(--Primary1)',
+                  color: '#fff',
+                  border: 'none'
+                }
+              }}
+            />
+          )}
+        ></Pagination>
+      </TablePagination>
     </div>
   )
 }

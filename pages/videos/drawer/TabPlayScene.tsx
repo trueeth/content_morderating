@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 // import VideoPlayer from 'react-video-js-player';
 import { useState } from 'react'
 import 'video-react/dist/video-react.css'
-import {Player} from 'video-react';
+import { Player } from 'video-react'
 function ReactAllPlayer(props: {
   components: { Controls: () => JSX.Element }
 }) {
@@ -10,11 +10,9 @@ function ReactAllPlayer(props: {
 }
 
 export default function DrawerTabPlayScene() {
-
-  const [vState, setState]=useState({
-    video:{
-      // src:'/assets/video/video.mp4',
-      poster:'/assets/video/poster.png'
+  const [vState, setState] = useState({
+    video: {
+      poster: '/assets/video/poster.png'
     }
   })
 
@@ -23,13 +21,13 @@ export default function DrawerTabPlayScene() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        bgcolor: 'var(--Secondary)',
+        p: 2
       }}
     >
-      <div className='player-wrapper'>
-        <Player>
-          <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
-        </Player>
-      </div>
+      <Player>
+        <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
+      </Player>
     </Box>
   )
 }

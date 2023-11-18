@@ -2,10 +2,11 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
-import { Grid, Typography, Select, MenuItem } from '@mui/material'
+import { Grid, Typography, Select, MenuItem, Tooltip } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { PrimaryTextField } from 'components/styled/TextField'
 import { EScheduleType } from 'interfaces'
+import InfoIcon from '@mui/icons-material/Info'
 
 export default function AddReportDlg({
   open,
@@ -15,7 +16,7 @@ export default function AddReportDlg({
   onClose: () => void
 }) {
   const [vState, setState] = useState({
-    name: 'JSC',
+    name: '',
     reportType: '',
     scheduleType: EScheduleType.daily,
     mail: ''
@@ -47,6 +48,9 @@ export default function AddReportDlg({
         >
           Add New Report
         </Typography>
+        <Tooltip title="Add New Report">
+          <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+        </Tooltip>
 
         <Box>
           <Grid container spacing={3}>
@@ -55,6 +59,7 @@ export default function AddReportDlg({
               <PrimaryTextField
                 value={vState.name}
                 onChange={(e) => handleUserInput('name', e.target.value)}
+                placeholder="Enter report name"
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -80,7 +85,7 @@ export default function AddReportDlg({
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Additional Delivery Methods</Typography>
-              <PrimaryTextField />
+              <PrimaryTextField placeholder="Enter email address" />
             </Grid>
           </Grid>
         </Box>

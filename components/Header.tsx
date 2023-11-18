@@ -1,7 +1,6 @@
 import {
   AppBar,
   Box,
-  Divider,
   Drawer,
   IconButton,
   SvgIcon,
@@ -23,8 +22,8 @@ import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useMounted from '../hooks/useMounted'
-import { useEffect, useState } from 'react'
-import clsx from 'clsx'
+import { useState } from 'react'
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -66,14 +65,7 @@ const Header = () => {
 
   const router = useRouter()
 
-  const [vState, setState] = useState({ mobileMenuOpen: false})
-
-  // useEffect(()=>{
-  //     if (router.pathname!==vState.activeMenu){
-  //       // console.log(vState.activeMenu)
-  //       setState({...vState, activeMenu: router.pathname.replace('/','')})
-  //     }
-  // },[router.pathname])
+  const [vState, setState] = useState({ mobileMenuOpen: false })
 
   const dispatch = useDispatch()
 
@@ -118,7 +110,10 @@ const Header = () => {
           >
             {CHeaderTabs.map((item, index) => (
               <Box key={index} onClick={handleHeader(item.title)}>
-                <TopButton>
+                <TopButton
+                  primary={item.title !== 'Upload'}
+                  active={router.pathname === `/${item.title.toLowerCase()}`}
+                >
                   <SvgIcon component={item.icon} />
                   <Typography ml={0.5}>{item.title}</Typography>
                 </TopButton>
@@ -126,14 +121,26 @@ const Header = () => {
             ))}
           </Box>
           {/* ---- profile --- */}
-          <Box className={'flex user-logo p-10'}>
-            <Image src={UserLogo} alt="logo" />
-            <Box sx={{ ml: 1 }}>
-              <Typography fontSize={14}>Mathew Salomon</Typography>
-              <Typography fontSize={10}>Admin</Typography>
-            </Box>
-            <Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'right',
+              bgcolor: 'var(--Primary3)',
+              width: '330px'
+            }}
+          >
+            <Box sx={{ p: 2, display: 'flex' }}>
+              <Image src={UserLogo} alt="logo" />
+              <Box sx={{ ml: 1 }}>
+                <Typography fontSize={14} whiteSpace="nowrap">
+                  Mathew Salomon
+                </Typography>
+                <Typography fontSize={10}>Admin</Typography>
+              </Box>
               <UserAction />
+            </Box>
+            <Box sx={{ px: 2, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              <HeadsetMicIcon />
             </Box>
           </Box>
         </Box>
@@ -194,7 +201,10 @@ const Header = () => {
 
               {CHeaderTabs.map((item, index) => (
                 <Box key={index} onClick={handleHeader(item.title)}>
-                  <TopButton>
+                  <TopButton
+                    primary={item.title !== 'Upload'}
+                    active={router.pathname === `/${item.title.toLowerCase()}`}
+                  >
                     <SvgIcon component={item.icon} />
                     <Typography ml={0.5}>{item.title}</Typography>
                   </TopButton>
@@ -204,14 +214,25 @@ const Header = () => {
           </Drawer>
 
           {/* ---- profile --- */}
-          <Box className={'flex user-logo p-5'}>
-            <Image src={UserLogo} alt="logo" />
-            <Box sx={{ ml: 1 }}>
-              <Typography fontSize={12}>Mathew Salomon</Typography>
-              <Typography fontSize={8}>Admin</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'right',
+              bgcolor: 'var(--Primary3)',
+              maxWidth: '300px'
+            }}
+          >
+            <Box sx={{ py: 2, px: 1, display: 'flex' }}>
+              <Image src={UserLogo} alt="logo" />
+              <Box sx={{ ml: 1 }}>
+                <Typography fontSize={14} whiteSpace="nowrap">
+                  Mathew Salomon
+                </Typography>
+                <Typography fontSize={10}>Admin</Typography>
+              </Box>
             </Box>
-            <Box>
-              <UserAction />
+            <Box sx={{ px: 1, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              <HeadsetMicIcon />
             </Box>
           </Box>
         </Box>

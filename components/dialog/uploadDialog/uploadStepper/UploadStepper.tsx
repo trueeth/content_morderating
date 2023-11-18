@@ -9,6 +9,7 @@ import TypeStep from './TypeStep'
 import StatusStep from './StatusStep'
 import SourceStep from './SourceStep'
 import LaunchStep from './LaunchStep'
+import { StepIcon } from '@mui/material'
 
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
@@ -27,7 +28,8 @@ export default function UploadStepper() {
         activeStep={activeStep}
         alternativeLabel
         sx={{
-          px: '2rem',
+          width: { xs: '90%', md: '80%' },
+          mx: 'auto',
           mb: 2,
           '& .MuiStepIcon-active': { color: 'red' }
         }}
@@ -47,14 +49,26 @@ export default function UploadStepper() {
                   fontSize: '.7rem'
                 },
                 '& .Mui-completed path': {
-                  color: 'var(--Primary1)'
+                  color: 'var(--Primary2)'
                 },
                 '& .Mui-active circle': {
-                  color: 'var(--Primary1)'
+                  color: 'var(--Primary2)'
                 }
               }}
             >
-              <StepLabel {...labelProps}>{label}</StepLabel>
+              <StepLabel
+                {...labelProps}
+                StepIconComponent={(props) => (
+                  <StepIcon
+                    {...props}
+                    icon={props.icon}
+                    active={props.active || props.completed}
+                    completed={false}
+                  />
+                )}
+              >
+                {label}
+              </StepLabel>
             </Step>
           )
         })}

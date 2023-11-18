@@ -26,7 +26,7 @@ body {
   --Stroke: #e8e8e8;
   --Grey-L: #f9f9ff;
   --White: #fff;
-  --Secondry: #1a2057;
+  --Secondary: #1a2057;
 }
 
 body::-webkit-scrollbar {
@@ -132,30 +132,30 @@ input[type='number']::-webkit-inner-spin-button {
   --bs-btn-disabled-border-color: #0d6efd;
 }
 
-.upload-status{
+.upload-status {
   background-color: #3ec0d82b;
 }
 
-.upload-status span.MuiLinearProgress-bar{
+.upload-status span.MuiLinearProgress-bar {
   background-color: var(--Primary1);
 }
 /*----------------Header style start---------------------*/
 
 .top-header {
-  background-color: var(--Secondry);
+  background-color: var(--Secondary);
 }
 
 .user-logo {
   background-color: var(--Primary3);
+  width: fit-content;
 }
 /*----------------Header style end---------------------*/
-
 
 /*-----------------Dashboard chart style-----------------*/
 
 .apexcharts-legend-text {
   /*@apply !text-body dark:!text-bodydark;*/
-  color:black;
+  color: black;
 }
 
 .apexcharts-text {
@@ -181,7 +181,8 @@ input[type='number']::-webkit-inner-spin-button {
   /*@apply dark:!bg-meta-4 dark:!border-strokedark;*/
   color: black;
 }
-.apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
   /*@apply dark:!bg-meta-4 dark:!border-meta-4 dark:!text-bodydark1;*/
   color: black;
 }
@@ -190,16 +191,13 @@ input[type='number']::-webkit-inner-spin-button {
 }
 .apexcharts-xaxistooltip-bottom:before {
   @apply dark:!border-b-meta-4;
-
 }
 
-.active-menu{
+.active-menu {
   color: var(--Primary1) !important;
 }
 
-
-
-.chart-item-label{
+.chart-item-label {
   width: 10px;
   height: 10px;
 }

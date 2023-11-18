@@ -28,7 +28,9 @@ export default function LaunchStep() {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          rowGap: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          rowGap: 1
         }}
       >
         <Typography textAlign="center" my={2} variant="h6">
@@ -40,11 +42,12 @@ export default function LaunchStep() {
         <Box
           sx={{
             display: 'flex',
+            width: '100%',
             justifyContent: 'space-between',
             '& .MuiTypography-root': {
               fontSize: '12px',
-              color: '#333',
-            },
+              color: '#333'
+            }
           }}
         >
           <Typography>Uploading</Typography>
@@ -58,8 +61,8 @@ export default function LaunchStep() {
             mt: 3,
             textAlign: 'center',
             width: '80%',
-            color: '#889',
-            fontSize: '15px',
+            color: '#666',
+            fontSize: '14px'
           }}
         >
           Disclaimer: He should not leave this page until the first stage of

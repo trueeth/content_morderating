@@ -91,6 +91,15 @@ const theme = createTheme({
           }
         }
       }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'var(--Primary1)'
+          }
+        }
+      }
     }
   }
 })
@@ -100,10 +109,9 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
 
   const router = useRouter()
 
-
-  useEffect(()=>{
+  useEffect(() => {
     router.push('/dashboard')
-  },[])
+  }, [])
 
   return (
     <Providers store={index}>

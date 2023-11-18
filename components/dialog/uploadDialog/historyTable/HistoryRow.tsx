@@ -1,12 +1,10 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import { Typography, TableRow, TableCell, IconButton } from '@mui/material'
-import {
-  Delete,
-  FileUpload,
-  ManageSearch,
-  Slideshow
-} from '@mui/icons-material'
+import { ManageSearch, Slideshow } from '@mui/icons-material'
+import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+
 import { THistoryRowType } from '../../../../interfaces'
 import LinearProgress from '@mui/material/LinearProgress'
 import clsx from 'clsx'
@@ -61,10 +59,10 @@ function HistoryRow(props: { row: THistoryRowType }) {
         <TableCell>
           <Box sx={{ display: 'flex' }}>
             <IconButton aria-label="expand row" size="small">
-              <Delete></Delete>
+              <DeleteOutlineOutlinedIcon />
             </IconButton>
             <IconButton aria-label="expand row" size="small">
-              <FileUpload></FileUpload>
+              <FileUploadOutlinedIcon />
             </IconButton>
             <IconButton aria-label="expand row" size="small">
               <ManageSearch></ManageSearch>

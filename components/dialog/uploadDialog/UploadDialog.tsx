@@ -7,9 +7,11 @@ import { IReduxState } from '../../../store'
 import {
   ToggleButton,
   ToggleButtonGroup,
+  Tooltip,
   Typography,
   useMediaQuery
 } from '@mui/material'
+import InfoIcon from '@mui/icons-material/Info'
 import TabPanel from '../../styled/TabPanel'
 import UploadStepper from './uploadStepper/UploadStepper'
 import HistoryTable from './historyTable/HistoryTable'
@@ -26,10 +28,7 @@ export default function UploadDialog() {
 
   const [vState, setState] = React.useState({ tabIndex: 0 })
 
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newValue: number
-  ) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     if (newValue !== null) setState({ ...vState, tabIndex: newValue })
   }
 
@@ -59,17 +58,23 @@ export default function UploadDialog() {
           }}
         >
           {/*---------title-----------*/}
-          <Typography
-            sx={{
-              fontSize: '1.3rem',
-              fontWeight: ' 600',
-              paddingTop: '4rem',
-              paddingBottom: '2rem',
-              color: '#333'
-            }}
+          <Box
+            sx={{ display: 'flex', paddingTop: '4rem', paddingBottom: '2rem' }}
           >
-            {vState.tabIndex === 0 ? 'Upload Media' : 'History'}
-          </Typography>
+            <Typography
+              sx={{
+                fontSize: '1.3rem',
+                fontWeight: ' 600',
+                mr: 1,
+                color: '#333'
+              }}
+            >
+              {vState.tabIndex === 0 ? 'Upload Media' : 'History'}
+            </Typography>
+            <Tooltip title={vState.tabIndex === 0 ? 'Upload Media' : 'History'}>
+              <InfoIcon sx={{ color: 'grey', width: '16px' }} />
+            </Tooltip>
+          </Box>
 
           {/*  -----------select tab----------*/}
           <Box

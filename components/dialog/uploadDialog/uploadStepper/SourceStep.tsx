@@ -73,7 +73,10 @@ const UploadPc = () => {
           />
         </Box>
         <Box>
-          <Box>
+          <Box
+            display="flex"
+            sx={{ flexDirection: { xs: 'column', md: 'row' } }}
+          >
             <Typography
               sx={{
                 mr: 1,
@@ -134,10 +137,7 @@ export default function SourceStep(props: {
             value={'url'}
           />
         </Box>
-        <PrimaryTextField
-          fullWidth={true}
-          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
-        />
+        <PrimaryTextField fullWidth={true} placeholder="Enter  URL" />
 
         <Box>
           <Typography>Upload from your PC</Typography>
@@ -157,10 +157,7 @@ export default function SourceStep(props: {
             value={'netflix'}
           />
         </Box>
-        <PrimaryTextField
-          fullWidth={true}
-          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
-        />
+        <PrimaryTextField placeholder="Enter the full movie name" />
 
         <Box
           sx={{

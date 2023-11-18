@@ -147,6 +147,7 @@ export default function DrawerTabActivities() {
           m: '1rem',
           display: 'flex',
           justifyContent: 'space-between',
+          alignItems: 'center',
           flexDirection: { xs: 'column', md: 'row' },
           gap: 2
         }}
@@ -155,6 +156,7 @@ export default function DrawerTabActivities() {
           fullWidth
           placeholder="Write your note"
           sx={{ mr: 2 }}
+          InputProps={{ sx: { height: '45px' } }}
         ></CssTextField>
 
         <Button
@@ -162,6 +164,7 @@ export default function DrawerTabActivities() {
           sx={{
             backgroundColor: 'var(--Primary1)',
             width: '180px',
+            height: '43px',
             '&:hover': { backgroundColor: 'var(--Primary1)' }
           }}
         >
