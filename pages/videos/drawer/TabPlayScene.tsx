@@ -1,5 +1,8 @@
 import { Box } from '@mui/material'
-
+// import VideoPlayer from 'react-video-js-player';
+import { useState } from 'react'
+import 'video-react/dist/video-react.css'
+import { Player } from 'video-react'
 function ReactAllPlayer(props: {
   components: { Controls: () => JSX.Element }
 }) {
@@ -7,40 +10,24 @@ function ReactAllPlayer(props: {
 }
 
 export default function DrawerTabPlayScene() {
+  const [vState, setState] = useState({
+    video: {
+      poster: '/assets/video/poster.png'
+    }
+  })
+
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        bgcolor: 'var(--Secondary)',
+        p: 2
       }}
     >
-      {/* 
-      <div className='player-wrapper'>
-        <ReactAllPlayer
-          sources={[
-            {
-              file: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4',
-              label: '1080p',
-            },
-            {
-              file: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4',
-              label: '720p',
-            },
-          ]}
-          subtitles={[
-            {
-              lang: 'en',
-              language: 'English',
-              file: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt',
-            },
-            {
-              lang: 'fr',
-              language: 'French',
-              file: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt',
-            },
-          ]}
-        />
-      </div> */}
+      <Player>
+        <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
+      </Player>
     </Box>
   )
 }

@@ -2,10 +2,12 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
-import { Grid, Typography, Select, MenuItem } from '@mui/material'
+import { Grid, Typography, MenuItem, Tooltip } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { PrimaryTextField } from 'components/styled/TextField'
-import { EScheduleType } from 'interfaces'
+import { EScheduleType, EReportType } from 'interfaces'
+import InfoIcon from '@mui/icons-material/Info'
+import CustomSelect from 'components/styled/Select'
 
 export default function AddReportDlg({
   open,
@@ -15,9 +17,9 @@ export default function AddReportDlg({
   onClose: () => void
 }) {
   const [vState, setState] = useState({
-    name: 'JSC',
+    name: '',
     reportType: '',
-    scheduleType: EScheduleType.daily,
+    scheduleType: '',
     mail: ''
   })
 
@@ -37,50 +39,76 @@ export default function AddReportDlg({
         }}
       >
         {/*---------title-----------*/}
-        <Typography
-          sx={{
-            fontSize: '1.3rem',
-            fontWeight: ' 600',
-            py: '2rem',
-            color: '#333'
-          }}
-        >
-          Add New Report
-        </Typography>
+        <Box sx={{ display: 'flex', py: '2rem' }}>
+          <Typography
+            sx={{
+              fontSize: '1.3rem',
+              fontWeight: ' 600',
+              color: '#333'
+            }}
+          >
+            Add New Report
+          </Typography>
+          <Tooltip title="Add New Report">
+            <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+          </Tooltip>
+        </Box>
 
         <Box>
-          <Grid container spacing={3}>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              '& .MuiGrid-item': {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.5
+              }
+            }}
+          >
             <Grid item xs={12} md={6}>
               <Typography>Report Name</Typography>
               <PrimaryTextField
                 value={vState.name}
                 onChange={(e) => handleUserInput('name', e.target.value)}
+                placeholder="Enter report name"
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Report Type</Typography>
-              <PrimaryTextField />
+              <CustomSelect
+                value={vState.reportType}
+                onChange={(e) =>
+                  handleUserInput('scheduleType', e.target.value)
+                }
+                placeholder="Select from list"
+              >
+                {Object.values(EReportType).map((item, index) => (
+                  <MenuItem key={index} value={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Schedule Type</Typography>
-              <Select
+              <CustomSelect
                 value={vState.scheduleType}
                 onChange={(e) =>
                   handleUserInput('scheduleType', e.target.value)
                 }
-                fullWidth
-                sx={{ height: '45px' }}
+                placeholder="Select from list"
               >
                 {Object.values(EScheduleType).map((item, index) => (
                   <MenuItem key={index} value={item}>
                     {item}
                   </MenuItem>
                 ))}
-              </Select>
+              </CustomSelect>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Additional Delivery Methods</Typography>
-              <PrimaryTextField />
+              <PrimaryTextField placeholder="Enter email address" />
             </Grid>
           </Grid>
         </Box>

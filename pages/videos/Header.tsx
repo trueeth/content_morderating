@@ -22,7 +22,8 @@ const VideoTableHeader = () => {
       sx={{
         display: 'flex',
         width: '100%',
-        color: 'black'
+        color: 'black',
+        backgroundColor:'#00000008'
       }}
     >
       <Grid

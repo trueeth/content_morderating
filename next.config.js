@@ -5,13 +5,8 @@ const nextConfig = {
     return config
   },
   images: {
-    domains: [
-      'twopaws.io',
-      'twopaws.app',
-      'arbiscan.io',
-      's2.coinmarketcap.com',
-    ],
-  },
+    domains: []
+  }
 }
 
 module.exports = nextConfig

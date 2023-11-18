@@ -4,23 +4,9 @@ import MenuItem from '@mui/material/MenuItem'
 import { Box, Select, SelectChangeEvent, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
+import { Months } from 'interfaces'
 
 const ApexCharts = dynamic(() => import('react-apexcharts'), { ssr: false })
-
-const labels = [
-  'JAN',
-  'FEB',
-  'MAR',
-  'APR',
-  'MAY',
-  'JUN',
-  'JUL',
-  'AUG',
-  'SEP',
-  'OCT',
-  'NOV',
-  'DEC'
-]
 
 const options: ApexOptions = {
   colors: ['#75598d', '#80CAEE'],
@@ -54,8 +40,6 @@ const options: ApexOptions = {
       horizontal: false,
       borderRadius: 3,
       columnWidth: '25%'
-      // borderRadiusApplication: "end",
-      // borderRadiusWhenStacked: "last",
     }
   },
   grid: {
@@ -65,7 +49,7 @@ const options: ApexOptions = {
     enabled: false
   },
   xaxis: {
-    categories: labels,
+    categories: Months,
     labels: {
       show: true,
       style: {
@@ -96,14 +80,14 @@ const options: ApexOptions = {
 }
 
 export const data = {
-  labels,
+  labels: Months,
   datasets: [
     {
-      data: labels.map(() => Math.random() * 70),
+      data: Months.map(() => Math.random() * 70),
       backgroundColor: '#313773'
     },
     {
-      data: labels.map(() => Math.random() * 70),
+      data: Months.map(() => Math.random() * 70),
       backgroundColor: '#3ec0d8'
     }
   ]
@@ -115,11 +99,11 @@ export default function AnalyticsYear() {
     series: [
       {
         name: 'Videos',
-        data: labels.map(() => Math.random() * 70)
+        data: Months.map(() => Math.random() * 70)
       },
       {
         name: 'Documents',
-        data: labels.map(() => Math.random() * 70)
+        data: Months.map(() => Math.random() * 70)
       }
     ]
   })
@@ -138,9 +122,7 @@ export default function AnalyticsYear() {
           onChange={handleSelect}
           sx={{
             height: '30px',
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'var(--Primary1)'
-            }
+            width: '140px'
           }}
         >
           <MenuItem value={2023}>Year 2023</MenuItem>

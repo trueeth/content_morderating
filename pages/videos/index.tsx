@@ -10,17 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IAppSlice } from '../../store/reducers'
 import { IReduxState } from '../../store'
 import { openVideoSubDrawer } from '../../store/reducers/drawer.reducers'
-
-const TablePagination = styled('div')({
-  marginTop: '1rem',
-  display: 'flex',
-  flexDirection: 'row-reverse',
-  boxShadow: 'none',
-  textTransform: 'capitalize',
-  fontSize: 16,
-  padding: '6px 12px',
-  lineHeight: 1.5
-})
+import TablePagination from 'components/styled/TablePagination'
 
 const Video = () => {
   //dialog
@@ -29,14 +19,22 @@ const Video = () => {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   return (
-    <>
+    <Box
+      sx={{
+        backgroundColor: 'white',
+        boxShadow: '0px 0px 25px 0px #F3F3F3;',
+        borderRadius: '.4rem',
+        border: '1px solid var(--Stroke, #E8E8E8)',
+        overflow: 'hidden',
+        m: 1
+      }}
+    >
       <VideoTableHeader />
       <Box
         mt={2}
         sx={{
           width: '100%',
-          minHeight: '60vh',
-          borderRadius: '20px'
+          minHeight: '60vh'
         }}
       >
         <VideoTable />
@@ -46,18 +44,7 @@ const Video = () => {
           count={4}
           variant="outlined"
           shape="rounded"
-          renderItem={(item) => (
-            <PaginationItem
-              {...item}
-              sx={{
-                '&.Mui-selected': {
-                  bgcolor: 'var(--Primary1)',
-                  color: '#fff',
-                  border: 'none'
-                }
-              }}
-            />
-          )}
+          renderItem={(item) => <PaginationItem {...item} />}
         ></Pagination>
       </TablePagination>
 
@@ -65,7 +52,7 @@ const Video = () => {
         open={appState.drawer.videoSub}
         handleClose={() => dispatch(openVideoSubDrawer({ open: false }))}
       />
-    </>
+    </Box>
   )
 }
 

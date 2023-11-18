@@ -1,9 +1,12 @@
 import {
   AppBar,
   Box,
-  Divider,
+  ClickAwayListener,
   Drawer,
+  Grow,
   IconButton,
+  MenuList,
+  Popper,
   SvgIcon,
   Typography
 } from '@mui/material'
@@ -12,11 +15,11 @@ import Button from '@mui/material/Button'
 import Image from 'next/image'
 import LogoImage from '../assets/images/logo.png'
 import UserLogo from '../assets/images/user.png'
-import { MoreHoriz } from '@mui/icons-material'
+import { ExpandMore, MoreHoriz, Slideshow } from '@mui/icons-material'
 import Menu from '@mui/material/Menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import TopButton from './styled/TopButton'
+import { TopButton } from './styled/StyledButton'
 import { CHeaderTabs } from 'interfaces'
 import { useDispatch } from 'react-redux'
 import { openVideoUploadDialog } from '../store/reducers/dialog.reducers'
@@ -24,6 +27,8 @@ import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useMounted from '../hooks/useMounted'
 import { useState } from 'react'
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
+import Paper from '@mui/material/Paper'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -56,6 +61,114 @@ function UserAction() {
         <MenuItem onClick={handleClose}>Profile</MenuItem>
       </Menu>
     </div>
+  )
+}
+
+const DropMenu = () => {
+  const anchorRef = React.useRef<HTMLButtonElement>(null)
+  const [open, setOpen] = React.useState(false)
+  const router = useRouter()
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen)
+  }
+
+  const handleClose = (event: Event | React.SyntheticEvent) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return
+    }
+
+    setOpen(false)
+  }
+
+  const handleMenuClose = (
+    event: Event | React.SyntheticEvent,
+    type: string
+  ) => {
+    router.push(type.toLowerCase())
+    handleClose(event)
+  }
+
+  function handleListKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault()
+      setOpen(false)
+    } else if (event.key === 'Escape') {
+      setOpen(false)
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open)
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current!.focus()
+    }
+
+    prevOpen.current = open
+  }, [open])
+  return (
+    <React.Fragment>
+      <TopButton
+        ref={anchorRef}
+        id="composition-button"
+        aria-controls={open ? 'composition-menu' : undefined}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
+        onClick={handleToggle}
+        main={true}
+        active={
+          router.pathname === `/videos` || router.pathname === `/documents`
+        }
+      >
+        <SvgIcon component={Slideshow} />
+        <Typography ml={0.5}>Multimedia</Typography>
+        <SvgIcon component={ExpandMore} className="ml-5" />
+      </TopButton>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        placement="bottom-start"
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === 'bottom-start' ? 'left top' : 'left bottom'
+            }}
+          >
+            <Paper
+              sx={{
+                marginLeft: 2
+              }}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  id="composition-menu"
+                  aria-labelledby="composition-button"
+                  onKeyDown={handleListKeyDown}
+                >
+                  <MenuItem onClick={(e) => handleMenuClose(e, 'videos')}>
+                    Videos
+                  </MenuItem>
+                  <MenuItem onClick={(e) => handleMenuClose(e, 'documents')}>
+                    Documents
+                  </MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </React.Fragment>
   )
 }
 
@@ -108,24 +221,49 @@ const Header = () => {
             className={'flex h-full justify-center item-center'}
             sx={{ flexDirection: { xs: 'column', md: 'row' } }}
           >
-            {CHeaderTabs.map((item, index) => (
-              <Box key={index} onClick={handleHeader(item.title)}>
-                <TopButton>
-                  <SvgIcon component={item.icon} />
-                  <Typography ml={0.5}>{item.title}</Typography>
-                </TopButton>
-              </Box>
-            ))}
+            {CHeaderTabs.map((item, index) => {
+              if (item.title === 'Videos') {
+                return <DropMenu key={index}></DropMenu>
+              } else if (item.title === 'Documents') {
+                return <div key={index} />
+              } else {
+                return (
+                  <Box key={index} onClick={handleHeader(item.title)}>
+                    <TopButton
+                      main={item.title !== 'Upload' ? true : false}
+                      active={
+                        router.pathname === `/${item.title.toLowerCase()}`
+                      }
+                    >
+                      <SvgIcon component={item.icon} />
+                      <Typography ml={0.5}>{item.title}</Typography>
+                    </TopButton>
+                  </Box>
+                )
+              }
+            })}
           </Box>
           {/* ---- profile --- */}
-          <Box className={'flex user-logo p-10'}>
-            <Image src={UserLogo} alt="logo" />
-            <Box sx={{ ml: 1 }}>
-              <Typography fontSize={14}>Mathew Salomon</Typography>
-              <Typography fontSize={10}>Admin</Typography>
-            </Box>
-            <Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'right',
+              bgcolor: 'var(--Primary3)',
+              width: '330px'
+            }}
+          >
+            <Box sx={{ p: 2, display: 'flex' }}>
+              <Image src={UserLogo} alt="logo" />
+              <Box sx={{ ml: 1 }}>
+                <Typography fontSize={14} whiteSpace="nowrap">
+                  Mathew Salomon
+                </Typography>
+                <Typography fontSize={10}>Admin</Typography>
+              </Box>
               <UserAction />
+            </Box>
+            <Box sx={{ px: 2, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              <HeadsetMicIcon />
             </Box>
           </Box>
         </Box>
@@ -186,7 +324,10 @@ const Header = () => {
 
               {CHeaderTabs.map((item, index) => (
                 <Box key={index} onClick={handleHeader(item.title)}>
-                  <TopButton>
+                  <TopButton
+                    main={item.title !== 'Upload'}
+                    active={router.pathname === `/${item.title.toLowerCase()}`}
+                  >
                     <SvgIcon component={item.icon} />
                     <Typography ml={0.5}>{item.title}</Typography>
                   </TopButton>
@@ -196,14 +337,25 @@ const Header = () => {
           </Drawer>
 
           {/* ---- profile --- */}
-          <Box className={'flex user-logo p-5'}>
-            <Image src={UserLogo} alt="logo" />
-            <Box sx={{ ml: 1 }}>
-              <Typography fontSize={12}>Mathew Salomon</Typography>
-              <Typography fontSize={8}>Admin</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'right',
+              bgcolor: 'var(--Primary3)',
+              maxWidth: '300px'
+            }}
+          >
+            <Box sx={{ py: 2, px: 1, display: 'flex' }}>
+              <Image src={UserLogo} alt="logo" />
+              <Box sx={{ ml: 1 }}>
+                <Typography fontSize={14} whiteSpace="nowrap">
+                  Mathew Salomon
+                </Typography>
+                <Typography fontSize={10}>Admin</Typography>
+              </Box>
             </Box>
-            <Box>
-              <UserAction />
+            <Box sx={{ px: 1, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              <HeadsetMicIcon />
             </Box>
           </Box>
         </Box>

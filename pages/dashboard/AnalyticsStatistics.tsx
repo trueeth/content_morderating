@@ -24,7 +24,9 @@ const StatisticsItem = (props: TStatisticsItem) => {
 
       <Box className="flex flex-col ml-3">
         <Typography className="text-bold">{props.downloads}</Typography>
-        <Typography className="text-8">{props.title}</Typography>
+        <Typography className="text-8" color="grey">
+          {props.title}
+        </Typography>
       </Box>
     </Box>
   )

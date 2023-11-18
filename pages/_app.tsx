@@ -6,6 +6,8 @@ import Providers from '../Providers'
 import index from '../store'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 const theme = createTheme({
   components: {
@@ -89,12 +91,52 @@ const theme = createTheme({
           }
         }
       }
+    },
+    MuiSelect: {
+      defaultProps: {
+        fullWidth: true,
+        displayEmpty: true
+      },
+      styleOverrides: {
+        root: {
+          height: '40px',
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'var(--Primary1)'
+          }
+        }
+      }
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          marginBottom: '10px',
+          backgroundColor: 'transparent',
+          color: 'grey',
+          border: '1px solid #eee',
+          '&.Mui-selected': {
+            backgroundColor: 'var(--Primary1)',
+            color: '#fff',
+            border: 'none',
+            '&:hover': {
+              backgroundColor: 'var(--Primary1)',
+              color: '#fff',
+              border: 'none'
+            }
+          }
+        }
+      }
     }
   }
 })
 
 function MyApp(props: AppProps<{ initialReduxState: any }>) {
   const { pageProps, Component } = props
+
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/dashboard')
+  }, [])
 
   return (
     <Providers store={index}>

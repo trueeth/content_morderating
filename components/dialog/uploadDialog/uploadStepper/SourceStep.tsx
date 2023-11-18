@@ -73,7 +73,10 @@ const UploadPc = () => {
           />
         </Box>
         <Box>
-          <Box>
+          <Box
+            display="flex"
+            sx={{ flexDirection: { xs: 'column', md: 'row' } }}
+          >
             <Typography
               sx={{
                 mr: 1,
@@ -134,10 +137,7 @@ export default function SourceStep(props: {
             value={'url'}
           />
         </Box>
-        <PrimaryTextField
-          fullWidth={true}
-          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
-        />
+        <PrimaryTextField fullWidth={true} placeholder="Enter  URL" />
 
         <Box>
           <Typography>Upload from your PC</Typography>
@@ -157,20 +157,31 @@ export default function SourceStep(props: {
             value={'netflix'}
           />
         </Box>
-        <PrimaryTextField
-          fullWidth={true}
-          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
-        />
+        <PrimaryTextField placeholder="Enter the full movie name" />
 
         <Box
           sx={{
             mt: 2,
             justifyContent: 'center !important',
-            '& .MuiButton-root': { width: '100px' }
-          }}
+            '& .MuiButton-root': { width: '100px' },
+            display:'flex',
+            flexDirection:{
+              xs:'column',
+              sm:'row'
+          }
+        }}
         >
-          <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>
-          <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
+          <PrimaryButton active={false} onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton
+            sx={{
+              mt:{
+                xs:2,
+                sm:0
+              }
+            }}
+            onClick={props.handleNext}
+          >Start the Upload
+          </PrimaryButton>
         </Box>
       </Box>
     </StepWrapper>

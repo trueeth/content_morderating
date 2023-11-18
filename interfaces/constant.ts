@@ -28,3 +28,18 @@ export const CSceneState = ['Processing', 'Approved', 'Unapproved']
 export const CFlaggedScenesMax = 200
 
 export const CUploadSteps = ['MEDIA TYPE', 'NEW OR OLD', 'SOURCE', 'LAUNCH']
+
+export const Months = [
+  'JAN',
+  'FEB',
+  'MAR',
+  'APR',
+  'MAY',
+  'JUN',
+  'JUL',
+  'AUG',
+  'SEP',
+  'OCT',
+  'NOV',
+  'DEC'
+]
