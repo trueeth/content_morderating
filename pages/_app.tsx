@@ -94,10 +94,12 @@ const theme = createTheme({
     },
     MuiSelect: {
       defaultProps: {
-        fullWidth: true
+        fullWidth: true,
+        displayEmpty: true
       },
       styleOverrides: {
         root: {
+          height: '40px',
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: 'var(--Primary1)'
           }
@@ -107,15 +109,16 @@ const theme = createTheme({
     MuiPaginationItem: {
       styleOverrides: {
         root: {
-          bgcolor: 'var(--Primary1)',
-          color: '#fff',
-          border: 'none',
+          marginBottom: '10px',
+          backgroundColor: 'transparent',
+          color: 'grey',
+          border: '1px solid #eee',
           '&.Mui-selected': {
-            bgcolor: 'var(--Primary1)',
+            backgroundColor: 'var(--Primary1)',
             color: '#fff',
             border: 'none',
             '&:hover': {
-              bgcolor: 'var(--Primary1)',
+              backgroundColor: 'var(--Primary1)',
               color: '#fff',
               border: 'none'
             }

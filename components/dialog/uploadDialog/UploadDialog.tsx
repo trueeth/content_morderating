@@ -58,9 +58,7 @@ export default function UploadDialog() {
           }}
         >
           {/*---------title-----------*/}
-          <Box
-            sx={{ display: 'flex', paddingTop: '4rem', paddingBottom: '2rem' }}
-          >
+          <Box sx={{ display: 'flex', py: '2rem' }}>
             <Typography
               sx={{
                 fontSize: '1.3rem',
