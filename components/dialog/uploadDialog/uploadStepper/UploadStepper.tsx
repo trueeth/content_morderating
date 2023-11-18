@@ -31,15 +31,7 @@ export default function UploadStepper() {
           width: { xs: '90%', md: '80%' },
           mx: 'auto',
           mb: 2,
-          '& .MuiStepIcon-active': { color: 'red' },
-          // sm: {
-          //   px: '3rem',
-          //   py: '.5rem'
-          // },
-          // xs: {
-          //   px: '2rem',
-          //   py: '.3rem'
-          // }
+          '& .MuiStepIcon-active': { color: 'red' }
         }}
       >
         {CUploadSteps.map((label, index) => {
@@ -54,8 +46,8 @@ export default function UploadStepper() {
               {...stepProps}
               sx={{
                 '& span': {
-                  sm:{fontSize: '.7rem'},
-                  xs:{fontSize:'.5rem'}
+                  sm: { fontSize: '.7rem' },
+                  xs: { fontSize: '.5rem' }
                 },
                 '& .Mui-completed path': {
                   color: 'var(--Primary2)'

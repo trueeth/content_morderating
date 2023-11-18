@@ -81,8 +81,6 @@ const DropMenu = () => {
       return
     }
 
-    console.log(event)
-
     setOpen(false)
   }
 
@@ -95,7 +93,6 @@ const DropMenu = () => {
   }
 
   function handleListKeyDown(event: React.KeyboardEvent) {
-    // console.log(event)
     if (event.key === 'Tab') {
       event.preventDefault()
       setOpen(false)
@@ -122,7 +119,7 @@ const DropMenu = () => {
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
-        primary={true}
+        main={true}
         active={
           router.pathname === `/videos` || router.pathname === `/documents`
         }
@@ -226,14 +223,14 @@ const Header = () => {
           >
             {CHeaderTabs.map((item, index) => {
               if (item.title === 'Videos') {
-                return <DropMenu></DropMenu>
+                return <DropMenu key={index}></DropMenu>
               } else if (item.title === 'Documents') {
-                return null
+                return <div key={index} />
               } else {
                 return (
                   <Box key={index} onClick={handleHeader(item.title)}>
                     <TopButton
-                      primary={item.title !== 'Upload'}
+                      main={item.title !== 'Upload' ? true : false}
                       active={
                         router.pathname === `/${item.title.toLowerCase()}`
                       }
@@ -328,7 +325,7 @@ const Header = () => {
               {CHeaderTabs.map((item, index) => (
                 <Box key={index} onClick={handleHeader(item.title)}>
                   <TopButton
-                    primary={item.title !== 'Upload'}
+                    main={item.title !== 'Upload'}
                     active={router.pathname === `/${item.title.toLowerCase()}`}
                   >
                     <SvgIcon component={item.icon} />

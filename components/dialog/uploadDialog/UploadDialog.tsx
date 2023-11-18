@@ -94,18 +94,7 @@ export default function UploadDialog() {
                 onChange={handleChange}
                 sx={{
                   borderRadius: '.3rem',
-                  overflow: 'hidden',
-                  '& button':{
-                    sm: {
-                      px: '3rem',
-                      py: '.5rem'
-                    },
-                    xs: {
-                      px: '2rem',
-                      py: '.5rem',
-                      fontSize:'.8rem'
-                    }
-                  }
+                  overflow: 'hidden'
                 }}
               >
                 <ToggleButton value={0}>Upload</ToggleButton>

@@ -12,30 +12,26 @@ const StyledButton = styled(Button)({
   color: 'white'
 })
 
-const PrimaryButton = styled(Button)(({ active = true }:{active?:boolean})=>({
-  boxShadow: 'none',
-  textTransform: 'capitalize',
-  fontSize: 16,
-  padding: '6px 12px',
-  lineHeight: 1.5,
-  backgroundColor: active?'var(--Primary1)':'#00000061',
-  margin: '0 10px',
-  color: 'white',
-  textWrap:'nowrap',
-  width:'auto !important',
-  '&:hover': {
-    backgroundColor: active?'var(--Primary1)':'#00000061'
-  }
-}))
+const PrimaryButton = styled(Button)(
+  ({ active = true }: { active?: boolean }) => ({
+    boxShadow: 'none',
+    textTransform: 'capitalize',
+    fontSize: 16,
+    padding: '6px 12px',
+    lineHeight: 1.5,
+    backgroundColor: active ? 'var(--Primary1)' : '#00000061',
+    margin: '0 10px',
+    color: 'white',
+    textWrap: 'nowrap',
+    width: 'auto !important',
+    '&:hover': {
+      backgroundColor: active ? 'var(--Primary1)' : '#00000061'
+    }
+  })
+)
 
 const TopButton = styled(Button)(
-  ({
-    active = false,
-    primary = true
-  }: {
-    active?: boolean
-    primary?: boolean
-  }) => ({
+  ({ active = false, main = true }: { active?: boolean; main?: boolean }) => ({
     color: active ? 'var(--Primary1)' : '#eee',
     boxShadow: 'none',
     textTransform: 'capitalize',
@@ -43,13 +39,13 @@ const TopButton = styled(Button)(
     fontSize: 16,
     padding: '6px 12px',
     lineHeight: 1.5,
-    backgroundColor: primary ? 'none' : 'var(--Primary1)',
+    backgroundColor: main ? 'none' : 'var(--Primary1)',
 
     '&:focus': {
       color: 'white'
     },
     '&:hover': {
-      backgroundColor: primary ? 'none' : 'var(--Primary1)'
+      backgroundColor: main ? 'none' : 'var(--Primary1)'
     }
   })
 )
