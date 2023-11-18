@@ -21,10 +21,18 @@ import Action from './components/Action'
 import AddUserDlg from './components/AddUserDlg'
 import SearchInput from 'components/styled/SearchInput'
 
+import avatar1 from 'assets/images/avatar/1.svg'
+import avatar2 from 'assets/images/avatar/2.svg'
+import avatar3 from 'assets/images/avatar/3.svg'
+import avatar4 from 'assets/images/avatar/4.svg'
+import avatar5 from 'assets/images/avatar/5.svg'
+
+import Image from 'next/image'
+
 const UserData: Array<TUserData> = [
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar1,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -33,7 +41,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar2,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -42,7 +50,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar3,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -51,7 +59,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar4,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -60,7 +68,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar2,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -69,7 +77,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar5,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -78,7 +86,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar1,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -87,7 +95,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar2,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -96,7 +104,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar3,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -105,7 +113,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar4,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -114,7 +122,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar1,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -123,7 +131,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar5,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -132,7 +140,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar3,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -141,7 +149,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar4,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -149,6 +157,9 @@ const UserData: Array<TUserData> = [
     type: EUserType.saml
   }
 ]
+
+
+
 
 export default function Users() {
   const [vState, setState] = useState({ openDlg: false })
@@ -249,9 +260,34 @@ export default function Users() {
           <TableBody>
             {UserData.map((item, index) => (
               <TableRow key={index}>
-                <TableCell>
+                <TableCell sx={{
+                  display:'flex',
+                  justifyContent:'left',
+                  alignItems:'center'
+                }}>
+
                   <Checkbox color="primary" checked={false} />
+                  <Box sx={{
+                    width:30,
+                    height:30,
+                    overflow:'hidden',
+                    position:'relative',
+                    borderRadius:'50%',
+                    mx:2
+                  }}>
+                    <Image
+                      src={item.photo}
+                      alt='avatar'
+                      style={{
+                        width:30,
+                        height:'auto',
+                        position:'absolute',
+                      }}
+                    />
+                  </Box>
                   {item.name}
+
+
                 </TableCell>
                 <TableCell>{item.email}</TableCell>
                 <TableCell>{item.number}</TableCell>
