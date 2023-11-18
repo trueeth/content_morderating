@@ -187,23 +187,42 @@ export default function ScheduledReport() {
             </Button>
           </Grid>
 
-          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
-            <Typography whiteSpace="nowrap" mr={2}>
-              Sort by:
-            </Typography>
-            <Select
-              value={vState.sortBy}
-              onChange={handleSortByChange}
-              sx={{
-                ml: 2,
-                height: '36px',
-                width: '8rem'
-              }}
-            >
-              <MenuItem value={0}>All</MenuItem>
-              <MenuItem value={1}>Name</MenuItem>
-            </Select>
-            <SearchInput />
+          <Grid item
+                sx={{
+                  flexGrow: 1,
+                  justifyContent: { md:'end',xs:'left' },
+                  display: 'flex',
+                  flexWrap:'wrap',
+                  flexDiretion:{
+                    xs:'column'
+                  }
+          }}>
+            <Grid item sx={{ display: 'flex',}}>
+              <Typography whiteSpace='nowrap' mr={1}>
+                Sort by:
+              </Typography>
+              <Select
+                value={vState.sortBy}
+                onChange={handleSortByChange}
+                sx={{
+                  height: '36px',
+                  width: '6rem',
+                  mr: 2,
+                }}
+              >
+                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value={1}>Name</MenuItem>
+              </Select>
+            </Grid>
+            <Grid sx={{
+              display:'flex',
+              paddingTop: {
+                sm:0,
+                xs:2
+              }
+            }}>
+              <SearchInput />
+            </Grid>
           </Grid>
           <Grid item>
             <PrimaryButton
