@@ -6,22 +6,22 @@ import React from 'react'
 export default function LaunchStep() {
   const [vState, setState] = React.useState({ progress: 0 })
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      const setProgress = (state) => {
-        if (state.progress === 100) {
-          return 0
-        }
-        const diff = Math.random() * 10
-        return { ...state, progress: Math.min(state.progress + diff, 100) }
-      }
-      setState(setProgress)
-    }, 500)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
+  // React.useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     const setProgress = (state) => {
+  //       if (state.progress === 100) {
+  //         return 0
+  //       }
+  //       const diff = Math.random() * 10
+  //       return { ...state, progress: Math.min(state.progress + diff, 100) }
+  //     }
+  //     setState(setProgress)
+  //   }, 500)
+  //
+  //   return () => {
+  //     clearInterval(timer)
+  //   }
+  // }, [])
   return (
     <StepWrapper>
       <Box
@@ -37,7 +37,7 @@ export default function LaunchStep() {
           Video Upload
         </Typography>
         <Box sx={{ width: '100%' }}>
-          <LinearProgress variant="determinate" value={vState.progress} />
+          <LinearProgress variant="determinate" value={0} />
         </Box>
         <Box
           sx={{

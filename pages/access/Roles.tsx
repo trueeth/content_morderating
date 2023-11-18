@@ -79,16 +79,6 @@ export default function Roles() {
             <Tooltip title="Reports History">
               <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
             </Tooltip>
-            <Button
-              sx={{
-                ml: 2,
-                bgcolor: '#ff1313a0',
-                color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' }
-              }}
-            >
-              Delete
-            </Button>
           </Grid>
           <Grid item
                 sx={{

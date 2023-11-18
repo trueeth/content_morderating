@@ -166,8 +166,8 @@ export default function SourceStep(props: {
             '& .MuiButton-root': { width: '100px' }
           }}
         >
-          <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>
-          <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
+          <PrimaryButton active={false} onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton onClick={props.handleNext}>Start the Upload</PrimaryButton>
         </Box>
       </Box>
     </StepWrapper>

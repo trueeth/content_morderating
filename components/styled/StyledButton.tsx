@@ -12,19 +12,21 @@ const StyledButton = styled(Button)({
   color: 'white'
 })
 
-const PrimaryButton = styled(Button)({
+const PrimaryButton = styled(Button)(({ active = true }:{active?:boolean})=>({
   boxShadow: 'none',
   textTransform: 'capitalize',
   fontSize: 16,
   padding: '6px 12px',
   lineHeight: 1.5,
-  backgroundColor: 'var(--Primary1)',
+  backgroundColor: active?'var(--Primary1)':'#00000061',
   margin: '0 10px',
   color: 'white',
+  textWrap:'nowrap',
+  width:'auto !important',
   '&:hover': {
-    backgroundColor: 'var(--Primary1)'
+    backgroundColor: active?'var(--Primary1)':'#00000061'
   }
-})
+}))
 
 const TopButton = styled(Button)(
   ({

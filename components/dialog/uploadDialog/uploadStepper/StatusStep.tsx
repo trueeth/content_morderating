@@ -84,7 +84,7 @@ export default function StatusStep(props: {
             '& .MuiButton-root': { width: '100px' }
           }}
         >
-          <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton onClick={props.handleBack} active={false}>Back</PrimaryButton>
           <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
         </Box>
       </Box>
