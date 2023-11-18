@@ -100,6 +100,25 @@ const theme = createTheme({
           }
         }
       }
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          bgcolor: 'var(--Primary1)',
+          color: '#fff',
+          border: 'none',
+          '&.Mui-selected': {
+            bgcolor: 'var(--Primary1)',
+            color: '#fff',
+            border: 'none',
+            '&:hover': {
+              bgcolor: 'var(--Primary1)',
+              color: '#fff',
+              border: 'none'
+            }
+          }
+        }
+      }
     }
   }
 })

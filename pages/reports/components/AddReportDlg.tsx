@@ -18,7 +18,7 @@ export default function AddReportDlg({
   const [vState, setState] = useState({
     name: '',
     reportType: '',
-    scheduleType: EScheduleType.daily,
+    scheduleType: '',
     mail: ''
   })
 
@@ -38,19 +38,20 @@ export default function AddReportDlg({
         }}
       >
         {/*---------title-----------*/}
-        <Typography
-          sx={{
-            fontSize: '1.3rem',
-            fontWeight: ' 600',
-            py: '2rem',
-            color: '#333'
-          }}
-        >
-          Add New Report
-        </Typography>
-        <Tooltip title="Add New Report">
-          <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
-        </Tooltip>
+        <Box sx={{ display: 'flex', py: '2rem' }}>
+          <Typography
+            sx={{
+              fontSize: '1.3rem',
+              fontWeight: ' 600',
+              color: '#333'
+            }}
+          >
+            Add New Report
+          </Typography>
+          <Tooltip title="Add New Report">
+            <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+          </Tooltip>
+        </Box>
 
         <Box>
           <Grid container spacing={3}>
@@ -70,11 +71,19 @@ export default function AddReportDlg({
               <Typography>Schedule Type</Typography>
               <Select
                 value={vState.scheduleType}
+                displayEmpty={true}
                 onChange={(e) =>
                   handleUserInput('scheduleType', e.target.value)
                 }
+                renderValue={(value) =>
+                  value !== '' ? (
+                    value
+                  ) : (
+                    <Typography color="grey">Select from list</Typography>
+                  )
+                }
                 fullWidth
-                sx={{ height: '45px' }}
+                sx={{ height: '40px' }}
               >
                 {Object.values(EScheduleType).map((item, index) => (
                   <MenuItem key={index} value={item}>

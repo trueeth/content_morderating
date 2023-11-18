@@ -185,10 +185,12 @@ export default function ReportHistory() {
           <Grid item>
             <PrimaryButton
               onClick={() => setState({ ...vState, openDlg: true })}
-              sx={{ whiteSpace: 'nowrap' }}
+              sx={{
+                whiteSpace: 'nowrap'
+              }}
             >
-              <NoteAdd sx={{ color: 'white' }} />
-              Add New Report
+              <NoteAdd sx={{ color: 'white', mr: 0.5 }} />
+              <Typography fontSize="14px">Add New Report</Typography>
             </PrimaryButton>
             <AddReportDlg open={vState.openDlg} onClose={closeDlg} />
           </Grid>
@@ -275,18 +277,7 @@ export default function ReportHistory() {
           count={4}
           variant="outlined"
           shape="rounded"
-          renderItem={(item) => (
-            <PaginationItem
-              {...item}
-              sx={{
-                '&.Mui-selected': {
-                  bgcolor: 'var(--Primary1)',
-                  color: '#fff',
-                  border: 'none'
-                }
-              }}
-            />
-          )}
+          renderItem={(item) => <PaginationItem {...item} />}
         ></Pagination>
       </TablePagination>
     </div>

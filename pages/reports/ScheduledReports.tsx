@@ -23,6 +23,8 @@ import Action from './components/SelectAction'
 import SearchInput from 'components/styled/SearchInput'
 import InfoIcon from '@mui/icons-material/Info'
 import TablePagination from 'components/styled/TablePagination'
+import { useState } from 'react'
+import AddReportDlg from './components/AddReportDlg'
 
 const ScheduledReports: Array<TScheduledReports> = [
   {
@@ -126,6 +128,11 @@ const ScheduledReports: Array<TScheduledReports> = [
 ]
 
 export default function ScheduledReport() {
+  const [vState, setState] = useState({ openDlg: false })
+
+  const closeDlg = () => {
+    setState({ ...vState, openDlg: false })
+  }
   return (
     <div>
       <Box
@@ -172,10 +179,16 @@ export default function ScheduledReport() {
             <SearchInput />
           </Grid>
           <Grid item>
-            <PrimaryButton>
-              <NoteAdd sx={{ color: 'white' }} />
-              Add New Report
+            <PrimaryButton
+              onClick={() => setState({ ...vState, openDlg: true })}
+              sx={{
+                whiteSpace: 'nowrap'
+              }}
+            >
+              <NoteAdd sx={{ color: 'white', mr: 0.5 }} />
+              <Typography fontSize="14px">Add New Report</Typography>
             </PrimaryButton>
+            <AddReportDlg open={vState.openDlg} onClose={closeDlg} />
           </Grid>
         </Grid>
       </Box>
