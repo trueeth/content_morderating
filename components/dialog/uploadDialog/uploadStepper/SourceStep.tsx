@@ -163,11 +163,25 @@ export default function SourceStep(props: {
           sx={{
             mt: 2,
             justifyContent: 'center !important',
-            '& .MuiButton-root': { width: '100px' }
-          }}
+            '& .MuiButton-root': { width: '100px' },
+            display:'flex',
+            flexDirection:{
+              xs:'column',
+              sm:'row'
+          }
+        }}
         >
           <PrimaryButton active={false} onClick={props.handleBack}>Back</PrimaryButton>
-          <PrimaryButton onClick={props.handleNext}>Start the Upload</PrimaryButton>
+          <PrimaryButton
+            sx={{
+              mt:{
+                xs:2,
+                sm:0
+              }
+            }}
+            onClick={props.handleNext}
+          >Start the Upload
+          </PrimaryButton>
         </Box>
       </Box>
     </StepWrapper>
