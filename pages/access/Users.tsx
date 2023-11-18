@@ -40,7 +40,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap
+    type: EUserType.ldap,
   },
   {
     name: 'Darlene Robertson',
@@ -49,7 +49,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml
+    type: EUserType.saml,
   },
   {
     name: 'Floyd Miles',
@@ -58,7 +58,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.user,
-    type: EUserType.ldap
+    type: EUserType.ldap,
   },
   {
     name: 'Darlene Robertson',
@@ -67,7 +67,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.user,
-    type: EUserType.saml
+    type: EUserType.saml,
   },
   {
     name: 'Floyd Miles',
@@ -76,7 +76,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap
+    type: EUserType.ldap,
   },
   {
     name: 'Darlene Robertson',
@@ -85,7 +85,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.user,
-    type: EUserType.saml
+    type: EUserType.saml,
   },
   {
     name: 'Floyd Miles',
@@ -94,7 +94,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.manager,
-    type: EUserType.ldap
+    type: EUserType.ldap,
   },
   {
     name: 'Darlene Robertson',
@@ -103,7 +103,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.manager,
-    type: EUserType.saml
+    type: EUserType.saml,
   },
   {
     name: 'Floyd Miles',
@@ -112,7 +112,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.manager,
-    type: EUserType.ldap
+    type: EUserType.ldap,
   },
   {
     name: 'Darlene Robertson',
@@ -121,7 +121,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml
+    type: EUserType.saml,
   },
   {
     name: 'Floyd Miles',
@@ -130,7 +130,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap
+    type: EUserType.ldap,
   },
   {
     name: 'Darlene Robertson',
@@ -139,7 +139,7 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml
+    type: EUserType.saml,
   },
   {
     name: 'Floyd Miles',
@@ -148,7 +148,7 @@ const UserData: Array<TUserData> = [
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
     role: EUserRole.admin,
-    type: EUserType.ldap
+    type: EUserType.ldap,
   },
   {
     name: 'Darlene Robertson',
@@ -157,39 +157,37 @@ const UserData: Array<TUserData> = [
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
     role: EUserRole.admin,
-    type: EUserType.saml
-  }
+    type: EUserType.saml,
+  },
 ]
 
 
-
-
 export default function Users() {
-  const [vState, setState] = useState({ openDlg: false , sortBy:'0'})
+  const [vState, setState] = useState({ openDlg: false, sortBy: '0' })
 
   const closeDlg = () => {
     setState({ ...vState, openDlg: false })
   }
 
   const handleSortByChange = (event: any) => {
-    setState({ ...vState,sortBy: event.target.value })
+    setState({ ...vState, sortBy: event.target.value })
   }
   return (
     <Box
-    sx={{
-      backgroundColor:'white',
-      boxShadow:'0px 0px 25px 0px #F3F3F3;',
-      borderRadius:'.4rem',
-      border:'1px solid var(--Stroke, #E8E8E8)',
-      overflow:'hidden',
-    }}
+      sx={{
+        backgroundColor: 'white',
+        boxShadow: '0px 0px 25px 0px #F3F3F3;',
+        borderRadius: '.4rem',
+        border: '1px solid var(--Stroke, #E8E8E8)',
+        overflow: 'hidden',
+      }}
     >
       <Box
         sx={{
           display: 'flex',
           width: '100%',
           color: 'black',
-          backgroundColor:'#00000008'
+          backgroundColor: '#00000008',
         }}
       >
         <Grid
@@ -201,13 +199,13 @@ export default function Users() {
             p: 2,
             '& .MuiGrid-item': {
               display: 'flex',
-              alignItems: 'center'
-            }
+              alignItems: 'center',
+            },
           }}
         >
           <Grid item>
             <Typography>Users</Typography>
-            <Tooltip title="Reports History">
+            <Tooltip title='Reports History'>
               <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
             </Tooltip>
             <Button
@@ -215,29 +213,48 @@ export default function Users() {
                 ml: 2,
                 bgcolor: '#ff1313a0',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' }
+                '&:hover': { bgcolor: '#ff1313a0' },
               }}
             >
               Delete
             </Button>
           </Grid>
-          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
-            <Typography whiteSpace="nowrap" mr={2}>
-              Sort by:
-            </Typography>
-            <Select
-              value={vState.sortBy}
-              onChange={handleSortByChange}
-              sx={{
-                ml: 2,
-                height: '36px',
-                width: '8rem'
-              }}
-            >
-              <MenuItem value={0}>All</MenuItem>
-              <MenuItem value={1}>Name</MenuItem>
-            </Select>
-            <SearchInput />
+          <Grid item
+                sx={{
+                  flexGrow: 1,
+                  justifyContent: { md:'end',xs:'left' },
+                  display: 'flex',
+                  flexWrap:'wrap',
+                  flexDiretion:{
+                    xs:'column'
+                  }
+          }}>
+            <Grid item sx={{ display: 'flex',}}>
+              <Typography whiteSpace='nowrap' mr={1}>
+                Sort by:
+              </Typography>
+              <Select
+                value={vState.sortBy}
+                onChange={handleSortByChange}
+                sx={{
+                  height: '36px',
+                  width: '6rem',
+                  mr: 2,
+                }}
+              >
+                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value={1}>Name</MenuItem>
+              </Select>
+            </Grid>
+            <Grid sx={{
+              display:'flex',
+              paddingTop: {
+                sm:0,
+                xs:2
+              }
+            }}>
+              <SearchInput />
+            </Grid>
           </Grid>
           <Grid item>
             <PrimaryButton
@@ -257,19 +274,19 @@ export default function Users() {
           // borderRadius: '15px',
           px: 2,
           width: '100%',
-          boxShadow:'none',
+          boxShadow: 'none',
           '& .MuiTableCell-root': {
             textAlign: 'left',
-            whiteSpace: 'nowrap'
-          }
+            whiteSpace: 'nowrap',
+          },
         }}
       >
         <Table
-          aria-label="collapsible table"
+          aria-label='collapsible table'
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none'
-            }
+              borderBottom: 'none',
+            },
           }}
         >
           <TableHead>
@@ -277,11 +294,11 @@ export default function Users() {
               {Object.values(EUserData).map((item, index) => (
                 <TableCell
                   key={index}
-                  align="center"
+                  align='center'
                   sx={{ whiteSpace: 'nowrap', fontSize: '12px', color: '#888' }}
                 >
                   <Checkbox
-                    color="primary"
+                    color='primary'
                     sx={{ display: index !== 0 ? 'none' : 'inline' }}
                   />
                   {item}
@@ -293,27 +310,27 @@ export default function Users() {
             {UserData.map((item, index) => (
               <TableRow key={index}>
                 <TableCell sx={{
-                  display:'flex',
-                  justifyContent:'left',
-                  alignItems:'center'
+                  display: 'flex',
+                  justifyContent: 'left',
+                  alignItems: 'center',
                 }}>
 
-                  <Checkbox color="primary" checked={false} />
+                  <Checkbox color='primary' checked={false} />
                   <Box sx={{
-                    width:30,
-                    height:30,
-                    overflow:'hidden',
-                    position:'relative',
-                    borderRadius:'50%',
-                    mx:2
+                    width: 30,
+                    height: 30,
+                    overflow: 'hidden',
+                    position: 'relative',
+                    borderRadius: '50%',
+                    mx: 2,
                   }}>
                     <Image
                       src={item.photo}
                       alt='avatar'
                       style={{
-                        width:30,
-                        height:'auto',
-                        position:'absolute',
+                        width: 30,
+                        height: 'auto',
+                        position: 'absolute',
                       }}
                     />
                   </Box>
