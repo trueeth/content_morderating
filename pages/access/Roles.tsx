@@ -35,12 +35,19 @@ const RoleData: Array<TRole> = [
 
 export default function Roles() {
   return (
-    <div>
+    <Box sx={{
+      backgroundColor:'white',
+      boxShadow:'0px 0px 25px 0px #F3F3F3;',
+      borderRadius:'.4rem',
+      border:'1px solid var(--Stroke, #E8E8E8)',
+      overflow:'hidden',
+    }}>
       <Box
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black'
+          color: 'black',
+          backgroundColor:'#00000008'
         }}
       >
         <Grid
@@ -50,6 +57,7 @@ export default function Roles() {
             display: 'flex',
             justifyContent: 'space-between',
             p: 2,
+            boxShadow:'none',
             '& .MuiGrid-item': {
               display: 'flex',
               alignItems: 'center'
@@ -82,6 +90,7 @@ export default function Roles() {
         sx={{
           borderRadius: '15px',
           px: 2,
+          boxShadow:'none',
           '& .MuiTableCell-root': {
             textAlign: 'left',
             whiteSpace: 'nowrap'
@@ -112,6 +121,6 @@ export default function Roles() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   )
 }

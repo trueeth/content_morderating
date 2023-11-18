@@ -168,12 +168,21 @@ export default function Users() {
     setState({ ...vState, openDlg: false })
   }
   return (
-    <div>
+    <Box
+    sx={{
+      backgroundColor:'white',
+      boxShadow:'0px 0px 25px 0px #F3F3F3;',
+      borderRadius:'.4rem',
+      border:'1px solid var(--Stroke, #E8E8E8)',
+      overflow:'hidden',
+    }}
+    >
       <Box
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black'
+          color: 'black',
+          backgroundColor:'#00000008'
         }}
       >
         <Grid
@@ -223,9 +232,10 @@ export default function Users() {
       <TableContainer
         component={Paper}
         sx={{
-          borderRadius: '15px',
+          // borderRadius: '15px',
           px: 2,
           width: '100%',
+          boxShadow:'none',
           '& .MuiTableCell-root': {
             textAlign: 'left',
             whiteSpace: 'nowrap'
@@ -302,6 +312,6 @@ export default function Users() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   )
 }
