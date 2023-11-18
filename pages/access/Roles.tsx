@@ -10,10 +10,14 @@ import {
   TableRow,
   TableHead,
   Table,
-  tableCellClasses
+  tableCellClasses, Tooltip, Select,
 } from '@mui/material'
 import { TRole } from 'interfaces'
 import SearchInput from 'components/styled/SearchInput'
+import InfoIcon from '@mui/icons-material/Info'
+import MenuItem from '@mui/material/MenuItem'
+import * as React from 'react'
+import { useState } from 'react'
 
 const RoleData: Array<TRole> = [
   {
@@ -34,6 +38,12 @@ const RoleData: Array<TRole> = [
 ]
 
 export default function Roles() {
+  const [vState, setState] = useState({ sortBy:'0'})
+
+
+  const handleSortByChange = (event: any) => {
+    setState({ ...vState,sortBy: event.target.value })
+  }
   return (
     <Box sx={{
       backgroundColor:'white',
@@ -66,6 +76,9 @@ export default function Roles() {
         >
           <Grid item>
             <Typography>Roles </Typography>
+            <Tooltip title="Reports History">
+              <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+            </Tooltip>
             <Button
               sx={{
                 ml: 2,
@@ -81,6 +94,18 @@ export default function Roles() {
             <Typography whiteSpace="nowrap" mr={2}>
               Sort by:
             </Typography>
+            <Select
+              value={vState.sortBy}
+              onChange={handleSortByChange}
+              sx={{
+                ml: 2,
+                height: '36px',
+                width: '8rem'
+              }}
+            >
+              <MenuItem value={0}>All</MenuItem>
+              <MenuItem value={1}>Name</MenuItem>
+            </Select>
             <SearchInput />
           </Grid>
         </Grid>

@@ -15,7 +15,7 @@ import {
   Checkbox,
   Tooltip,
   Pagination,
-  PaginationItem
+  PaginationItem, Select,
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EReportHistory, EScheduleType, TScheduledReports } from 'interfaces'
@@ -25,6 +25,8 @@ import InfoIcon from '@mui/icons-material/Info'
 import TablePagination from 'components/styled/TablePagination'
 import { useState } from 'react'
 import AddReportDlg from './components/AddReportDlg'
+import MenuItem from '@mui/material/MenuItem'
+import * as React from 'react'
 
 const ScheduledReports: Array<TScheduledReports> = [
   {
@@ -128,8 +130,10 @@ const ScheduledReports: Array<TScheduledReports> = [
 ]
 
 export default function ScheduledReport() {
-  const [vState, setState] = useState({ openDlg: false })
-
+  const [vState, setState] = useState({ openDlg: false , sortBy:'0'})
+  const handleSortByChange = (event: any) => {
+    setState({ ...vState,sortBy: event.target.value })
+  }
   const closeDlg = () => {
     setState({ ...vState, openDlg: false })
   }
@@ -187,6 +191,18 @@ export default function ScheduledReport() {
             <Typography whiteSpace="nowrap" mr={2}>
               Sort by:
             </Typography>
+            <Select
+              value={vState.sortBy}
+              onChange={handleSortByChange}
+              sx={{
+                ml: 2,
+                height: '36px',
+                width: '8rem'
+              }}
+            >
+              <MenuItem value={0}>All</MenuItem>
+              <MenuItem value={1}>Name</MenuItem>
+            </Select>
             <SearchInput />
           </Grid>
           <Grid item>

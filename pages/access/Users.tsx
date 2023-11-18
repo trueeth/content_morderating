@@ -13,7 +13,7 @@ import {
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox
+  Checkbox, Tooltip, Select,
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EUserData, EUserRole, EUserType, TUserData } from 'interfaces'
@@ -28,6 +28,9 @@ import avatar4 from 'assets/images/avatar/4.svg'
 import avatar5 from 'assets/images/avatar/5.svg'
 
 import Image from 'next/image'
+import InfoIcon from '@mui/icons-material/Info'
+import MenuItem from '@mui/material/MenuItem'
+import * as React from 'react'
 
 const UserData: Array<TUserData> = [
   {
@@ -162,10 +165,14 @@ const UserData: Array<TUserData> = [
 
 
 export default function Users() {
-  const [vState, setState] = useState({ openDlg: false })
+  const [vState, setState] = useState({ openDlg: false , sortBy:'0'})
 
   const closeDlg = () => {
     setState({ ...vState, openDlg: false })
+  }
+
+  const handleSortByChange = (event: any) => {
+    setState({ ...vState,sortBy: event.target.value })
   }
   return (
     <Box
@@ -200,6 +207,9 @@ export default function Users() {
         >
           <Grid item>
             <Typography>Users</Typography>
+            <Tooltip title="Reports History">
+              <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+            </Tooltip>
             <Button
               sx={{
                 ml: 2,
@@ -215,6 +225,18 @@ export default function Users() {
             <Typography whiteSpace="nowrap" mr={2}>
               Sort by:
             </Typography>
+            <Select
+              value={vState.sortBy}
+              onChange={handleSortByChange}
+              sx={{
+                ml: 2,
+                height: '36px',
+                width: '8rem'
+              }}
+            >
+              <MenuItem value={0}>All</MenuItem>
+              <MenuItem value={1}>Name</MenuItem>
+            </Select>
             <SearchInput />
           </Grid>
           <Grid item>

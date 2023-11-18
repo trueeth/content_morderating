@@ -29,14 +29,22 @@ const Video = () => {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   return (
-    <>
+    <Box
+      sx={{
+        backgroundColor:'white',
+        boxShadow:'0px 0px 25px 0px #F3F3F3;',
+        borderRadius:'.4rem',
+        border:'1px solid var(--Stroke, #E8E8E8)',
+        overflow:'hidden',
+        m:1
+      }}
+    >
       <VideoTableHeader />
       <Box
         mt={2}
         sx={{
           width: '100%',
           minHeight: '60vh',
-          borderRadius: '20px'
         }}
       >
         <VideoTable />
@@ -65,7 +73,7 @@ const Video = () => {
         open={appState.drawer.videoSub}
         handleClose={() => dispatch(openVideoSubDrawer({ open: false }))}
       />
-    </>
+    </Box>
   )
 }
 

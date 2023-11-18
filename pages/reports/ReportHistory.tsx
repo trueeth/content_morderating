@@ -16,7 +16,7 @@ import {
   Checkbox,
   Tooltip,
   Pagination,
-  PaginationItem
+  PaginationItem, Select,
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import {
@@ -29,6 +29,8 @@ import AddReportDlg from './components/AddReportDlg'
 import SearchInput from 'components/styled/SearchInput'
 import InfoIcon from '@mui/icons-material/Info'
 import TablePagination from 'components/styled/TablePagination'
+import MenuItem from '@mui/material/MenuItem'
+import * as React from 'react'
 
 const HistoryData: Array<TReportHistory> = [
   {
@@ -132,10 +134,13 @@ const HistoryData: Array<TReportHistory> = [
 ]
 
 export default function ReportHistory() {
-  const [vState, setState] = useState({ openDlg: false })
+  const [vState, setState] = useState({ openDlg: false, sortBy:0 })
 
   const closeDlg = () => {
     setState({ ...vState, openDlg: false })
+  }
+  const handleSortByChange = (event: any) => {
+    setState({ ...vState,sortBy: event.target.value })
   }
   return (
     <Box
@@ -188,6 +193,18 @@ export default function ReportHistory() {
             <Typography whiteSpace="nowrap" mr={2}>
               Sort by:
             </Typography>
+            <Select
+              value={vState.sortBy}
+              onChange={handleSortByChange}
+              sx={{
+                ml: 2,
+                height: '36px',
+                width: '8rem'
+              }}
+            >
+              <MenuItem value={0}>All</MenuItem>
+              <MenuItem value={1}>Name</MenuItem>
+            </Select>
 
             <SearchInput />
           </Grid>
