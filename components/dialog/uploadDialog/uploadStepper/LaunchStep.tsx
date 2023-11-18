@@ -36,7 +36,15 @@ export default function LaunchStep() {
         <Typography textAlign="center" my={2} variant="h6">
           Video Upload
         </Typography>
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{
+          width:'100%'
+          // sm: {
+          //   width:'100%'
+          // },
+          // xs:{
+          //   width:'80%'
+          // }
+        }}>
           <LinearProgress variant="determinate" value={0} />
         </Box>
         <Box
@@ -47,10 +55,12 @@ export default function LaunchStep() {
             '& .MuiTypography-root': {
               fontSize: '12px',
               color: '#333'
-            }
+            },
           }}
         >
-          <Typography>Uploading</Typography>
+          <Typography sx={{
+
+          }}>Uploading</Typography>
           <Typography>Analyzing</Typography>
           <Typography>Indexing</Typography>
           <Typography>Scoring</Typography>

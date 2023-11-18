@@ -95,9 +95,16 @@ export default function UploadDialog() {
                 sx={{
                   borderRadius: '.3rem',
                   overflow: 'hidden',
-                  '& button': {
-                    px: '3rem',
-                    py: '.5rem'
+                  '& button':{
+                    sm: {
+                      px: '3rem',
+                      py: '.5rem'
+                    },
+                    xs: {
+                      px: '2rem',
+                      py: '.5rem',
+                      fontSize:'.8rem'
+                    }
                   }
                 }}
               >

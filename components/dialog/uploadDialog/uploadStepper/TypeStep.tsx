@@ -11,10 +11,23 @@ export default function TypeStep(props: { handleNext: () => void }) {
           display: 'flex',
           flexDirection: 'column',
           rowGap: 2,
+          xs:{
+            fontSize:'.8rem'
+          },
+          sm:{
+            fontSize:'1rem'
+          }
         }}
       >
-        <Typography>What do you want to upload?</Typography>
-        <RadioGroup row>
+        <Typography sx={{
+          textAlign:'center',
+          xs:{
+            fontSize:'.8rem'
+          },
+          sm:{
+            fontSize:'1rem'
+          }}}>What do you want to upload?</Typography>
+        <RadioGroup row sx={{justifyContent:'center'}}>
           <FormControlLabel value="female" control={<Radio />} label="Video" />
           <FormControlLabel value="male" control={<Radio />} label="Audio" />
           <FormControlLabel value="other" control={<Radio />} label="Book" />
