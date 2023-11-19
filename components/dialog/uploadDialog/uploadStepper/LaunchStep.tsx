@@ -6,45 +6,36 @@ import React from 'react'
 export default function LaunchStep() {
   const [vState, setState] = React.useState({ progress: 0 })
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      const setProgress = (state) => {
-        if (state.progress === 100) {
-          return 0
-        }
-        const diff = Math.random() * 10
-        return { ...state, progress: Math.min(state.progress + diff, 100) }
-      }
-      setState(setProgress)
-    }, 500)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
   return (
     <StepWrapper>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          rowGap: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          rowGap: 1
         }}
       >
         <Typography textAlign="center" my={2} variant="h6">
           Video Upload
         </Typography>
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress variant="determinate" value={vState.progress} />
+        <Box
+          sx={{
+            width: { xs: '90%', md: '80%' }
+          }}
+        >
+          <LinearProgress variant="determinate" value={0} />
         </Box>
         <Box
           sx={{
-            display: 'flex',
+            display: { xs: 'none', md: 'flex' },
+            width: '100%',
             justifyContent: 'space-between',
             '& .MuiTypography-root': {
               fontSize: '12px',
-              color: '#333',
-            },
+              color: '#333'
+            }
           }}
         >
           <Typography>Uploading</Typography>
@@ -58,8 +49,8 @@ export default function LaunchStep() {
             mt: 3,
             textAlign: 'center',
             width: '80%',
-            color: '#889',
-            fontSize: '15px',
+            color: '#666',
+            fontSize: '14px'
           }}
         >
           Disclaimer: He should not leave this page until the first stage of

@@ -13,7 +13,11 @@ import {
   Table,
   tableCellClasses,
   Checkbox,
-  TableRow
+  TableRow,
+  Tooltip,
+  Select,
+  Pagination,
+  PaginationItem
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EGroupData, TGroupData } from 'interfaces'
@@ -21,6 +25,9 @@ import Action from './components/Action'
 import AddGroupDlg from './components/AddGroupDlg'
 import SearchInput from 'components/styled/SearchInput'
 import React from 'react'
+import InfoIcon from '@mui/icons-material/Info'
+import MenuItem from '@mui/material/MenuItem'
+import TablePagination from 'components/styled/TablePagination'
 
 const GroupData: Array<TGroupData> = [
   {
@@ -76,18 +83,32 @@ const GroupData: Array<TGroupData> = [
 ]
 
 export default function Groups() {
-  const [vState, setState] = useState({ openDlg: false })
+  const [vState, setState] = useState({ openDlg: false, sortBy: '0' })
 
   const closeDlg = () => {
     setState({ ...vState, openDlg: false })
   }
+
+  const handleSortByChange = (event: any) => {
+    setState({ ...vState, sortBy: event.target.value })
+  }
   return (
-    <div>
+    <Box
+      sx={{
+        backgroundColor: 'white',
+        boxShadow: '0px 0px 25px 0px #F3F3F3;',
+        borderRadius: '.4rem',
+        border: '1px solid var(--Stroke, #E8E8E8)',
+        overflow: 'hidden',
+        m: 2
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black'
+          color: 'black',
+          backgroundColor: '#00000008'
         }}
       >
         <Grid
@@ -105,6 +126,9 @@ export default function Groups() {
         >
           <Grid item>
             <Typography>Groups</Typography>
+            <Tooltip title="Reports History">
+              <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+            </Tooltip>
             <Button
               sx={{
                 ml: 2,
@@ -116,11 +140,46 @@ export default function Groups() {
               Delete
             </Button>
           </Grid>
-          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
-            <Typography whiteSpace="nowrap" mr={2}>
-              Sort by:
-            </Typography>
-            <SearchInput />
+          <Grid
+            item
+            sx={{
+              flexGrow: 1,
+              justifyContent: { md: 'end', xs: 'left' },
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDiretion: {
+                xs: 'column'
+              }
+            }}
+          >
+            <Grid item sx={{ display: 'flex' }}>
+              <Typography whiteSpace="nowrap" mr={1}>
+                Sort by:
+              </Typography>
+              <Select
+                value={vState.sortBy}
+                onChange={handleSortByChange}
+                sx={{
+                  height: '36px',
+                  width: '6rem',
+                  mr: 2
+                }}
+              >
+                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value={1}>Name</MenuItem>
+              </Select>
+            </Grid>
+            <Grid
+              sx={{
+                display: 'flex',
+                paddingTop: {
+                  sm: 0,
+                  xs: 2
+                }
+              }}
+            >
+              <SearchInput />
+            </Grid>
           </Grid>
           <Grid item>
             <PrimaryButton
@@ -139,6 +198,7 @@ export default function Groups() {
           borderRadius: '15px',
           px: 2,
           width: '100%',
+          boxShadow: 'none',
           '& .MuiTableCell-root': {
             textAlign: 'left',
             whiteSpace: 'nowrap'
@@ -188,6 +248,14 @@ export default function Groups() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+      <TablePagination>
+        <Pagination
+          count={4}
+          variant="outlined"
+          shape="rounded"
+          renderItem={(item) => <PaginationItem {...item} />}
+        ></Pagination>
+      </TablePagination>
+    </Box>
   )
 }

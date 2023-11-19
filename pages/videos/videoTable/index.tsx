@@ -484,7 +484,7 @@ const rows: TVideoRowType[] = [
 
 export default function VideoTable() {
   return (
-    <TableContainer component={Paper} sx={{ borderRadius: '15px', px: 2 }}>
+    <TableContainer component={Paper} sx={{ borderRadius: '15px', px: 2, boxShadow:'none' }}>
       <Table
         aria-label="collapsible table"
         sx={{

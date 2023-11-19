@@ -85,6 +85,9 @@
 .text-6{
     font-size: .6rem;
 }
+.text-center{
+    text-align: center;
+}
 .p-3{
     padding: .3rem;
 }

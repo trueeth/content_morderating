@@ -10,7 +10,7 @@ export default function StatusStep(props: {
   handleNext: () => void
   handleBack: () => void
 }) {
-  const [vState, setState] = useState({ replace: 0, type: 'new' })
+  const [vState, setState] = useState({ replace: null, type: 'new' })
 
   const handleReplace = (event: any) => {
     setState({ ...vState, replace: event.target.value })
@@ -47,10 +47,7 @@ export default function StatusStep(props: {
             value={'new'}
           />
         </Box>
-        <PrimaryTextField
-          fullWidth={true}
-          inputProps={{ style: { height: '40px', padding: '0 10px' } }}
-        />
+        <PrimaryTextField placeholder="Enter the name" />
         <Typography>OR</Typography>
         <Box mt={-2}>
           <Typography>Replace{!isXs && 'existing one'}</Typography>
@@ -68,8 +65,14 @@ export default function StatusStep(props: {
             height: '40px',
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
               borderColor: 'var(--Primary1)'
-            }
+            },
+            bgcolor: 'white'
           }}
+          renderValue={
+            vState.replace !== null
+              ? undefined
+              : () => <Typography>Select from list</Typography>
+          }
         >
           <MenuItem value={0}>Trolls</MenuItem>
           <MenuItem value={1}>Poppy</MenuItem>
@@ -81,7 +84,7 @@ export default function StatusStep(props: {
             '& .MuiButton-root': { width: '100px' }
           }}
         >
-          <PrimaryButton onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton onClick={props.handleBack} active={false}>Back</PrimaryButton>
           <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
         </Box>
       </Box>

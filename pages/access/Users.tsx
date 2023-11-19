@@ -13,7 +13,11 @@ import {
   TableHead,
   Table,
   tableCellClasses,
-  Checkbox
+  Checkbox,
+  Tooltip,
+  Select,
+  Pagination,
+  PaginationItem
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EUserData, EUserRole, EUserType, TUserData } from 'interfaces'
@@ -21,10 +25,22 @@ import Action from './components/Action'
 import AddUserDlg from './components/AddUserDlg'
 import SearchInput from 'components/styled/SearchInput'
 
+import avatar1 from 'assets/images/avatar/1.svg'
+import avatar2 from 'assets/images/avatar/2.svg'
+import avatar3 from 'assets/images/avatar/3.svg'
+import avatar4 from 'assets/images/avatar/4.svg'
+import avatar5 from 'assets/images/avatar/5.svg'
+
+import Image from 'next/image'
+import InfoIcon from '@mui/icons-material/Info'
+import MenuItem from '@mui/material/MenuItem'
+import * as React from 'react'
+import TablePagination from 'components/styled/TablePagination'
+
 const UserData: Array<TUserData> = [
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar1,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -33,7 +49,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar2,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -42,7 +58,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar3,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -51,7 +67,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar4,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -60,7 +76,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar2,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -69,7 +85,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar5,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -78,7 +94,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar1,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -87,7 +103,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar2,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -96,7 +112,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar3,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -105,7 +121,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar4,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -114,7 +130,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar1,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -123,7 +139,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar5,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -132,7 +148,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Floyd Miles',
-    photo: '',
+    photo: avatar3,
     email: 'Darlene Robertson',
     number: '(671) 555-0110',
     group: 'Moderators Group 1',
@@ -141,7 +157,7 @@ const UserData: Array<TUserData> = [
   },
   {
     name: 'Darlene Robertson',
-    photo: '',
+    photo: avatar4,
     email: 'Darlene Robertson',
     number: '(209) 555-0104',
     group: 'Moderators Group 2',
@@ -151,18 +167,31 @@ const UserData: Array<TUserData> = [
 ]
 
 export default function Users() {
-  const [vState, setState] = useState({ openDlg: false })
+  const [vState, setState] = useState({ openDlg: false, sortBy: '0' })
 
   const closeDlg = () => {
     setState({ ...vState, openDlg: false })
   }
+
+  const handleSortByChange = (event: any) => {
+    setState({ ...vState, sortBy: event.target.value })
+  }
   return (
-    <div>
+    <Box
+      sx={{
+        backgroundColor: 'white',
+        boxShadow: '0px 0px 25px 0px #F3F3F3;',
+        borderRadius: '.4rem',
+        border: '1px solid var(--Stroke, #E8E8E8)',
+        overflow: 'hidden'
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black'
+          color: 'black',
+          backgroundColor: '#00000008'
         }}
       >
         <Grid
@@ -180,6 +209,9 @@ export default function Users() {
         >
           <Grid item>
             <Typography>Users</Typography>
+            <Tooltip title="Reports History">
+              <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+            </Tooltip>
             <Button
               sx={{
                 ml: 2,
@@ -191,11 +223,46 @@ export default function Users() {
               Delete
             </Button>
           </Grid>
-          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
-            <Typography whiteSpace="nowrap" mr={2}>
-              Sort by:
-            </Typography>
-            <SearchInput />
+          <Grid
+            item
+            sx={{
+              flexGrow: 1,
+              justifyContent: { md: 'end', xs: 'left' },
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDiretion: {
+                xs: 'column'
+              }
+            }}
+          >
+            <Grid item sx={{ display: 'flex' }}>
+              <Typography whiteSpace="nowrap" mr={1}>
+                Sort by:
+              </Typography>
+              <Select
+                value={vState.sortBy}
+                onChange={handleSortByChange}
+                sx={{
+                  height: '36px',
+                  width: '6rem',
+                  mr: 2
+                }}
+              >
+                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value={1}>Name</MenuItem>
+              </Select>
+            </Grid>
+            <Grid
+              sx={{
+                display: 'flex',
+                paddingTop: {
+                  sm: 0,
+                  xs: 2
+                }
+              }}
+            >
+              <SearchInput />
+            </Grid>
           </Grid>
           <Grid item>
             <PrimaryButton
@@ -212,9 +279,10 @@ export default function Users() {
       <TableContainer
         component={Paper}
         sx={{
-          borderRadius: '15px',
+          // borderRadius: '15px',
           px: 2,
           width: '100%',
+          boxShadow: 'none',
           '& .MuiTableCell-root': {
             textAlign: 'left',
             whiteSpace: 'nowrap'
@@ -249,8 +317,34 @@ export default function Users() {
           <TableBody>
             {UserData.map((item, index) => (
               <TableRow key={index}>
-                <TableCell>
+                <TableCell
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'left',
+                    alignItems: 'center'
+                  }}
+                >
                   <Checkbox color="primary" checked={false} />
+                  <Box
+                    sx={{
+                      width: 30,
+                      height: 30,
+                      overflow: 'hidden',
+                      position: 'relative',
+                      borderRadius: '50%',
+                      mx: 2
+                    }}
+                  >
+                    <Image
+                      src={item.photo}
+                      alt="avatar"
+                      style={{
+                        width: 30,
+                        height: 'auto',
+                        position: 'absolute'
+                      }}
+                    />
+                  </Box>
                   {item.name}
                 </TableCell>
                 <TableCell>{item.email}</TableCell>
@@ -266,6 +360,14 @@ export default function Users() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+      <TablePagination>
+        <Pagination
+          count={4}
+          variant="outlined"
+          shape="rounded"
+          renderItem={(item) => <PaginationItem {...item} />}
+        ></Pagination>
+      </TablePagination>
+    </Box>
   )
 }

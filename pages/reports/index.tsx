@@ -17,7 +17,7 @@ export default function Report() {
         value={vState.tabIndex}
         onChange={setTabIndex}
         exclusive
-        sx={{ ml: 3, mt: 5 }}
+        sx={{ ml: 5, mt: 3 }}
       >
         <ToggleButton value={0}>Reports History</ToggleButton>
         <ToggleButton value={1}>Scheduled Reports</ToggleButton>

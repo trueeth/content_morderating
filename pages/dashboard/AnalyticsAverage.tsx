@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
 
-import { Box, Select, SelectChangeEvent, Typography } from '@mui/material'
+import {
+  Box,
+  Select,
+  SelectChangeEvent,
+  Typography,
+  useMediaQuery
+} from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
 import { PrimaryButton } from '../../components/styled/StyledButton'
 import { GetApp } from '@mui/icons-material'
+import { Months } from 'interfaces'
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
 const options: ApexOptions = {
@@ -16,7 +23,13 @@ const options: ApexOptions = {
   labels: ['Videos', 'Documents'],
   legend: {
     show: true,
-    position: 'bottom'
+    position: 'right',
+    offsetY: 60,
+    markers: {
+      radius: 0,
+      offsetX: -10,
+      offsetY: 2
+    }
   },
 
   plotOptions: {
@@ -29,8 +42,8 @@ const options: ApexOptions = {
   },
   dataLabels: {
     enabled: true,
-    formatter: (val: any) => val + '%',
-    textAnchor: 'middle'
+    offsetX: -50,
+    formatter: (val: any) => val + '%'
   },
   responsive: [
     {
@@ -53,34 +66,53 @@ const options: ApexOptions = {
 }
 
 export default function AnalyticsAverage() {
-  const [vState, setState] = useState({ year: '2023', series: [40, 60] })
+  const [vState, setState] = useState({ month: 'JAN', series: [40, 60] })
 
   const handleSelect = (event: SelectChangeEvent) => {
     if (event.target.value !== null)
-      setState({ ...vState, year: event.target.value })
+      setState({ ...vState, month: event.target.value })
   }
+
+  const isMobile = useMediaQuery('(max-width: 1200px)')
 
   return (
     <Box className="bg-white border-radius-5 h-full p-15 text-black">
       <Box className="flex justify-between">
         <Typography>Analytics Average</Typography>
         <Select
-          value={vState.year}
+          value={vState.month}
           onChange={handleSelect}
           sx={{
             height: '30px',
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'var(--Primary1)'
-            }
+            width: '100px'
           }}
+          MenuProps={{ sx: { height: '300px' } }}
         >
-          <MenuItem value={2023}>2023</MenuItem>
-          <MenuItem value={2022}>2022</MenuItem>
-          <MenuItem value={2021}>2021</MenuItem>
+          {Months.map((item, index) => (
+            <MenuItem value={item} key={index}>
+              {item}
+            </MenuItem>
+          ))}
         </Select>
       </Box>
-      <Box>
-        <ReactApexChart options={options} series={vState.series} type="donut" />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '90%'
+        }}
+      >
+        <ReactApexChart
+          options={
+            isMobile
+              ? { ...options, legend: { position: 'bottom', show: true } }
+              : options
+          }
+          series={vState.series}
+          type="donut"
+        />
         <Box>
           <Box className="flex justify-center mt-15">
             <PrimaryButton>

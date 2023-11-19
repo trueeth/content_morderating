@@ -3,7 +3,9 @@ import { styled } from '@mui/system'
 
 const PrimaryTextField = styled(TextField)({
   '& .MuiOutlinedInput-root': {
-    height: '45px',
+    height: '40px',
+    backgroundColor: 'white',
+
     '& fieldset': {
       borderColor: '#eee'
     },

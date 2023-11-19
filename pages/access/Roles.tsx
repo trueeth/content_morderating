@@ -10,10 +10,16 @@ import {
   TableRow,
   TableHead,
   Table,
-  tableCellClasses
+  tableCellClasses,
+  Tooltip,
+  Select
 } from '@mui/material'
 import { TRole } from 'interfaces'
 import SearchInput from 'components/styled/SearchInput'
+import InfoIcon from '@mui/icons-material/Info'
+import MenuItem from '@mui/material/MenuItem'
+import * as React from 'react'
+import { useState } from 'react'
 
 const RoleData: Array<TRole> = [
   {
@@ -34,13 +40,27 @@ const RoleData: Array<TRole> = [
 ]
 
 export default function Roles() {
+  const [vState, setState] = useState({ sortBy: '0' })
+
+  const handleSortByChange = (event: any) => {
+    setState({ ...vState, sortBy: event.target.value })
+  }
   return (
-    <div>
+    <Box
+      sx={{
+        backgroundColor: 'white',
+        boxShadow: '0px 0px 25px 0px #F3F3F3;',
+        borderRadius: '.4rem',
+        border: '1px solid var(--Stroke, #E8E8E8)',
+        overflow: 'hidden'
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
           width: '100%',
-          color: 'black'
+          color: 'black',
+          backgroundColor: '#00000008'
         }}
       >
         <Grid
@@ -50,6 +70,7 @@ export default function Roles() {
             display: 'flex',
             justifyContent: 'space-between',
             p: 2,
+            boxShadow: 'none',
             '& .MuiGrid-item': {
               display: 'flex',
               alignItems: 'center'
@@ -58,22 +79,50 @@ export default function Roles() {
         >
           <Grid item>
             <Typography>Roles </Typography>
-            <Button
+            <Tooltip title="Reports History">
+              <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+            </Tooltip>
+          </Grid>
+          <Grid
+            item
+            sx={{
+              flexGrow: 1,
+              justifyContent: { md: 'end', xs: 'left' },
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDiretion: {
+                xs: 'column'
+              }
+            }}
+          >
+            <Grid item sx={{ display: 'flex' }}>
+              <Typography whiteSpace="nowrap" mr={1}>
+                Sort by:
+              </Typography>
+              <Select
+                value={vState.sortBy}
+                onChange={handleSortByChange}
+                sx={{
+                  height: '36px',
+                  width: '6rem',
+                  mr: 2
+                }}
+              >
+                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value={1}>Name</MenuItem>
+              </Select>
+            </Grid>
+            <Grid
               sx={{
-                ml: 2,
-                bgcolor: '#ff1313a0',
-                color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' }
+                display: 'flex',
+                paddingTop: {
+                  sm: 0,
+                  xs: 2
+                }
               }}
             >
-              Delete
-            </Button>
-          </Grid>
-          <Grid item sx={{ flexGrow: 1, justifyContent: 'end' }}>
-            <Typography whiteSpace="nowrap" mr={2}>
-              Sort by:
-            </Typography>
-            <SearchInput />
+              <SearchInput />
+            </Grid>
           </Grid>
         </Grid>
       </Box>
@@ -82,6 +131,7 @@ export default function Roles() {
         sx={{
           borderRadius: '15px',
           px: 2,
+          boxShadow: 'none',
           '& .MuiTableCell-root': {
             textAlign: 'left',
             whiteSpace: 'nowrap'
@@ -112,6 +162,6 @@ export default function Roles() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   )
 }

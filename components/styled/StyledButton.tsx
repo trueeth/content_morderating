@@ -9,21 +9,45 @@ const StyledButton = styled(Button)({
   lineHeight: 1.5,
   backgroundImage: 'var(--Gradiant)',
   margin: '0 10px',
-  color: 'white',
+  color: 'white'
 })
 
-const PrimaryButton = styled(Button)({
-  boxShadow: 'none',
-  textTransform: 'capitalize',
-  fontSize: 16,
-  padding: '6px 12px',
-  lineHeight: 1.5,
-  backgroundColor: 'var(--Primary1)',
-  margin: '0 10px',
-  color: 'white',
-  '&:hover': {
-    backgroundColor: 'var(--Primary1)',
-  },
-})
+const PrimaryButton = styled(Button)(
+  ({ active = true }: { active?: boolean }) => ({
+    boxShadow: 'none',
+    textTransform: 'capitalize',
+    fontSize: 16,
+    padding: '6px 12px',
+    lineHeight: 1.5,
+    backgroundColor: active ? 'var(--Primary1)' : '#00000061',
+    margin: '0 10px',
+    color: 'white',
+    textWrap: 'nowrap',
+    width: 'auto !important',
+    '&:hover': {
+      backgroundColor: active ? 'var(--Primary1)' : '#00000061'
+    }
+  })
+)
 
-export { StyledButton, PrimaryButton }
+const TopButton = styled(Button)(
+  ({ active = false, main = true }: { active?: boolean; main?: boolean }) => ({
+    color: active ? 'var(--Primary1)' : '#eee',
+    boxShadow: 'none',
+    textTransform: 'capitalize',
+    margin: '0 5px',
+    fontSize: 16,
+    padding: '6px 12px',
+    lineHeight: 1.5,
+    backgroundColor: main ? 'none' : 'var(--Primary1)',
+
+    '&:focus': {
+      color: 'white'
+    },
+    '&:hover': {
+      backgroundColor: main ? 'none' : 'var(--Primary1)'
+    }
+  })
+)
+
+export { StyledButton, PrimaryButton, TopButton }

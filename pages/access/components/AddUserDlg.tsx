@@ -2,10 +2,20 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
-import { Grid, MenuItem, Select, Typography } from '@mui/material'
+import {
+  Grid,
+  InputAdornment,
+  MenuItem,
+  Select,
+  Tooltip,
+  Typography
+} from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { PrimaryTextField } from 'components/styled/TextField'
 import { EUserRole, EUserType } from 'interfaces'
+import InfoIcon from '@mui/icons-material/Info'
+import CustomSelect from 'components/styled/Select'
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 
 const Groups = ['Moderators Group 1', 'Moderators Frontend Development']
 
@@ -38,83 +48,112 @@ export default function AddUserDlg({
         }}
       >
         {/*---------title-----------*/}
-        <Typography
-          sx={{
-            fontSize: '1.3rem',
-            fontWeight: ' 600',
-            py: '2rem',
-            color: '#333'
-          }}
-        >
-          Add New User
-        </Typography>
+        <Box sx={{ display: 'flex', py: '2rem' }}>
+          <Typography
+            sx={{
+              fontSize: '1.3rem',
+              fontWeight: ' 600',
+              color: '#333'
+            }}
+          >
+            Add New User
+          </Typography>
+          <Tooltip title="Add New User">
+            <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
+          </Tooltip>
+        </Box>
 
         <Box>
-          <Grid container spacing={3}>
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              '& .MuiGrid-item': {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.5
+              }
+            }}
+          >
             <Grid item xs={12} md={6}>
               <Typography>Full Name</Typography>
-              <PrimaryTextField />
+              <PrimaryTextField placeholder="Enter the full name" />
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Email Address</Typography>
-              <PrimaryTextField />
+              <PrimaryTextField placeholder="Enter the full address" />
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Mobile Number</Typography>
-              <PrimaryTextField />
+              <PrimaryTextField placeholder="Enter the mobile number" />
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>User Type</Typography>
-              <Select
+              <CustomSelect
                 value={vState.type}
                 onChange={(e) => handleUserInput('type', e.target.value)}
-                fullWidth
-                sx={{ height: '45px' }}
+                placeholder="Select from the list"
               >
                 {Object.values(EUserType).map((item, index) => (
                   <MenuItem key={index} value={item}>
                     {item}
                   </MenuItem>
                 ))}
-              </Select>
+              </CustomSelect>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Group</Typography>
-              <Select
+              <CustomSelect
                 value={vState.group}
                 onChange={(e) => handleUserInput('group', e.target.value)}
-                fullWidth
-                sx={{ height: '45px' }}
+                placeholder="Select from the list"
               >
                 {Groups.map((item, index) => (
                   <MenuItem key={index} value={item}>
                     {item}
                   </MenuItem>
                 ))}
-              </Select>
+              </CustomSelect>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Role</Typography>
-              <Select
+              <CustomSelect
                 value={vState.role}
                 onChange={(e) => handleUserInput('role', e.target.value)}
-                fullWidth
-                sx={{ height: '45px' }}
+                placeholder="Select from the list"
               >
                 {Object.values(EUserRole).map((item, index) => (
                   <MenuItem key={index} value={item}>
                     {item}
                   </MenuItem>
                 ))}
-              </Select>
+              </CustomSelect>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Password</Typography>
-              <PrimaryTextField />
+              <PrimaryTextField
+                placeholder="Create your password"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <VisibilityOutlinedIcon />
+                    </InputAdornment>
+                  )
+                }}
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography>Confirm Password</Typography>
-              <PrimaryTextField />
+              <PrimaryTextField
+                placeholder="Confirm your password"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <VisibilityOutlinedIcon />
+                    </InputAdornment>
+                  )
+                }}
+              />
             </Grid>
           </Grid>
         </Box>

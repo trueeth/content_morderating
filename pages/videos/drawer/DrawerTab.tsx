@@ -29,7 +29,7 @@ export default function DrawerTab() {
         <Tab label="Play the Scene" />
         <Tab label="Activities" />
       </Tabs>
-      <Box sx={{ p: 2 }}>
+      <Box>
         <TabPanel value={vState.tabIndex} index={0}>
           <DrawerTabOverview></DrawerTabOverview>
         </TabPanel>
