@@ -2,10 +2,12 @@ import { TextField } from '@mui/material'
 import { styled } from '@mui/system'
 
 const PrimaryTextField = styled(TextField)({
+  fontFamily: 'Raleway',
+
   '& .MuiOutlinedInput-root': {
     height: '40px',
-    fontSize:'1rem',
-    backgroundColor:'#F9F9FF',
+    fontSize: '1rem',
+    backgroundColor: 'white',
 
     '& fieldset': {
       borderColor: '#eee'
@@ -16,8 +18,7 @@ const PrimaryTextField = styled(TextField)({
     '&.Mui-focused fieldset': {
       borderColor: 'var(--Primary1)'
     },
-    border:'1px solid #E7E7E7',
-    boxShadow:'4.89017px 4.89017px 25px 0px #00000024'
+    border: '1px solid #E7E7E7'
   }
 })
 

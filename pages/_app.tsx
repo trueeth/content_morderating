@@ -5,9 +5,10 @@ import Layout from '../components/Layout'
 import Providers from '../Providers'
 import index from '../store'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import { ReactElement, ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
+import { AuthProvider } from 'auth/context/auth-provider'
+import AuthGuard from 'auth/guard/auth-guard'
 
 const theme = createTheme({
   components: {
@@ -141,14 +142,20 @@ function MyApp(props: AppPropsWithLayout) {
   const { pageProps, Component } = props
 
   const getLayout =
-    Component.getLayout ?? ((page) => <Layout title="VideoApp">{page}</Layout>)
+    Component.getLayout ??
+    ((page) => (
+      <AuthGuard>
+        <Layout title="VideoApp">{page}</Layout>
+      </AuthGuard>
+    ))
 
   return (
     <Providers store={index}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {(() => getLayout(<Component {...pageProps} />))()}
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          {(() => getLayout(<Component {...pageProps} />))()}
+        </ThemeProvider>
+      </AuthProvider>
     </Providers>
   )
 }

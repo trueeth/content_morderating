@@ -78,9 +78,7 @@ export default function AddReportDlg({
               <Typography>Report Type</Typography>
               <CustomSelect
                 value={vState.reportType}
-                onChange={(e) =>
-                  handleUserInput('scheduleType', e.target.value)
-                }
+                onChange={(e) => handleUserInput('reportType', e.target.value)}
                 placeholder="Select from list"
               >
                 {Object.values(EReportType).map((item, index) => (

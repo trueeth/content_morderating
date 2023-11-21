@@ -8,11 +8,9 @@ const RowType = (props: { type: EVideoType }) => {
   if (props.type === EVideoType.video) {
     return (
       <React.Fragment>
-        <Box className={'flex'}>
+        <Box display="flex" gap={0.5}>
           <Slideshow sx={{ color: '#888' }} />
-          <Typography className={'flex justify-center item-center ml-3'}>
-            Video
-          </Typography>
+          <Typography>Video</Typography>
         </Box>
       </React.Fragment>
     )

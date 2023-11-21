@@ -15,7 +15,8 @@ import {
   Checkbox,
   Tooltip,
   Pagination,
-  PaginationItem, Select,
+  PaginationItem,
+  Select
 } from '@mui/material'
 import { PrimaryButton } from 'components/styled/StyledButton'
 import { EReportHistory, EScheduleType, TScheduledReports } from 'interfaces'
@@ -130,23 +131,22 @@ const ScheduledReports: Array<TScheduledReports> = [
 ]
 
 export default function ScheduledReport() {
-  const [vState, setState] = useState({ openDlg: false , sortBy:'0'})
+  const [vState, setState] = useState({ openDlg: false, sortBy: '0' })
   const handleSortByChange = (event: any) => {
-    setState({ ...vState,sortBy: event.target.value })
+    setState({ ...vState, sortBy: event.target.value })
   }
   const closeDlg = () => {
     setState({ ...vState, openDlg: false })
   }
   return (
     <Box
-
       sx={{
-        backgroundColor:'white',
-        boxShadow:'0px 0px 25px 0px #F3F3F3;',
-        borderRadius:'.4rem',
-        border:'1px solid var(--Stroke, #E8E8E8)',
-        overflow:'hidden',
-        m:3
+        backgroundColor: 'white',
+        boxShadow: '0px 0px 25px 0px #F3F3F3;',
+        borderRadius: '.4rem',
+        border: '1px solid var(--Stroke, #E8E8E8)',
+        overflow: 'hidden',
+        mt: 3
       }}
     >
       <Box
@@ -154,7 +154,7 @@ export default function ScheduledReport() {
           display: 'flex',
           width: '100%',
           color: 'black',
-          backgroundColor:'#00000008'
+          backgroundColor: '#00000008'
         }}
       >
         <Grid
@@ -179,28 +179,29 @@ export default function ScheduledReport() {
               sx={{
                 ml: 2,
                 bgcolor: '#ff1313a0',
-                opacity:'0.6',
+                opacity: '0.6',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0',
-                  opacity:'0.6', }
+                '&:hover': { bgcolor: '#ff1313a0', opacity: '0.6' }
               }}
             >
               Delete
             </Button>
           </Grid>
 
-          <Grid item
-                sx={{
-                  flexGrow: 1,
-                  justifyContent: { md:'end',xs:'left' },
-                  display: 'flex',
-                  flexWrap:'wrap',
-                  flexDiretion:{
-                    xs:'column'
-                  }
-          }}>
-            <Grid item sx={{ display: 'flex',}}>
-              <Typography whiteSpace='nowrap' mr={1}>
+          <Grid
+            item
+            sx={{
+              flexGrow: 1,
+              justifyContent: { md: 'end', xs: 'left' },
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDiretion: {
+                xs: 'column'
+              }
+            }}
+          >
+            <Grid item sx={{ display: 'flex' }}>
+              <Typography whiteSpace="nowrap" mr={1}>
                 Sort by:
               </Typography>
               <Select
@@ -209,20 +210,22 @@ export default function ScheduledReport() {
                 sx={{
                   height: '36px',
                   width: '6rem',
-                  mr: 2,
+                  mr: 2
                 }}
               >
                 <MenuItem value={0}>All</MenuItem>
                 <MenuItem value={1}>Name</MenuItem>
               </Select>
             </Grid>
-            <Grid sx={{
-              display:'flex',
-              paddingTop: {
-                sm:0,
-                xs:2
-              }
-            }}>
+            <Grid
+              sx={{
+                display: 'flex',
+                paddingTop: {
+                  sm: 0,
+                  xs: 2
+                }
+              }}
+            >
               <SearchInput />
             </Grid>
           </Grid>
@@ -246,7 +249,7 @@ export default function ScheduledReport() {
           borderRadius: '15px',
           px: 2,
           width: '100%',
-          boxShadow:'none',
+          boxShadow: 'none',
           '& .MuiTableCell-root': {
             textAlign: 'left',
             whiteSpace: 'nowrap'
