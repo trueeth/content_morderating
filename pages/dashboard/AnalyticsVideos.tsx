@@ -72,17 +72,44 @@ const NewVideoRow = (props: { row: TNewVideoRowType }) => {
 export default function AnalyticVideos() {
   return (
     <Box className="bg-white border-radius-5 h-full p-15 text-black">
-      <Typography>New Videos</Typography>
+      <Typography sx={{
+        color:"#1A2057",
+        fontWeight:'600',
+        fontFamily:"Raleway !important",
+        ml:2
+      }}>New Videos</Typography>
       <TableContainer
         component={Paper}
-        sx={{ borderRadius: '15px', px: 2, width: '100%', mt: '1rem' }}
+        sx={{
+          boxShadow:"none", width: '100%', mt: '0rem',
+          // '& .MuiTableRow-root': {
+          //   border:'none',
+          //   // backgroundColor:'red'
+          // },
+          '&  td':{
+              borderRadius:`0 !important`,
+              borderStyle:'dashed !important',
+              borderBottom:'none !important',
+              borderLeft:'none !important',
+              borderRight:'none !important',
+              // borderTop:'none !important',
+          },
+          // '& tr':{
+          //   borderStyle:'dotted !important',
+          //   borderBottom:'none !important',
+          //   borderLeft:'none !important',
+          //   borderRight:'none !important',
+          //   // borderTop:'none !important',
+          // }
+        }}
       >
         <Table
           aria-label="collapsible table"
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none'
-            }
+            },
+
           }}
         >
           <TableHead>
@@ -99,7 +126,9 @@ export default function AnalyticVideos() {
           </TableHead>
           <TableBody>
             {rows.map((row, index) => (
+              <>
               <NewVideoRow key={index} row={row} />
+              </>
             ))}
           </TableBody>
         </Table>

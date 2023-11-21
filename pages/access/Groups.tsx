@@ -133,8 +133,10 @@ export default function Groups() {
               sx={{
                 ml: 2,
                 bgcolor: '#ff1313a0',
+                opacity:'0.6',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' }
+                '&:hover': { bgcolor: '#ff1313a0' ,
+                  opacity:'0.6',}
               }}
             >
               Delete

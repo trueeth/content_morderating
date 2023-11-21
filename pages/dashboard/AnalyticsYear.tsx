@@ -5,6 +5,7 @@ import { Box, Select, SelectChangeEvent, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
 import { Months } from 'interfaces'
+import { ExpandMoreOutlined } from '@mui/icons-material'
 
 const ApexCharts = dynamic(() => import('react-apexcharts'), { ssr: false })
 
@@ -122,12 +123,28 @@ export default function AnalyticsYear() {
           onChange={handleSelect}
           sx={{
             height: '30px',
-            width: '140px'
+            width: '110px',
+            fontSize:'0.75rem',
+            backgroundColor:'#F9F9FF',
+            '& div': {
+              color:'#474747'
+            },
+            '& fieldset':{
+              border:'none'
+            }
           }}
+          IconComponent={ExpandMoreOutlined}
+          MenuProps={{ sx: { height: '300px', fontSize:'0.75rem' } }}
         >
-          <MenuItem value={2023}>Year 2023</MenuItem>
-          <MenuItem value={2022}>Year 2022</MenuItem>
-          <MenuItem value={2021}>Year 2021</MenuItem>
+          <MenuItem sx={{
+            fontSize:'0.75rem',
+          }} value={2023}>Year 2023</MenuItem>
+          <MenuItem sx={{
+            fontSize:'0.75rem',
+          }}  value={2022}>Year 2022</MenuItem>
+          <MenuItem sx={{
+            fontSize:'0.75rem',
+          }}  value={2021}>Year 2021</MenuItem>
         </Select>
       </Box>
 

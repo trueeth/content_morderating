@@ -29,6 +29,7 @@ import useMounted from '../hooks/useMounted'
 import { useState } from 'react'
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
 import Paper from '@mui/material/Paper'
+import Headset from '/assets/headset.svg'
 
 function UserAction() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -230,7 +231,7 @@ const Header = () => {
                 return (
                   <Box key={index} onClick={handleHeader(item.title)}>
                     <TopButton
-                      main={item.title !== 'Upload' ? true : false}
+                      main={'Upload' !== item.title}
                       active={
                         router.pathname === `/${item.title.toLowerCase()}`
                       }
@@ -262,8 +263,10 @@ const Header = () => {
               </Box>
               <UserAction />
             </Box>
-            <Box sx={{ px: 2, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              <HeadsetMicIcon />
+            <Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              {/*<HeadsetMicIcon />*/}
+              {/*<Headset key={2}/>*/}
+              <Image src={Headset} alt={'headset'} width={24}></Image>
             </Box>
           </Box>
         </Box>
