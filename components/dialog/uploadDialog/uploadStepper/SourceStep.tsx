@@ -9,6 +9,10 @@ import { PrimaryTextField } from 'components/styled/TextField'
 // import { FileUpload } from '@mui/icons-material'
 import fileUpload from '/assets/fileUpload.svg'
 import Image from 'next/image'
+import { log } from 'next/dist/server/typescript/utils'
+import axios, { AxiosRequestConfig } from 'axios'
+import { useDispatch } from 'react-redux'
+import { setUploadProgress } from '../../../../store/reducers/upload.reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -39,8 +43,10 @@ const rejectStyle = {
   borderColor: '#ff1744'
 }
 
-const UploadPc = (props: { handleFileSelect:(acceptedFiles: File[])=>void }) => {
 
+const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
+
+  // --------drop zone-------
   const {
     acceptedFiles,
     getRootProps,
@@ -49,7 +55,6 @@ const UploadPc = (props: { handleFileSelect:(acceptedFiles: File[])=>void }) => 
     isDragAccept,
     isDragReject
   } = useDropzone()
-
 
   const style = useMemo(
     () => ({
@@ -61,10 +66,11 @@ const UploadPc = (props: { handleFileSelect:(acceptedFiles: File[])=>void }) => 
     [isFocused, isDragAccept, isDragReject]
   )
 
-  useEffect(()=>{
-    props.handleFileSelect(acceptedFiles)
-  },[acceptedFiles])
+  useEffect(() => {
 
+    props.handleFileSelect(acceptedFiles[0])
+
+  }, [acceptedFiles.length])
 
   const files = acceptedFiles.map((file: any) => (
     <li key={file.path}>
@@ -74,16 +80,20 @@ const UploadPc = (props: { handleFileSelect:(acceptedFiles: File[])=>void }) => 
   return (
     <Box {...getRootProps({ style })}>
       <input {...getInputProps()} />
-      <Box className="flex">
-        <Box className="flex item-center mr-5">
+      <Box className='flex'>
+        <Box className='flex item-center mr-5'>
+          {/*<FileUpload*/}
+          {/*  fontSize="large"*/}
+          {/*  sx={{ display: { xs: 'none', md: 'block' } }}*/}
+          {/*/>*/}
           <Image src={fileUpload} alt={'fileUpload'} style={{
             width: '1.5rem',
-            marginRight:'1rem',
+            marginRight: '1rem'
           }} />
         </Box>
         <Box>
           <Box
-            display="flex"
+            display='flex'
             sx={{ flexDirection: { xs: 'column', md: 'row' } }}
           >
             <Typography
@@ -105,44 +115,95 @@ const UploadPc = (props: { handleFileSelect:(acceptedFiles: File[])=>void }) => 
   )
 }
 
+type TFile = File | null
+
+type TStateSource = {
+  type: string,
+  uploadFile: TFile,
+  uploadProgress?:number,
+  uploadRemaining?:number,
+}
+
 export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
 }) {
-  const [vState, setState] = useState({ type: 'new', uploadFiles:null , isLoading:false})
+
+
+  const [vState, setState] = useState<TStateSource>({ type: 'new', uploadFile: null , uploadProgress:0, uploadRemaining:0})
+  const dispatch=useDispatch();
+
+  const onFileUpload = async () => {
+    if (!vState.uploadFile)
+      return
+
+
+    try {
+
+      var formData = new FormData()
+
+
+      formData.append('media', vState.uploadFile)
+
+      let startAt = Date.now()
+
+      const options: AxiosRequestConfig = {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        onUploadProgress: (progressEvent: any) => {
+          const { loaded, total } = progressEvent
+
+          // Calculate the progress percentage
+          const percentage = (loaded * 100) / total
+          // setState({...vState, uploadProgress:+percentage.toFixed(2)})
+
+          // Calculate the progress duration
+          const timeElapsed = Date.now() - startAt
+          const uploadSpeed = loaded / timeElapsed
+          const duration = (total - loaded) / uploadSpeed
+          // setState({...vState,uploadRemaining:duration})
+          dispatch(setUploadProgress({progress:+percentage.toFixed(2), remaining:duration}))
+        }
+      }
+
+      const {
+        data: { data }
+      } = await axios.post<{
+        data: {
+          url: string | string[];
+        };
+      }>('/api/upload', formData, options)
+
+      console.log('File was uploaded successfylly:', data)
+    } catch (error) {
+      console.error(error)
+      alert('Sorry! something went wrong.')
+    }
+  }
+
+  const handleFileSelect = (file: TFile) => {
+    setState({ ...vState, uploadFile: file })
+  }
 
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
   }
 
-  const handleUpload = async () => {
-    // console.log(vState.uploadFiles)
+  const handleStartUpload = async  () => {
+    if (!vState.uploadFile) {
+      alert('No file was chosen')
+      return
+    }
 
-    /* Add files to FormData */
-    const formData = new FormData();
-    Object.values(vState.uploadFiles).forEach(file => {
-      // formData.append('file', file);
-    })
-
-    /* Send request to our api route */
-    const response = await fetch('/api/upload', {
-      method: 'POST',
-      body: formData
-    });
-
-    const body = await response.json() as { status: 'ok' | 'fail', message: string };
-
-    alert(body.message);
-
-    setState({...vState, isLoading: true})
+    /** File validation */
+    // if (vState.uploadFile.type.indexOf('video') < 0) {
+    //   alert('Please select a valide video')
+    //   return
+    // }
     props.handleNext()
+    setTimeout(()=>{
+          onFileUpload()
+    },1000)
   }
-
-
-  const handleFileSelect=(files:File[])=>{
-    setState({...vState, uploadFiles: files})
-  }
-
 
   return (
     <StepWrapper>
@@ -176,7 +237,7 @@ export default function SourceStep(props: {
             value={'url'}
           />
         </Box>
-        <PrimaryTextField fullWidth={true} placeholder="Enter  URL" />
+        <PrimaryTextField fullWidth={true} placeholder='Enter  URL' />
 
         <Box>
           <Typography>Upload from your PC</Typography>
@@ -196,29 +257,30 @@ export default function SourceStep(props: {
             value={'netflix'}
           />
         </Box>
-        <PrimaryTextField placeholder="Enter the full movie name" />
+        <PrimaryTextField placeholder='Enter the full movie name' />
 
         <Box
           sx={{
             mt: 2,
             justifyContent: 'center !important',
             '& .MuiButton-root': { width: '100px' },
-            display:'flex',
-            flexDirection:{
-              xs:'column',
-              sm:'row'
-          }
-        }}
+            display: 'flex',
+            flexDirection: {
+              xs: 'column',
+              sm: 'row'
+            }
+          }}
         >
+
           <PrimaryButton active={false} onClick={props.handleBack}>Back</PrimaryButton>
           <PrimaryButton
             sx={{
-              mt:{
-                xs:2,
-                sm:0
+              mt: {
+                xs: 2,
+                sm: 0
               }
             }}
-            onClick={handleUpload}
+            onClick={handleStartUpload}
           >Start the Upload
           </PrimaryButton>
         </Box>

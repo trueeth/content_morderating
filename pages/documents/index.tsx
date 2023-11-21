@@ -1,3 +1,10 @@
-export default function Access() {
-  return <div></div>
+import React from 'react'
+
+const Documents=()=>{
+  return(
+    <>
+    </>
+  )
 }
+
+export default Documents
