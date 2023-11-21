@@ -300,9 +300,10 @@ export default function ReportHistory() {
                 <TableCell>
                   <Box
                     sx={{
-                      p: 0.5,
+                      p:'4px 10px',
                       borderRadius: '5px',
                       width: 'fit-content',
+                      fontSize:'0.7rem',
                       bgcolor:
                         item.status === EReportHistoryStatus.processing
                           ? '#FFE6C9'

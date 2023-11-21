@@ -42,7 +42,8 @@ const rows: THistoryRowType[] = [
 
 export default function HistoryTable() {
   return (
-    <TableContainer component={Paper} sx={{ borderRadius: '15px', p: 2 }}>
+    <TableContainer component={Paper} sx={{ borderRadius: '15px', p: 2 ,
+      boxShadow:'none',}}>
       <Table
         aria-label="collapsible table"
         sx={{

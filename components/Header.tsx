@@ -30,15 +30,25 @@ import { useState } from 'react'
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
 import Paper from '@mui/material/Paper'
 import Headset from '/assets/headset.svg'
+import { useAuthContext } from 'auth/hooks'
 
 function UserAction() {
+  const { logout } = useAuthContext()
+  const router = useRouter()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (e: any) => {
     setAnchorEl(e.currentTarget)
   }
-  const handleClose = () => {
-    setAnchorEl(null)
+
+  const handleLogout = async () => {
+    try {
+      setAnchorEl(null)
+      await logout()
+      router.replace('/')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -56,10 +66,10 @@ function UserAction() {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => setAnchorEl(null)}
       >
-        <MenuItem onClick={handleClose}>Log Out</MenuItem>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
       </Menu>
     </div>
   )
