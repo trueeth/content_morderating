@@ -14,7 +14,7 @@ export function UploadStatus(props: { value: number }) {
   const label = ['Uploading', 'Analyzing', 'Indexing', 'Scoring']
   const labelIndex = Math.ceil((props.value / 100) * 4) - 1
   return (
-    <Box sx={{ flexGrow: 1 }} display={'flex'}>
+    <Box sx={{ flexGrow: 1, alignItems:'center' }} display={'flex'}>
       <LinearProgress
         className={clsx(
           'flagged-scene',
@@ -26,7 +26,7 @@ export function UploadStatus(props: { value: number }) {
         variant="determinate"
         value={percent}
       />
-      <Typography className={'text-6 ml-3'}>{label[labelIndex]}</Typography>
+      <Typography className={'text-8 ml-3'}>{label[labelIndex]}</Typography>
     </Box>
   )
 }
@@ -38,7 +38,7 @@ function HistoryRow(props: { row: THistoryRowType }) {
     <React.Fragment>
       {/*-------main row-----------*/}
       <TableRow>
-        <TableCell sx={{ minWidth: '200px' }}>{row.name}</TableCell>
+        <TableCell className={'text-8'} sx={{ minWidth: '200px' }}>{row.name}</TableCell>
         <TableCell>
           <Box
             sx={{
@@ -49,10 +49,10 @@ function HistoryRow(props: { row: THistoryRowType }) {
             }}
           >
             <Slideshow sx={{ color: '#888' }} />
-            <Typography>{row.source}</Typography>
+            <Typography className={'text-9 ml-3'}>{row.source}</Typography>
           </Box>
         </TableCell>
-        <TableCell>{row.date}</TableCell>
+        <TableCell className={'text-8'}>{row.date}</TableCell>
         <TableCell>
           <UploadStatus value={row.status} />
         </TableCell>

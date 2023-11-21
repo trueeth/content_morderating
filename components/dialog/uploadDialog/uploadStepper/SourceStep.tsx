@@ -6,7 +6,9 @@ import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
 import { CSSProperties } from 'styled-components'
 import { PrimaryTextField } from 'components/styled/TextField'
-import { FileUpload } from '@mui/icons-material'
+// import { FileUpload } from '@mui/icons-material'
+import fileUpload from '/assets/fileUpload.svg'
+import Image from 'next/image'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -67,10 +69,14 @@ const UploadPc = () => {
       <input {...getInputProps()} />
       <Box className="flex">
         <Box className="flex item-center mr-5">
-          <FileUpload
-            fontSize="large"
-            sx={{ display: { xs: 'none', md: 'block' } }}
-          />
+          {/*<FileUpload*/}
+          {/*  fontSize="large"*/}
+          {/*  sx={{ display: { xs: 'none', md: 'block' } }}*/}
+          {/*/>*/}
+          <Image src={fileUpload} alt={'fileUpload'} style={{
+            width: '1.5rem',
+            marginRight:'1rem',
+          }} />
         </Box>
         <Box>
           <Box

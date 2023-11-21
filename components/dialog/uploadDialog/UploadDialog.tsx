@@ -97,8 +97,12 @@ export default function UploadDialog() {
                   overflow: 'hidden'
                 }}
               >
-                <ToggleButton value={0}>Upload</ToggleButton>
-                <ToggleButton value={1}>History</ToggleButton>
+                <ToggleButton sx={{
+                  padding:'7px 30px'
+                }} value={0}>Upload</ToggleButton>
+                <ToggleButton sx={{
+                  padding:'7px 30px'
+                }}  value={1}>History</ToggleButton>
               </ToggleButtonGroup>
             </Box>
             <TabPanel value={vState.tabIndex} index={0}>

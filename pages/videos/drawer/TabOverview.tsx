@@ -55,21 +55,13 @@ const itemData = [
     img: overview10,
     title: 'overview',
   },
-  {
-    img: overview11,
-    title: 'overview',
-  },
-  {
-    img: overview12,
-    title: 'overview',
-  },
 ]
 
 const ImageItemStyle = {
   margin: '.3rem',
   borderRadius: '.3rem',
-  width: '10rem',
-  height: '7.5rem',
+  width: '7rem',
+  height: '5rem',
 }
 
 export default function DrawerTabOverview() {
@@ -81,7 +73,7 @@ export default function DrawerTabOverview() {
       }}
     >
       <Typography>Most Interest Frames</Typography>
-      <Box className="flex flex-wrap" mb={3}>
+      <Box className="flex flex-wrap" mb={5}>
         {itemData.map((item, index) => {
           return (
             <Image
@@ -89,8 +81,8 @@ export default function DrawerTabOverview() {
               src={item.img}
               alt={item.title}
               style={ImageItemStyle}
-              width={80}
-              height={50}
+              width={40}
+              height={30}
             />
           )
         })}
@@ -98,7 +90,11 @@ export default function DrawerTabOverview() {
       <Typography>AI Description</Typography>
 
       <Typography
-        sx={{ my: 1, p: 1, border: '1px solid #ccc', borderRadius: '10px' }}
+        sx={{
+          my: 1, p: 2, border: '1px solid #ccc', borderRadius: '10px',
+          fontSize:'0.8rem',
+          color:'#808080'
+        }}
       >
         This is simply dummy text of the printing and typesetting industry. is
         simply dummy text of the best ipsum has been the top offer

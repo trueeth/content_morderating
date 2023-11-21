@@ -10,28 +10,32 @@ import { styled } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import { Slideshow } from '@mui/icons-material'
 import { useState } from 'react'
+import renderHTML from 'react-render-html';
 import { CSceneState } from 'interfaces'
+
+const boldBefore='&lt;b&gt;'
+const boldAfter='&lt;&#47;b&gt;'
 
 const historys: IHistoryRow[] = [
   {
     writerName: 'Mark Mohammad',
     writeDate: '07:55PM SEP, 29, 2923',
-    description: 'Scene Added'
+    description: boldBefore+'Scene Added'+boldAfter
   },
   {
     writerName: 'Carolina 5',
     writeDate: '12:10PM SEP, 28, 2923',
-    description: 'Change status to Unapproved with note,This is good'
+    description: 'Change status to '+boldBefore+'Unapproved'+boldAfter+' with note,'+boldBefore+'This is good'+boldAfter
   },
   {
     writerName: 'John L',
     writeDate: '09:10PM SEP, 27, 2923',
-    description: 'Change Status to Approved'
+    description: 'Change Status to '+boldBefore+'Approved'+boldAfter
   },
   {
     writerName: 'Carolina S',
     writeDate: '07:55PM SEP, 29, 2923',
-    description: 'Change Status to Processing with note:Done'
+    description: 'Change Status to '+boldBefore+'Processing'+boldAfter+' with note:'+boldBefore+'Done'+boldAfter
   }
 ]
 
@@ -43,10 +47,11 @@ interface IHistoryRow {
 
 const HistoryDescription = styled('div')({
   backgroundColor: '#eee',
-  padding: '3px 5px',
+  padding: '7px 14px',
   borderRadius: '5px',
-  fontSize: '14px',
-  lineHeight: '32px'
+  fontSize: '0.7rem',
+fontWeight: '900',
+fontFamily: 'Raleway !important',
 })
 
 const CssTextField = styled(TextField)({
@@ -73,8 +78,12 @@ const HistoryRow = (props: IHistoryRow) => {
         borderBottom: '1px solid #E8E8E8'
       }}
     >
-      <IconButton sx={{ p: 1, bgcolor: '#eee', mr: 2, height: '45px' }}>
-        <Slideshow />
+      <IconButton sx={{ p: 1, backgroundColor: '#eee', mr: 2,
+        color:'#75598D',':hover': {
+        backgroundColor:'#eee',
+        }
+      }}>
+        <Slideshow fontSize={'small'} />
       </IconButton>
 
       <Box
@@ -88,7 +97,8 @@ const HistoryRow = (props: IHistoryRow) => {
         }}
       >
         <Box>
-          <Typography sx={{ fontSize: '14px', color: '#333' }}>
+          <Typography sx={{ fontSize: '14px',
+            color:'#1A2057', fontWeight:700 }}>
             {props.writerName}
           </Typography>
           <Typography sx={{ fontSize: '12px', color: '#888' }}>
@@ -96,7 +106,7 @@ const HistoryRow = (props: IHistoryRow) => {
           </Typography>
         </Box>
 
-        <HistoryDescription>{props.description}</HistoryDescription>
+        <HistoryDescription >{renderHTML(renderHTML(props.description))}</HistoryDescription>
       </Box>
     </Box>
   )
@@ -134,7 +144,13 @@ export default function DrawerTabActivities() {
           onChange={handleScenceState}
         >
           {CSceneState.map((item, index) => (
-            <ToggleButton value={item} key={index}>
+            <ToggleButton value={item} key={index}
+                          sx={{
+                            width: '130px',
+                            height: '33px',
+                            '&:hover': { backgroundColor: 'var(--Primary1)' }
+                          }}
+            >
               {item}
             </ToggleButton>
           ))}
@@ -155,16 +171,18 @@ export default function DrawerTabActivities() {
         <CssTextField
           fullWidth
           placeholder="Write your note"
-          sx={{ mr: 2 }}
-          InputProps={{ sx: { height: '45px' } }}
+          sx={{ mr: 2
+          }}
+          InputProps={{ sx: { height: '33px',
+              fontSize:'0.8rem' } }}
         ></CssTextField>
 
         <Button
           variant="contained"
           sx={{
             backgroundColor: 'var(--Primary1)',
-            width: '180px',
-            height: '43px',
+            width: '130px',
+            height: '33px',
             '&:hover': { backgroundColor: 'var(--Primary1)' }
           }}
         >
