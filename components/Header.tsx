@@ -202,7 +202,11 @@ const Header = () => {
 
   const HeaderDesktop = () => {
     return (
-      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
+      >
         <Box
           sx={{
             width: '100%',
@@ -264,8 +268,6 @@ const Header = () => {
               <UserAction />
             </Box>
             <Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              {/*<HeadsetMicIcon />*/}
-              {/*<Headset key={2}/>*/}
               <Image src={Headset} alt={'headset'} width={24}></Image>
             </Box>
           </Box>
@@ -276,7 +278,11 @@ const Header = () => {
 
   const HeaderMobile = () => {
     return (
-      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
+      >
         <Box
           sx={{
             width: '100%',

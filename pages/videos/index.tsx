@@ -26,7 +26,7 @@ const Video = () => {
         borderRadius: '.4rem',
         border: '1px solid var(--Stroke, #E8E8E8)',
         overflow: 'hidden',
-        m: 1
+        mt: 1
       }}
     >
       <VideoTableHeader />

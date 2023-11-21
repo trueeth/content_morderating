@@ -14,7 +14,7 @@ export function UploadStatus(props: { value: number }) {
   const label = ['Uploading', 'Analyzing', 'Indexing', 'Scoring']
   const labelIndex = Math.ceil((props.value / 100) * 4) - 1
   return (
-    <Box sx={{ flexGrow: 1 }} display={'flex'}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.6, flexGrow: 1 }}>
       <LinearProgress
         className={clsx(
           'flagged-scene',
@@ -26,7 +26,7 @@ export function UploadStatus(props: { value: number }) {
         variant="determinate"
         value={percent}
       />
-      <Typography className={'text-6 ml-3'}>{label[labelIndex]}</Typography>
+      <Typography sx={{ fontSize: '12px' }}>{label[labelIndex]}</Typography>
     </Box>
   )
 }

@@ -100,7 +100,7 @@ export default function Groups() {
         borderRadius: '.4rem',
         border: '1px solid var(--Stroke, #E8E8E8)',
         overflow: 'hidden',
-        m: 2
+        mt: 2
       }}
     >
       <Box
@@ -133,10 +133,9 @@ export default function Groups() {
               sx={{
                 ml: 2,
                 bgcolor: '#ff1313a0',
-                opacity:'0.6',
+                opacity: '0.6',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' ,
-                  opacity:'0.6',}
+                '&:hover': { bgcolor: '#ff1313a0', opacity: '0.6' }
               }}
             >
               Delete

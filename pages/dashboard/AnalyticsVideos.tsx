@@ -56,7 +56,7 @@ const rows = [
 const NewVideoRow = (props: { row: TNewVideoRowType }) => {
   return (
     <TableRow>
-      <TableCell sx={{whiteSpace:'nowrap'}}>{props.row.name}</TableCell>
+      <TableCell sx={{ whiteSpace: 'nowrap' }}>{props.row.name}</TableCell>
       <TableCell>{props.row.date}</TableCell>
       <TableCell>
         <RowRating rating={props.row.rating}></RowRating>
@@ -72,35 +72,29 @@ const NewVideoRow = (props: { row: TNewVideoRowType }) => {
 export default function AnalyticVideos() {
   return (
     <Box className="bg-white border-radius-5 h-full p-15 text-black">
-      <Typography sx={{
-        color:"#1A2057",
-        fontWeight:'600',
-        fontFamily:"Raleway !important",
-        ml:2
-      }}>New Videos</Typography>
+      <Typography
+        sx={{
+          color: '#1A2057',
+          fontWeight: '600',
+          ml: 2
+        }}
+      >
+        New Videos
+      </Typography>
       <TableContainer
         component={Paper}
         sx={{
-          boxShadow:"none", width: '100%', mt: '0rem',
-          // '& .MuiTableRow-root': {
-          //   border:'none',
-          //   // backgroundColor:'red'
-          // },
-          '&  td':{
-              borderRadius:`0 !important`,
-              borderStyle:'dashed !important',
-              borderBottom:'none !important',
-              borderLeft:'none !important',
-              borderRight:'none !important',
-              // borderTop:'none !important',
-          },
-          // '& tr':{
-          //   borderStyle:'dotted !important',
-          //   borderBottom:'none !important',
-          //   borderLeft:'none !important',
-          //   borderRight:'none !important',
-          //   // borderTop:'none !important',
-          // }
+          boxShadow: 'none',
+          width: '100%',
+          mt: '0rem',
+
+          '&  td': {
+            borderRadius: `0 !important`,
+            borderStyle: 'dashed !important',
+            borderBottom: 'none !important',
+            borderLeft: 'none !important',
+            borderRight: 'none !important'
+          }
         }}
       >
         <Table
@@ -108,8 +102,7 @@ export default function AnalyticVideos() {
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none'
-            },
-
+            }
           }}
         >
           <TableHead>
@@ -126,9 +119,7 @@ export default function AnalyticVideos() {
           </TableHead>
           <TableBody>
             {rows.map((row, index) => (
-              <>
               <NewVideoRow key={index} row={row} />
-              </>
             ))}
           </TableBody>
         </Table>
