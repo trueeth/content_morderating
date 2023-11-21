@@ -126,9 +126,7 @@ export default function AnalyticVideos() {
           </TableHead>
           <TableBody>
             {rows.map((row, index) => (
-              <>
               <NewVideoRow key={index} row={row} />
-              </>
             ))}
           </TableBody>
         </Table>

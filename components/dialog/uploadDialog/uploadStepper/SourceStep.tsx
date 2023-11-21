@@ -1,7 +1,7 @@
 import { StepWrapper } from './index'
 import { Box, Radio, Typography } from '@mui/material'
 import * as React from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
 import { CSSProperties } from 'styled-components'
@@ -39,7 +39,8 @@ const rejectStyle = {
   borderColor: '#ff1744'
 }
 
-const UploadPc = () => {
+const UploadPc = (props: { handleFileSelect:(acceptedFiles: File[])=>void }) => {
+
   const {
     acceptedFiles,
     getRootProps,
@@ -48,6 +49,7 @@ const UploadPc = () => {
     isDragAccept,
     isDragReject
   } = useDropzone()
+
 
   const style = useMemo(
     () => ({
@@ -59,6 +61,11 @@ const UploadPc = () => {
     [isFocused, isDragAccept, isDragReject]
   )
 
+  useEffect(()=>{
+    props.handleFileSelect(acceptedFiles)
+  },[acceptedFiles])
+
+
   const files = acceptedFiles.map((file: any) => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
@@ -69,10 +76,6 @@ const UploadPc = () => {
       <input {...getInputProps()} />
       <Box className="flex">
         <Box className="flex item-center mr-5">
-          {/*<FileUpload*/}
-          {/*  fontSize="large"*/}
-          {/*  sx={{ display: { xs: 'none', md: 'block' } }}*/}
-          {/*/>*/}
           <Image src={fileUpload} alt={'fileUpload'} style={{
             width: '1.5rem',
             marginRight:'1rem',
@@ -106,11 +109,41 @@ export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
 }) {
-  const [vState, setState] = useState({ type: 'new' })
+  const [vState, setState] = useState({ type: 'new', uploadFiles:null , isLoading:false})
 
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
   }
+
+  const handleUpload = async () => {
+    // console.log(vState.uploadFiles)
+
+    /* Add files to FormData */
+    const formData = new FormData();
+    Object.values(vState.uploadFiles).forEach(file => {
+      formData.append('file', file);
+    })
+
+    /* Send request to our api route */
+    const response = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData
+    });
+
+    const body = await response.json() as { status: 'ok' | 'fail', message: string };
+
+    alert(body.message);
+
+    setState({...vState, isLoading: true})
+    props.handleNext()
+  }
+
+
+  const handleFileSelect=(files:File[])=>{
+    setState({...vState, uploadFiles: files})
+  }
+
+
   return (
     <StepWrapper>
       <Box
@@ -153,7 +186,7 @@ export default function SourceStep(props: {
             value={'pc'}
           />
         </Box>
-        <UploadPc />
+        <UploadPc handleFileSelect={handleFileSelect} />
 
         <Box>
           <Typography>From Netflix</Typography>
@@ -185,7 +218,7 @@ export default function SourceStep(props: {
                 sm:0
               }
             }}
-            onClick={props.handleNext}
+            onClick={handleUpload}
           >Start the Upload
           </PrimaryButton>
         </Box>
