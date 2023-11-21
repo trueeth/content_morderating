@@ -5,6 +5,8 @@ import { PrimaryTextField } from 'components/styled/TextField'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import LoginImg from 'assets/images/login.png'
+import Image from 'next/image'
 
 export default function Auth() {
   const { login } = useAuthContext()
@@ -20,23 +22,88 @@ export default function Auth() {
   }
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        height: '100vh',
+        mt: 12
+      }}
+    >
       <Head>
         <title>VideoApp</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        {/*<meta charSet="utf-8" />*/}
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Box>
-        <Typography>Username</Typography>
-        <PrimaryTextField
-          onChange={(e) => handleUserInput('username', e.target.value)}
-        />
-        <Typography>Password</Typography>
-        <PrimaryTextField
-          onChange={(e) => handleUserInput('pwd', e.target.value)}
-        />
-        <Button onClick={handleLogin}>Log In</Button>
+      <Box
+        sx={{
+          width: { xs: '95%', md: '400px' },
+          height: '500px',
+          bgcolor: 'white',
+          boxShadow: '1px 1px #eee',
+          p: 3,
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
+          '& .MuiTypography-root': {
+            color: '#6c757ddf'
+          }
+        }}
+      >
+        <Image src={LoginImg} width={300} height={60} alt="login" />
+        <Typography fontSize={16} color="#333" mt={5}>
+          Sign In
+        </Typography>
+        <Typography
+          sx={{ px: 4, mt: 2, fontSize: '13px', textAlign: 'center' }}
+        >
+          Enter your email address and password to access admin panel
+        </Typography>
+        <Box sx={{ mt: 4, width: '80%' }}>
+          <Typography fontSize={14} mb={1}>
+            Username
+          </Typography>
+          <PrimaryTextField
+            placeholder="Enter your username"
+            onChange={(e) => handleUserInput('username', e.target.value)}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                bgcolor: '#fff',
+                boxShadow: 'none',
+                border: 'none'
+              }
+            }}
+          />
+        </Box>
+        <Box sx={{ mt: 3, width: '80%' }}>
+          <Box mb={1} display="flex" justifyContent="space-between">
+            <Typography fontSize={14}>Password</Typography>
+            <Typography fontSize={12}>Forgot password?</Typography>
+          </Box>
+          <PrimaryTextField
+            placeholder="Enter your password"
+            onChange={(e) => handleUserInput('pwd', e.target.value)}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                bgcolor: '#fff',
+                boxShadow: 'none',
+                border: 'none'
+              }
+            }}
+          />
+        </Box>
+        <Button
+          onClick={handleLogin}
+          sx={{
+            bgcolor: '#536de6',
+            color: 'white',
+            px: 3,
+            mt: 3,
+            '&:hover': { bgcolor: '#536de6' }
+          }}
+        >
+          Log In
+        </Button>
       </Box>
     </Box>
   )
