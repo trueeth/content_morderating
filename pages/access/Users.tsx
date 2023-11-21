@@ -209,7 +209,7 @@ export default function Users() {
         >
           <Grid item>
             <Typography>Users</Typography>
-            <Tooltip title="Reports History">
+            <Tooltip title="User">
               <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
             </Tooltip>
             <Button

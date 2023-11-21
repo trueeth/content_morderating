@@ -6,8 +6,8 @@ import Providers from '../Providers'
 import index from '../store'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { ReactElement, ReactNode } from 'react'
+import { NextPage } from 'next'
 
 const theme = createTheme({
   components: {
@@ -129,22 +129,25 @@ const theme = createTheme({
   }
 })
 
-function MyApp(props: AppProps<{ initialReduxState: any }>) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyApp(props: AppPropsWithLayout) {
   const { pageProps, Component } = props
 
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push('/dashboard')
-  }, [])
+  const getLayout =
+    Component.getLayout ?? ((page) => <Layout title="VideoApp">{page}</Layout>)
 
   return (
     <Providers store={index}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout title="VideoApp">
-          <Component {...pageProps} />
-        </Layout>{' '}
+        {(() => getLayout(<Component {...pageProps} />))()}
       </ThemeProvider>
     </Providers>
   )

@@ -9,6 +9,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.3.2",
     "@mui/base": "^5.0.0-beta.24",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
@@ -26,10 +27,12 @@
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.48.2",
     "react-redux": "^8.1.1",
     "styled-components": "^6.1.1",
     "swr": "^2.2.0",
-    "video-react": "^0.16.0"
+    "video-react": "^0.16.0",
+    "yup": "^1.3.2"
   },
   "devDependencies": {
     "@types/node": "20.9.0",

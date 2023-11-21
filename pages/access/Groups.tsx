@@ -126,7 +126,7 @@ export default function Groups() {
         >
           <Grid item>
             <Typography>Groups</Typography>
-            <Tooltip title="Reports History">
+            <Tooltip title="Group">
               <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
             </Tooltip>
             <Button
