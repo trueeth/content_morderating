@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useReducer, useCallback } from 'react'
+import { useMemo, useReducer, useCallback, useEffect } from 'react'
 
 import { AuthContext } from './auth-context'
 import { AuthUserType, ActionMapType, AuthStateType } from '../types'
@@ -23,10 +23,12 @@ enum Types {
 
 type Payload = {
   [Types.INITIAL]: {
-    user: AuthUserType
+    user: AuthUserType,
+    auth: string
   }
   [Types.LOGIN]: {
-    user: AuthUserType
+    user: AuthUserType,
+    auth: string
   }
   [Types.REGISTER]: {
     user: AuthUserType
@@ -40,20 +42,24 @@ type ActionsType = ActionMapType<Payload>[keyof ActionMapType<Payload>]
 
 const initialState: AuthStateType = {
   user: null,
-  loading: true
+  loading: true,
+  auth: 'auth'
 }
 
 const reducer = (state: AuthStateType, action: ActionsType) => {
   if (action.type === Types.INITIAL) {
     return {
       loading: false,
-      user: action.payload.user
+      user: action.payload.user,
+      auth: action.payload.auth
     }
   }
   if (action.type === Types.LOGIN) {
+    sessionStorage.setItem('auth', 'auth')
     return {
       ...state,
-      user: action.payload.user
+      user: action.payload.user,
+      auth: action.payload.auth
     }
   }
   if (action.type === Types.REGISTER) {
@@ -63,9 +69,11 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
     }
   }
   if (action.type === Types.LOGOUT) {
+    sessionStorage.clear()
     return {
       ...state,
-      user: null
+      user: null,
+      auth: null
     }
   }
   return state
@@ -86,7 +94,8 @@ export function AuthProvider({ children }: Props) {
         user: {
           email,
           password
-        }
+        },
+        auth: 'auth'
       }
     })
   }, [])
@@ -98,6 +107,24 @@ export function AuthProvider({ children }: Props) {
     })
   }, [])
 
+
+  const initialize = useCallback(async () => {
+
+    const auth = sessionStorage.getItem('auth')
+
+    dispatch({
+      type: Types.INITIAL,
+      payload: {
+        user: {},
+        auth: auth
+      }
+    })
+  }, [])
+
+  useEffect( () => {
+    initialize()
+  }, [initialize])
+
   // ----------------------------------------------------------------------
 
   const checkAuthenticated = state.user ? 'authenticated' : 'unauthenticated'
@@ -107,12 +134,12 @@ export function AuthProvider({ children }: Props) {
   const memoizedValue = useMemo(
     () => ({
       user: state.user,
-      authenticated: status === 'authenticated',
-      unauthenticated: status === 'unauthenticated',
+      authenticated: state.auth === 'auth',
+      unauthenticated: state.auth !== 'auth',
       login,
       logout
     }),
-    [login, logout, state.user, status]
+    [login, logout, state.user, state.auth]
   )
 
   return (

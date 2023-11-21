@@ -121,7 +121,7 @@ export default function SourceStep(props: {
     /* Add files to FormData */
     const formData = new FormData();
     Object.values(vState.uploadFiles).forEach(file => {
-      formData.append('file', file);
+      // formData.append('file', file);
     })
 
     /* Send request to our api route */

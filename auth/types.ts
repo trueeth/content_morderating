@@ -19,6 +19,7 @@ export type AuthStateType = {
   status?: string
   loading: boolean
   user: AuthUserType
+  auth:string
 }
 
 // ----------------------------------------------------------------------

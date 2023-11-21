@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 
 import { useAuthContext } from '../hooks'
 
@@ -27,16 +27,18 @@ function Container({ children }: Props) {
 
   const check = useCallback(async () => {
     if (!authenticated) {
+      setChecked(false)
       router.replace('/auth')
     } else {
       setChecked(true)
     }
-  }, [authenticated, router])
+  }, [authenticated, router, router.pathname])
 
   useEffect(() => {
     check().catch(console.error)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [check, authenticated])
+  }, [check, authenticated,router, router.pathname])
+
 
   if (!checked) {
     return null

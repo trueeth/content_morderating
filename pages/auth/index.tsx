@@ -3,8 +3,8 @@ import { Container } from '@mui/system'
 import { useAuthContext } from 'auth/hooks'
 import { PrimaryTextField } from 'components/styled/TextField'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 import LoginImg from 'assets/images/login.png'
 import Image from 'next/image'
 
@@ -20,6 +20,13 @@ export default function Auth() {
     await login(vState.username, vState.pwd)
     router.push('/dashboard')
   }
+
+  const {authenticated}=useAuthContext()
+
+  useEffect(() => {
+    if (authenticated)
+      router.back()
+  }, [])
 
   return (
     <Box

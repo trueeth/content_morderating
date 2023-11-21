@@ -82,7 +82,9 @@ export default function AddReportDlg({
                 placeholder="Select from list"
               >
                 {Object.values(EReportType).map((item, index) => (
-                  <MenuItem key={index} value={item}>
+                  <MenuItem key={index} value={item} sx={{
+                    fontSize:'0.8rem'
+                  }}>
                     {item}
                   </MenuItem>
                 ))}
@@ -98,7 +100,9 @@ export default function AddReportDlg({
                 placeholder="Select from list"
               >
                 {Object.values(EScheduleType).map((item, index) => (
-                  <MenuItem key={index} value={item}>
+                  <MenuItem key={index} sx={{
+                    fontSize:'0.8rem'
+                  }} value={item}>
                     {item}
                   </MenuItem>
                 ))}

@@ -16,14 +16,16 @@ const CustomSelect = (props: SelectProps) => {
 
       sx={{
         fontSize:'0.75rem',
-        backgroundColor:'#F9F9FF',
+        '& p':{
+          fontFamily:'Raleway !important',
+          fontSize:'0.8rem',
+        },
         '& div': {
           color:'#474747'
         },
         '& fieldset':{
           border:'1px solid #E7E7E7'
         },
-        boxShadow:'4.89017px 4.89017px 25px 0px #00000024'
       }}
 
 
