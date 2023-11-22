@@ -9,6 +9,7 @@ import { EVideoDetail, TVideoSubRowType } from '../../../../interfaces'
 import RowAction from './RowAction'
 import { useDispatch } from 'react-redux'
 import { openVideoSubDrawer } from '../../../../store/reducers/drawer.reducers'
+import { Check } from '@mui/icons-material'
 
 const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
   const [checked, setChecked] = React.useState(false)
@@ -36,7 +37,6 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
           border: '#fff !important'
         }
       }}
-      onClick={handleDetail}
     >
       <TableHead>
         <TableRow
@@ -70,10 +70,12 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
                   inputProps={{ 'aria-label': 'controlled' }}
                 />
               </TableCell>
-              <TableCell>{'Scene #' + row.sceneNumber}</TableCell>
-              <TableCell>{row.violationType}</TableCell>
-              <TableCell>{row.category}</TableCell>
-              <TableCell>{row.description}</TableCell>
+              <TableCell onClick={handleDetail}>
+                {'Scene #' + row.sceneNumber}
+              </TableCell>
+              <TableCell onClick={handleDetail}>{row.violationType}</TableCell>
+              <TableCell onClick={handleDetail}>{row.category}</TableCell>
+              <TableCell onClick={handleDetail}>{row.description}</TableCell>
               <TableCell>
                 <RowAction></RowAction>
               </TableCell>
