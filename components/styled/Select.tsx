@@ -13,24 +13,19 @@ const CustomSelect = (props: SelectProps) => {
           value
         )
       }
-
       sx={{
-        fontSize:'0.75rem',
-        '& p':{
-          fontFamily:'Raleway !important',
-          fontSize:'0.8rem',
+        fontSize: '0.75rem',
+        '& p': {
+          fontSize: '0.8rem'
         },
         '& div': {
-          color:'#474747'
+          color: '#474747'
         },
-        '& fieldset':{
-          border:'1px solid #E7E7E7'
-        },
+        '& fieldset': {
+          border: '1px solid #E7E7E7'
+        }
       }}
-
-
       IconComponent={ExpandMoreOutlined}
-
     >
       {children}
     </Select>

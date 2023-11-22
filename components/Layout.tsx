@@ -6,7 +6,10 @@ import { Alert, Container, Snackbar } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '../store'
 import { IAppSlice } from '../store/reducers'
-import { closeSnackbar, openSnackbar } from '../store/reducers/snackbar.reducers'
+import {
+  closeSnackbar,
+  openSnackbar
+} from '../store/reducers/snackbar.reducers'
 import { EAlert } from '../interfaces'
 
 type Props = {
@@ -15,25 +18,20 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
+  const dispatch = useDispatch()
 
-
-
-
-  const dispatch=useDispatch()
-
-  const [vState, setState]=useState({open:false})
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway'|| reason===undefined) {
-      return;
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    console.log('here')
+    if (reason === 'clickaway' || reason === undefined) {
+      return
     }
-
-    console.log(reason)
-
-    dispatch(closeSnackbar())
-  };
-
+    if (appState.snackbar.open) dispatch(closeSnackbar())
+  }
 
   return (
     <div className={'pb-50 flex flex-col justify-center item-center'}>
@@ -48,8 +46,13 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       </header>
       <UploadDialog />
 
-      <Snackbar open={appState.snackbar.open} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal:'center'}}>
-        <Alert onClose={handleClose} severity={appState.snackbar.alertType} sx={{ width: '100%' }}>
+      <Snackbar
+        open={appState.snackbar.open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert severity={appState.snackbar.alertType} sx={{ width: '100%' }}>
           {appState.snackbar.message}
         </Alert>
       </Snackbar>
