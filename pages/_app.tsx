@@ -5,9 +5,10 @@ import Layout from '../components/Layout'
 import Providers from '../Providers'
 import index from '../store'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React, { ReactElement, ReactNode } from 'react'
+import { NextPage } from 'next'
+import { AuthProvider } from 'auth/context/auth-provider'
+import AuthGuard from 'auth/guard/auth-guard'
 
 const theme = createTheme({
   components: {
@@ -129,23 +130,32 @@ const theme = createTheme({
   }
 })
 
-function MyApp(props: AppProps<{ initialReduxState: any }>) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyApp(props: AppPropsWithLayout) {
   const { pageProps, Component } = props
 
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push('/dashboard')
-  }, [])
+  const getLayout =
+    Component.getLayout ??
+    ((page) => (
+      <AuthGuard>
+        <Layout title="VideoApp">{page}</Layout>
+      </AuthGuard>
+    ))
 
   return (
     <Providers store={index}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout title="VideoApp">
-          <Component {...pageProps} />
-        </Layout>{' '}
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          {(() => getLayout(<Component {...pageProps} />))()}
+        </ThemeProvider>
+      </AuthProvider>
     </Providers>
   )
 }

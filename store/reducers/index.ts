@@ -4,14 +4,16 @@ import { IDialogSlice } from './dialog.reducers'
 import { IDrawerSlice } from './drawer.reducers'
 import dialogReducer from './dialog.reducers'
 import drawerReducer from './drawer.reducers'
+import uploadReducers, { IUploadSlice } from './upload.reducers'
 
 
 export interface IAppSlice {
   dialog:IDialogSlice,
-  drawer:IDrawerSlice
+  drawer:IDrawerSlice,
+  upload:IUploadSlice,
 }
 
-const appReducer=combineReducers({dialog:dialogReducer, drawer:drawerReducer})
+const appReducer=combineReducers({dialog:dialogReducer, drawer:drawerReducer, upload:uploadReducers})
 
 
 export default appReducer

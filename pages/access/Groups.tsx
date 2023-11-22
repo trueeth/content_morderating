@@ -100,7 +100,7 @@ export default function Groups() {
         borderRadius: '.4rem',
         border: '1px solid var(--Stroke, #E8E8E8)',
         overflow: 'hidden',
-        m: 2
+        mt: 2
       }}
     >
       <Box
@@ -126,15 +126,16 @@ export default function Groups() {
         >
           <Grid item>
             <Typography>Groups</Typography>
-            <Tooltip title="Reports History">
+            <Tooltip title="Group">
               <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
             </Tooltip>
             <Button
               sx={{
                 ml: 2,
                 bgcolor: '#ff1313a0',
+                opacity: '0.6',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0' }
+                '&:hover': { bgcolor: '#ff1313a0', opacity: '0.6' }
               }}
             >
               Delete

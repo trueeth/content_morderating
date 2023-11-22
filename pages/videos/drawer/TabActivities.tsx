@@ -21,7 +21,7 @@ const historys: IHistoryRow[] = [
   {
     writerName: 'Carolina 5',
     writeDate: '12:10PM SEP, 28, 2923',
-    description: 'Change status to Unapproved with note,This is good'
+    description: 'Change status to Unapproved with note, This is good'
   },
   {
     writerName: 'John L',
@@ -31,7 +31,7 @@ const historys: IHistoryRow[] = [
   {
     writerName: 'Carolina S',
     writeDate: '07:55PM SEP, 29, 2923',
-    description: 'Change Status to Processing with note:Done'
+    description: 'Change Status to Processing with note Done'
   }
 ]
 
@@ -43,10 +43,9 @@ interface IHistoryRow {
 
 const HistoryDescription = styled('div')({
   backgroundColor: '#eee',
-  padding: '3px 5px',
+  padding: '7px 14px',
   borderRadius: '5px',
-  fontSize: '14px',
-  lineHeight: '32px'
+  fontSize: '0.7rem'
 })
 
 const CssTextField = styled(TextField)({
@@ -73,8 +72,18 @@ const HistoryRow = (props: IHistoryRow) => {
         borderBottom: '1px solid #E8E8E8'
       }}
     >
-      <IconButton sx={{ p: 1, bgcolor: '#eee', mr: 2, height: '45px' }}>
-        <Slideshow />
+      <IconButton
+        sx={{
+          p: 1,
+          backgroundColor: '#eee',
+          mr: 2,
+          color: '#75598D',
+          ':hover': {
+            backgroundColor: '#eee'
+          }
+        }}
+      >
+        <Slideshow fontSize={'small'} />
       </IconButton>
 
       <Box
@@ -88,7 +97,9 @@ const HistoryRow = (props: IHistoryRow) => {
         }}
       >
         <Box>
-          <Typography sx={{ fontSize: '14px', color: '#333' }}>
+          <Typography
+            sx={{ fontSize: '14px', color: '#1A2057', fontWeight: 600 }}
+          >
             {props.writerName}
           </Typography>
           <Typography sx={{ fontSize: '12px', color: '#888' }}>
@@ -134,7 +145,14 @@ export default function DrawerTabActivities() {
           onChange={handleScenceState}
         >
           {CSceneState.map((item, index) => (
-            <ToggleButton value={item} key={index}>
+            <ToggleButton
+              value={item}
+              key={index}
+              sx={{
+                width: '130px',
+                height: '33px'
+              }}
+            >
               {item}
             </ToggleButton>
           ))}
@@ -156,15 +174,15 @@ export default function DrawerTabActivities() {
           fullWidth
           placeholder="Write your note"
           sx={{ mr: 2 }}
-          InputProps={{ sx: { height: '45px' } }}
+          InputProps={{ sx: { height: '33px', fontSize: '0.8rem' } }}
         ></CssTextField>
 
         <Button
           variant="contained"
           sx={{
             backgroundColor: 'var(--Primary1)',
-            width: '180px',
-            height: '43px',
+            width: '130px',
+            height: '33px',
             '&:hover': { backgroundColor: 'var(--Primary1)' }
           }}
         >

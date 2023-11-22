@@ -4,7 +4,7 @@ import AnalyticsAverage from './AnalyticsAverage'
 import AnalyticsStatistics from './AnalyticsStatistics'
 import AnalyticsVideos from './AnalyticsVideos'
 
-export default function Report() {
+export default function Dashboard() {
   return (
     <Grid container spacing={2} alignItems="stretch">
       <Grid item md={8} xs={12} alignItems="stretch">

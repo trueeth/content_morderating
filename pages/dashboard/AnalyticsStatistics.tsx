@@ -35,7 +35,7 @@ export default function AnalyticsStatistics() {
   return (
     <Box className="bg-white border-radius-5 h-full p-15 text-black">
       <Typography>Statistics</Typography>
-      <Grid container className="mt-15" spacing={2}>
+      <Grid container sx={{ mt: 3 }} spacing={2}>
         <Grid item xs={6}>
           <StatisticsItem downloads={856} title={'Submited Videos'}>
             <Slideshow sx={{ color: 'var(--Primary1)' }}></Slideshow>

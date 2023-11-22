@@ -18,11 +18,32 @@ export default function Access() {
         value={vState.tabIndex}
         onChange={setTabIndex}
         exclusive
-        sx={{ mt: 3, ml: 3 }}
+        sx={{ mt: 3 }}
       >
-        <ToggleButton value={0}>Users</ToggleButton>
-        <ToggleButton value={1}>Groups</ToggleButton>
-        <ToggleButton value={2}>Roles</ToggleButton>
+        <ToggleButton
+          sx={{
+            padding: '7px 30px'
+          }}
+          value={0}
+        >
+          Users
+        </ToggleButton>
+        <ToggleButton
+          sx={{
+            padding: '7px 30px'
+          }}
+          value={1}
+        >
+          Groups
+        </ToggleButton>
+        <ToggleButton
+          sx={{
+            padding: '7px 30px'
+          }}
+          value={2}
+        >
+          Roles
+        </ToggleButton>
       </ToggleButtonGroup>
       <TabPanel value={vState.tabIndex} index={0}>
         <Users />

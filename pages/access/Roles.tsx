@@ -79,7 +79,7 @@ export default function Roles() {
         >
           <Grid item>
             <Typography>Roles </Typography>
-            <Tooltip title="Reports History">
+            <Tooltip title="Roles">
               <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
             </Tooltip>
           </Grid>

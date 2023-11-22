@@ -17,59 +17,51 @@ import overview12 from '/assets/images/overview/overview-12.png'
 const itemData = [
   {
     img: overview1,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview2,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview3,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview4,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview5,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview6,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview7,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview8,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview9,
-    title: 'overview',
+    title: 'overview'
   },
   {
     img: overview10,
-    title: 'overview',
-  },
-  {
-    img: overview11,
-    title: 'overview',
-  },
-  {
-    img: overview12,
-    title: 'overview',
-  },
+    title: 'overview'
+  }
 ]
 
 const ImageItemStyle = {
   margin: '.3rem',
   borderRadius: '.3rem',
-  width: '10rem',
-  height: '7.5rem',
+  width: '7rem',
+  height: '5rem'
 }
 
 export default function DrawerTabOverview() {
@@ -78,10 +70,11 @@ export default function DrawerTabOverview() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        p: 1.5
       }}
     >
       <Typography>Most Interest Frames</Typography>
-      <Box className="flex flex-wrap" mb={3}>
+      <Box className="flex flex-wrap" mb={5}>
         {itemData.map((item, index) => {
           return (
             <Image
@@ -89,8 +82,8 @@ export default function DrawerTabOverview() {
               src={item.img}
               alt={item.title}
               style={ImageItemStyle}
-              width={80}
-              height={50}
+              width={40}
+              height={30}
             />
           )
         })}
@@ -98,7 +91,14 @@ export default function DrawerTabOverview() {
       <Typography>AI Description</Typography>
 
       <Typography
-        sx={{ my: 1, p: 1, border: '1px solid #ccc', borderRadius: '10px' }}
+        sx={{
+          my: 1,
+          p: 2,
+          border: '1px solid #ccc',
+          borderRadius: '10px',
+          fontSize: '0.8rem',
+          color: '#808080'
+        }}
       >
         This is simply dummy text of the printing and typesetting industry. is
         simply dummy text of the best ipsum has been the top offer

@@ -1,14 +1,14 @@
 import * as React from 'react'
-import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import LinearProgress from '@mui/material/LinearProgress'
 import clsx from 'clsx'
 import { CFlaggedScenesMax } from '../../../../interfaces'
+import { Typography } from '@mui/material'
 
 export default function RowFlaggedScenes(props: { value: number }) {
   const percent = (props.value / CFlaggedScenesMax) * 100
   return (
-    <Box sx={{ flexGrow: 1 }} display={'flex'}>
+    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
       <LinearProgress
         className={clsx(
           'flagged-scene',
@@ -19,9 +19,9 @@ export default function RowFlaggedScenes(props: { value: number }) {
         variant="determinate"
         value={percent}
       />
-      <Box className={'text-6 ml-3'}>
+      <Typography sx={{ fontSize: '14px', ml: 2 }}>
         {props.value + '/' + CFlaggedScenesMax}
-      </Box>
+      </Typography>
     </Box>
   )
 }
