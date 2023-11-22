@@ -31,6 +31,8 @@ function Container({ children }: Props) {
       router.replace('/auth')
     } else {
       setChecked(true)
+      if (router.pathname=="/")
+        router.replace("/dashboard")
     }
   }, [authenticated, router, router.pathname])
 

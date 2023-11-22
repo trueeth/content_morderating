@@ -55,7 +55,7 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
     }
   }
   if (action.type === Types.LOGIN) {
-    sessionStorage.setItem('auth', 'auth')
+    localStorage.setItem('auth', 'auth')
     return {
       ...state,
       user: action.payload.user,
@@ -69,7 +69,7 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
     }
   }
   if (action.type === Types.LOGOUT) {
-    sessionStorage.clear()
+    localStorage.clear()
     return {
       ...state,
       user: null,
@@ -110,7 +110,7 @@ export function AuthProvider({ children }: Props) {
 
   const initialize = useCallback(async () => {
 
-    const auth = sessionStorage.getItem('auth')
+    const auth = localStorage.getItem('auth')
 
     dispatch({
       type: Types.INITIAL,

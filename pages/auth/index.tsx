@@ -3,10 +3,11 @@ import { Container } from '@mui/system'
 import { useAuthContext } from 'auth/hooks'
 import { PrimaryTextField } from 'components/styled/TextField'
 import Head from 'next/head'
-import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import LoginImg from 'assets/images/login.png'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+
 
 export default function Auth() {
   const { login } = useAuthContext()
@@ -24,8 +25,10 @@ export default function Auth() {
   const {authenticated}=useAuthContext()
 
   useEffect(() => {
-    if (authenticated)
-      router.back()
+    if (authenticated){
+      // console.log(router)
+      router.replace("/dashboard")
+    }
   }, [])
 
   return (

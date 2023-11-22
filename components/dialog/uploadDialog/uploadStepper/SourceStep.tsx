@@ -6,13 +6,16 @@ import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
 import { CSSProperties } from 'styled-components'
 import { PrimaryTextField } from 'components/styled/TextField'
-// import { FileUpload } from '@mui/icons-material'
 import fileUpload from '/assets/fileUpload.svg'
 import Image from 'next/image'
-import { log } from 'next/dist/server/typescript/utils'
 import axios, { AxiosRequestConfig } from 'axios'
 import { useDispatch } from 'react-redux'
 import { setUploadProgress } from '../../../../store/reducers/upload.reducers'
+import {
+  openSnackbarError,
+  openSnackbarSuccess,
+  openSnackbarWarning
+} from '../../../../store/reducers/snackbar.reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -43,9 +46,7 @@ const rejectStyle = {
   borderColor: '#ff1744'
 }
 
-
 const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
-
   // --------drop zone-------
   const {
     acceptedFiles,
@@ -67,9 +68,7 @@ const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
   )
 
   useEffect(() => {
-
     props.handleFileSelect(acceptedFiles[0])
-
   }, [acceptedFiles.length])
 
   const files = acceptedFiles.map((file: any) => (
@@ -80,20 +79,20 @@ const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
   return (
     <Box {...getRootProps({ style })}>
       <input {...getInputProps()} />
-      <Box className='flex'>
-        <Box className='flex item-center mr-5'>
-          {/*<FileUpload*/}
-          {/*  fontSize="large"*/}
-          {/*  sx={{ display: { xs: 'none', md: 'block' } }}*/}
-          {/*/>*/}
-          <Image src={fileUpload} alt={'fileUpload'} style={{
-            width: '1.5rem',
-            marginRight: '1rem'
-          }} />
+      <Box className="flex">
+        <Box className="flex item-center mr-5">
+          <Image
+            src={fileUpload}
+            alt={'fileUpload'}
+            style={{
+              width: '1.5rem',
+              marginRight: '1rem'
+            }}
+          />
         </Box>
         <Box>
           <Box
-            display='flex'
+            display="flex"
             sx={{ flexDirection: { xs: 'column', md: 'row' } }}
           >
             <Typography
@@ -118,30 +117,29 @@ const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
 type TFile = File | null
 
 type TStateSource = {
-  type: string,
-  uploadFile: TFile,
-  uploadProgress?:number,
-  uploadRemaining?:number,
+  type: string
+  uploadFile: TFile
+  uploadProgress?: number
+  uploadRemaining?: number
 }
 
 export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
 }) {
-
-
-  const [vState, setState] = useState<TStateSource>({ type: 'new', uploadFile: null , uploadProgress:0, uploadRemaining:0})
-  const dispatch=useDispatch();
+  const [vState, setState] = useState<TStateSource>({
+    type: 'new',
+    uploadFile: null,
+    uploadProgress: 0,
+    uploadRemaining: 0
+  })
+  const dispatch = useDispatch()
 
   const onFileUpload = async () => {
-    if (!vState.uploadFile)
-      return
-
+    if (!vState.uploadFile) return
 
     try {
-
       var formData = new FormData()
-
 
       formData.append('media', vState.uploadFile)
 
@@ -154,14 +152,16 @@ export default function SourceStep(props: {
 
           // Calculate the progress percentage
           const percentage = (loaded * 100) / total
-          // setState({...vState, uploadProgress:+percentage.toFixed(2)})
 
-          // Calculate the progress duration
           const timeElapsed = Date.now() - startAt
           const uploadSpeed = loaded / timeElapsed
           const duration = (total - loaded) / uploadSpeed
-          // setState({...vState,uploadRemaining:duration})
-          dispatch(setUploadProgress({progress:+percentage.toFixed(2), remaining:duration}))
+          dispatch(
+            setUploadProgress({
+              progress: +percentage.toFixed(2),
+              remaining: duration
+            })
+          )
         }
       }
 
@@ -169,14 +169,15 @@ export default function SourceStep(props: {
         data: { data }
       } = await axios.post<{
         data: {
-          url: string | string[];
-        };
+          url: string | string[]
+        }
       }>('/api/upload', formData, options)
 
-      console.log('File was uploaded successfylly:', data)
+      console.log('File was uploaded successfully:', data)
+      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     } catch (error) {
       console.error(error)
-      alert('Sorry! something went wrong.')
+      dispatch(openSnackbarWarning('Sorry! something went wrong.'))
     }
   }
 
@@ -188,21 +189,30 @@ export default function SourceStep(props: {
     setState({ ...vState, type: event.target.value })
   }
 
-  const handleStartUpload = async  () => {
+  if (vState.uploadFile)
+    console.log('uploadFileSize', vState.uploadFile.size / (1024 * 1024 * 1024))
+
+  const handleStartUpload = async () => {
     if (!vState.uploadFile) {
-      alert('No file was chosen')
+      dispatch(openSnackbarError('No file was chosen'))
       return
     }
 
     /** File validation */
-    // if (vState.uploadFile.type.indexOf('video') < 0) {
-    //   alert('Please select a valide video')
-    //   return
-    // }
+    if (vState.uploadFile.type.indexOf('video') < 0) {
+      dispatch(openSnackbarError('Please select a valide video'))
+      return
+    }
+
+    if (vState.uploadFile.size / (1024 * 1024 * 2048) > 1) {
+      dispatch(openSnackbarError('Please reselect file. File size is over 2GB'))
+      return
+    }
+
     props.handleNext()
-    setTimeout(()=>{
-          onFileUpload()
-    },1000)
+    setTimeout(() => {
+      onFileUpload()
+    }, 1000)
   }
 
   return (
@@ -237,7 +247,7 @@ export default function SourceStep(props: {
             value={'url'}
           />
         </Box>
-        <PrimaryTextField fullWidth={true} placeholder='Enter  URL' />
+        <PrimaryTextField fullWidth={true} placeholder="Enter  URL" />
 
         <Box>
           <Typography>Upload from your PC</Typography>
@@ -257,7 +267,7 @@ export default function SourceStep(props: {
             value={'netflix'}
           />
         </Box>
-        <PrimaryTextField placeholder='Enter the full movie name' />
+        <PrimaryTextField placeholder="Enter the full movie name" />
 
         <Box
           sx={{
@@ -271,8 +281,9 @@ export default function SourceStep(props: {
             }
           }}
         >
-
-          <PrimaryButton active={false} onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton active={false} onClick={props.handleBack}>
+            Back
+          </PrimaryButton>
           <PrimaryButton
             sx={{
               mt: {
@@ -281,7 +292,8 @@ export default function SourceStep(props: {
               }
             }}
             onClick={handleStartUpload}
-          >Start the Upload
+          >
+            Start the Upload
           </PrimaryButton>
         </Box>
       </Box>
