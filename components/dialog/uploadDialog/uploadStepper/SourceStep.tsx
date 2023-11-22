@@ -13,6 +13,11 @@ import { log } from 'next/dist/server/typescript/utils'
 import axios, { AxiosRequestConfig } from 'axios'
 import { useDispatch } from 'react-redux'
 import { setUploadProgress } from '../../../../store/reducers/upload.reducers'
+import {
+  openSnackbarError,
+  openSnackbarSuccess,
+  openSnackbarWarning
+} from '../../../../store/reducers/snackbar.reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -173,10 +178,11 @@ export default function SourceStep(props: {
         };
       }>('/api/upload', formData, options)
 
-      console.log('File was uploaded successfylly:', data)
+      console.log('File was uploaded successfully:', data)
+      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     } catch (error) {
       console.error(error)
-      alert('Sorry! something went wrong.')
+      dispatch(openSnackbarWarning('Sorry! something went wrong.'))
     }
   }
 
@@ -188,17 +194,26 @@ export default function SourceStep(props: {
     setState({ ...vState, type: event.target.value })
   }
 
+  if (vState.uploadFile)
+  console.log('uploadFileSize',vState.uploadFile.size/(1024*1024*1024))
+
   const handleStartUpload = async  () => {
     if (!vState.uploadFile) {
-      alert('No file was chosen')
+      dispatch(openSnackbarError('No file was chosen'))
       return
     }
 
     /** File validation */
-    // if (vState.uploadFile.type.indexOf('video') < 0) {
-    //   alert('Please select a valide video')
-    //   return
-    // }
+    if (vState.uploadFile.type.indexOf('video') < 0) {
+      dispatch(openSnackbarError('Please select a valide video'))
+      return
+    }
+
+    if (vState.uploadFile.size/(1024*1024*2048)>1) {
+      dispatch(openSnackbarError('Please reselect file. File size is over 2GB'))
+      return
+    }
+
     props.handleNext()
     setTimeout(()=>{
           onFileUpload()

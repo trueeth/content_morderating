@@ -112,3 +112,10 @@ export enum EApporval {
   reject = 'Rejected',
   pending = 'Pending'
 }
+
+export enum EAlert {
+  error = 'error',
+  info = 'info',
+  success = 'success',
+  warning = 'warning'
+}

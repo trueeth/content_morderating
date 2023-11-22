@@ -10,6 +10,9 @@ import StatusStep from './StatusStep'
 import SourceStep from './SourceStep'
 import LaunchStep from './LaunchStep'
 import { StepIcon } from '@mui/material'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUploadProgress } from '../../../../store/reducers/upload.reducers'
 
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
@@ -21,6 +24,12 @@ export default function UploadStepper() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
+
+  const dispatch=useDispatch()
+
+  useEffect(() => {
+    dispatch(setUploadProgress({progress:0, remaining:0}))
+  }, [activeStep])
 
   return (
     <Box sx={{ width: '100%' }}>

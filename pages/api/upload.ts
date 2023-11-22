@@ -30,7 +30,7 @@ import { mkdir, stat } from "fs/promises";
 
     const form = formidable({
       maxFiles: 10,
-      maxFileSize: 1024 * 1024 * 2048*10, //  2 GB
+      maxFileSize: 1024 * 1024 * 2048, //  2 GB
       uploadDir,
       filename: (_name, _ext, part) => {
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
