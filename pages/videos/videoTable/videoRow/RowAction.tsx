@@ -35,8 +35,15 @@ export default function RowAction() {
           'aria-labelledby': 'basic-button'
         }}
       >
-        <MenuItem onClick={handleClose}>Edit</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleClose} sx={{
+          fontSize:'0.8rem'
+        }}>Classifications</MenuItem>
+        <MenuItem onClick={handleClose} sx={{
+          fontSize:'0.8rem'
+        }}>Report</MenuItem>
+        <MenuItem onClick={handleClose} sx={{
+          fontSize:'0.8rem'
+        }}>Insights</MenuItem>
       </Menu>
     </Box>
   )

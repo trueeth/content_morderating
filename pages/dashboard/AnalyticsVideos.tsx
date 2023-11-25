@@ -5,7 +5,7 @@ import { Box, Table, TableContainer, Typography } from '@mui/material'
 import TableBody from '@mui/material/TableBody'
 import {
   EApporval,
-  EClassification,
+  EClassificationType,
   ENewVideoData,
   ERating,
   TNewVideoRowType
@@ -20,35 +20,35 @@ const rows = [
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.r18,
-    classification: [EClassification.h, EClassification.s, EClassification.sh],
+    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
     approval: EApporval.review
   },
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
     rating: ERating.r18,
-    classification: [EClassification.h, EClassification.s, EClassification.sh],
+    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
     approval: EApporval.review
   },
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.missing,
-    classification: [EClassification.h, EClassification.s, EClassification.sh],
+    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
     approval: EApporval.reject
   },
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
     rating: ERating.missing,
-    classification: [EClassification.h, EClassification.s, EClassification.sh],
+    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
     approval: EApporval.pending
   },
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.r18,
-    classification: [EClassification.h, EClassification.s, EClassification.sh],
+    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
     approval: EApporval.approve
   }
 ]
