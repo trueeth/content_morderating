@@ -29,8 +29,9 @@ const mappingResSubRow = (res:TResVideo.TVideoSummary[]) => {
     result=tempRes.map((value,index) => {
       let tempResult:TVideoSubRowType={}
       tempResult.sceneNumber = index+1
-      tempResult.category='Nudity'
-      tempResult.description=''
+      tempResult.category='None'
+      tempResult.description='  This is simply dummy text of the printing and typesetting industry. is\n' +
+        '        simply dummy text of the best ipsum has been the top offer\n'
       tempResult.violationType=value.ViolenceSeverity
       return tempResult
     })

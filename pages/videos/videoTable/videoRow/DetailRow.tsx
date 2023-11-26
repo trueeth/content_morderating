@@ -9,6 +9,8 @@ import { EVideoDetail, TVideoSubRowType } from '../../../../interfaces'
 import RowAction from './RowAction'
 import { useDispatch } from 'react-redux'
 import { openVideoSubDrawer } from '../../../../store/reducers/drawer.reducers'
+import Button from '@mui/material/Button'
+import { MoreHoriz } from '@mui/icons-material'
 
 const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
   const [checked, setChecked] = React.useState(false)
@@ -75,7 +77,14 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
               <TableCell>{row.category}</TableCell>
               <TableCell>{row.description}</TableCell>
               <TableCell>
-                <RowAction></RowAction>
+                <Button
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                >
+                  <MoreHoriz className={'action-more-horiz'}></MoreHoriz>
+                </Button>
               </TableCell>
             </TableRow>
           )
