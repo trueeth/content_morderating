@@ -16,7 +16,6 @@ import RowAction from './RowAction'
 import VideoSubTable from './DetailRow'
 import { Typography } from '@mui/material'
 import {format, parseISO} from 'date-fns'
-import { openVideoSubDrawer } from '../../../../store/reducers/drawer.reducers'
 import { useDispatch } from 'react-redux'
 import { apiGetVideoScenes } from '../../../../interfaces/apis/videos'
 import { TResVideo } from '../../../../interfaces/apis/videos.types'
@@ -42,7 +41,6 @@ const mappingResSubRow = (res:TResVideo.TVideoSummary[]) => {
 function VideoRow(props: { row: TVideoRowType, videoContent:TResVideo.TMeidaContent }) {
   const { row, videoContent } = props
   const [vState, setState] = React.useState<{openSummary:boolean, subRow:TVideoSubRowType[]}>({openSummary:false, subRow: []})
-  const dispatch=useDispatch()
 
 
   const handleDetail = async () => {
