@@ -16,8 +16,6 @@ import RowAction from './RowAction'
 import VideoSubTable from './DetailRow'
 import { Typography } from '@mui/material'
 import { format, parseISO } from 'date-fns'
-import { openVideoSubDrawer } from '../../../../store/reducers/drawer.reducers'
-import { useDispatch } from 'react-redux'
 import { apiGetVideoScenes } from '../../../../interfaces/apis/videos'
 import { TResVideo } from '../../../../interfaces/apis/videos.types'
 
@@ -28,8 +26,10 @@ const mappingResSubRow = (res: TResVideo.TVideoSummary[]) => {
     result = tempRes.map((value, index) => {
       let tempResult: TVideoSubRowType = {}
       tempResult.sceneNumber = index + 1
-      tempResult.category = 'Nudity'
-      tempResult.description = ''
+      tempResult.category = 'Tech'
+      tempResult.description =
+        '  This is simply dummy text of the printing and typesetting industry. is\n' +
+        '        simply dummy text of the best ipsum has been the top offer\n'
       tempResult.violationType = value.ViolenceSeverity
       return tempResult
     })
