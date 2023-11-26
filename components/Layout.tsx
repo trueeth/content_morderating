@@ -6,11 +6,7 @@ import { Alert, Container, Snackbar } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '../store'
 import { IAppSlice } from '../store/reducers'
-import {
-  closeSnackbar,
-  openSnackbar
-} from '../store/reducers/snackbar.reducers'
-import { EAlert } from '../interfaces'
+import { closeSnackbar } from '../store/reducers/snackbar.reducers'
 
 type Props = {
   children?: ReactNode
