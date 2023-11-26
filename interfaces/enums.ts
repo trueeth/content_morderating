@@ -87,22 +87,21 @@ export enum EVideoDetail {
 
 export enum EMediaType {
   video = 'Video',
-  document = 'Document',
+  document = 'Document'
 }
-
 
 export enum EDocumentRecognitionStatus {
   new = 'New',
   processed = 'Processed',
   failed = 'Failed',
-  processing = 'Processing',
+  processing = 'Processing'
 }
 
-export enum EModeratorApprovalStatus{
+export enum EModeratorApprovalStatus {
   new = 'New',
   inReview = 'InReview',
   approved = 'Approved',
-  rejected = 'Rejected',
+  rejected = 'Rejected'
 }
 
 export enum ERating {
@@ -120,7 +119,7 @@ export enum EClassificationType {
   hate = 'H',
   sexual = 'S',
   selfHarm = 'SH',
-  violance = 'V',
+  violance = 'V'
 }
 
 export enum EApporval {
@@ -137,61 +136,60 @@ export enum EAlert {
   warning = 'warning'
 }
 
-export enum EProcessingStatus{
-  new='New',
-  uploaded='Uploaded',
-  processing='Processing',
-  processed='Processed',
-  failed='Failed',
+export enum EProcessingStatus {
+  new = 'New',
+  uploaded = 'Uploaded',
+  processing = 'Processing',
+  processed = 'Processed',
+  failed = 'Failed'
 }
 
-export enum EFlagType{
-  keyword='KeyWord',
-  ocr='Ocr',
-  namedPerson='NamedPerson',
-  namedLocation='NamedLocation',
-  topic='Topic',
-  brand='Brand',
-  label='Label',
-  detectedObject='DetectedObject',
-  transcript='Transcript',
+export enum EFlagType {
+  keyword = 'KeyWord',
+  ocr = 'Ocr',
+  namedPerson = 'NamedPerson',
+  namedLocation = 'NamedLocation',
+  topic = 'Topic',
+  brand = 'Brand',
+  label = 'Label',
+  detectedObject = 'DetectedObject',
+  transcript = 'Transcript'
 }
 
-
-export enum EMatchType{
-  transcript='Transcript',
-  topic='Topic',
-  ocr='Ocr',
-  annotations='Annotations',
-  title='Title',
-  description='Description',
-  face='Face',
-  owner='Owner',
-  brand='Brand',
-  namedLocation='NamedLocation',
-  namedPerson='NamedPerson',
-  animatedCharacters='AnimatedCharacters',
+export enum EMatchType {
+  transcript = 'Transcript',
+  topic = 'Topic',
+  ocr = 'Ocr',
+  annotations = 'Annotations',
+  title = 'Title',
+  description = 'Description',
+  face = 'Face',
+  owner = 'Owner',
+  brand = 'Brand',
+  namedLocation = 'NamedLocation',
+  namedPerson = 'NamedPerson',
+  animatedCharacters = 'AnimatedCharacters'
 }
 
-export enum EAzureSearchType{
-  singleVectorSearch='SingleVectorSearch',
-  singleVectorSearchWithFilter='SingleVectorSearchWithFilter',
-  simpleHybridSearch='SimpleHybridSearch',
-  semanticHybridSearch='SemanticHybridSearch',
+export enum EAzureSearchType {
+  singleVectorSearch = 'SingleVectorSearch',
+  singleVectorSearchWithFilter = 'SingleVectorSearchWithFilter',
+  simpleHybridSearch = 'SimpleHybridSearch',
+  semanticHybridSearch = 'SemanticHybridSearch'
 }
 
-export enum EModeratedContentType{
-  transcript='Transcript',
-  ocr='Ocr',
-  keyword='Keyword',
-  label='Label',
-  brand='Brand',
-  topic='Topic',
+export enum EModeratedContentType {
+  transcript = 'Transcript',
+  ocr = 'Ocr',
+  keyword = 'Keyword',
+  label = 'Label',
+  brand = 'Brand',
+  topic = 'Topic'
 }
 
-export enum ESeverity{
-  none='None',
-  moderate='Moderate',
-  severe='Severe',
-  extreme='Extreme',
+export enum ESeverity {
+  none = 'None',
+  moderate = 'Moderate',
+  severe = 'Severe',
+  extreme = 'Extreme'
 }

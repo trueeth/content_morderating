@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-
-
-export const CServerUrl='https://gamr-cm-api-dev.azurewebsites.net/api/'
+export const CServerUrl = 'https://gamr-cm-api-dev.azurewebsites.net/api/'
 
 // create an axios instance
 const service = axios.create({
@@ -13,7 +11,7 @@ const service = axios.create({
 
 // request interceptor
 service.interceptors.request.use(
-  config => {
+  (config) => {
     // do something before request is sent
 
     // if (store.getters.token) {
@@ -23,11 +21,10 @@ service.interceptors.request.use(
     //   config.headers['X-Token'] = getToken()
     // }
 
-
-      config.headers['authorization']="Basic ZGVtbzptQmVAdmVyIzEyM1Q="
+    config.headers['authorization'] = 'Basic ZGVtbzptQmVAdmVyIzEyM1Q='
     return config
   },
-  error => {
+  (error) => {
     // do something with request error
     console.log(error) // for debug
     // return Promise.reject(error)
@@ -46,14 +43,11 @@ service.interceptors.response.use(
    * Here is just an example
    * You can also judge the status by HTTP Status Code
    */
-  response => {
+  (response) => {
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
-
-
-
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         // to re-login
@@ -74,7 +68,7 @@ service.interceptors.response.use(
     }
     return res
   },
-  error => {
+  (error) => {
     console.log('err' + error) // for debug
     // return Promise.reject(error)
   }

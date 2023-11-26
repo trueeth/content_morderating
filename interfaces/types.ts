@@ -7,7 +7,8 @@ import {
   EProcessingStatus,
   EUserRole,
   EUserType,
-  EMediaType, EModeratorApprovalStatus
+  EMediaType,
+  EModeratorApprovalStatus
 } from './enums'
 
 export type TVideoRowType = {
@@ -87,5 +88,3 @@ export type TGroupData = {
   owner: string
   member: number
 }
-
-
