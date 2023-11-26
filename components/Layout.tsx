@@ -1,8 +1,16 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Header from './Header'
 import UploadDialog from './dialog/uploadDialog/UploadDialog'
-import { Container } from '@mui/material'
+import { Alert, Container, Snackbar } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { IReduxState } from '../store'
+import { IAppSlice } from '../store/reducers'
+import {
+  closeSnackbar,
+  openSnackbar
+} from '../store/reducers/snackbar.reducers'
+import { EAlert } from '../interfaces'
 
 type Props = {
   children?: ReactNode
@@ -10,6 +18,21 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
+  const dispatch = useDispatch()
+
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    console.log('here')
+    if (reason === 'clickaway' || reason === undefined) {
+      return
+    }
+    if (appState.snackbar.open) dispatch(closeSnackbar())
+  }
+
   return (
     <div className={'pb-50 flex flex-col justify-center item-center'}>
       <Head>
@@ -22,6 +45,18 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <Header />
       </header>
       <UploadDialog />
+
+      <Snackbar
+        open={appState.snackbar.open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert severity={appState.snackbar.alertType} sx={{ width: '100%' }}>
+          {appState.snackbar.message}
+        </Alert>
+      </Snackbar>
+
       <Container
         sx={{
           mt: '100px',

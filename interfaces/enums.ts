@@ -85,25 +85,42 @@ export enum EVideoDetail {
   description = 'DESCRIPTION'
 }
 
-export enum EVideoType {
-  video = 'Video'
+export enum EMediaType {
+  video = 'Video',
+  document = 'Document',
 }
 
-export enum EStatus {
-  new = 'NEW',
-  processed = 'PROCESSED',
-  failed = 'FAILED'
+
+export enum EDocumentRecognitionStatus {
+  new = 'New',
+  processed = 'Processed',
+  failed = 'Failed',
+  processing = 'Processing',
+}
+
+export enum EModeratorApprovalStatus{
+  new = 'New',
+  inReview = 'InReview',
+  approved = 'Approved',
+  rejected = 'Rejected',
 }
 
 export enum ERating {
+  none = 'None',
+  g = 'G',
+  pg = 'PG',
+  pg12 = 'PG12',
+  pg15 = 'PG15',
   r18 = 'R18',
+  r15 = 'R15',
   missing = 'MISSING'
 }
 
-export enum EClassification {
-  h = 'H',
-  s = 'S',
-  sh = 'SH'
+export enum EClassificationType {
+  hate = 'H',
+  sexual = 'S',
+  selfHarm = 'SH',
+  violance = 'V',
 }
 
 export enum EApporval {
@@ -111,4 +128,63 @@ export enum EApporval {
   approve = 'Approved',
   reject = 'Rejected',
   pending = 'Pending'
+}
+
+export enum EAlert {
+  error = 'error',
+  info = 'info',
+  success = 'success',
+  warning = 'warning'
+}
+
+export enum EProcessingStatus{
+  new='New',
+  uploaded='Uploaded',
+  processing='Processing',
+  processed='Processed',
+  failed='Failed',
+}
+
+export enum EFlagType{
+  keyword='KeyWord',
+  ocr='Ocr',
+  namedPerson='NamedPerson',
+  namedLocation='NamedLocation',
+  topic='Topic',
+  brand='Brand',
+  label='Label',
+  detectedObject='DetectedObject',
+  transcript='Transcript',
+}
+
+
+export enum EMatchType{
+  transcript='Transcript',
+  topic='Topic',
+  ocr='Ocr',
+  annotations='Annotations',
+  title='Title',
+  description='Description',
+  face='Face',
+  owner='Owner',
+  brand='Brand',
+  namedLocation='NamedLocation',
+  namedPerson='NamedPerson',
+  animatedCharacters='AnimatedCharacters',
+}
+
+export enum EAzureSearchType{
+  singleVectorSearch='SingleVectorSearch',
+  singleVectorSearchWithFilter='SingleVectorSearchWithFilter',
+  simpleHybridSearch='SimpleHybridSearch',
+  semanticHybridSearch='SemanticHybridSearch',
+}
+
+export enum EModeratedContentType{
+  transcript='Transcript',
+  ocr='Ocr',
+  keyword='Keyword',
+  label='Label',
+  brand='Brand',
+  topic='Topic',
 }

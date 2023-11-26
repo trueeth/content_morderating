@@ -29,15 +29,26 @@ import useMounted from '../hooks/useMounted'
 import { useState } from 'react'
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
 import Paper from '@mui/material/Paper'
+import Headset from '/assets/headset.svg'
+import { useAuthContext } from 'auth/hooks'
 
 function UserAction() {
+  const { logout } = useAuthContext()
+  const router = useRouter()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (e: any) => {
     setAnchorEl(e.currentTarget)
   }
-  const handleClose = () => {
-    setAnchorEl(null)
+
+  const handleLogout = async () => {
+    try {
+      setAnchorEl(null)
+      await logout()
+      router.replace('/')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -55,10 +66,10 @@ function UserAction() {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => setAnchorEl(null)}
       >
-        <MenuItem onClick={handleClose}>Log Out</MenuItem>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
       </Menu>
     </div>
   )
@@ -201,7 +212,11 @@ const Header = () => {
 
   const HeaderDesktop = () => {
     return (
-      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
+      >
         <Box
           sx={{
             width: '100%',
@@ -230,7 +245,7 @@ const Header = () => {
                 return (
                   <Box key={index} onClick={handleHeader(item.title)}>
                     <TopButton
-                      main={item.title !== 'Upload' ? true : false}
+                      main={'Upload' !== item.title}
                       active={
                         router.pathname === `/${item.title.toLowerCase()}`
                       }
@@ -262,8 +277,8 @@ const Header = () => {
               </Box>
               <UserAction />
             </Box>
-            <Box sx={{ px: 2, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              <HeadsetMicIcon />
+            <Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              <Image src={Headset} alt={'headset'} width={24}></Image>
             </Box>
           </Box>
         </Box>
@@ -273,7 +288,11 @@ const Header = () => {
 
   const HeaderMobile = () => {
     return (
-      <AppBar position="fixed" elevation={0} className={'top-header w-full'}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
+      >
         <Box
           sx={{
             width: '100%',

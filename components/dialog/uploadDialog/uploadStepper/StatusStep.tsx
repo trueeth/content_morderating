@@ -36,6 +36,11 @@ export default function StatusStep(props: {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
+          },
+
+          "& .MuiTypography-root, input": {
+            sm:{fontSize:'.9rem'},
+            xs:{fontSize:'.7rem'}
           }
         }}
       >
@@ -74,8 +79,20 @@ export default function StatusStep(props: {
               : () => <Typography>Select from list</Typography>
           }
         >
-          <MenuItem value={0}>Trolls</MenuItem>
-          <MenuItem value={1}>Poppy</MenuItem>
+          <MenuItem sx={{
+
+            "& .MuiTypography-root, input": {
+              sm:{fontSize:'.9rem'},
+              xs:{fontSize:'.7rem'}
+            }
+          }} value={0}>Trolls</MenuItem>
+          <MenuItem sx={{
+
+            "& .MuiTypography-root, input": {
+              sm:{fontSize:'.9rem'},
+              xs:{fontSize:'.7rem'}
+            }
+          }} value={1}>Poppy</MenuItem>
         </Select>
         <Box
           sx={{

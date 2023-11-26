@@ -2,9 +2,14 @@ import { StepWrapper } from './index'
 import { Box, Typography } from '@mui/material'
 import LinearProgress from '@mui/material/LinearProgress'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { IReduxState } from '../../../../store'
+import { IAppSlice } from '../../../../store/reducers'
 
 export default function LaunchStep() {
-  const [vState, setState] = React.useState({ progress: 0 })
+
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
 
   return (
     <StepWrapper>
@@ -25,7 +30,7 @@ export default function LaunchStep() {
             width: { xs: '90%', md: '80%' }
           }}
         >
-          <LinearProgress variant="determinate" value={0} />
+          <LinearProgress variant="determinate" value={appState.upload.progress} />
         </Box>
         <Box
           sx={{

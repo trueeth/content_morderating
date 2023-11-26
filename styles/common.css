@@ -82,9 +82,6 @@
     margin-top: 1.5rem;
 }
 
-.text-6{
-    font-size: .6rem;
-}
 .text-center{
     text-align: center;
 }
@@ -152,6 +149,9 @@
     font-size: .8rem;
 }
 .text-9{
+    font-size: .9rem;
+}
+.text-10{
     font-size: .9rem;
 }
 

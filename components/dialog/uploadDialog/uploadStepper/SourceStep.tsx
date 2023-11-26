@@ -1,12 +1,21 @@
 import { StepWrapper } from './index'
 import { Box, Radio, Typography } from '@mui/material'
 import * as React from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
 import { CSSProperties } from 'styled-components'
 import { PrimaryTextField } from 'components/styled/TextField'
-import { FileUpload } from '@mui/icons-material'
+import fileUpload from '/assets/fileUpload.svg'
+import Image from 'next/image'
+import axios, { AxiosRequestConfig } from 'axios'
+import { useDispatch } from 'react-redux'
+import { setUploadProgress } from '../../../../store/reducers/upload.reducers'
+import {
+  openSnackbarError,
+  openSnackbarSuccess,
+  openSnackbarWarning
+} from '../../../../store/reducers/snackbar.reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -37,7 +46,8 @@ const rejectStyle = {
   borderColor: '#ff1744'
 }
 
-const UploadPc = () => {
+const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
+  // --------drop zone-------
   const {
     acceptedFiles,
     getRootProps,
@@ -57,6 +67,10 @@ const UploadPc = () => {
     [isFocused, isDragAccept, isDragReject]
   )
 
+  useEffect(() => {
+    props.handleFileSelect(acceptedFiles[0])
+  }, [acceptedFiles.length])
+
   const files = acceptedFiles.map((file: any) => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
@@ -67,9 +81,13 @@ const UploadPc = () => {
       <input {...getInputProps()} />
       <Box className="flex">
         <Box className="flex item-center mr-5">
-          <FileUpload
-            fontSize="large"
-            sx={{ display: { xs: 'none', md: 'block' } }}
+          <Image
+            src={fileUpload}
+            alt={'fileUpload'}
+            style={{
+              width: '1.5rem',
+              marginRight: '1rem'
+            }}
           />
         </Box>
         <Box>
@@ -96,15 +114,107 @@ const UploadPc = () => {
   )
 }
 
+type TFile = File | null
+
+type TStateSource = {
+  type: string
+  uploadFile: TFile
+  uploadProgress?: number
+  uploadRemaining?: number
+}
+
 export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
 }) {
-  const [vState, setState] = useState({ type: 'new' })
+  const [vState, setState] = useState<TStateSource>({
+    type: 'new',
+    uploadFile: null,
+    uploadProgress: 0,
+    uploadRemaining: 0
+  })
+  const dispatch = useDispatch()
+
+  const onFileUpload = async () => {
+    if (!vState.uploadFile) return
+
+    try {
+      var formData = new FormData()
+
+      formData.append('media', vState.uploadFile)
+
+      let startAt = Date.now()
+
+      const options: AxiosRequestConfig = {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        onUploadProgress: (progressEvent: any) => {
+          const { loaded, total } = progressEvent
+
+          // Calculate the progress percentage
+          const percentage = (loaded * 100) / total
+
+          const timeElapsed = Date.now() - startAt
+          const uploadSpeed = loaded / timeElapsed
+          const duration = (total - loaded) / uploadSpeed
+          dispatch(
+            setUploadProgress({
+              progress: +percentage.toFixed(2),
+              remaining: duration
+            })
+          )
+        }
+      }
+
+      const {
+        data: { data }
+      } = await axios.post<{
+        data: {
+          url: string | string[]
+        }
+      }>('/api/upload', formData, options)
+
+      console.log('File was uploaded successfully:', data)
+      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
+    } catch (error) {
+      console.error(error)
+      dispatch(openSnackbarWarning('Sorry! something went wrong.'))
+    }
+  }
+
+  const handleFileSelect = (file: TFile) => {
+    setState({ ...vState, uploadFile: file })
+  }
 
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
   }
+
+  if (vState.uploadFile)
+    console.log('uploadFileSize', vState.uploadFile.size / (1024 * 1024 * 1024))
+
+  const handleStartUpload = async () => {
+    if (!vState.uploadFile) {
+      dispatch(openSnackbarError('No file was chosen'))
+      return
+    }
+
+    /** File validation */
+    if (vState.uploadFile.type.indexOf('video') < 0) {
+      dispatch(openSnackbarError('Please select a valide video'))
+      return
+    }
+
+    if (vState.uploadFile.size / (1024 * 1024 * 2048) > 1) {
+      dispatch(openSnackbarError('Please reselect file. File size is over 2GB'))
+      return
+    }
+
+    props.handleNext()
+    setTimeout(() => {
+      onFileUpload()
+    }, 1000)
+  }
+
   return (
     <StepWrapper>
       <Box
@@ -147,7 +257,7 @@ export default function SourceStep(props: {
             value={'pc'}
           />
         </Box>
-        <UploadPc />
+        <UploadPc handleFileSelect={handleFileSelect} />
 
         <Box>
           <Typography>From Netflix</Typography>
@@ -164,23 +274,26 @@ export default function SourceStep(props: {
             mt: 2,
             justifyContent: 'center !important',
             '& .MuiButton-root': { width: '100px' },
-            display:'flex',
-            flexDirection:{
-              xs:'column',
-              sm:'row'
-          }
-        }}
+            display: 'flex',
+            flexDirection: {
+              xs: 'column',
+              sm: 'row'
+            }
+          }}
         >
-          <PrimaryButton active={false} onClick={props.handleBack}>Back</PrimaryButton>
+          <PrimaryButton active={false} onClick={props.handleBack}>
+            Back
+          </PrimaryButton>
           <PrimaryButton
             sx={{
-              mt:{
-                xs:2,
-                sm:0
+              mt: {
+                xs: 2,
+                sm: 0
               }
             }}
-            onClick={props.handleNext}
-          >Start the Upload
+            onClick={handleStartUpload}
+          >
+            Start the Upload
           </PrimaryButton>
         </Box>
       </Box>

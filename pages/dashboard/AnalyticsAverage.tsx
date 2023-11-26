@@ -11,10 +11,11 @@ import MenuItem from '@mui/material/MenuItem'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
 import { PrimaryButton } from '../../components/styled/StyledButton'
-import { GetApp } from '@mui/icons-material'
+import { ExpandMoreOutlined, GetApp } from '@mui/icons-material'
 import { Months } from 'interfaces'
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
+
 const options: ApexOptions = {
   chart: {
     type: 'pie'
@@ -84,12 +85,29 @@ export default function AnalyticsAverage() {
           onChange={handleSelect}
           sx={{
             height: '30px',
-            width: '100px'
+            width: '80px',
+            fontSize: '0.75rem',
+            backgroundColor: '#F9F9FF',
+            '& div': {
+              color: '#474747'
+            },
+            '& fieldset': {
+              border: 'none'
+            }
           }}
-          MenuProps={{ sx: { height: '300px' } }}
+          IconComponent={ExpandMoreOutlined}
+          MenuProps={{ sx: { height: '300px', fontSize: '0.75rem' } }}
         >
           {Months.map((item, index) => (
-            <MenuItem value={item} key={index}>
+            <MenuItem
+              value={item}
+              key={index}
+              sx={{
+                color: '#474747',
+                fontSize: '0.75rem'
+                // backgroundColor:'#F9F9FF'
+              }}
+            >
               {item}
             </MenuItem>
           ))}

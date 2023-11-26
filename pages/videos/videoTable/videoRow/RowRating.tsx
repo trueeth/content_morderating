@@ -9,7 +9,7 @@ const RowRating = (props: { rating: string }) => {
       <Box
         className={clsx(
           props.rating === ERating.r18 && 'rating-r18',
-          props.rating === ERating.missing && 'rating-missing'
+          props.rating === ERating.none && 'rating-missing'
         )}
       >
         {props.rating}

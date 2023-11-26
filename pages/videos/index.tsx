@@ -2,7 +2,6 @@
 import * as React from 'react'
 import { Box, Pagination, PaginationItem } from '@mui/material'
 
-import { styled } from '@mui/material/styles'
 import VideoTable from './videoTable'
 import VideoTableHeader from './Header'
 import TestVideoDrawer from './drawer'
@@ -26,7 +25,7 @@ const Video = () => {
         borderRadius: '.4rem',
         border: '1px solid var(--Stroke, #E8E8E8)',
         overflow: 'hidden',
-        m: 1
+        mt: 1
       }}
     >
       <VideoTableHeader />
