@@ -71,7 +71,7 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
                 />
               </TableCell>
               <TableCell>{'Scene #' + row.sceneNumber}</TableCell>
-              <TableCell>{row.violationType}</TableCell>
+              <TableCell>{'Video'}</TableCell>
               <TableCell>{row.category}</TableCell>
               <TableCell>{row.description}</TableCell>
               <TableCell>
