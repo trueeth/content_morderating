@@ -28,6 +28,17 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
     return null
   }
 
+  const CustomizedTableRow = ({ children, onClick, key }) => (
+    <TableRow key={key}>
+      {children.map((item, idx) => {
+        if (idx > 0 && idx < 5) {
+          return <TableCell onClick={onClick}>{item}</TableCell>
+        }
+        return <TableCell>{item}</TableCell>
+      })}
+    </TableRow>
+  )
+
   return (
     <Table
       size="small"
@@ -69,28 +80,21 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
       <TableBody>
         {rows.map((row, index) => {
           return (
-            <TableRow key={index}>
-              <TableCell>
-                <Checkbox />
-              </TableCell>
-
-              <TableCell onClick={openScene}>
-                {'Scene #' + row.sceneNumber}
-              </TableCell>
-              <TableCell onClick={openScene}>{'Video'}</TableCell>
-              <TableCell onClick={openScene}>{row.category}</TableCell>
-              <TableCell onClick={openScene}>{row.description}</TableCell>
-              <TableCell>
-                <Button
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
-                >
-                  <MoreHoriz className={'action-more-horiz'}></MoreHoriz>
-                </Button>
-              </TableCell>
-            </TableRow>
+            <CustomizedTableRow key={index} onClick={openScene}>
+              <Checkbox />
+              <Typography>{'Scene #' + row.sceneNumber}</Typography>
+              <Typography>{'Video'}</Typography>
+              <Typography>{row.category}</Typography>
+              <Typography>{row.description}</Typography>
+              <Button
+                id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+              >
+                <MoreHoriz className={'action-more-horiz'}></MoreHoriz>
+              </Button>
+            </CustomizedTableRow>
           )
         })}
       </TableBody>
