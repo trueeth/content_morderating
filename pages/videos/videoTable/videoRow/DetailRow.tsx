@@ -4,7 +4,7 @@ import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
-import { Checkbox } from '@mui/material'
+import { Checkbox, Typography } from '@mui/material'
 import { EVideoDetail, TVideoSubRowType } from '../../../../interfaces'
 import { useDispatch } from 'react-redux'
 import { openVideoSubDrawer } from '../../../../store/reducers/drawer.reducers'
@@ -15,7 +15,7 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
   const [checked, setChecked] = React.useState(false)
 
   const dispatch = useDispatch()
-  const handleDetail = () => {
+  const openScene = () => {
     dispatch(openVideoSubDrawer({ open: true }))
   }
   const handleChange = (e: any) => {
@@ -37,7 +37,6 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
           border: '#fff !important'
         }
       }}
-      onClick={handleDetail}
     >
       <TableHead>
         <TableRow
@@ -57,7 +56,13 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
             />
           </TableCell>
           {Object.values(EVideoDetail).map((item, index) => {
-            return <TableCell key={index}>{item}</TableCell>
+            return (
+              <TableCell key={index}>
+                <Typography sx={{ fontSize: '13px', color: '#888' }}>
+                  {item}
+                </Typography>
+              </TableCell>
+            )
           })}
         </TableRow>
       </TableHead>
@@ -66,15 +71,15 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
           return (
             <TableRow key={index}>
               <TableCell>
-                <Checkbox
-                  checked={false}
-                  inputProps={{ 'aria-label': 'controlled' }}
-                />
+                <Checkbox />
               </TableCell>
-              <TableCell>{'Scene #' + row.sceneNumber}</TableCell>
-              <TableCell>{'Video'}</TableCell>
-              <TableCell>{row.category}</TableCell>
-              <TableCell>{row.description}</TableCell>
+
+              <TableCell onClick={openScene}>
+                {'Scene #' + row.sceneNumber}
+              </TableCell>
+              <TableCell onClick={openScene}>{'Video'}</TableCell>
+              <TableCell onClick={openScene}>{row.category}</TableCell>
+              <TableCell onClick={openScene}>{row.description}</TableCell>
               <TableCell>
                 <Button
                   id="basic-button"

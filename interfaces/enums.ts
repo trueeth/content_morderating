@@ -82,7 +82,8 @@ export enum EVideoDetail {
   sceneNumber = 'SCENE NUMBER',
   violationType = 'VIOLATION TYPE',
   category = 'CATEGORY',
-  description = 'DESCRIPTION'
+  description = 'DESCRIPTION',
+  action = 'ACTIONS'
 }
 
 export enum EMediaType {
