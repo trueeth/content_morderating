@@ -16,7 +16,6 @@ import RowAction from './RowAction'
 import VideoSubTable from './DetailRow'
 import { Typography } from '@mui/material'
 import {format, parseISO} from 'date-fns'
-import { useDispatch } from 'react-redux'
 import { apiGetVideoScenes } from '../../../../interfaces/apis/videos'
 import { TResVideo } from '../../../../interfaces/apis/videos.types'
 
