@@ -29,7 +29,7 @@ const mappingResSubRow = (res: TResVideo.TVideoSummary[]) => {
       tempResult.category = 'Tech'
       tempResult.description =
         '  This is simply dummy text of the printing and typesetting industry. is\n' +
-        '        simply dummy text of the best ipsum has been the top offer\n'
+        '        simply dummy text '
       tempResult.violationType = value.ViolenceSeverity
       return tempResult
     })
