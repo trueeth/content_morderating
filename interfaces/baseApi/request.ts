@@ -8,7 +8,7 @@ export const CServerUrl='https://gamr-cm-api-dev.azurewebsites.net/api/'
 const service = axios.create({
   baseURL: CServerUrl, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  timeout: 50000 // request timeout
 })
 
 // request interceptor
@@ -22,7 +22,9 @@ service.interceptors.request.use(
     //   // please modify it according to the actual situation
     //   config.headers['X-Token'] = getToken()
     // }
-    config.headers['authorization']="Basic ZGVtbzptQmVAdmVyIzEyM1Q="
+
+
+      config.headers['authorization']="Basic ZGVtbzptQmVAdmVyIzEyM1Q="
     return config
   },
   error => {

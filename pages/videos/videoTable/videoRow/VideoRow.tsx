@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
-import { TVideoRowType } from '../../../../interfaces'
+import { TVideoRowType, TVideoSubRowType } from '../../../../interfaces'
 import RowType from './RowType'
 import RowStatus from './RowStatus'
 import RowRating from './RowRating'
@@ -18,13 +18,45 @@ import { Typography } from '@mui/material'
 import {format, parseISO} from 'date-fns'
 import { openVideoSubDrawer } from '../../../../store/reducers/drawer.reducers'
 import { useDispatch } from 'react-redux'
+import { apiGetVideoScenes } from '../../../../interfaces/apis/videos'
+import { TResVideo } from '../../../../interfaces/apis/videos.types'
 
-function VideoRow(props: { row: TVideoRowType }) {
-  const { row } = props
-  const [open, setOpen] = React.useState(false)
+
+const mappingResSubRow = (res:TResVideo.TVideoSummary[]) => {
+  const tempRes=res;
+  let result:TVideoSubRowType[] =[]
+  if(tempRes.length>0){
+    result=tempRes.map((value,index) => {
+      let tempResult:TVideoSubRowType={}
+      tempResult.sceneNumber = index+1
+      tempResult.category='Nudity'
+      tempResult.description=''
+      tempResult.violationType=value.ViolenceSeverity
+      return tempResult
+    })
+  }
+  return result
+}
+
+function VideoRow(props: { row: TVideoRowType, videoContent:TResVideo.TMeidaContent }) {
+  const { row, videoContent } = props
+  const [vState, setState] = React.useState<{openSummary:boolean, subRow:TVideoSubRowType[]}>({openSummary:false, subRow: []})
   const dispatch=useDispatch()
-  const handleDetail = () => {
-    dispatch(openVideoSubDrawer({ open: true }))
+
+
+  const handleDetail = async () => {
+    if (vState.subRow.length>0) {
+      if (vState.openSummary) setState({...vState, openSummary:false})
+      else setState({...vState,openSummary:true})
+    }else {
+      const videoSummaries: any = await apiGetVideoScenes(videoContent)
+      if (videoSummaries) {
+        let tempSubRow = mappingResSubRow(videoSummaries.Content)
+        tempSubRow=tempSubRow.filter((val,index)=>index<5)
+        setState({ ...vState, openSummary: true, subRow: tempSubRow })
+      }
+
+    }
   }
 
   return (
@@ -35,12 +67,9 @@ function VideoRow(props: { row: TVideoRowType }) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => {
-              setOpen(!open)
-              handleDetail()
-            }}
+            onClick={handleDetail}
           >
-            {open ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
+            {vState.openSummary ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
           </IconButton>
         </TableCell>
 
@@ -96,9 +125,9 @@ function VideoRow(props: { row: TVideoRowType }) {
           }}
           colSpan={12}
         >
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={vState.openSummary} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <VideoSubTable value={row.subRows}></VideoSubTable>
+              <VideoSubTable value={vState.subRow}></VideoSubTable>
             </Box>
           </Collapse>
         </TableCell>

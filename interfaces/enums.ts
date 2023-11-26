@@ -188,3 +188,10 @@ export enum EModeratedContentType{
   brand='Brand',
   topic='Topic',
 }
+
+export enum ESeverity{
+  none='None',
+  moderate='Moderate',
+  severe='Severe',
+  extreme='Extreme',
+}

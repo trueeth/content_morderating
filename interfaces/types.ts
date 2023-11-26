@@ -59,10 +59,10 @@ export type THistoryRowType = {
 }
 
 export type TVideoSubRowType = {
-  sceneNumber: number
-  violationType: string
-  category: string
-  description: string
+  sceneNumber?: number
+  violationType?: string
+  category?: string
+  description?: string
 }
 
 export type THistoryData = {
