@@ -15,6 +15,9 @@
   text-transform: uppercase;
   line-height: 0.875rem; /* 100% */
 }
+.text-uppercase{
+  text-transform: uppercase !important;
+}
 
 .status-failed {
   color: var(--Grey);

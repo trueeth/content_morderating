@@ -5,7 +5,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import {
   EHistoryData,
-  EVideoType,
+  EMediaType,
   THistoryRowType
 } from '../../../../interfaces'
 import TableBody from '@mui/material/TableBody'
@@ -16,25 +16,25 @@ import HistoryRow from './HistoryRow'
 const rows: THistoryRowType[] = [
   {
     name: 'SAW X Video for the design',
-    source: EVideoType.video,
+    source: EMediaType.video,
     status: 20,
     date: 'Sep, 29, 2023 07:55PM'
   },
   {
     name: 'Test Video for the design',
-    source: EVideoType.video,
+    source: EMediaType.video,
     status: 40,
     date: 'Sep, 29, 2023 07:55PM'
   },
   {
     name: 'UI UX design for the project',
-    source: EVideoType.video,
+    source: EMediaType.video,
     status: 60,
     date: 'Sep, 29, 2023 07:55PM'
   },
   {
     name: 'Best Tourism places',
-    source: EVideoType.video,
+    source: EMediaType.video,
     status: 100,
     date: 'Sep, 29, 2023 07:55PM'
   }

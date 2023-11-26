@@ -7,6 +7,8 @@ import React, { useEffect, useState } from 'react'
 import LoginImg from 'assets/images/login.png'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { apiIdentifyAuth, TResAuth } from '../../interfaces/apis/auth'
+import { AxiosResponse } from 'axios'
 
 
 export default function Auth() {
@@ -18,6 +20,12 @@ export default function Auth() {
   }
 
   const handleLogin = async () => {
+
+    // const res:AxiosResponse<TResAuth.identify> = await apiIdentifyAuth({ Username:vState.username, Password:vState.pwd })
+
+    // console.log(res)
+    // console.log(res.data.tokenValue)
+
     await login(vState.username, vState.pwd)
     router.push('/dashboard')
   }
@@ -93,6 +101,7 @@ export default function Auth() {
           <PrimaryTextField
             placeholder="Enter your password"
             onChange={(e) => handleUserInput('pwd', e.target.value)}
+            type={'password'}
             sx={{
               '& .MuiOutlinedInput-root': {
                 bgcolor: '#fff',

@@ -15,6 +15,7 @@ import { ExpandMoreOutlined, GetApp } from '@mui/icons-material'
 import { Months } from 'interfaces'
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
+
 const options: ApexOptions = {
   chart: {
     type: 'pie'
