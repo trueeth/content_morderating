@@ -1,8 +1,7 @@
-import {  createSlice } from '@reduxjs/toolkit'
-
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  videoUpload: false,
+  videoUpload: false
 }
 
 export interface IDialogSlice {
@@ -13,14 +12,11 @@ const dialogSlice = createSlice({
   name: 'dialog',
   initialState,
   reducers: {
-    openVideoUploadDialog(state,action) {
+    openVideoUploadDialog(state, action) {
       state.videoUpload = action.payload.open
     }
-  },
+  }
 })
 
-
 export default dialogSlice.reducer
-
-export const {  openVideoUploadDialog} = dialogSlice.actions
-
+export const { openVideoUploadDialog } = dialogSlice.actions
