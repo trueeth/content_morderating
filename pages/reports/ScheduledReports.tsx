@@ -18,12 +18,13 @@ import {
   PaginationItem,
   Select
 } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
-import { EReportHistory, EScheduleType, TScheduledReports } from 'interfaces'
+import { PrimaryButton } from '@/components/styled/StyledButton'
+import { EReportHistory, EScheduleType } from '@/interfaces/enums'
+import { TScheduledReports } from '@/interfaces/types'
 import Action from './components/SelectAction'
-import SearchInput from 'components/styled/SearchInput'
+import SearchInput from '@/components/styled/SearchInput'
 import InfoIcon from '@mui/icons-material/Info'
-import TablePagination from 'components/styled/TablePagination'
+import TablePagination from '@/components/styled/TablePagination'
 import { useState } from 'react'
 import AddReportDlg from './components/AddReportDlg'
 import MenuItem from '@mui/material/MenuItem'

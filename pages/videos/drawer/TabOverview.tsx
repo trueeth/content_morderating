@@ -11,9 +11,6 @@ import overview7 from '/assets/images/overview/overview-07.png'
 import overview8 from '/assets/images/overview/overview-08.png'
 import overview9 from '/assets/images/overview/overview-09.png'
 import overview10 from '/assets/images/overview/overview-10.png'
-import overview11 from '/assets/images/overview/overview-11.png'
-import overview12 from '/assets/images/overview/overview-12.png'
-
 const itemData = [
   {
     img: overview1,

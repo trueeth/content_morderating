@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/store/*": ["store/*"],
+      "@/interfaces/*": ["interfaces/*"]
+    },
     "target": "ES2020",
     "downlevelIteration": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,12 +22,7 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+
+  "exclude": ["node_modules"]
 }

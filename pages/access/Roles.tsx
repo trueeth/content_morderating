@@ -1,7 +1,6 @@
 import {
   Box,
   Typography,
-  Button,
   Grid,
   Paper,
   TableContainer,
@@ -14,8 +13,8 @@ import {
   Tooltip,
   Select
 } from '@mui/material'
-import { TRole } from 'interfaces'
-import SearchInput from 'components/styled/SearchInput'
+import { TRole } from '@/interfaces/types'
+import SearchInput from '@/components/styled/SearchInput'
 import InfoIcon from '@mui/icons-material/Info'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'

@@ -6,15 +6,14 @@ import {
   Grid,
   InputAdornment,
   MenuItem,
-  Select,
   Tooltip,
   Typography
 } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
-import { PrimaryTextField } from 'components/styled/TextField'
+import { PrimaryButton } from '@/components/styled/StyledButton'
+import { PrimaryTextField } from '@/components/styled/TextField'
 import { EUserRole, EUserType } from 'interfaces'
 import InfoIcon from '@mui/icons-material/Info'
-import CustomSelect from 'components/styled/Select'
+import CustomSelect from '@/components/styled/Select'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 
 const Groups = ['Moderators Group 1', 'Moderators Frontend Development']

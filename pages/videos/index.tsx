@@ -6,9 +6,9 @@ import VideoTable from './videoTable'
 import VideoTableHeader from './Header'
 import TestVideoDrawer from './drawer'
 import { useDispatch, useSelector } from 'react-redux'
-import { IAppSlice } from '../../store/reducers'
-import { IReduxState } from '../../store'
-import { openVideoSubDrawer } from '../../store/reducers/drawer.reducers'
+import { IAppSlice } from '@/store/reducers'
+import { IReduxState } from '@/store/index'
+import { openVideoSubDrawer } from '@/store/reducers/drawer.reducers'
 import TablePagination from 'components/styled/TablePagination'
 
 const Video = () => {

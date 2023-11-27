@@ -15,8 +15,8 @@ import InfoIcon from '@mui/icons-material/Info'
 import TabPanel from '../../styled/TabPanel'
 import UploadStepper from './uploadStepper/UploadStepper'
 import HistoryTable from './historyTable/HistoryTable'
-import { IAppSlice } from '../../../store/reducers'
-import { openVideoUploadDialog } from '../../../store/reducers/dialog.reducers'
+import { IAppSlice } from '@/store/reducers'
+import { openVideoUploadDialog } from '@/store/reducers/dialog.reducers'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()
@@ -97,12 +97,22 @@ export default function UploadDialog() {
                   overflow: 'hidden'
                 }}
               >
-                <ToggleButton sx={{
-                  padding:'7px 30px'
-                }} value={0}>Upload</ToggleButton>
-                <ToggleButton sx={{
-                  padding:'7px 30px'
-                }}  value={1}>History</ToggleButton>
+                <ToggleButton
+                  sx={{
+                    padding: '7px 30px'
+                  }}
+                  value={0}
+                >
+                  Upload
+                </ToggleButton>
+                <ToggleButton
+                  sx={{
+                    padding: '7px 30px'
+                  }}
+                  value={1}
+                >
+                  History
+                </ToggleButton>
               </ToggleButtonGroup>
             </Box>
             <TabPanel value={vState.tabIndex} index={0}>

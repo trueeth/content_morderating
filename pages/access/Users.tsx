@@ -19,11 +19,12 @@ import {
   Pagination,
   PaginationItem
 } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
-import { EUserData, EUserRole, EUserType, TUserData } from 'interfaces'
+import { PrimaryButton } from '@/components/styled/StyledButton'
+import { EUserData, EUserRole, EUserType } from '@/interfaces/enums'
+import { TUserData } from '@/interfaces/types'
 import Action from './components/Action'
 import AddUserDlg from './components/AddUserDlg'
-import SearchInput from 'components/styled/SearchInput'
+import SearchInput from '@/components/styled/SearchInput'
 
 import avatar1 from 'assets/images/avatar/1.svg'
 import avatar2 from 'assets/images/avatar/2.svg'
@@ -35,7 +36,7 @@ import Image from 'next/image'
 import InfoIcon from '@mui/icons-material/Info'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
-import TablePagination from 'components/styled/TablePagination'
+import TablePagination from '@/components/styled/TablePagination'
 
 const UserData: Array<TUserData> = [
   {
@@ -216,10 +217,9 @@ export default function Users() {
               sx={{
                 ml: 2,
                 bgcolor: '#ff1313a0',
-                opacity:'0.6',
+                opacity: '0.6',
                 color: 'white',
-                '&:hover': { bgcolor: '#ff1313a0',
-                  opacity:'0.6', }
+                '&:hover': { bgcolor: '#ff1313a0', opacity: '0.6' }
               }}
             >
               Delete

@@ -10,9 +10,9 @@ import {
 import MenuItem from '@mui/material/MenuItem'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
-import { PrimaryButton } from '../../components/styled/StyledButton'
+import { PrimaryButton } from '@/components/styled/StyledButton'
 import { ExpandMoreOutlined, GetApp } from '@mui/icons-material'
-import { Months } from 'interfaces'
+import { Months } from '@/interfaces/constant'
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
 

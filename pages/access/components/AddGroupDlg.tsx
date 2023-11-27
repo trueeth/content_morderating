@@ -3,8 +3,8 @@ import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
 import { Grid, Tooltip, Typography } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
-import { PrimaryTextField } from 'components/styled/TextField'
+import { PrimaryButton } from '@/components/styled/StyledButton'
+import { PrimaryTextField } from '@/components/styled/TextField'
 import InfoIcon from '@mui/icons-material/Info'
 
 export default function AddGroupDlg({

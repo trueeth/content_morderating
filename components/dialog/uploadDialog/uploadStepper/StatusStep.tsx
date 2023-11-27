@@ -3,8 +3,8 @@ import { Box, Radio, Select, useMediaQuery, Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'
-import { PrimaryButton } from 'components/styled/StyledButton'
-import { PrimaryTextField } from 'components/styled/TextField'
+import { PrimaryButton } from '@/components/styled/StyledButton'
+import { PrimaryTextField } from '@/components/styled/TextField'
 
 export default function StatusStep(props: {
   handleNext: () => void
@@ -38,9 +38,9 @@ export default function StatusStep(props: {
             alignItems: 'center'
           },
 
-          "& .MuiTypography-root, input": {
-            sm:{fontSize:'.9rem'},
-            xs:{fontSize:'.7rem'}
+          '& .MuiTypography-root, input': {
+            sm: { fontSize: '.9rem' },
+            xs: { fontSize: '.7rem' }
           }
         }}
       >
@@ -79,20 +79,28 @@ export default function StatusStep(props: {
               : () => <Typography>Select from list</Typography>
           }
         >
-          <MenuItem sx={{
-
-            "& .MuiTypography-root, input": {
-              sm:{fontSize:'.9rem'},
-              xs:{fontSize:'.7rem'}
-            }
-          }} value={0}>Trolls</MenuItem>
-          <MenuItem sx={{
-
-            "& .MuiTypography-root, input": {
-              sm:{fontSize:'.9rem'},
-              xs:{fontSize:'.7rem'}
-            }
-          }} value={1}>Poppy</MenuItem>
+          <MenuItem
+            sx={{
+              '& .MuiTypography-root, input': {
+                sm: { fontSize: '.9rem' },
+                xs: { fontSize: '.7rem' }
+              }
+            }}
+            value={0}
+          >
+            Trolls
+          </MenuItem>
+          <MenuItem
+            sx={{
+              '& .MuiTypography-root, input': {
+                sm: { fontSize: '.9rem' },
+                xs: { fontSize: '.7rem' }
+              }
+            }}
+            value={1}
+          >
+            Poppy
+          </MenuItem>
         </Select>
         <Box
           sx={{
@@ -101,7 +109,9 @@ export default function StatusStep(props: {
             '& .MuiButton-root': { width: '100px' }
           }}
         >
-          <PrimaryButton onClick={props.handleBack} active={false}>Back</PrimaryButton>
+          <PrimaryButton onClick={props.handleBack} active={false}>
+            Back
+          </PrimaryButton>
           <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
         </Box>
       </Box>

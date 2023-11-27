@@ -1,4 +1,4 @@
-import { EMediaType } from '../../../../interfaces'
+import { EMediaType } from '../../interfaces'
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import { Slideshow } from '@mui/icons-material'

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { EAlert } from '../../interfaces'
+import { EAlert } from '@/interfaces/enums'
 
 const initialState = {
   alertType: null,

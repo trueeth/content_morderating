@@ -1,5 +1,5 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
-import TabPanel from 'components/styled/TabPanel'
+import TabPanel from '@/components/styled/TabPanel'
 import { useState } from 'react'
 import Users from './Users'
 import Groups from './Groups'

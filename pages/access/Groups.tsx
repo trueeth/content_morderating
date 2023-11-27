@@ -19,15 +19,15 @@ import {
   Pagination,
   PaginationItem
 } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
+import { PrimaryButton } from '@/components/styled/StyledButton'
 import { EGroupData, TGroupData } from 'interfaces'
 import Action from './components/Action'
 import AddGroupDlg from './components/AddGroupDlg'
-import SearchInput from 'components/styled/SearchInput'
+import SearchInput from '@/components/styled/SearchInput'
 import React from 'react'
 import InfoIcon from '@mui/icons-material/Info'
 import MenuItem from '@mui/material/MenuItem'
-import TablePagination from 'components/styled/TablePagination'
+import TablePagination from '@/components/styled/TablePagination'
 
 const GroupData: Array<TGroupData> = [
   {

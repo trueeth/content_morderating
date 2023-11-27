@@ -7,48 +7,68 @@ import {
   EApporval,
   EClassificationType,
   ENewVideoData,
-  ERating,
-  TNewVideoRowType
-} from '../../interfaces'
+  ERating
+} from '@/interfaces/enums'
+import { TNewVideoRowType } from '@/interfaces/types'
 import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
-import RowRating from '../videos/videoTable/videoRow/RowRating'
-import RowApproval from '../videos/videoTable/videoRow/RowApproval'
+import RowRating from '@/components/multi-media/RowRating'
+import RowApproval from '@/components/multi-media/RowApproval'
 
 const rows = [
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.r18,
-    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
+    classification: [
+      EClassificationType.hate,
+      EClassificationType.sexual,
+      EClassificationType.selfHarm
+    ],
     approval: EApporval.review
   },
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
     rating: ERating.r18,
-    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
+    classification: [
+      EClassificationType.hate,
+      EClassificationType.sexual,
+      EClassificationType.selfHarm
+    ],
     approval: EApporval.review
   },
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.missing,
-    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
+    classification: [
+      EClassificationType.hate,
+      EClassificationType.sexual,
+      EClassificationType.selfHarm
+    ],
     approval: EApporval.reject
   },
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
     rating: ERating.missing,
-    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
+    classification: [
+      EClassificationType.hate,
+      EClassificationType.sexual,
+      EClassificationType.selfHarm
+    ],
     approval: EApporval.pending
   },
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
     rating: ERating.r18,
-    classification: [EClassificationType.hate, EClassificationType.sexual, EClassificationType.selfHarm],
+    classification: [
+      EClassificationType.hate,
+      EClassificationType.sexual,
+      EClassificationType.selfHarm
+    ],
     approval: EApporval.approve
   }
 ]

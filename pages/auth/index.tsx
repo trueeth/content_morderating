@@ -1,15 +1,12 @@
 import { Typography, Box, Button } from '@mui/material'
 import { Container } from '@mui/system'
 import { useAuthContext } from 'auth/hooks'
-import { PrimaryTextField } from 'components/styled/TextField'
+import { PrimaryTextField } from '@/components/styled/TextField'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import LoginImg from 'assets/images/login.png'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { apiIdentifyAuth, TResAuth } from '../../interfaces/apis/auth'
-import { AxiosResponse } from 'axios'
-
 
 export default function Auth() {
   const { login } = useAuthContext()
@@ -20,22 +17,15 @@ export default function Auth() {
   }
 
   const handleLogin = async () => {
-
-    // const res:AxiosResponse<TResAuth.identify> = await apiIdentifyAuth({ Username:vState.username, Password:vState.pwd })
-
-    // console.log(res)
-    // console.log(res.data.tokenValue)
-
     await login(vState.username, vState.pwd)
     router.push('/dashboard')
   }
 
-  const {authenticated}=useAuthContext()
+  const { authenticated } = useAuthContext()
 
   useEffect(() => {
-    if (authenticated){
-      // console.log(router)
-      router.replace("/dashboard")
+    if (authenticated) {
+      router.replace('/dashboard')
     }
   }, [])
 

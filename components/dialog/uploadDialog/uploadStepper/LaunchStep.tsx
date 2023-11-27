@@ -3,13 +3,11 @@ import { Box, Typography } from '@mui/material'
 import LinearProgress from '@mui/material/LinearProgress'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { IReduxState } from '../../../../store'
-import { IAppSlice } from '../../../../store/reducers'
+import { IReduxState } from '@/store/index'
+import { IAppSlice } from '@/store/reducers'
 
 export default function LaunchStep() {
-
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
-
 
   return (
     <StepWrapper>
@@ -30,7 +28,10 @@ export default function LaunchStep() {
             width: { xs: '90%', md: '80%' }
           }}
         >
-          <LinearProgress variant="determinate" value={appState.upload.progress} />
+          <LinearProgress
+            variant="determinate"
+            value={appState.upload.progress}
+          />
         </Box>
         <Box
           sx={{

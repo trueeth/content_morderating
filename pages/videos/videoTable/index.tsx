@@ -7,17 +7,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import {
-  EClassificationType,
-  EMediaType,
-  EVideoData,
-  TVideoRowType,
-  TVideoSubRowType
-} from '../../../interfaces'
+import { TVideoRowType, TVideoSubRowType } from '@/interfaces/types'
+import { EClassificationType, EMediaType, EVideoData } from '@/interfaces/enums'
 import VideoRow from './videoRow/VideoRow'
-import { apiGetMediaContents } from '../../../interfaces/apis/videos'
-import { AxiosResponse } from 'axios'
-import { TResVideo } from '../../../interfaces/apis/videos.types'
+import { apiGetMediaContents } from '@/interfaces/apis/videos'
+import { TResVideo } from '@/interfaces/apis/videos.types'
 
 const mappingResToRow = (res: TResVideo.getMediaContents) => {
   let rows: TVideoRowType[] = []

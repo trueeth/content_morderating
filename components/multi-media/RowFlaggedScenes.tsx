@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import LinearProgress from '@mui/material/LinearProgress'
 import clsx from 'clsx'
-import { CFlaggedScenesMax } from '../../../../interfaces'
+import { CFlaggedScenesMax } from '../../interfaces'
 import { Typography } from '@mui/material'
 
 export default function RowFlaggedScenes(props: { value: number }) {

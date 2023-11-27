@@ -19,7 +19,7 @@ import {
   PaginationItem,
   Select
 } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
+import { PrimaryButton } from '@/components/styled/StyledButton'
 import {
   EReportHistory,
   EReportHistoryStatus,
@@ -29,7 +29,7 @@ import Action from './components/SelectAction'
 import AddReportDlg from './components/AddReportDlg'
 import SearchInput from 'components/styled/SearchInput'
 import InfoIcon from '@mui/icons-material/Info'
-import TablePagination from 'components/styled/TablePagination'
+import TablePagination from '@/components/styled/TablePagination'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 
@@ -300,10 +300,10 @@ export default function ReportHistory() {
                 <TableCell>
                   <Box
                     sx={{
-                      p:'4px 10px',
+                      p: '4px 10px',
                       borderRadius: '5px',
                       width: 'fit-content',
-                      fontSize:'0.7rem',
+                      fontSize: '0.7rem',
                       bgcolor:
                         item.status === EReportHistoryStatus.processing
                           ? '#FFE6C9'

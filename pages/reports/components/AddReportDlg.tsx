@@ -3,11 +3,11 @@ import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
 import { Grid, Typography, MenuItem, Tooltip } from '@mui/material'
-import { PrimaryButton } from 'components/styled/StyledButton'
-import { PrimaryTextField } from 'components/styled/TextField'
-import { EScheduleType, EReportType } from 'interfaces'
+import { PrimaryButton } from '@/components/styled/StyledButton'
+import { PrimaryTextField } from '@/components/styled/TextField'
+import { EScheduleType, EReportType } from '@/interfaces/enums'
 import InfoIcon from '@mui/icons-material/Info'
-import CustomSelect from 'components/styled/Select'
+import CustomSelect from '@/components/styled/Select'
 
 export default function AddReportDlg({
   open,
@@ -82,9 +82,13 @@ export default function AddReportDlg({
                 placeholder="Select from list"
               >
                 {Object.values(EReportType).map((item, index) => (
-                  <MenuItem key={index} value={item} sx={{
-                    fontSize:'0.8rem'
-                  }}>
+                  <MenuItem
+                    key={index}
+                    value={item}
+                    sx={{
+                      fontSize: '0.8rem'
+                    }}
+                  >
                     {item}
                   </MenuItem>
                 ))}
@@ -100,9 +104,13 @@ export default function AddReportDlg({
                 placeholder="Select from list"
               >
                 {Object.values(EScheduleType).map((item, index) => (
-                  <MenuItem key={index} sx={{
-                    fontSize:'0.8rem'
-                  }} value={item}>
+                  <MenuItem
+                    key={index}
+                    sx={{
+                      fontSize: '0.8rem'
+                    }}
+                    value={item}
+                  >
                     {item}
                   </MenuItem>
                 ))}

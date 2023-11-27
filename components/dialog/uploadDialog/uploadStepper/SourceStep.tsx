@@ -5,17 +5,17 @@ import { useEffect, useMemo, useState } from 'react'
 import { PrimaryButton } from '../../../styled/StyledButton'
 import { useDropzone } from 'react-dropzone'
 import { CSSProperties } from 'styled-components'
-import { PrimaryTextField } from 'components/styled/TextField'
+import { PrimaryTextField } from '@/components/styled/TextField'
 import fileUpload from '/assets/fileUpload.svg'
 import Image from 'next/image'
 import axios, { AxiosRequestConfig } from 'axios'
 import { useDispatch } from 'react-redux'
-import { setUploadProgress } from '../../../../store/reducers/upload.reducers'
+import { setUploadProgress } from '@/store/reducers/upload.reducers'
 import {
   openSnackbarError,
   openSnackbarSuccess,
   openSnackbarWarning
-} from '../../../../store/reducers/snackbar.reducers'
+} from '@/store/reducers/snackbar.reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,

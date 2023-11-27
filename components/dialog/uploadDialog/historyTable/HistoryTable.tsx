@@ -3,11 +3,8 @@ import Table from '@mui/material/Table'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import {
-  EHistoryData,
-  EMediaType,
-  THistoryRowType
-} from '../../../../interfaces'
+import { EHistoryData, EMediaType } from '@/interfaces/enums'
+import { THistoryRowType } from '@/interfaces/types'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 import * as React from 'react'
@@ -42,8 +39,10 @@ const rows: THistoryRowType[] = [
 
 export default function HistoryTable() {
   return (
-    <TableContainer component={Paper} sx={{ borderRadius: '15px', p: 2 ,
-      boxShadow:'none',}}>
+    <TableContainer
+      component={Paper}
+      sx={{ borderRadius: '15px', p: 2, boxShadow: 'none' }}
+    >
       <Table
         aria-label="collapsible table"
         sx={{

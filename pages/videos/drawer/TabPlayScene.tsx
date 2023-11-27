@@ -10,12 +10,8 @@ import {
   CurrentTimeDisplay,
   TimeDivider,
   PlaybackRateMenuButton,
-  VolumeMenuButton } from 'video-react'
-function ReactAllPlayer(props: {
-  components: { Controls: () => JSX.Element }
-}) {
-  return null
-}
+  VolumeMenuButton
+} from 'video-react'
 
 export default function DrawerTabPlayScene() {
   const [vState, setState] = useState({
@@ -31,11 +27,11 @@ export default function DrawerTabPlayScene() {
         flexDirection: 'column',
         bgcolor: 'var(--Secondary)',
         p: 2,
-        "& >div":{
-          position:'relative',
-          "& >button":{
-              top:'40% !important',
-              left:'45% !important'
+        '& >div': {
+          position: 'relative',
+          '& >button': {
+            top: '40% !important',
+            left: '45% !important'
           }
         }
       }}
