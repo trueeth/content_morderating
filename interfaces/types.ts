@@ -8,7 +8,8 @@ import {
   EUserRole,
   EUserType,
   EMediaType,
-  EModeratorApprovalStatus
+  EModeratorApprovalStatus,
+  EViolationType
 } from './enums'
 
 export type TVideoRowType = {
@@ -18,7 +19,8 @@ export type TVideoRowType = {
   rating?: ERating
   classification?: EClassificationType[]
   submissionDate?: string
-  approval?: EModeratorApprovalStatus
+  moderator_approval?: EModeratorApprovalStatus
+  ai_approval?: EApporval
   flaggedScenes?: number
   subRows?: TVideoSubRowType[]
 }
@@ -61,7 +63,7 @@ export type THistoryRowType = {
 
 export type TVideoSubRowType = {
   sceneNumber?: number
-  violationType?: string
+  violationType?: EViolationType
   category?: string
   description?: string
 }

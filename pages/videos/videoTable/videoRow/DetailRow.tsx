@@ -5,35 +5,44 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
 import { Checkbox, Typography } from '@mui/material'
-import { TVideoSubRowType } from '@/interfaces/types'
+import { TVideoRowType, TVideoSubRowType } from '@/interfaces/types'
 import { EVideoDetail } from '@/interfaces/enums'
 import { useDispatch } from 'react-redux'
 import { openVideoSubDrawer } from '@/store/reducers/drawer.reducers'
 import Button from '@mui/material/Button'
 import { MoreHoriz } from '@mui/icons-material'
+import { TResVideo } from '@/interfaces/apis/videos.types'
 
-const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
+const VideoSubTable = (props: {
+  subRows: TVideoSubRowType[]
+  summaries: TResVideo.TMeidaSummaries[]
+  row: TVideoRowType
+}) => {
   const [checked, setChecked] = React.useState(false)
 
   const dispatch = useDispatch()
-  const openScene = () => {
-    dispatch(openVideoSubDrawer({ open: true }))
+
+  const openScene = (summary: TResVideo.TMeidaSummaries) => () => {
+    dispatch(
+      openVideoSubDrawer({ open: true, summary: summary, row: props.row })
+    )
   }
+
   const handleChange = (e: any) => {
     setChecked(e.target.checked)
   }
 
-  const rows = props.value
+  const { subRows, summaries } = props
 
-  if (rows === undefined || rows?.length === 0) {
+  if (subRows === undefined || subRows?.length === 0) {
     return null
   }
 
-  const CustomizedTableRow = ({ children, onClick, key }) => (
+  const CustomizedTableRow = ({ children, onClick, key, summary }) => (
     <TableRow key={key}>
       {children.map((item, idx) => {
         if (idx > 0 && idx < 5) {
-          return <TableCell onClick={onClick}>{item}</TableCell>
+          return <TableCell onClick={onClick(summary)}>{item}</TableCell>
         }
         return <TableCell>{item}</TableCell>
       })}
@@ -79,12 +88,16 @@ const VideoSubTable = (props: { value: TVideoSubRowType[] }) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row, index) => {
+        {subRows.map((row, index) => {
           return (
-            <CustomizedTableRow key={index} onClick={openScene}>
+            <CustomizedTableRow
+              key={index}
+              onClick={openScene}
+              summary={summaries[index]}
+            >
               <Checkbox />
-              <Typography>{'Scene #' + row.sceneNumber}</Typography>
-              <Typography>{'Video'}</Typography>
+              <Typography>{'Page #' + row.sceneNumber}</Typography>
+              <Typography>{row.violationType}</Typography>
               <Typography>{row.category}</Typography>
               <Typography>{row.description}</Typography>
               <Button

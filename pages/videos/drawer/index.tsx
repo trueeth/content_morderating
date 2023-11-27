@@ -3,6 +3,7 @@ import { Box, Drawer, useMediaQuery } from '@mui/material'
 
 import DrawerHeader from './Header'
 import DrawerTab from './DrawerTab'
+import { TResVideo } from '@/interfaces/apis/videos.types'
 
 interface IOpenProps {
   open: boolean

@@ -1,11 +1,14 @@
+import exp from 'constants'
+
 export enum EVideoData {
   name = 'NAME',
   type = 'TYPE',
   status = 'STATUS',
   rating = 'RATING',
   classification = 'CLASSIFICATION',
+  moderator_approval = 'MODERATOR APPROVAL',
+  ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
-  approval = 'APPROVAL',
   flaggedScenes = 'FLAGGED SCENES',
   actions = 'ACTIONS'
 }
@@ -79,7 +82,7 @@ export enum EHistoryData {
 }
 
 export enum EVideoDetail {
-  sceneNumber = 'SCENE NUMBER',
+  pageNumber = 'PAGE NUMBER',
   violationType = 'VIOLATION TYPE',
   category = 'CATEGORY',
   description = 'DESCRIPTION',
@@ -193,4 +196,9 @@ export enum ESeverity {
   moderate = 'Moderate',
   severe = 'Severe',
   extreme = 'Extreme'
+}
+
+export enum EViolationType {
+  saudi = 'Saudi Discrimination',
+  religion = 'Religion Discrimination'
 }

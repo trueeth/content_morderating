@@ -28,8 +28,11 @@ const mappingResToRow = (res: TResVideo.getMediaContents) => {
       tempRow.rating = videoContent.Videos[0]?.VideoSummaries[0]?.Rating
       tempRow.classification
       tempRow.submissionDate = videoContent.Videos[0]?.UploadedOnUtc
-      tempRow.approval =
+      tempRow.moderator_approval =
         videoContent.Videos[0]?.VideoSummaries[0]?.ModeratorApprovalStatus
+
+      tempRow.ai_approval =
+        videoContent.Videos[0]?.VideoSummaries[0]?.AutomaticApprovalStatus
       tempRow.flaggedScenes =
         videoContent.Videos[0]?.VideoSummaries[0]?.NumberOfFragments
 
@@ -58,6 +61,18 @@ const mappingResToRow = (res: TResVideo.getMediaContents) => {
       return tempRow
     })
   }
+
+  rows = rows.sort((a, b) => {
+    let x = a.submissionDate.toLowerCase()
+    let y = b.submissionDate.toLowerCase()
+    if (x < y) {
+      return 1
+    }
+    if (x > y) {
+      return -1
+    }
+    return 0
+  })
   return rows
 }
 
@@ -104,7 +119,12 @@ export default function VideoTable() {
             {Object.values(EVideoData).map((item, index) => (
               <TableCell
                 key={index}
-                sx={{ whiteSpace: 'nowrap', fontSize: '12px', color: '#888' }}
+                sx={{
+                  whiteSpace: 'wrap',
+                  fontSize: '12px',
+                  color: '#888',
+                  maxWidth: '70px'
+                }}
               >
                 {item}
               </TableCell>

@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material'
 import Image from 'next/image'
+import { useSelector } from 'react-redux'
+import { IAppSlice } from '@/store/reducers'
+import { IReduxState } from '@/store/index'
 
 import overview1 from '/assets/images/overview/overview-01.png'
 import overview2 from '/assets/images/overview/overview-02.png'
@@ -11,6 +14,7 @@ import overview7 from '/assets/images/overview/overview-07.png'
 import overview8 from '/assets/images/overview/overview-08.png'
 import overview9 from '/assets/images/overview/overview-09.png'
 import overview10 from '/assets/images/overview/overview-10.png'
+import { log } from 'console'
 const itemData = [
   {
     img: overview1,
@@ -62,6 +66,8 @@ const ImageItemStyle = {
 }
 
 export default function DrawerTabOverview() {
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
   return (
     <Box
       sx={{
@@ -97,16 +103,18 @@ export default function DrawerTabOverview() {
           color: '#808080'
         }}
       >
-        This is simply dummy text of the printing and typesetting industry. is
-        simply dummy text of the best ipsum has been the top offer
-        industry&apos;s standard printing and typesetting industry. This is
-        simply dummy text of the printing and typesetting industry. This is
-        simply dummy text of the best ipsum has been the top industry&apos;s
-        standard printing and type setting industry. Here is simply dummy text
-        of the printing and typesetting industry. Here is simply dummy text of
-        the best ipsum has been the top offer industry&apos;s standard printing
-        and typesetting industry. Here is simply dummy text of the printing and
-        typesetting industry.
+        The period begins with Abdul Aziz bin Muhammad coming to power in 1203
+        AH / 1789 AD, leaving him a strong and cohesive state. Then Imam Saud
+        bin Abdul Aziz takes power and continues to unify the country and expand
+        the state's influence. After him, Imam Abdullah bin Saud assumes power,
+        but he faces difficulties and loses to Muhammad Ali Pasha’s campaign to
+        eliminate the state. Events then unfold with King Abdul Aziz regaining
+        Riyadh and the continued expansion of the second Saudi state. Later,
+        Muhammad bin Abdulaziz is appointed Crown Prince and assumes many tasks
+        and responsibilities in the government. Mohammed bin Nayef is then
+        appointed Crown Prince and Deputy Prime Minister, but he is dismissed in
+        2017 and Mohammed bin Salman is appointed Crown Prince and continues to
+        hold multiple positions in the government.
       </Typography>
     </Box>
   )

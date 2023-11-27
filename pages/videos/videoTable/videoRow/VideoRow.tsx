@@ -18,6 +18,7 @@ import { Typography } from '@mui/material'
 import { format, parseISO } from 'date-fns'
 import { apiGetVideoScenes } from '@/interfaces/apis/videos'
 import { TResVideo } from '@/interfaces/apis/videos.types'
+import { EViolationType } from '@/interfaces/enums'
 
 const mappingResSubRow = (res: TResVideo.TVideoSummary[]) => {
   const tempRes = res
@@ -28,9 +29,11 @@ const mappingResSubRow = (res: TResVideo.TVideoSummary[]) => {
       tempResult.sceneNumber = index + 1
       tempResult.category = 'Tech'
       tempResult.description =
-        '  This is simply dummy text of the printing and typesetting industry. is\n' +
-        '        simply dummy text '
-      tempResult.violationType = value.ViolenceSeverity
+        'Later, Muhammad bin Abdulaziz is appointed Crown Prince and assumes many tasks and responsibilities in the government. Mohammed bin Nayef is then appointed Crown Prince and Deputy Prime Minister, but he is dismissed in 2017 and Mohammed bin Salman'
+
+      let vioRand = Math.floor(Math.random() * 5) + 1
+      if (vioRand > 2) tempResult.violationType = EViolationType.saudi
+      else tempResult.violationType = EViolationType.religion
       return tempResult
     })
   }
@@ -42,10 +45,12 @@ function VideoRow(props: {
   videoContent: TResVideo.TMeidaContent
 }) {
   const { row, videoContent } = props
+
   const [vState, setState] = React.useState<{
     openSummary: boolean
     subRow: TVideoSubRowType[]
-  }>({ openSummary: false, subRow: [] })
+    subRowSummaries: TResVideo.TMeidaSummaries[]
+  }>({ openSummary: false, subRow: [], subRowSummaries: [] })
 
   const handleDetail = async () => {
     if (vState.subRow.length > 0) {
@@ -56,7 +61,12 @@ function VideoRow(props: {
       if (videoSummaries) {
         let tempSubRow = mappingResSubRow(videoSummaries.Content)
         tempSubRow = tempSubRow.filter((val, index) => index < 5)
-        setState({ ...vState, openSummary: true, subRow: tempSubRow })
+        setState({
+          ...vState,
+          openSummary: true,
+          subRow: tempSubRow,
+          subRowSummaries: videoSummaries.Content
+        })
       }
     }
   }
@@ -113,14 +123,18 @@ function VideoRow(props: {
         </TableCell>
 
         <TableCell>
-          <Box className={'flex'} maxWidth={'100px'}>
-            {format(parseISO(row.submissionDate), 'MM/dd/yyyy hh:mm:ss a')}
+          <Box className={'flex justify-center item-center approval'}>
+            <RowApproval approval={row.moderator_approval}></RowApproval>
           </Box>
         </TableCell>
-
         <TableCell>
           <Box className={'flex justify-center item-center approval'}>
-            <RowApproval approval={row.approval}></RowApproval>
+            <RowApproval approval={row.ai_approval}></RowApproval>
+          </Box>
+        </TableCell>
+        <TableCell>
+          <Box className={'flex'} maxWidth={'100px'}>
+            {format(parseISO(row.submissionDate), 'MM/dd/yyyy hh:mm:ss a')}
           </Box>
         </TableCell>
 
@@ -148,7 +162,11 @@ function VideoRow(props: {
         >
           <Collapse in={vState.openSummary} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <VideoSubTable value={vState.subRow}></VideoSubTable>
+              <VideoSubTable
+                subRows={vState.subRow}
+                summaries={vState.subRowSummaries}
+                row={row}
+              ></VideoSubTable>
             </Box>
           </Collapse>
         </TableCell>

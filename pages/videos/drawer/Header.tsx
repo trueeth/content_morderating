@@ -1,7 +1,14 @@
 import { Box, Typography } from '@mui/material'
 import RowAction from '@/components/multi-media/RowAction'
+import { useSelector } from 'react-redux'
+import { IAppSlice } from '@/store/reducers'
+import { IReduxState } from '@/store/index'
+import { format, parseISO } from 'date-fns'
 
 export default function DrawerHeader() {
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+  console.log(appState)
+
   return (
     <Box
       sx={{
@@ -11,13 +18,17 @@ export default function DrawerHeader() {
       }}
     >
       <header className="flex justify-between">
-        <Typography>Test Video for the project, Scene #5</Typography>
+        <Typography>
+          Video for the <strong>{appState.drawer.videoContent?.name}</strong>,
+          Page #{appState.drawer.summary?.IndexerSceneId}
+        </Typography>
         <RowAction />
       </header>
       <Typography>
-        This is simply dummy text of the printing and typesetting industry. Here
-        is simply dummy text of the best ipsum has been the industry&apos;s
-        standard printing and typesetting industry.
+        Later, Muhammad bin Abdulaziz is appointed Crown Prince and assumes many
+        tasks and responsibilities in the government. Mohammed bin Nayef is then
+        appointed Crown Prince and Deputy Prime Minister, but he is dismissed in
+        2017 and Mohammed bin Salman
       </Typography>
       <Box
         sx={{
@@ -41,15 +52,24 @@ export default function DrawerHeader() {
         </Box>
         <Box>
           <Typography>RATING : &nbsp;</Typography>
-          <Typography> R18</Typography>
+          <Typography> {appState.drawer.videoContent?.rating}</Typography>
         </Box>
         <Box>
           <Typography>CLASSIFICATION : &nbsp; </Typography>
-          <Typography> H,SH,S</Typography>
+          <Typography>
+            {appState.drawer.videoContent?.classification?.join(',')}
+          </Typography>
         </Box>
         <Box>
           <Typography>SUBMISSION DATE : &nbsp;</Typography>
-          <Typography> SETP,26,2023 07:55PM</Typography>
+          <Typography>
+            {appState.drawer.videoContent != null
+              ? format(
+                  parseISO(appState.drawer.videoContent?.submissionDate),
+                  'MM/dd/yyyy hh:mm:ss a'
+                )
+              : ''}
+          </Typography>
         </Box>
         <Box>
           <Typography>APPROVAL : &nbsp; </Typography>
