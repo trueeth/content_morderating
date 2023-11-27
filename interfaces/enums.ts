@@ -6,7 +6,7 @@ export enum EVideoData {
   status = 'STATUS',
   rating = 'RATING',
   classification = 'CLASSIFICATION',
-  moderator_approval = 'MODERATOR APPROVAL',
+  moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
   flaggedScenes = 'FLAGGED SCENES',
@@ -101,6 +101,7 @@ export enum EDocumentRecognitionStatus {
   processing = 'Processing'
 }
 
+// @TODO wil modify
 export enum EModeratorApprovalStatus {
   new = 'New',
   inReview = 'InReview',
@@ -132,7 +133,6 @@ export enum EApporval {
   reject = 'Rejected',
   pending = 'Pending'
 }
-
 export enum EAlert {
   error = 'error',
   info = 'info',

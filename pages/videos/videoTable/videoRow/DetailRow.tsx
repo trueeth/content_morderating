@@ -54,8 +54,12 @@ const VideoSubTable = (props: {
       size="small"
       sx={{
         cursor: 'pointer',
+        borderCollapse: 'collapse',
+        mt: -0.5,
+        mb: 0.5,
         '& .MuiTableCell-root': {
-          border: '#fff !important'
+          borderTop: 'none !important',
+          maxWidth: '400px'
         }
       }}
     >
@@ -87,7 +91,11 @@ const VideoSubTable = (props: {
           })}
         </TableRow>
       </TableHead>
-      <TableBody>
+      <TableBody
+        sx={{
+          '& .MuiTypography-root': { color: '#555 !important' }
+        }}
+      >
         {subRows.map((row, index) => {
           return (
             <CustomizedTableRow
@@ -98,7 +106,7 @@ const VideoSubTable = (props: {
               <Checkbox />
               <Typography>{'Page #' + row.sceneNumber}</Typography>
               <Typography>{row.violationType}</Typography>
-              <Typography>{row.category}</Typography>
+              <Typography whiteSpace="nowrap">{row.category}</Typography>
               <Typography>{row.description}</Typography>
               <Button
                 id="basic-button"

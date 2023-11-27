@@ -30,7 +30,6 @@ const mappingResToRow = (res: TResVideo.getMediaContents) => {
       tempRow.submissionDate = videoContent.Videos[0]?.UploadedOnUtc
       tempRow.moderator_approval =
         videoContent.Videos[0]?.VideoSummaries[0]?.ModeratorApprovalStatus
-
       tempRow.ai_approval =
         videoContent.Videos[0]?.VideoSummaries[0]?.AutomaticApprovalStatus
       tempRow.flaggedScenes =
@@ -110,7 +109,8 @@ export default function VideoTable() {
           [`& .${tableCellClasses.root}`]: {
             borderBottom: 'none'
           },
-          borderSpacing: 0
+          borderSpacing: '0 0.3rem',
+          borderCollapse: 'separate'
         }}
       >
         <TableHead>

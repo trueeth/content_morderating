@@ -4,7 +4,6 @@ import DrawerTabOverview from './TabOverview'
 import DrawerTabPlayScene from './TabPlayScene'
 import DrawerTabActivities from './TabActivities'
 import TabPanel from '@/components/styled/TabPanel'
-import { TResVideo } from '@/interfaces/apis/videos.types'
 
 export default function DrawerTab() {
   const [vState, setState] = React.useState({ tabIndex: 0 })

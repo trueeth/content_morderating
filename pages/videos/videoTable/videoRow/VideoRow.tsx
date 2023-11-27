@@ -27,9 +27,9 @@ const mappingResSubRow = (res: TResVideo.TVideoSummary[]) => {
     result = tempRes.map((value, index) => {
       let tempResult: TVideoSubRowType = {}
       tempResult.sceneNumber = index + 1
-      tempResult.category = 'Tech'
+      tempResult.category = 'Content Video'
       tempResult.description =
-        'Later, Muhammad bin Abdulaziz is appointed Crown Prince and assumes many tasks and responsibilities in the government. Mohammed bin Nayef is then appointed Crown Prince and Deputy Prime Minister, but he is dismissed in 2017 and Mohammed bin Salman'
+        'Later, Muhammad bin Abdulaziz is appointed Crown Prince and assumes many tasks and responsibilities in the government.'
 
       let vioRand = Math.floor(Math.random() * 5) + 1
       if (vioRand > 2) tempResult.violationType = EViolationType.saudi
@@ -74,7 +74,22 @@ function VideoRow(props: {
   return (
     <React.Fragment>
       {/*-------main row-----------*/}
-      <TableRow>
+      <TableRow
+        sx={{
+          '& > .MuiTableCell-root': {
+            '&:first-of-type': {
+              borderBottomLeftRadius: vState.openSummary
+                ? '0px !important'
+                : '10px'
+            },
+            '&:last-of-type': {
+              borderBottomRightRadius: vState.openSummary
+                ? '0px !important'
+                : '10px'
+            }
+          }
+        }}
+      >
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -153,21 +168,17 @@ function VideoRow(props: {
       <TableRow>
         <TableCell
           style={{
-            paddingBottom: 5,
-            paddingTop: 5,
-            marginLeft: 20,
             border: 'none'
           }}
+          sx={{ p: 0 }}
           colSpan={12}
         >
           <Collapse in={vState.openSummary} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <VideoSubTable
-                subRows={vState.subRow}
-                summaries={vState.subRowSummaries}
-                row={row}
-              ></VideoSubTable>
-            </Box>
+            <VideoSubTable
+              subRows={vState.subRow}
+              summaries={vState.subRowSummaries}
+              row={row}
+            ></VideoSubTable>
           </Collapse>
         </TableCell>
       </TableRow>
