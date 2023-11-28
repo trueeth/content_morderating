@@ -4,16 +4,23 @@ import Box from '@mui/material/Box'
 import clsx from 'clsx'
 
 const RowStatus = (props: { status: EProcessingStatus }) => {
+  // return (
+  //   <Box
+  //     className={clsx(
+  //       // 'text-uppercase',
+  //       props.status === EProcessingStatus.processed && 'status-processed',
+  //       props.status === EProcessingStatus.failed && 'status-failed',
+  //       props.status === EProcessingStatus.new && 'status-new'
+  //     )}
+  //   >
+  //     {props.status}
+  //   </Box>
+  // )
   return (
     <Box
-      className={clsx(
-        // 'text-uppercase',
-        props.status === EProcessingStatus.processed && 'status-processed',
-        props.status === EProcessingStatus.failed && 'status-failed',
-        props.status === EProcessingStatus.new && 'status-new'
-      )}
+      
     >
-      {props.status}
+      Mickle Moonico
     </Box>
   )
 }

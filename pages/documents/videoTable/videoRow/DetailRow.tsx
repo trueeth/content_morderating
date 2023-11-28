@@ -23,6 +23,7 @@ const VideoSubTable = (props: {
   const dispatch = useDispatch()
 
   const openScene = (summary: TResVideo.TMeidaSummaries) => () => {
+    localStorage.setItem('currentPage', summary.IndexerSceneId.toString());
     dispatch(
       openVideoSubDrawer({ open: true, summary: summary, row: props.row })
     )
@@ -48,6 +49,8 @@ const VideoSubTable = (props: {
       })}
     </TableRow>
   )
+
+
 
   return (
     <Table
@@ -104,7 +107,7 @@ const VideoSubTable = (props: {
               summary={summaries[index]}
             >
               <Checkbox />
-              <Typography>{'Page #' + localStorage.getItem("currentPage")}</Typography>
+              <Typography>{'Page #' + row.sceneNumber}</Typography>
               <Typography>{row.violationType}</Typography>
               <Typography whiteSpace="nowrap">{row.category}</Typography>
               <Typography>{row.description}</Typography>

@@ -3,9 +3,9 @@ import exp from 'constants'
 export enum EVideoData {
   name = 'NAME',
   type = 'TYPE',
-  status = 'STATUS',
-  rating = 'RATING',
-  classification = 'CLASSIFICATION',
+  status = 'SUBMITED BY',
+  // rating = 'RATING',
+  // classification = 'CLASSIFICATION',
   moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
