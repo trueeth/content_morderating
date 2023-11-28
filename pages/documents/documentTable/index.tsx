@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { TVideoRowType, TVideoSubRowType } from '@/interfaces/types'
 import { EClassificationType, EMediaType, EVideoData } from '@/interfaces/enums'
-import VideoRow from './videoRow/VideoRow'
+import VideoRow from './tableRow/TableRow'
 import { apiGetMediaContents } from '@/interfaces/apis/videos'
 import { TResVideo } from '@/interfaces/apis/videos.types'
 

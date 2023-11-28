@@ -8,8 +8,6 @@ import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
 import { TVideoRowType, TVideoSubRowType } from '@/interfaces/types'
 import RowType from '@/components/multi-media/RowType'
 import RowStatus from '@/components/multi-media/RowStatus'
-import RowRating from '@/components/multi-media/RowRating'
-import RowClassification from '@/components/multi-media/RowClassification'
 import RowApproval from '@/components/multi-media/RowApproval'
 import RowFlaggedScenes from '@/components/multi-media/RowFlaggedScenes'
 import RowAction from '@/components/multi-media/RowAction'
@@ -40,7 +38,7 @@ const mappingResSubRow = (res: TResVideo.TVideoSummary[]) => {
   return result
 }
 
-function VideoRow(props: {
+function DocumentTableRow(props: {
   row: TVideoRowType
   videoContent: TResVideo.TMeidaContent
 }) {
@@ -125,18 +123,6 @@ function VideoRow(props: {
           <RowStatus status={row.status}></RowStatus>
         </TableCell>
 
-        {/* <TableCell>
-          <RowRating rating={row.rating}></RowRating>
-        </TableCell> */}
-
-        {/* <TableCell>
-          <Box className={'flex'}>
-            <RowClassification
-              classifications={row.classification}
-            ></RowClassification>
-          </Box>
-        </TableCell> */}
-
         <TableCell>
           <Box className={'flex justify-center item-center approval'}>
             <RowApproval approval={row.moderator_approval}></RowApproval>
@@ -186,4 +172,4 @@ function VideoRow(props: {
   )
 }
 
-export default VideoRow
+export default DocumentTableRow

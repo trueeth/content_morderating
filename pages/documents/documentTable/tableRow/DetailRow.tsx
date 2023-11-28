@@ -13,7 +13,7 @@ import Button from '@mui/material/Button'
 import { MoreHoriz } from '@mui/icons-material'
 import { TResVideo } from '@/interfaces/apis/videos.types'
 
-const VideoSubTable = (props: {
+const DocumentSubTable = (props: {
   subRows: TVideoSubRowType[]
   summaries: TResVideo.TMeidaSummaries[]
   row: TVideoRowType
@@ -23,7 +23,7 @@ const VideoSubTable = (props: {
   const dispatch = useDispatch()
 
   const openScene = (summary: TResVideo.TMeidaSummaries) => () => {
-    localStorage.setItem('currentPage', summary.IndexerSceneId.toString());
+    localStorage.setItem('currentPage', summary.IndexerSceneId.toString())
     dispatch(
       openVideoSubDrawer({ open: true, summary: summary, row: props.row })
     )
@@ -49,8 +49,6 @@ const VideoSubTable = (props: {
       })}
     </TableRow>
   )
-
-
 
   return (
     <Table
@@ -127,4 +125,4 @@ const VideoSubTable = (props: {
   )
 }
 
-export default VideoSubTable
+export default DocumentSubTable

@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem'
 import { PrimaryButton } from '@/components/styled/StyledButton'
 import SearchInput from '@/components/styled/SearchInput'
 
-const VideoTableHeader = () => {
+const DocumentTableHeader = () => {
   const [vState, setState] = React.useState({ groupBy: 0 })
 
   const handleGroupByChange = (event: any) => {
@@ -84,4 +84,4 @@ const VideoTableHeader = () => {
   )
 }
 
-export default VideoTableHeader
+export default DocumentTableHeader

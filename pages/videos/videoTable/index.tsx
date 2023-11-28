@@ -13,15 +13,10 @@ import VideoRow from './videoRow/VideoRow'
 import { apiGetMediaContents } from '@/interfaces/apis/videos'
 import { TResVideo } from '@/interfaces/apis/videos.types'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  setPagination,
-  setPaginationIndex,
-  setPaginationSize,
-  setPaginationTotalCount
-} from '@/store/reducers/pagination.reducers'
+import { setPaginationTotalCount } from '@/store/reducers/pagination.reducers'
 import { IReduxState } from '@/store/index'
 import { IAppSlice } from '@/store/reducers'
-import { setApiData, setApiLoading } from '@/store/reducers/api.reducers'
+import { setApiData } from '@/store/reducers/api.reducers'
 import useMount from '../../../hooks/useMount'
 
 const mappingResToRow = (res: TResVideo.getMediaContents) => {
@@ -87,7 +82,6 @@ const mappingResToRow = (res: TResVideo.getMediaContents) => {
 }
 
 export default function VideoTable() {
-
   const [vState, setState] = useState<{
     mediaContents: TResVideo.getMediaContents
     rows: TVideoRowType[]
@@ -100,7 +94,7 @@ export default function VideoTable() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   useMount(() => {
-    (async () => {
+    ;(async () => {
       const tempContents: any = await apiGetMediaContents()
       if (tempContents != undefined) {
         // console.log(tempContents)
@@ -115,14 +109,13 @@ export default function VideoTable() {
     })()
   })
 
-
   return (
     <TableContainer
       component={Paper}
       sx={{ borderRadius: '15px', px: 2, boxShadow: 'none' }}
     >
       <Table
-        aria-label='collapsible table'
+        aria-label="collapsible table"
         sx={{
           [`& .${tableCellClasses.root}`]: {
             borderBottom: 'none'
@@ -150,23 +143,19 @@ export default function VideoTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {vState.rows.filter(
-            (val, index) => {
+          {vState.rows
+            .filter((val, index) => {
               let pageIndex = appState.pagination.pageIndex
               let pageSize = appState.pagination.pageSize
-              let result = ((pageIndex - 1) * pageSize) < index
-              result = result && ((pageIndex) * pageSize) >= index
+              let result = (pageIndex - 1) * pageSize < index
+              result = result && pageIndex * pageSize >= index
               return result
             })
             .map((row, index) => (
               <VideoRow
                 key={index}
                 row={row}
-                videoContent={
-                  vState
-                    .mediaContents[index]
-
-                }
+                videoContent={vState.mediaContents[index]}
               />
             ))}
         </TableBody>

@@ -2,8 +2,8 @@
 import * as React from 'react'
 import { Box, Pagination, PaginationItem } from '@mui/material'
 
-import VideoTable from './videoTable'
-import VideoTableHeader from './Header'
+import DocumentTable from './documentTable'
+import DocumentTableHeader from './Header'
 import TestVideoDrawer from './drawer'
 import { useDispatch, useSelector } from 'react-redux'
 import { IAppSlice } from '@/store/reducers'
@@ -11,7 +11,7 @@ import { IReduxState } from '@/store/index'
 import { openVideoSubDrawer } from '@/store/reducers/drawer.reducers'
 import TablePagination from 'components/styled/TablePagination'
 
-const Video = () => {
+const Document = () => {
   //dialog
 
   const dispatch = useDispatch()
@@ -28,7 +28,7 @@ const Video = () => {
         mt: 1
       }}
     >
-      <VideoTableHeader />
+      <DocumentTableHeader />
       <Box
         mt={2}
         sx={{
@@ -36,7 +36,7 @@ const Video = () => {
           minHeight: '60vh'
         }}
       >
-        <VideoTable />
+        <DocumentTable />
       </Box>
       <TablePagination>
         <Pagination
@@ -55,4 +55,4 @@ const Video = () => {
   )
 }
 
-export default Video
+export default Document
