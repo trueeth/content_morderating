@@ -10,13 +10,25 @@ import { IAppSlice } from '@/store/reducers'
 import { IReduxState } from '@/store/index'
 import { openVideoSubDrawer } from '@/store/reducers/drawer.reducers'
 import TablePagination from 'components/styled/TablePagination'
+import { log } from 'console'
+import useTablePagination from '../../hooks/useTablePagination'
+import Loading from '@/components/Loading'
+import { useEffect, useState } from 'react'
 
 const Video = () => {
   //dialog
 
   const dispatch = useDispatch()
+  const {CustomPagination}=useTablePagination()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
-
+  const [vState, setState]=useState({loading:false})
+  // useEffect(()=>{
+  //   if (appState.api.data==null) {
+  //       setState({...vState,loading: true})
+  //   } else {
+  //     setState({...vState, loading: false })
+  //   }
+  // },[appState])
   return (
     <Box
       sx={{
@@ -28,29 +40,25 @@ const Video = () => {
         mt: 1
       }}
     >
-      <VideoTableHeader />
-      <Box
-        mt={2}
-        sx={{
-          width: '100%',
-          minHeight: '60vh'
-        }}
-      >
-        <VideoTable />
-      </Box>
-      <TablePagination>
-        <Pagination
-          count={4}
-          variant="outlined"
-          shape="rounded"
-          renderItem={(item) => <PaginationItem {...item} />}
-        ></Pagination>
-      </TablePagination>
-
-      <TestVideoDrawer
-        open={appState.drawer.videoSub}
-        handleClose={() => dispatch(openVideoSubDrawer({ open: false }))}
-      />
+      {vState.loading?
+        <Loading/>:
+        (<>
+        <VideoTableHeader />
+        <Box
+          mt={2}
+          sx={{
+            width: '100%',
+            minHeight: '60vh'
+          }}
+        >
+          <VideoTable />
+        </Box>
+        <CustomPagination></CustomPagination>
+        <TestVideoDrawer
+          open={appState.drawer.videoSub}
+          handleClose={() => dispatch(openVideoSubDrawer({ open: false }))}
+        />
+      </>)}
     </Box>
   )
 }

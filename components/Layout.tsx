@@ -22,7 +22,6 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
-    console.log('here')
     if (reason === 'clickaway' || reason === undefined) {
       return
     }

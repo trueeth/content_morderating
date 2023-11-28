@@ -173,10 +173,10 @@ export default function SourceStep(props: {
         }
       }>('/api/upload', formData, options)
 
-      console.log('File was uploaded successfully:', data)
+      // console.log('File was uploaded successfully:', data)
       dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     } catch (error) {
-      console.error(error)
+      // console.error(error)
       dispatch(openSnackbarWarning('Sorry! something went wrong.'))
     }
   }

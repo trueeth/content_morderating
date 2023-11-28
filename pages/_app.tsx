@@ -5,10 +5,11 @@ import Layout from '../components/Layout'
 import Providers from '../Providers'
 import index from '../store'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactElement, ReactNode, Suspense } from 'react'
 import { NextPage } from 'next'
 import { AuthProvider } from 'auth/context/auth-provider'
 import AuthGuard from 'auth/guard/auth-guard'
+import Loading from '@/components/Loading'
 
 const theme = createTheme({
   components: {

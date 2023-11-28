@@ -16,7 +16,7 @@ import {
 export default function DrawerTabPlayScene() {
   const [vState, setState] = useState({
     video: {
-      poster: '/assets/video/poster.png'
+      poster: "https://media.w3.org/2010/05/sintel/poster.png"
     }
   })
 

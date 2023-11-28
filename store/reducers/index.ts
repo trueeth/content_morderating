@@ -5,19 +5,25 @@ import dialogReducer from './dialog.reducers'
 import drawerReducer from './drawer.reducers'
 import uploadReducers, { IUploadSlice } from './upload.reducers'
 import snackbarReducers, { ISnackbarSlice } from './snackbar.reducers'
+import paginationReducers, { IPaginationSlice } from '@/store/reducers/pagination.reducers'
+import apiReducers, { IApiSlice } from '@/store/reducers/api.reducers'
 
 export interface IAppSlice {
   dialog: IDialogSlice
   drawer: IDrawerSlice
   upload: IUploadSlice
   snackbar: ISnackbarSlice
+  pagination:IPaginationSlice
+  api:IApiSlice
 }
 
 const appReducer = combineReducers({
   dialog: dialogReducer,
   drawer: drawerReducer,
   upload: uploadReducers,
-  snackbar: snackbarReducers
+  snackbar: snackbarReducers,
+  pagination:paginationReducers,
+  api:apiReducers,
 })
 
 export default appReducer

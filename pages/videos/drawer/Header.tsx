@@ -7,7 +7,6 @@ import { format, parseISO } from 'date-fns'
 
 export default function DrawerHeader() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
-  console.log(appState)
 
   return (
     <Box
