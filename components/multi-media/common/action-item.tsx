@@ -5,23 +5,24 @@ import MenuItem from '@mui/material/MenuItem'
 import { MoreHoriz } from '@mui/icons-material'
 import { Box } from '@mui/material'
 
-interface IActionButton{
-  title:string,
-  action?:()=>void
+interface IActionButton {
+  title: string
+  action?: () => void
 }
 
-interface IProps{
-  actions?:IActionButton[]
-  sx?:any
+interface IProps {
+  actions?: IActionButton[]
+  sx?: any
 }
 
-export default function RowAction(props:IProps) {
+export default function RowAction(props: IProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
-  const handleClose = () => {
+  const handleClose = (callback?: () => void) => () => {
+    if (callback) callback()
     setAnchorEl(null)
   }
 
@@ -40,18 +41,22 @@ export default function RowAction(props:IProps) {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={handleClose()}
         MenuListProps={{
           'aria-labelledby': 'basic-button'
         }}
       >
-
-        {props.actions?.map((val, index)=>(
-          <MenuItem onClick={handleClose} sx={{
-            fontSize:'0.8rem'
-          }}>{val.title}</MenuItem>
+        {props.actions?.map((val, index) => (
+          <MenuItem
+            onClick={val.action ? handleClose(val.action) : handleClose()}
+            key={index}
+            sx={{
+              fontSize: '0.8rem'
+            }}
+          >
+            {val.title}
+          </MenuItem>
         ))}
-
       </Menu>
     </Box>
   )

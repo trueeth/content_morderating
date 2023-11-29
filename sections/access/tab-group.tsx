@@ -5,8 +5,8 @@ import { EGroupData } from '@interfaces/index'
 import * as React from 'react'
 import TableActionWrapper from '@components/common/table-wrapper'
 import RowAction from '@components/multi-media/common/action-item'
-import AddGroupDlg from '@components/dialog/AddGroupDlg'
 import { GroupData } from '@interfaces/apis/mock'
+import AddGroupDlg from '@components/dialog/add-group-dlg'
 
 export default function Users() {
   const [vState, setState] = useState({ openDlg: false, sortBy: 0 })

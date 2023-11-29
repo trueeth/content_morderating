@@ -1,9 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import MediaWrapper from '@components/multi-media/wrapper'
 import MediaSectionHeader from '@components/multi-media/header'
-import MediaTablewrapper from '@components/multi-media/table-wrapper'
+import { MediaActionwrapper, MediaWrapper } from '@components/multi-media/wrapper'
 
 const VideoSection = () => {
   const WrapperHeader = () => {
@@ -13,8 +12,8 @@ const VideoSection = () => {
 
   return (
     <MediaWrapper
-      wrapperHeader={<WrapperHeader />}
-      wrapperContent={<MediaTablewrapper type="video" />}
+      header={<WrapperHeader />}
+      content={<MediaActionwrapper type="video" />}
     />
   )
 }
