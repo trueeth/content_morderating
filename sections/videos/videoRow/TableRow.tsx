@@ -5,7 +5,6 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
-<<<<<<<< HEAD:sections/videos/videoRow/VideoRow.tsx
 import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
 import RowType from '@components/multi-media/rows/RowType'
 import RowStatus from '@components/multi-media/rows/RowStatus'
@@ -14,28 +13,17 @@ import RowClassification from '@components/multi-media/rows/RowClassification'
 import RowApproval from '@components/multi-media/rows/RowApproval'
 import RowFlaggedScenes from '@components/multi-media/rows/RowFlaggedScenes'
 import RowAction from '@components/multi-media/rows/RowAction'
-import VideoSubTable from './VideoSubTable'
-========
-import { TVideoRowType, TVideoSubRowType } from '@/interfaces/types'
-import RowType from '@/components/multi-media/RowType'
-import RowStatus from '@/components/multi-media/RowStatus'
-import RowApproval from '@/components/multi-media/RowApproval'
-import RowFlaggedScenes from '@/components/multi-media/RowFlaggedScenes'
-import RowAction from '@/components/multi-media/RowAction'
-import VideoSubTable from './DetailRow'
->>>>>>>> d449dad24c7734feb04a104761fd0c35130e03f5:pages/documents/documentTable/tableRow/TableRow.tsx
+import VideoSubTable from './SubTable'
 import { Typography } from '@mui/material'
 import { format, parseISO } from 'date-fns'
 import { apiGetVideoScenes } from '@interfaces/apis/videos'
 import { TResVideo } from '@interfaces/apis/videos.types'
 import mappingResVideoSubRow from '@interfaces/apis/mapping/video-sub-row'
 
-
-function DocumentTableRow(props: {
+function VideoRow(props: {
   row: TVideoRowType
   videoContent: TResVideo.TMeidaContent
 }) {
-
   const { row, videoContent } = props
 
   const [vState, setState] = React.useState<{
@@ -43,7 +31,6 @@ function DocumentTableRow(props: {
     subRow: TVideoSubRowType[]
     subRowSummaries: TResVideo.TMeidaSummaries[]
   }>({ openSummary: false, subRow: [], subRowSummaries: [] })
-
 
   const handleDetail = async () => {
     if (vState.subRow.length > 0) {
@@ -118,7 +105,6 @@ function DocumentTableRow(props: {
           <RowStatus status={row.status}></RowStatus>
         </TableCell>
 
-<<<<<<<< HEAD:sections/videos/videoRow/VideoRow.tsx
         <TableCell>
           <RowRating rating={row.rating}></RowRating>
         </TableCell>
@@ -131,8 +117,6 @@ function DocumentTableRow(props: {
           </Box>
         </TableCell>
 
-========
->>>>>>>> d449dad24c7734feb04a104761fd0c35130e03f5:pages/documents/documentTable/tableRow/TableRow.tsx
         <TableCell>
           <Box className={'flex justify-center item-center approval'}>
             <RowApproval approval={row.moderator_approval}></RowApproval>
@@ -145,7 +129,9 @@ function DocumentTableRow(props: {
         </TableCell>
         <TableCell>
           <Box className={'flex'} maxWidth={'100px'}>
-            {row.submissionDate!==null?format(parseISO(row.submissionDate), 'MM/dd/yyyy hh:mm:ss a'):''}
+            {row.submissionDate !== null
+              ? format(parseISO(row.submissionDate), 'MM/dd/yyyy hh:mm:ss a')
+              : ''}
           </Box>
         </TableCell>
 
@@ -182,4 +168,4 @@ function DocumentTableRow(props: {
   )
 }
 
-export default DocumentTableRow
+export default VideoRow

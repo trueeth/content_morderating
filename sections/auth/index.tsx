@@ -118,6 +118,6 @@ export default function AuthSection() {
   )
 }
 
-Auth.getLayout = function getLayout(page) {
+AuthSection.getLayout = function getLayout(page) {
   return <Container>{page}</Container>
 }

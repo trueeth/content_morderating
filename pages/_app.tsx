@@ -4,13 +4,12 @@ import type { AppProps } from 'next/app'
 import Layout from '@components/layout/Layout'
 import Providers from '../Providers'
 import index from '../store'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import React, { ReactElement, ReactNode, Suspense } from 'react'
+import { ThemeProvider } from '@mui/material/styles'
+import React, { ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
 import { AuthProvider } from '@components/auth/context/auth-provider'
 import AuthGuard from '@components/auth/guard/auth-guard'
 import theme from '@interfaces/theme'
-
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

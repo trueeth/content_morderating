@@ -11,24 +11,18 @@ import { useDispatch } from 'react-redux'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import Button from '@mui/material/Button'
 import { MoreHoriz } from '@mui/icons-material'
-import { TResVideo } from '@interfaces/apis/videos.types'
 
 const DocumentSubTable = (props: {
   subRows: TVideoSubRowType[]
-  summaries: TResVideo.TMeidaSummaries[]
   row: TVideoRowType
 }) => {
   const [checked, setChecked] = React.useState(false)
 
   const dispatch = useDispatch()
 
-  const openScene = (summary: TResVideo.TMeidaSummaries) => () => {
-<<<<<<<< HEAD:sections/videos/videoRow/VideoSubTable.tsx
-========
-    localStorage.setItem('currentPage', summary.IndexerSceneId.toString())
->>>>>>>> d449dad24c7734feb04a104761fd0c35130e03f5:pages/documents/documentTable/tableRow/DetailRow.tsx
+  const openScene = () => {
     dispatch(
-      openMediaSubDrawer({ open: true, summary: summary, row: props.row, type:'video' })
+      openMediaSubDrawer({ open: true, row: props.row, type: 'document' })
     )
   }
 
@@ -36,17 +30,21 @@ const DocumentSubTable = (props: {
     setChecked(e.target.checked)
   }
 
-  const { subRows, summaries } = props
+  const { subRows } = props
 
   if (subRows === undefined || subRows?.length === 0) {
     return null
   }
 
-  const CustomizedTableRow = ({ children, onClick, key, summary }) => (
+  const CustomizedTableRow = ({ children, onClick, key }) => (
     <TableRow key={key}>
       {children.map((item, idx) => {
         if (idx > 0 && idx < 5) {
-          return <TableCell onClick={onClick(summary)} key={idx}>{item}</TableCell>
+          return (
+            <TableCell onClick={onClick} key={idx}>
+              {item}
+            </TableCell>
+          )
         }
         return <TableCell key={idx}>{item}</TableCell>
       })}
@@ -102,13 +100,9 @@ const DocumentSubTable = (props: {
       >
         {subRows.map((row, index) => {
           return (
-            <CustomizedTableRow
-              key={index}
-              onClick={openScene}
-              summary={summaries[index]}
-            >
+            <CustomizedTableRow key={index} onClick={openScene}>
               <Checkbox />
-              <Typography>{'Page #' + (index+1)}</Typography>
+              <Typography>{'Page #' + (index + 1)}</Typography>
               <Typography>{row.violationType}</Typography>
               <Typography whiteSpace="nowrap">{row.category}</Typography>
               <Typography>{row.description}</Typography>

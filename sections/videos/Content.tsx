@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import MediaTable from '@components/multi-media/table.tsx'
 import { EMediaType, EVideoColumn } from '@interfaces/enums'
-import VideoRow from '@sections/videos/videoRow/VideoRow'
+import VideoRow from '@sections/videos/videoRow/TableRow'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import useMount from '@hooks/useMount'
 import { apiGetMediaContents } from '@interfaces/apis/videos'
-import { setPageinit, setPaginationTotalCount } from '@store/reducers/page/reducers'
+import {
+  setPageinit,
+  setPaginationTotalCount
+} from '@store/reducers/page/reducers'
 import { setApiData } from '@store/reducers/api/reducers'
 import { TResVideo } from '@interfaces/apis/videos.types'
 import { TVideoRowType } from '@interfaces/types'
 import mappingResToVideoRow from '@interfaces/apis/mapping/video-row'
 
 export default function Content() {
-
-
-
   const [vState, setState] = useState<{
     mediaContents: TResVideo.getMediaContents
     rows: TVideoRowType[]
@@ -30,13 +30,10 @@ export default function Content() {
 
   useMount(() => {
     ;(async () => {
-
-
       dispatch(setPageinit())
 
       const tempContents: any = await apiGetMediaContents()
       if (tempContents != undefined) {
-        // console.log(tempContents)
         let tempRows = mappingResToVideoRow(tempContents)
 
         const videoContents = tempContents.Content?.filter(

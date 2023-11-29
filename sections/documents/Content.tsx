@@ -6,17 +6,17 @@ import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import useMount from '@hooks/useMount'
 import { apiGetMediaContents } from '@interfaces/apis/videos'
-import { setPageinit, setPaginationTotalCount } from '@store/reducers/page/reducers'
+import {
+  setPageinit,
+  setPaginationTotalCount
+} from '@store/reducers/page/reducers'
 import { setApiData } from '@store/reducers/api/reducers'
 import { TResVideo } from '@interfaces/apis/videos.types'
 import { TDocumentRowType } from '@interfaces/types'
 import mappingResToDocumetRow from '@interfaces/apis/mapping/document-row'
-import DocumentRow from '@sections/documents/documentRow/DocumentRow'
+import DocumentRow from '@sections/documents/documentRow/TableRow'
 
 export default function Content() {
-
-
-
   const [vState, setState] = useState<{
     mediaContents: TResVideo.getMediaContents
     rows: TDocumentRowType[]
@@ -30,19 +30,19 @@ export default function Content() {
 
   useMount(() => {
     ;(async () => {
-
       dispatch(setPageinit())
 
       const tempContents: any = await apiGetMediaContents()
       if (tempContents != undefined) {
-
         let tempRows = mappingResToDocumetRow(tempContents)
 
         const documentContents = tempContents.Content?.filter(
           (val) => val.MediaType === EMediaType.document
         )
 
-        dispatch(setPaginationTotalCount({ totalCount: documentContents.length }))
+        dispatch(
+          setPaginationTotalCount({ totalCount: documentContents.length })
+        )
 
         setState({ ...vState, mediaContents: documentContents, rows: tempRows })
       }
