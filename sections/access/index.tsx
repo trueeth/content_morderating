@@ -1,50 +1,25 @@
-import { ToggleButton, ToggleButtonGroup } from '@mui/material'
-import TabPanel from '@components/styled/TabPanel'
+import TabPanel from '@components/common/tab-panel'
 import { useState } from 'react'
-import Users from '@sections/access/Users'
-import Groups from '@sections/access/Groups'
-import Roles from '@sections/access/Roles'
+import Users from '@sections/access/tab-users'
+import Groups from '@sections/access/tab-group'
+import Roles from '@sections/access/tab-roles'
+import CustomToggleButtonGroup from '@components/common/toggle-button'
 
 export default function AccessSection() {
   const [vState, setState] = useState({ tabIndex: 0 })
 
-  const setTabIndex = (e: any, newValue: number) => {
-    if (newValue !== null) setState({ ...vState, tabIndex: newValue })
-  }
+  // const setTabIndex = (e: any, newValue: number) => {
+  //   if (newValue !== null) setState({ ...vState, tabIndex: newValue })
+  // }
+
+  const accessGroups = ['Users', 'Groups', 'Roles']
 
   return (
     <div>
-      <ToggleButtonGroup
-        value={vState.tabIndex}
-        onChange={setTabIndex}
-        exclusive
-        sx={{ mt: 3 }}
-      >
-        <ToggleButton
-          sx={{
-            padding: '7px 30px'
-          }}
-          value={0}
-        >
-          Users
-        </ToggleButton>
-        <ToggleButton
-          sx={{
-            padding: '7px 30px'
-          }}
-          value={1}
-        >
-          Groups
-        </ToggleButton>
-        <ToggleButton
-          sx={{
-            padding: '7px 30px'
-          }}
-          value={2}
-        >
-          Roles
-        </ToggleButton>
-      </ToggleButtonGroup>
+      <CustomToggleButtonGroup
+        groupName={accessGroups}
+        handleChange={(val) => setState({ ...vState, tabIndex: val })}
+      />
       <TabPanel value={vState.tabIndex} index={0}>
         <Users />
       </TabPanel>

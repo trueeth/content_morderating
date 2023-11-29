@@ -1,3 +1,3 @@
 export * from './types'
-export * from './Toast'
-export * from './ToastContainer'
+export * from './toast'
+export * from './toast-container'

@@ -1,4 +1,3 @@
-
 export enum EVideoColumn {
   name = 'NAME',
   type = 'TYPE',

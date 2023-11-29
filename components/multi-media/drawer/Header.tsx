@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import RowAction from '@components/multi-media/rows/RowAction'
+import RowAction from '@components/multi-media/common/action-item'
 import { useSelector } from 'react-redux'
 import { IAppSlice } from '@store/reducers'
 import { IReduxState } from '@store/index'
@@ -24,6 +24,7 @@ export default function DrawerHeader() {
               <strong>{appState.drawer.videoContent?.name}</strong>, Page #
               {appState.drawer.summary?.IndexerSceneId}
             </Typography>
+            <RowAction />
           </>
         ) : (
           <>
@@ -31,6 +32,7 @@ export default function DrawerHeader() {
               <strong>{appState.drawer.videoContent?.name}</strong> Book, Page #
               3
             </Typography>
+            <RowAction />
           </>
         )}
       </header>

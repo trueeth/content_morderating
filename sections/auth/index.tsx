@@ -1,7 +1,6 @@
 import { Typography, Box, Button } from '@mui/material'
-import { Container } from '@mui/system'
 import { useAuthContext } from '@components/auth/hooks'
-import { PrimaryTextField } from '@components/styled/TextField'
+import { PrimaryTextField } from '@components/common/text-field'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import LoginImg from '@public/assets/images/login.png'
@@ -116,8 +115,4 @@ export default function AuthSection() {
       </Box>
     </Box>
   )
-}
-
-AuthSection.getLayout = function getLayout(page) {
-  return <Container>{page}</Container>
 }

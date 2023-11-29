@@ -6,14 +6,14 @@ const initialState = {
   mediaSubOpen: false,
   summary: {},
   videoContent: {},
-  type:'video'
+  type: 'video'
 }
 
 export interface IDrawerSlice {
   mediaSubOpen: boolean
   summary: TResVideo.TMeidaSummaries
   videoContent: TVideoRowType
-  type?:'video'|'document'
+  type?: 'video' | 'document'
 }
 
 const drawerSlice = createSlice({
@@ -24,7 +24,7 @@ const drawerSlice = createSlice({
       state.mediaSubOpen = action.payload.open
       state.summary = action.payload.summary
       state.videoContent = action.payload.row
-      state.type=action.payload.type
+      state.type = action.payload.type
     }
   }
 })

@@ -34,10 +34,10 @@ import { mkdir, stat } from "fs/promises";
       uploadDir,
       filename: (_name, _ext, part) => {
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-        const filename = `${part.name || "unknown"}-${uniqueSuffix}.${
+        const fileNames = `${part.name || "unknown"}-${uniqueSuffix}.${
           mime.getExtension(part.mimetype || "") || "unknown"
         }`;
-        return filename;
+        return fileNames;
       },
       filter: (part) => {
         return (

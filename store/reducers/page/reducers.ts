@@ -7,9 +7,9 @@ const initialState = {
 }
 
 export interface IPaginationSlice {
-  totalCount: number,
-  pageSize: number,
-  pageIndex: number,
+  totalCount: number
+  pageSize: number
+  pageIndex: number
 }
 
 const paginationSlice = createSlice({
@@ -30,10 +30,10 @@ const paginationSlice = createSlice({
       state.pageSize = action.payload?.pageSize
       state.pageIndex = action.payload?.pageIndex
     },
-    setPageinit(state){
-      state.totalCount=initialState.totalCount
-      state.pageSize=initialState.pageSize
-      state.pageIndex=initialState.pageIndex
+    setPageinit(state) {
+      state.totalCount = initialState.totalCount
+      state.pageSize = initialState.pageSize
+      state.pageIndex = initialState.pageIndex
     }
   }
 })
@@ -44,5 +44,5 @@ export const {
   setPaginationTotalCount,
   setPaginationSize,
   setPagination,
-  setPageinit,
+  setPageinit
 } = paginationSlice.actions

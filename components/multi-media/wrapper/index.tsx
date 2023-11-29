@@ -1,18 +1,16 @@
 'use client'
 
 import * as React from 'react'
-import { Box, Container } from '@mui/material'
-import useTablePagination from '@components/table-pagination/useTablePagination'
+import { Box } from '@mui/material'
+import useTablePagination from '@hooks/useTablePagination'
 import MediaDrawer from '@components/multi-media/drawer'
 
-
-interface IProps{
-  wrapperHeader:React.ReactNode
-  wrapperContent:React.ReactNode
+interface IProps {
+  wrapperHeader: React.ReactNode
+  wrapperContent: React.ReactNode
 }
 
-const MediaWrapper = (props:IProps) => {
-
+const MediaWrapper = (props: IProps) => {
   const { CustomPagination } = useTablePagination()
 
   return (
@@ -36,8 +34,8 @@ const MediaWrapper = (props:IProps) => {
       >
         {props.wrapperContent}
       </Box>
-      <CustomPagination></CustomPagination>
-      <MediaDrawer/>
+      <CustomPagination />
+      <MediaDrawer />
     </Box>
   )
 }

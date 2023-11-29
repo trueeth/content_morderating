@@ -2,7 +2,7 @@ import { TResVideo } from '@interfaces/apis/videos.types'
 import { TDocumentRowType, TDocumentSubRowType, TVideoRowType, TVideoSubRowType } from '@interfaces/types'
 import { EApporval, EClassificationType, EMediaType, EViolationType } from '@interfaces/enums'
 
-const mappingResToDocumetRow = (res: TResVideo.getMediaContents) => {
+const mappingResToDocumentRow = (res: TResVideo.getMediaContents) => {
 
   let rows: TDocumentRowType[] = []
 
@@ -49,4 +49,4 @@ const mappingResToDocumetRow = (res: TResVideo.getMediaContents) => {
 
 }
 
-export default mappingResToDocumetRow
+export default mappingResToDocumentRow

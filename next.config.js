@@ -8,7 +8,7 @@ const nextConfig = {
   images: {
     domains: []
   },
-  reactStrictMode:true,
+  reactStrictMode:false,
 }
 
 module.exports = nextConfig

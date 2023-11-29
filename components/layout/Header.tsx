@@ -19,7 +19,7 @@ import { ExpandMore, MoreHoriz, Slideshow } from '@mui/icons-material'
 import Menu from '@mui/material/Menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { TopButton } from '../styled/StyledButton'
+import { TopButton } from '@components/common/styled-button'
 import { CHeaderTabs } from '@interfaces/index'
 import { useDispatch } from 'react-redux'
 import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
@@ -31,15 +31,13 @@ import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
 import Paper from '@mui/material/Paper'
 import Headset from '/public/assets/images/icon/headset.svg'
 import { useAuthContext } from '@components/auth/hooks'
+import RowAction from '@components/multi-media/common/action-item'
 
 function UserAction() {
   const { logout } = useAuthContext()
   const router = useRouter()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (e: any) => {
-    setAnchorEl(e.currentTarget)
-  }
 
   const handleLogout = async () => {
     try {
@@ -51,26 +49,19 @@ function UserAction() {
     }
   }
 
+  const rowActions = [
+    {
+      title: 'Log Out',
+      action: handleLogout
+    },
+    {
+      title: 'Profile'
+    }
+  ]
+
   return (
     <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        <MoreHoriz sx={{ color: 'white' }}></MoreHoriz>
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={() => setAnchorEl(null)}
-      >
-        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
-      </Menu>
+      <RowAction actions={rowActions} sx={{ '& svg': { color: 'white' } }} />
     </div>
   )
 }
@@ -193,7 +184,7 @@ const Header = () => {
 
   const dispatch = useDispatch()
 
-  const handleHeader = (title: string, url?:string) => () => {
+  const handleHeader = (title: string, url?: string) => () => {
     switch (title) {
       case 'Upload':
         dispatch(openVideoUploadDialog({ open: true }))

@@ -1,5 +1,5 @@
-import Box, { BoxProps } from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
+import Box, { BoxProps } from '@mui/material/Box'
+import LinearProgress from '@mui/material/LinearProgress'
 
 // ----------------------------------------------------------------------
 
@@ -14,11 +14,11 @@ export default function Loading({ sx, ...other }: BoxProps) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        ...sx,
+        ...sx
       }}
       {...other}
     >
       <LinearProgress color="inherit" sx={{ width: 1, maxWidth: 360 }} />
     </Box>
-  );
+  )
 }

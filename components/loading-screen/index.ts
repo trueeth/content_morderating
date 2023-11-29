@@ -1,2 +1,2 @@
-export {default as Loading} from  './Loading'
-export {default as LoadingWrapper} from  './LoadingWrapper'
+export {default as Loading} from './loading'
+export {default as LoadingWrapper} from './loading-wrapper'

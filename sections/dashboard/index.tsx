@@ -1,22 +1,22 @@
 import { Grid } from '@mui/material'
-import AnalyticsYear from '@sections/dashboard/AnalyticsYear'
-import AnalyticsAverage from '@sections/dashboard/AnalyticsAverage'
-import AnalyticsStatistics from '@sections/dashboard/AnalyticsStatistics'
-import AnalyticsVideos from '@sections/dashboard/AnalyticsVideos'
+import SideYear from '@sections/dashboard/year'
+import SideAverage from '@sections/dashboard/average'
+import SideStatistics from '@sections/dashboard/statistics'
+import AnalyticsVideos from '@sections/dashboard/videos'
 
 export default function DashboardSection() {
   return (
     <Grid container spacing={2} alignItems="stretch">
       <Grid item md={8} xs={12} alignItems="stretch">
-        <AnalyticsYear></AnalyticsYear>
+        <SideYear></SideYear>
       </Grid>
 
       <Grid item md={4} xs={12} alignItems="stretch">
-        <AnalyticsAverage></AnalyticsAverage>
+        <SideAverage></SideAverage>
       </Grid>
 
       <Grid item md={4} xs={12} alignItems="stretch">
-        <AnalyticsStatistics></AnalyticsStatistics>
+        <SideStatistics></SideStatistics>
       </Grid>
 
       <Grid item md={8} xs={12} alignItems="stretch">

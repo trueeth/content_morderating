@@ -12,11 +12,10 @@ export interface IReduxState {
 
 const index = configureStore({
   reducer: {
-    // account: accountReducer,
-    app: appReducer,
+    app: appReducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(thunkMiddleware),
+    getDefaultMiddleware({ serializableCheck: false }).concat(thunkMiddleware)
 })
 
 export type RootState = ReturnType<typeof index.getState>
