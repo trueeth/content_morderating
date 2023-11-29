@@ -1,4 +1,4 @@
-import request from '../baseApi/request'
+import request from '@interfaces/apis/baseApi/request'
 
 
 export declare namespace TReqAuth{

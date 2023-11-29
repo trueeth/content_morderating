@@ -32,7 +32,7 @@ export declare namespace TResVideo {
     Id: string,
     Name?: string,
     Description?: string,
-    Documents?: [],
+    Documents?: TDocumentContent[],
     MediaSourceId?: string,
     MediaType?: EMediaType,
     ModeratorApprovalStatus?: EModeratorApprovalStatus,
@@ -138,5 +138,87 @@ export declare namespace TResVideo {
     VideoSummaryId: string
     ViolenceSeverity: ESeverity
   }
+
+
+
+  type TDocumentContent = {
+    CompletionTokens : number
+    CreateLanguageProjectEndTime : string
+    CreateLanguageProjectStartTime : string
+    CreateLanguageProjectStatus : string
+    CreateSearchIndexEndTime : string
+    CreateSearchIndexStartTime : string
+    CreateSearchIndexStatus : string
+    DocumentBytes : string
+    DocumentChunks : TDocumentCunk[]
+    DocumentSummarizationEndTime : string
+    DocumentSummarizationStartTime : string
+    DocumentSummarizationStatus : number
+    DocumentUrl : string
+    EstimatedTokens : 0
+    FileName : string
+    Id : string
+    Language : string
+    MediaId : string
+    ModeratorApprovalStatus : string
+    ModeratorNotes : any
+    ModeratorResponseJson : any
+    OpenAIAnalysisEndTime : string
+    OpenAIAnalysisStartTime : string
+    OpenAIAnalysisStatus : string
+    OpenAiModelDeployment : string
+    OriginalFileName : string
+    PromptTokens : number
+    Rating : string
+    RecognitionStatus : string
+    RecognizeDocumentEndTime : string
+    RecognizeDocumentStartTime : string
+    RecognizeDocumentStatus : string
+    Summary : string
+    TotalTokens : number
+    UploadedOnUtc : string
+    VersionNumber : number
+  }
+
+
+  type TDocumentCunk ={
+    AIChunkResponses : TDocumentAICunk[]
+    AIResponseJson : any
+    AnalysisEndTime : string
+    AnalysisStartTime : string
+    CompletionTokens : number
+    DocumentId : string
+    Id : string
+    ModeratorApprovalStatus : string
+    ModeratorNotes : any
+    OpenAiModelDeployment : string
+    PromptTokens : number
+    Rating : string
+    SequenceNumber : number
+    TotalTokens : number
+    VersionNumber : number
+  }
+
+
+  type TDocumentAICunk ={
+    AnalysisEndTime : string
+    AnalysisStartTime : string
+    CompletionTokens : number
+    DocumentChunk : any
+    DocumentChunkId : string
+    Id : string
+    ModeratorResponseJson : any
+    OpenAiModelDeployment : string
+    PromptTokens : number
+    ResponseJson : string
+    Topic : TDocumentTopic
+    TotalTokens : number
+  }
+
+  type TDocumentTopic={
+    Id:string
+    Name:string
+  }
+
 
 }

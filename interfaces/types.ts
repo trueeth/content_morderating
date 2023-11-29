@@ -24,6 +24,15 @@ export type TVideoRowType = {
   flaggedScenes?: number
   subRows?: TVideoSubRowType[]
 }
+export type TDocumentRowType = {
+  name?: string
+  type?: EMediaType
+  submittedBy?: string
+  moderator_approval?: EModeratorApprovalStatus
+  ai_approval?: EApporval
+  submissionDate?: string
+  subRows?: TDocumentSubRowType[]
+}
 
 export type TNewVideoRowType = {
   name: string
@@ -62,6 +71,13 @@ export type THistoryRowType = {
 }
 
 export type TVideoSubRowType = {
+  sceneNumber?: number
+  violationType?: EViolationType
+  category?: string
+  description?: string
+}
+
+export type TDocumentSubRowType = {
   sceneNumber?: number
   violationType?: EViolationType
   category?: string

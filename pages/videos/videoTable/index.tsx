@@ -7,17 +7,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { TVideoRowType, TVideoSubRowType } from '@/interfaces/types'
-import { EClassificationType, EMediaType, EVideoData } from '@/interfaces/enums'
-import VideoRow from './videoRow/VideoRow'
-import { apiGetMediaContents } from '@/interfaces/apis/videos'
-import { TResVideo } from '@/interfaces/apis/videos.types'
-import { useDispatch, useSelector } from 'react-redux'
-import { setPaginationTotalCount } from '@/store/reducers/pagination.reducers'
-import { IReduxState } from '@/store/index'
-import { IAppSlice } from '@/store/reducers'
-import { setApiData } from '@/store/reducers/api.reducers'
-import useMount from '../../../hooks/useMount'
+import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
+import { EClassificationType, EMediaType, EVideoColumn } from '@interfaces/enums'
+import { apiGetMediaContents } from '@interfaces/apis/videos'
+import { TResVideo } from '@interfaces/apis/videos.types'
+import VideoRow from '@sections/videos/videoRow/VideoRow'
 
 const mappingResToRow = (res: TResVideo.getMediaContents) => {
   let rows: TVideoRowType[] = []
@@ -90,10 +84,7 @@ export default function VideoTable() {
     rows: []
   })
 
-  const dispatch = useDispatch()
-  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
-
-  useMount(() => {
+  useEffect(() => {
     ;(async () => {
       const tempContents: any = await apiGetMediaContents()
       if (tempContents != undefined) {
@@ -102,12 +93,10 @@ export default function VideoTable() {
         const videoContents = tempContents.Content?.filter(
           (val) => val.MediaType === EMediaType.video
         )
-        dispatch(setPaginationTotalCount({ totalCount: videoContents.length }))
         setState({ ...vState, mediaContents: videoContents, rows: tempRows })
       }
-      dispatch(setApiData({ data: tempContents }))
     })()
-  })
+  }, [])
 
   return (
     <TableContainer
@@ -127,7 +116,7 @@ export default function VideoTable() {
         <TableHead>
           <TableRow>
             <TableCell />
-            {Object.values(EVideoData).map((item, index) => (
+            {Object.values(EVideoColumn).map((item, index) => (
               <TableCell
                 key={index}
                 sx={{
@@ -143,21 +132,13 @@ export default function VideoTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {vState.rows
-            .filter((val, index) => {
-              let pageIndex = appState.pagination.pageIndex
-              let pageSize = appState.pagination.pageSize
-              let result = (pageIndex - 1) * pageSize < index
-              result = result && pageIndex * pageSize >= index
-              return result
-            })
-            .map((row, index) => (
-              <VideoRow
-                key={index}
-                row={row}
-                videoContent={vState.mediaContents[index]}
-              />
-            ))}
+          {vState.rows.map((row, index) => (
+            <VideoRow
+              key={index}
+              row={row}
+              videoContent={vState.mediaContents[index]}
+            />
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

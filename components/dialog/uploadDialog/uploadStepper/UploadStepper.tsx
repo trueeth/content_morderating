@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
-import { CUploadSteps } from '@/interfaces/constant'
+import { CUploadSteps } from '@interfaces/constant'
 import TabPanel from '../../../styled/TabPanel'
 import TypeStep from './TypeStep'
 import StatusStep from './StatusStep'
@@ -12,7 +12,7 @@ import LaunchStep from './LaunchStep'
 import { StepIcon } from '@mui/material'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUploadProgress } from '@/store/reducers/upload.reducers'
+import { setUploadProgress } from '@store/reducers/upload/reducers'
 
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0)

@@ -1,15 +1,23 @@
-import exp from 'constants'
 
-export enum EVideoData {
+export enum EVideoColumn {
   name = 'NAME',
   type = 'TYPE',
-  status = 'SUBMITED BY',
-  // rating = 'RATING',
-  // classification = 'CLASSIFICATION',
+  status = 'STATUS',
+  rating = 'RATING',
+  classification = 'CLASSIFICATION',
   moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
   flaggedScenes = 'FLAGGED SCENES',
+  actions = 'ACTIONS'
+}
+export enum EDocumentColumn {
+  name = 'NAME',
+  type = 'TYPE',
+  status = 'SUBMITED BY',
+  moderator_approval = 'MODERATOR STATUS',
+  ai_approval = 'AI APPROVAL',
+  submissionDate = 'SUBMISSION DATE',
   actions = 'ACTIONS'
 }
 

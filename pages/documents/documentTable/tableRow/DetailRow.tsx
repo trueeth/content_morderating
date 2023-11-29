@@ -5,13 +5,13 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
 import { Checkbox, Typography } from '@mui/material'
-import { TVideoRowType, TVideoSubRowType } from '@/interfaces/types'
-import { EVideoDetail } from '@/interfaces/enums'
+import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
+import { EVideoDetail } from '@interfaces/enums'
 import { useDispatch } from 'react-redux'
-import { openVideoSubDrawer } from '@/store/reducers/drawer.reducers'
+import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import Button from '@mui/material/Button'
 import { MoreHoriz } from '@mui/icons-material'
-import { TResVideo } from '@/interfaces/apis/videos.types'
+import { TResVideo } from '@interfaces/apis/videos.types'
 
 const DocumentSubTable = (props: {
   subRows: TVideoSubRowType[]
@@ -23,9 +23,12 @@ const DocumentSubTable = (props: {
   const dispatch = useDispatch()
 
   const openScene = (summary: TResVideo.TMeidaSummaries) => () => {
+<<<<<<<< HEAD:sections/videos/videoRow/VideoSubTable.tsx
+========
     localStorage.setItem('currentPage', summary.IndexerSceneId.toString())
+>>>>>>>> d449dad24c7734feb04a104761fd0c35130e03f5:pages/documents/documentTable/tableRow/DetailRow.tsx
     dispatch(
-      openVideoSubDrawer({ open: true, summary: summary, row: props.row })
+      openMediaSubDrawer({ open: true, summary: summary, row: props.row, type:'video' })
     )
   }
 
@@ -43,9 +46,9 @@ const DocumentSubTable = (props: {
     <TableRow key={key}>
       {children.map((item, idx) => {
         if (idx > 0 && idx < 5) {
-          return <TableCell onClick={onClick(summary)}>{item}</TableCell>
+          return <TableCell onClick={onClick(summary)} key={idx}>{item}</TableCell>
         }
-        return <TableCell>{item}</TableCell>
+        return <TableCell key={idx}>{item}</TableCell>
       })}
     </TableRow>
   )
@@ -105,7 +108,7 @@ const DocumentSubTable = (props: {
               summary={summaries[index]}
             >
               <Checkbox />
-              <Typography>{'Page #' + row.sceneNumber}</Typography>
+              <Typography>{'Page #' + (index+1)}</Typography>
               <Typography>{row.violationType}</Typography>
               <Typography whiteSpace="nowrap">{row.category}</Typography>
               <Typography>{row.description}</Typography>

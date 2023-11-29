@@ -5,7 +5,7 @@ import { ManageSearch, Slideshow } from '@mui/icons-material'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 
-import { THistoryRowType } from '@/interfaces/types'
+import { THistoryRowType } from '@interfaces/types'
 import LinearProgress from '@mui/material/LinearProgress'
 import clsx from 'clsx'
 

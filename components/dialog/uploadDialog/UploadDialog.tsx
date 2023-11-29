@@ -3,7 +3,6 @@ import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { IReduxState } from '../../../store'
 import {
   ToggleButton,
   ToggleButtonGroup,
@@ -15,8 +14,9 @@ import InfoIcon from '@mui/icons-material/Info'
 import TabPanel from '../../styled/TabPanel'
 import UploadStepper from './uploadStepper/UploadStepper'
 import HistoryTable from './historyTable/HistoryTable'
-import { IAppSlice } from '@/store/reducers'
-import { openVideoUploadDialog } from '@/store/reducers/dialog.reducers'
+import { IAppSlice } from '@store/reducers'
+import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
+import { IReduxState } from '@store/index'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()

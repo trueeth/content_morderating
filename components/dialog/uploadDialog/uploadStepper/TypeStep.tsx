@@ -1,7 +1,7 @@
 import { StepWrapper } from './index'
 import { Box, Radio, RadioGroup, Typography, Button } from '@mui/material'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import { PrimaryButton } from '@/components/styled/StyledButton'
+import { PrimaryButton } from '@components/styled/StyledButton'
 
 export default function TypeStep(props: { handleNext: () => void }) {
   return (

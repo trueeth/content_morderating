@@ -3,8 +3,8 @@ import { Box, Radio, Select, useMediaQuery, Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'
-import { PrimaryButton } from '@/components/styled/StyledButton'
-import { PrimaryTextField } from '@/components/styled/TextField'
+import { PrimaryButton } from '@components/styled/StyledButton'
+import { PrimaryTextField } from '@components/styled/TextField'
 
 export default function StatusStep(props: {
   handleNext: () => void
