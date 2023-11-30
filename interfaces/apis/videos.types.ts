@@ -29,7 +29,7 @@ export declare namespace TResVideo {
   }
 
   type TMeidaContent = {
-    Id: string,
+    Id?: string,
     Name?: string,
     Description?: string,
     Documents?: TDocumentContent[],

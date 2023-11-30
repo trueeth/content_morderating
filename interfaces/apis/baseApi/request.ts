@@ -6,7 +6,7 @@ export const CServerUrl = 'https://gamr-cm-api-dev.azurewebsites.net/api/'
 const service = axios.create({
   baseURL: CServerUrl, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 50000 // request timeout
+  timeout: 5000000 // request timeout
 })
 
 // request interceptor

@@ -1,7 +1,18 @@
 'use client'
 
 import * as React from 'react'
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, tableCellClasses } from '@mui/material'
+import {
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  tableCellClasses,
+  Typography
+} from '@mui/material'
 import useTablePagination from '@hooks/useTablePagination'
 import MediaDrawer from '@components/multi-media/drawer'
 import { TResVideo } from '@interfaces/apis/videos.types'
@@ -136,14 +147,15 @@ export  function MediaActionwrapper(props: IActionPros) {
             {Object.values(props.type == 'video' ? EVideoColumn : EDocumentColumn).map((item, index) => (
               <TableCell
                 key={index}
-                sx={{
+
+              >
+                <Typography   sx={{
+                  padding:0,
                   whiteSpace: 'wrap',
                   fontSize: '12px',
                   color: '#888',
                   maxWidth: '70px'
-                }}
-              >
-                {item}
+                }}>{item}</Typography>
               </TableCell>
             ))}
           </TableRow>

@@ -16,6 +16,9 @@ import {
 } from '@store/reducers/snackbar/reducers'
 import { apiGetUploadMediaId, apiUploadVideo, TReqUpload } from '@interfaces/apis/upload'
 import { TResVideo } from '@interfaces/apis/videos.types'
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { setUploadProgress } from '@store/reducers/upload/reducers'
+
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -148,12 +151,37 @@ export default function SourceStep(props: {
     }
 
     var formData = new FormData()
-    formData.append('media', vState.uploadFile)
+    formData.append('file', vState.uploadFile)
 
     try {
-      let uploadId: {data: TResVideo.TMeidaContent }= await apiGetUploadMediaId(uploadInfo)
-      console.log(uploadId)
-      let uploadContent: { data:TResVideo.TMeidaContent }= await apiUploadVideo(uploadId.data,formData)
+      let uploadId = await apiGetUploadMediaId(uploadInfo)
+      console.log(uploadId,formData)
+
+        let startAt = Date.now()
+        const options: AxiosRequestConfig = {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            "Accept":"multipart/form-data",
+          },
+          onUploadProgress: (progressEvent: any) => {
+            const { loaded, total } = progressEvent
+
+            // Calculate the progress percentage
+            const percentage = (loaded * 100) / total
+
+            const timeElapsed = Date.now() - startAt
+            const uploadSpeed = loaded / timeElapsed
+            const duration = (total - loaded) / uploadSpeed
+            dispatch(
+              setUploadProgress({
+                progress: +percentage.toFixed(2),
+                remaining: duration
+              })
+            )
+          }
+        }
+
+      let uploadContent: { data:TResVideo.TMeidaContent }= await apiUploadVideo(uploadId,formData, options)
       console.log('uploadContent',uploadContent)
       dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     } catch (e) {
@@ -233,7 +261,7 @@ export default function SourceStep(props: {
       return
     }
 
-    console.warn(props.data)
+    // console.warn(props.data)
 
 
     props.handleNext()
