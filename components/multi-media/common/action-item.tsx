@@ -50,7 +50,7 @@ export default function RowAction(props:IProps) {
       >
 
         {props.actions?.map((val, index)=>(
-          <MenuItem onClick={val?.action?handleClose(val.action):handleClose()} sx={{
+          <MenuItem key={index} onClick={val?.action?handleClose(val.action):handleClose()} sx={{
             fontSize:'0.8rem'
           }}>{val.title}</MenuItem>
         ))}

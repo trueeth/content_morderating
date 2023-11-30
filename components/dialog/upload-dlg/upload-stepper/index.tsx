@@ -10,9 +10,8 @@ import StatusStep from './status-step'
 import SourceStep from './source-step'
 import LaunchStep from './launch-step'
 import { StepIcon } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUploadProgress } from '@store/reducers/upload/reducers'
 
 
 export const StepWrapper = styled(Box)({
@@ -37,7 +36,6 @@ export default function UploadStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
-  const dispatch = useDispatch()
 
   const initialState={mediaType:'',newOld:{newTitle: '', type: 'new',replaceItem: null}}
   const [vState, setState]=useState(initialState)

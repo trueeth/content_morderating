@@ -8,14 +8,14 @@ import { CSSProperties } from 'styled-components'
 import { PrimaryTextField } from '@components/common/text-field'
 import fileUpload from '/public/assets/images/icon/fileUpload.svg'
 import Image from 'next/image'
-import axios, { AxiosRequestConfig } from 'axios'
 import { useDispatch } from 'react-redux'
-import { setUploadProgress } from '@store/reducers/upload/reducers'
 import {
   openSnackbarError,
   openSnackbarSuccess,
   openSnackbarWarning
 } from '@store/reducers/snackbar/reducers'
+import { apiGetUploadMediaId, apiUploadVideo, TReqUpload } from '@interfaces/apis/upload'
+import { TResVideo } from '@interfaces/apis/videos.types'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -71,11 +71,6 @@ const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
     props.handleFileSelect(acceptedFiles[0])
   }, [acceptedFiles.length])
 
-  const files = acceptedFiles.map((file: any) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ))
   return (
     <Box {...getRootProps({ style })}>
       <input {...getInputProps()} />
@@ -139,47 +134,74 @@ export default function SourceStep(props: {
   const onFileUpload = async () => {
     if (!vState.uploadFile) return
 
-    try {
-      var formData = new FormData()
 
-      formData.append('media', vState.uploadFile)
-
-      let startAt = Date.now()
-
-      const options: AxiosRequestConfig = {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress: (progressEvent: any) => {
-          const { loaded, total } = progressEvent
-
-          // Calculate the progress percentage
-          const percentage = (loaded * 100) / total
-
-          const timeElapsed = Date.now() - startAt
-          const uploadSpeed = loaded / timeElapsed
-          const duration = (total - loaded) / uploadSpeed
-          dispatch(
-            setUploadProgress({
-              progress: +percentage.toFixed(2),
-              remaining: duration
-            })
-          )
-        }
-      }
-
-      const {
-        data: { data }
-      } = await axios.post<{
-        data: {
-          url: string | string[]
-        }
-      }>('/api/upload', formData, options)
-
-      // console.log('File was uploaded successfully:', data)
-      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
-    } catch (error) {
-      // console.error(error)
-      dispatch(openSnackbarWarning('Sorry! something went wrong.'))
+    let uploadInfo:TReqUpload.TGetUploadId= {
+      Description:"trueet upload video",
+      Documents:[],
+      Id:"00000000-0000-0000-0000-000000000000",
+      MediaSourceId:"49f5cc65-53c4-4caf-94dc-d1f29e6665ec",
+      MediaType:"Video",
+      ModeratorApprovalStatus:"New",
+      Name:props.data.newOld.newTitle,
+      Notes:"scenes video about mountain",
+      Videos:[]
     }
+
+    var formData = new FormData()
+    formData.append('media', vState.uploadFile)
+
+    try {
+      let uploadId: {data: TResVideo.TMeidaContent }= await apiGetUploadMediaId(uploadInfo)
+      console.log(uploadId)
+      let uploadContent: { data:TResVideo.TMeidaContent }= await apiUploadVideo(uploadId.data,formData)
+      console.log('uploadContent',uploadContent)
+      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
+    } catch (e) {
+        console.error(e)
+        dispatch(openSnackbarWarning('Sorry! something went wrong.'))
+    }
+
+    // try {
+    //   var formData = new FormData()
+    //
+    //   formData.append('media', vState.uploadFile)
+    //
+    //   let startAt = Date.now()
+    //
+    //   const options: AxiosRequestConfig = {
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    //     onUploadProgress: (progressEvent: any) => {
+    //       const { loaded, total } = progressEvent
+    //
+    //       // Calculate the progress percentage
+    //       const percentage = (loaded * 100) / total
+    //
+    //       const timeElapsed = Date.now() - startAt
+    //       const uploadSpeed = loaded / timeElapsed
+    //       const duration = (total - loaded) / uploadSpeed
+    //       dispatch(
+    //         setUploadProgress({
+    //           progress: +percentage.toFixed(2),
+    //           remaining: duration
+    //         })
+    //       )
+    //     }
+    //   }
+    //
+    //   const {
+    //     data: { data }
+    //   } = await axios.post<{
+    //     data: {
+    //       url: string | string[]
+    //     }
+    //   }>('/api/upload', formData, options)
+    //
+    //   // console.log('File was uploaded successfully:', data)
+    //   dispatch(openSnackbarSuccess('File was uploaded successfully:'))
+    // } catch (error) {
+    //   // console.error(error)
+    //   dispatch(openSnackbarWarning('Sorry! something went wrong.'))
+    // }
   }
 
   const handleFileSelect = (file: TFile) => {
@@ -194,7 +216,6 @@ export default function SourceStep(props: {
   //   console.log('uploadFileSize', vState.uploadFile.size / (1024 * 1024 * 1024))
 
   const handleStartUpload = async () => {
-    console.warn(props.data)
 
     if (!vState.uploadFile) {
       dispatch(openSnackbarError('No file was chosen'))
@@ -211,6 +232,8 @@ export default function SourceStep(props: {
       dispatch(openSnackbarError('Please reselect file. File size is over 2GB'))
       return
     }
+
+    console.warn(props.data)
 
 
     props.handleNext()

@@ -4,15 +4,15 @@ import { TResVideo } from '@interfaces/apis/videos.types'
 
 export declare namespace TReqUpload{
   type TGetUploadId={
-    Description:string,
-    Documents:any
-    Id:string
-    MediaSourceId:string
-    MediaType:string
-    ModeratorApprovalStatus:string
-    Name:string
-    Notes:string
-    Videos:any
+    Description?:string,
+    Documents?:any
+    Id?:string
+    MediaSourceId?:string
+    MediaType?:string
+    ModeratorApprovalStatus?:string
+    Name?:string
+    Notes?:string
+    Videos?:any
   }
 }
 
@@ -38,7 +38,7 @@ export const apiGetMediaSourceItems = () => {
   return request.get<TResUpload.getMediaSources>('application/media-sources')
 }
 export const apiGetUploadMediaId = (params:TReqUpload.TGetUploadId) => {
-  return request.post<TResVideo.TMeidaContent>('analysis/media',{params:params} )
+  return request.post<TResVideo.TMeidaContent>('analysis/media',params )
 }
 
 

@@ -48,7 +48,7 @@ export default function AuthSection() {
     >
       <Head>
         <title>VideoApp</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/assets/images/favicon.ico" sizes="any" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Box

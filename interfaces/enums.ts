@@ -89,6 +89,14 @@ export enum EHistoryData {
 }
 
 export enum EVideoDetail {
+  pageNumber = 'SCENE NUMBER',
+  violationType = 'VIOLATION TYPE',
+  category = 'CATEGORY',
+  description = 'DESCRIPTION',
+  action = 'ACTIONS'
+}
+
+export enum EDocDetail {
   pageNumber = 'PAGE NUMBER',
   violationType = 'VIOLATION TYPE',
   category = 'CATEGORY',

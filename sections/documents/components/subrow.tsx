@@ -6,7 +6,7 @@ import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
 import { Checkbox, Typography } from '@mui/material'
 import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
-import { EVideoDetail } from '@interfaces/enums'
+import { EDocDetail } from '@interfaces/enums'
 import { useDispatch } from 'react-redux'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import Button from '@mui/material/Button'
@@ -20,9 +20,14 @@ const DocumentSubrow = (props: {
 
   const dispatch = useDispatch()
 
-  const openScene = (index)=>() => {
+  const openScene = (index) => () => {
     dispatch(
-      openMediaSubDrawer({ open: true, row: props.row, type: 'document', pageIndex:index })
+      openMediaSubDrawer({
+        open: true,
+        row: props.row,
+        type: 'document',
+        pageIndex: index
+      })
     )
   }
 
@@ -82,7 +87,7 @@ const DocumentSubrow = (props: {
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </TableCell>
-          {Object.values(EVideoDetail).map((item, index) => {
+          {Object.values(EDocDetail).map((item, index) => {
             return (
               <TableCell key={index}>
                 <Typography sx={{ fontSize: '13px', color: '#888' }}>

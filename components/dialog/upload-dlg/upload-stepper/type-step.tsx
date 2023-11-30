@@ -1,17 +1,18 @@
 import { StepWrapper } from './index'
-import { Box, Radio, RadioGroup, Typography, Button } from '@mui/material'
+import { Box, Radio, RadioGroup, Typography } from '@mui/material'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { PrimaryButton } from '@components/common/styled-button'
 import React, { useState } from 'react'
 
-export default function TypeStep(props: { handleNext: (any) => void }) {
-  const [vState, setState] = useState('Video')
-  const handleNext = () => {
-    props.handleNext(vState)
-  }
+export default function TypeStep(props: { handleNext: (any) => void}) {
 
+  const [vState, setState]=useState("Video")
+  const handleNext = () => {
+      props.handleNext(vState)
+  }
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState((event.target as HTMLInputElement).value)
+    setState((event.target as HTMLInputElement).value);
   }
 
   return (
@@ -35,11 +36,10 @@ export default function TypeStep(props: { handleNext: (any) => void }) {
         >
           What do you want to upload?
         </Typography>
-        <RadioGroup
-          row
-          sx={{ justifyContent: 'center' }}
-          value={vState}
-          onChange={handleChange}
+        <RadioGroup row 
+                    sx={{ justifyContent: 'center' }}
+        value={vState}
+                    onChange={handleChange}
         >
           <FormControlLabel value="Video" control={<Radio />} label="Video" />
           <FormControlLabel value="Audio" control={<Radio />} label="Audio" />

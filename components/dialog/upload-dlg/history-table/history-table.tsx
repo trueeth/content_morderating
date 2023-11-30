@@ -41,7 +41,7 @@ export default function HistoryTable() {
   return (
     <TableContainer
       component={Paper}
-      sx={{ borderRadius: '15px', boxShadow: 'none', marginTop: '-1rem' }}
+      sx={{ borderRadius: '15px', boxShadow: 'none', marginTop:'-1rem' }}
     >
       <Table
         aria-label="collapsible table"
