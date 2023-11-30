@@ -6,7 +6,7 @@ import * as React from 'react'
 import TableActionWrapper from '@components/common/table-wrapper'
 import RowAction from '@components/multi-media/common/action-item'
 import Image from 'next/image'
-import { UserData } from '@interfaces/apis/mock'
+import { UserData } from '@interfaces/apis/_mock'
 import AddUserDlg from '@components/dialog/add-user-dlg'
 
 export default function Users() {

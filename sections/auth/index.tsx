@@ -6,24 +6,33 @@ import React, { useEffect, useState } from 'react'
 import LoginImg from '@public/assets/images/login.png'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
+import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 
 export default function AuthSection() {
   const { login } = useAuthContext()
   const router = useRouter()
-  const [vState, setState] = useState({ username: '', pwd: '' })
+  const [vState, setState] = useState({ username: '', pwd: '' , error:false})
+  const dispatch=useDispatch()
   const handleUserInput = (key, value) => {
     setState({ ...vState, [key]: value })
   }
 
   const handleLogin = async () => {
-    await login(vState.username, vState.pwd)
-    router.push('/dashboard')
+    if (vState.username==="demo"&&vState.pwd==="mBe@ver#123T") {
+      await login(vState.username, vState.pwd)
+      router.push('/dashboard')
+      dispatch(openSnackbarSuccess('Login Success!'))
+    } else {
+      setState({...vState, username:'', pwd:'', error:true})
+    }
   }
 
   const { authenticated } = useAuthContext()
 
   useEffect(() => {
     if (authenticated) {
+      dispatch(openSnackbarSuccess('Already You are logined!'))
       router.replace('/dashboard')
     }
   }, [])
@@ -66,12 +75,23 @@ export default function AuthSection() {
         >
           Enter your email address and password to access admin panel
         </Typography>
+        {vState.error?
+          <Typography
+            fontSize={14}
+            sx={{ px: 0, mt: 2, color:'red !important', textAlign:'left', width:'80%'}}
+          >
+            Incorrect Username or password
+          </Typography>
+          :null}
+
         <Box sx={{ mt: 4, width: '80%' }}>
+
           <Typography fontSize={14} mb={1}>
             Username
           </Typography>
           <PrimaryTextField
             placeholder="Enter your username"
+            value={vState.username}
             onChange={(e) => handleUserInput('username', e.target.value)}
             sx={{
               '& .MuiOutlinedInput-root': {
@@ -89,6 +109,7 @@ export default function AuthSection() {
           </Box>
           <PrimaryTextField
             placeholder="Enter your password"
+            value={vState.pwd}
             onChange={(e) => handleUserInput('pwd', e.target.value)}
             type={'password'}
             sx={{

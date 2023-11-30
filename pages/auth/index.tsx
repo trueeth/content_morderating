@@ -4,7 +4,6 @@ import AuthSection from '@sections/auth'
 import { Container } from '@mui/system'
 
 const Auth = () => {
- console.log('ddddd')
  return <AuthSection />
 }
 

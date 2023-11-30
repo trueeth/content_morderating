@@ -89,7 +89,7 @@ export default function DrawerTabPlayScene() {
     : 1
 
   setTimeout(() => {
-    setPageNumber(1)
+    setPageNumber(appState.drawer.pageIndex)
   }, 1000)
 
   return (

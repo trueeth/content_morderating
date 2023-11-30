@@ -1,5 +1,5 @@
-import * as React from 'react'
-import Box from '@mui/material/Box'
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
@@ -10,9 +10,21 @@ import StatusStep from './status-step'
 import SourceStep from './source-step'
 import LaunchStep from './launch-step'
 import { StepIcon } from '@mui/material'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
+
+
+export const StepWrapper = styled(Box)({
+  borderRadius: '.625rem',
+  border: '1px solid var(--Stroke)',
+  backgroundColor: 'rgb(0 0 0 / 2%)',
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '1.5rem 0.5rem'
+})
+
+// type TMedia='Video'|'Audio'|'Document'
 
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
@@ -27,9 +39,8 @@ export default function UploadStepper() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(setUploadProgress({ progress: 0, remaining: 0 }))
-  }, [activeStep])
+  const initialState={mediaType:'',newOld:{newTitle: '', type: 'new',replaceItem: null}}
+  const [vState, setState]=useState(initialState)
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -85,11 +96,18 @@ export default function UploadStepper() {
       </Stepper>
 
       <TabPanel index={activeStep} value={0}>
-        <TypeStep handleNext={handleNext}></TypeStep>
+        <TypeStep
+          handleNext={(val)=>{
+            setState({...vState, mediaType:val})
+            handleNext()
+          }}></TypeStep>
       </TabPanel>
-      <TabPanel index={activeStep} value={1}>
+      <TabPanel index={activeStep} value={1} >
         <StatusStep
-          handleNext={handleNext}
+          handleNext={(val)=>{
+            setState({...vState, newOld:val})
+            handleNext()
+          }}
           handleBack={handleBack}
         ></StatusStep>
       </TabPanel>
@@ -97,6 +115,7 @@ export default function UploadStepper() {
         <SourceStep
           handleBack={handleBack}
           handleNext={handleNext}
+          data={vState}
         ></SourceStep>
       </TabPanel>
       <TabPanel index={activeStep} value={3}>

@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Tooltip, Typography, useMediaQuery } from '@mui/material'
 import InfoIcon from '@mui/icons-material/Info'
 import TabPanel from '@components/common/tab-panel'
-import UploadStepper from '@components/dialog/upload-dlg/upload-stepper/upload-stepper'
 import HistoryTable from '@components/dialog/upload-dlg/history-table/history-table'
 import { IAppSlice } from '@store/reducers'
 import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
 import { IReduxState } from '@store/index'
 import CustomToggleButtonGroup from '@components/common/toggle-button'
+import UploadStepper from '@components/dialog/upload-dlg/upload-stepper'
+import { useEffect } from 'react'
+import { setUploadProgress } from '@store/reducers/upload/reducers'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()
@@ -26,6 +28,10 @@ export default function UploadDialog() {
   const isXs = useMediaQuery('(max-width:500px)')
 
   const uploadGroups = ['Upload', 'History']
+
+  useEffect(() => {
+    dispatch(setUploadProgress({ progress: 0, remaining: 0 }))
+  }, [vState.tabIndex])
 
   return (
     <React.Fragment>

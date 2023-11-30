@@ -5,18 +5,30 @@ import * as React from 'react'
 import { useState } from 'react'
 import { PrimaryButton } from '@components/common/styled-button'
 import { PrimaryTextField } from '@components/common/text-field'
+import { openSnackbarError } from '@store/reducers/snackbar/reducers'
+import { useDispatch } from 'react-redux'
 
 export default function StatusStep(props: {
-  handleNext: () => void
+  handleNext: (any) => void
   handleBack: () => void
 }) {
-  const [vState, setState] = useState({ replace: null, type: 'new' })
+  const [vState, setState] = useState({ newTitle: '', type: 'new',replaceItem: 0 })
 
   const handleReplace = (event: any) => {
-    setState({ ...vState, replace: event.target.value })
+    setState({ ...vState, replaceItem: event.target.value })
   }
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
+  }
+
+  const dispatch=useDispatch()
+
+  const handleNext=()=>{
+    if (vState.newTitle==''&&vState.type=="new") {
+      dispatch(openSnackbarError('Title is empty'))
+      return
+    }
+    props.handleNext(vState)
   }
 
   const isXs = useMediaQuery('(max-width:500px)')
@@ -52,7 +64,7 @@ export default function StatusStep(props: {
             value={'new'}
           />
         </Box>
-        <PrimaryTextField placeholder="Enter the name" />
+        <PrimaryTextField placeholder="Enter the name" value={vState.newTitle} onChange={(event)=>setState({...vState, newTitle: event.target.value})} />
         <Typography>OR</Typography>
         <Box mt={-2}>
           <Typography>Replace{!isXs && 'existing one'}</Typography>
@@ -63,7 +75,7 @@ export default function StatusStep(props: {
           />
         </Box>
         <Select
-          value={vState.replace}
+          value={vState.replaceItem}
           onChange={handleReplace}
           fullWidth
           sx={{
@@ -74,7 +86,7 @@ export default function StatusStep(props: {
             bgcolor: 'white'
           }}
           renderValue={
-            vState.replace !== null
+            vState.type !== null
               ? undefined
               : () => <Typography>Select from list</Typography>
           }
@@ -112,7 +124,7 @@ export default function StatusStep(props: {
           <PrimaryButton onClick={props.handleBack} active={false}>
             Back
           </PrimaryButton>
-          <PrimaryButton onClick={props.handleNext}>Next</PrimaryButton>
+          <PrimaryButton onClick={handleNext}>Next</PrimaryButton>
         </Box>
       </Box>
     </StepWrapper>

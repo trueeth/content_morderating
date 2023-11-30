@@ -6,7 +6,7 @@ import * as React from 'react'
 import TableActionWrapper from '@components/common/table-wrapper'
 import RowAction from '@components/multi-media/common/action-item'
 import AddReportDlg from '@components/dialog/add-report-dlg'
-import { HistoryData } from '@interfaces/apis/mock'
+import { HistoryData } from '@interfaces/apis/_mock'
 
 export default function ReportHistory() {
   const [vState, setState] = useState({ openDlg: false, sortBy: 0 })

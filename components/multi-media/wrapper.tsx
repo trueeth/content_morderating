@@ -79,8 +79,10 @@ export  function MediaActionwrapper(props: IActionPros) {
       dispatch(setPageinit())
 
       const tempContents: any = await apiGetMediaContents()
+
       if (tempContents != undefined) {
         if (props.type == 'video') {
+
           let tempRows = mappingResToVideoRow(tempContents)
 
           const videoContents = tempContents.Content?.filter(

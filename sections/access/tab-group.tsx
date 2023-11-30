@@ -5,7 +5,7 @@ import { EGroupData } from '@interfaces/index'
 import * as React from 'react'
 import TableActionWrapper from '@components/common/table-wrapper'
 import RowAction from '@components/multi-media/common/action-item'
-import { GroupData } from '@interfaces/apis/mock'
+import { GroupData } from '@interfaces/apis/_mock'
 import AddGroupDlg from '@components/dialog/add-group-dlg'
 
 export default function Users() {

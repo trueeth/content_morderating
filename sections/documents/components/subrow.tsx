@@ -20,9 +20,9 @@ const DocumentSubrow = (props: {
 
   const dispatch = useDispatch()
 
-  const openScene = () => {
+  const openScene = (index)=>() => {
     dispatch(
-      openMediaSubDrawer({ open: true, row: props.row, type: 'document' })
+      openMediaSubDrawer({ open: true, row: props.row, type: 'document', pageIndex:index })
     )
   }
 
@@ -100,7 +100,7 @@ const DocumentSubrow = (props: {
       >
         {subRows.map((row, index) => {
           return (
-            <CustomizedTableRow key={index} onClick={openScene}>
+            <CustomizedTableRow key={index} onClick={openScene(index)}>
               <Checkbox />
               <Typography>{'Page #' + (index + 1)}</Typography>
               <Typography>{row.violationType}</Typography>

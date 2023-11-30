@@ -51,7 +51,7 @@ function UserAction() {
 
   const rowActions = [
     {
-      title: 'Log out',
+      title: 'Log Out',
       action: handleLogout
     },
     {

@@ -60,7 +60,6 @@ export default function TableActionWrapper(
     setState({ ...vState, sortBy: event.target.value })
   }
 
-  console.log(props.header.title)
   useEffect(() => {
     setState({ ...vState, title: props.header.title })
   }, [props.header])

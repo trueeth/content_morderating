@@ -126,9 +126,10 @@ type TStateSource = {
 export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
+  data:any
 }) {
   const [vState, setState] = useState<TStateSource>({
-    type: 'new',
+    type: 'pc',
     uploadFile: null,
     uploadProgress: 0,
     uploadRemaining: 0
@@ -189,10 +190,12 @@ export default function SourceStep(props: {
     setState({ ...vState, type: event.target.value })
   }
 
-  if (vState.uploadFile)
-    console.log('uploadFileSize', vState.uploadFile.size / (1024 * 1024 * 1024))
+  // if (vState.uploadFile)
+  //   console.log('uploadFileSize', vState.uploadFile.size / (1024 * 1024 * 1024))
 
   const handleStartUpload = async () => {
+    console.warn(props.data)
+
     if (!vState.uploadFile) {
       dispatch(openSnackbarError('No file was chosen'))
       return
@@ -200,7 +203,7 @@ export default function SourceStep(props: {
 
     /** File validation */
     if (vState.uploadFile.type.indexOf('video') < 0) {
-      dispatch(openSnackbarError('Please select a valide video'))
+      dispatch(openSnackbarError('Please select a valid video'))
       return
     }
 
@@ -209,11 +212,13 @@ export default function SourceStep(props: {
       return
     }
 
+
     props.handleNext()
     setTimeout(() => {
       onFileUpload()
     }, 1000)
   }
+
 
   return (
     <StepWrapper>
@@ -247,7 +252,7 @@ export default function SourceStep(props: {
             value={'url'}
           />
         </Box>
-        <PrimaryTextField fullWidth={true} placeholder="Enter  URL" />
+        <PrimaryTextField fullWidth={true} placeholder="Enter  URL" disabled={vState.type!=='url'} />
 
         <Box>
           <Typography>Upload from your PC</Typography>
@@ -267,7 +272,7 @@ export default function SourceStep(props: {
             value={'netflix'}
           />
         </Box>
-        <PrimaryTextField placeholder="Enter the full movie name" />
+        <PrimaryTextField placeholder="Enter the full movie name" disabled={vState.type!=='netflix'} />
 
         <Box
           sx={{

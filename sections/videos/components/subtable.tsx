@@ -113,7 +113,7 @@ const VideoSubtable = (props: {
               summary={summaries[index]}
             >
               <Checkbox />
-              <Typography>{'Page #' + (index + 1)}</Typography>
+              <Typography>{'Scene #' + (index + 1)}</Typography>
               <Typography>{row.violationType}</Typography>
               <Typography whiteSpace="nowrap">{row.category}</Typography>
               <Typography>{row.description}</Typography>

@@ -74,8 +74,8 @@ function DocumentRow(props: {
       >
         <TableCell>
           <IconButton
-            aria-label="expand row"
-            size="small"
+            aria-label='expand row'
+            size='small'
             onClick={handleDetail}
           >
             {vState.openSummary ? (
@@ -140,7 +140,7 @@ function DocumentRow(props: {
           sx={{ p: 0 }}
           colSpan={12}
         >
-          <Collapse in={vState.openSummary} timeout="auto" unmountOnExit>
+          <Collapse in={vState.openSummary} timeout='auto' unmountOnExit>
             <DocumentSubrow subRows={vState.subRow} row={row}></DocumentSubrow>
           </Collapse>
         </TableCell>
