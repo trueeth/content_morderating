@@ -13,13 +13,16 @@ import {
   tableCellClasses,
   Typography
 } from '@mui/material'
-import useTablePagination from '@hooks/useTablePagination'
+import useTablePagination from '@hooks/use-table-pagination'
 import MediaDrawer from '@components/multi-media/drawer'
 import { TResVideo } from '@interfaces/apis/videos.types'
 import { TDocumentRowType, TVideoRowType } from '@interfaces/types'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
-import { setPageinit, setPaginationTotalCount } from '@store/reducers/page/reducers'
+import {
+  setPageinit,
+  setPaginationTotalCount
+} from '@store/reducers/page/reducers'
 import { apiGetMediaContents } from '@interfaces/apis/videos'
 import mappingResToVideoRow from '@interfaces/apis/mapping/video-row'
 import { EDocumentColumn, EMediaType, EVideoColumn } from '@interfaces/enums'
@@ -65,15 +68,11 @@ export const MediaWrapper = (props: IMediaProps) => {
   )
 }
 
-
-
 interface IActionPros {
   type: 'video' | 'document'
 }
 
-
-
-export  function MediaActionwrapper(props: IActionPros) {
+export function MediaActionwrapper(props: IActionPros) {
   const [vState, setState] = useState<{
     mediaContents: TResVideo.getMediaContents
     rows: (TVideoRowType | TDocumentRowType)[]
@@ -93,7 +92,6 @@ export  function MediaActionwrapper(props: IActionPros) {
 
       if (tempContents != undefined) {
         if (props.type == 'video') {
-
           let tempRows = mappingResToVideoRow(tempContents)
 
           const videoContents = tempContents.Content?.filter(
@@ -124,7 +122,7 @@ export  function MediaActionwrapper(props: IActionPros) {
       }
       dispatch(setApiData({ data: tempContents }))
     })()
-  }, [props])
+  }, [props, dispatch, vState])
 
   return (
     <TableContainer
@@ -144,18 +142,21 @@ export  function MediaActionwrapper(props: IActionPros) {
         <TableHead>
           <TableRow>
             <TableCell />
-            {Object.values(props.type == 'video' ? EVideoColumn : EDocumentColumn).map((item, index) => (
-              <TableCell
-                key={index}
-
-              >
-                <Typography   sx={{
-                  padding:0,
-                  whiteSpace: 'wrap',
-                  fontSize: '12px',
-                  color: '#888',
-                  maxWidth: '70px'
-                }}>{item}</Typography>
+            {Object.values(
+              props.type == 'video' ? EVideoColumn : EDocumentColumn
+            ).map((item, index) => (
+              <TableCell key={index}>
+                <Typography
+                  sx={{
+                    padding: 0,
+                    whiteSpace: 'wrap',
+                    fontSize: '12px',
+                    color: '#888',
+                    maxWidth: '70px'
+                  }}
+                >
+                  {item}
+                </Typography>
               </TableCell>
             ))}
           </TableRow>
@@ -186,9 +187,9 @@ export  function MediaActionwrapper(props: IActionPros) {
                     documentContent={vState.mediaContents[index]}
                   />
                 )
-            })}</TableBody>
+            })}
+        </TableBody>
       </Table>
     </TableContainer>
   )
 }
-

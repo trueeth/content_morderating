@@ -1,4 +1,4 @@
-import request from '@interfaces/apis/baseApi/request'
+import request from '@interfaces/apis/base-api/request'
 import { TResVideo } from './videos.types'
 
 export const apiGetMediaContents = () => {

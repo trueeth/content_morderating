@@ -31,16 +31,14 @@ function Container({ children }: Props) {
       router.replace('/auth')
     } else {
       setChecked(true)
-      if (router.pathname=="/")
-        router.replace("/dashboard")
+      if (router.pathname == '/') router.replace('/dashboard')
     }
-  }, [authenticated, router, router.pathname])
+  }, [authenticated, router])
 
   useEffect(() => {
     check().catch(console.error)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [check, authenticated,router, router.pathname])
-
+  }, [check, authenticated, router])
 
   if (!checked) {
     return null

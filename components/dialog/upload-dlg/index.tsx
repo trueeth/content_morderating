@@ -31,7 +31,7 @@ export default function UploadDialog() {
 
   useEffect(() => {
     dispatch(setUploadProgress({ progress: 0, remaining: 0 }))
-  }, [vState.tabIndex])
+  }, [vState.tabIndex, dispatch])
 
   return (
     <React.Fragment>

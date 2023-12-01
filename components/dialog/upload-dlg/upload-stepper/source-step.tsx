@@ -14,11 +14,14 @@ import {
   openSnackbarSuccess,
   openSnackbarWarning
 } from '@store/reducers/snackbar/reducers'
-import { apiGetUploadMediaId, apiUploadVideo, TReqUpload } from '@interfaces/apis/upload'
+import {
+  apiGetUploadMediaId,
+  apiUploadVideo,
+  TReqUpload
+} from '@interfaces/apis/upload'
 import { TResVideo } from '@interfaces/apis/videos.types'
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
-
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -72,7 +75,7 @@ const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
 
   useEffect(() => {
     props.handleFileSelect(acceptedFiles[0])
-  }, [acceptedFiles.length])
+  }, [acceptedFiles.length, acceptedFiles, props])
 
   return (
     <Box {...getRootProps({ style })}>
@@ -124,7 +127,7 @@ type TStateSource = {
 export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
-  data:any
+  data: any
 }) {
   const [vState, setState] = useState<TStateSource>({
     type: 'pc',
@@ -137,17 +140,16 @@ export default function SourceStep(props: {
   const onFileUpload = async () => {
     if (!vState.uploadFile) return
 
-
-    let uploadInfo:TReqUpload.TGetUploadId= {
-      Description:"trueet upload video",
-      Documents:[],
-      Id:"00000000-0000-0000-0000-000000000000",
-      MediaSourceId:"49f5cc65-53c4-4caf-94dc-d1f29e6665ec",
-      MediaType:"Video",
-      ModeratorApprovalStatus:"New",
-      Name:props.data.newOld.newTitle,
-      Notes:"scenes video about mountain",
-      Videos:[]
+    let uploadInfo: TReqUpload.TGetUploadId = {
+      Description: 'trueet upload video',
+      Documents: [],
+      Id: '00000000-0000-0000-0000-000000000000',
+      MediaSourceId: '49f5cc65-53c4-4caf-94dc-d1f29e6665ec',
+      MediaType: 'Video',
+      ModeratorApprovalStatus: 'New',
+      Name: props.data.newOld.newTitle,
+      Notes: 'scenes video about mountain',
+      Videos: []
     }
 
     var formData = new FormData()
@@ -155,38 +157,39 @@ export default function SourceStep(props: {
 
     try {
       let uploadId = await apiGetUploadMediaId(uploadInfo)
-      console.log(uploadId,formData)
+      console.log(uploadId, formData)
 
-        let startAt = Date.now()
-        const options: AxiosRequestConfig = {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            "Accept":"multipart/form-data",
-          },
-          onUploadProgress: (progressEvent: any) => {
-            const { loaded, total } = progressEvent
+      let startAt = Date.now()
+      const options: AxiosRequestConfig = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Accept: 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent: any) => {
+          const { loaded, total } = progressEvent
 
-            // Calculate the progress percentage
-            const percentage = (loaded * 100) / total
+          // Calculate the progress percentage
+          const percentage = (loaded * 100) / total
 
-            const timeElapsed = Date.now() - startAt
-            const uploadSpeed = loaded / timeElapsed
-            const duration = (total - loaded) / uploadSpeed
-            dispatch(
-              setUploadProgress({
-                progress: +percentage.toFixed(2),
-                remaining: duration
-              })
-            )
-          }
+          const timeElapsed = Date.now() - startAt
+          const uploadSpeed = loaded / timeElapsed
+          const duration = (total - loaded) / uploadSpeed
+          dispatch(
+            setUploadProgress({
+              progress: +percentage.toFixed(2),
+              remaining: duration
+            })
+          )
         }
+      }
 
-      let uploadContent: { data:TResVideo.TMeidaContent }= await apiUploadVideo(uploadId,formData, options)
-      console.log('uploadContent',uploadContent)
+      let uploadContent: { data: TResVideo.TMeidaContent } =
+        await apiUploadVideo(uploadId, formData, options)
+      console.log('uploadContent', uploadContent)
       dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     } catch (e) {
-        console.error(e)
-        dispatch(openSnackbarWarning('Sorry! something went wrong.'))
+      console.error(e)
+      dispatch(openSnackbarWarning('Sorry! something went wrong.'))
     }
 
     // try {
@@ -244,7 +247,6 @@ export default function SourceStep(props: {
   //   console.log('uploadFileSize', vState.uploadFile.size / (1024 * 1024 * 1024))
 
   const handleStartUpload = async () => {
-
     if (!vState.uploadFile) {
       dispatch(openSnackbarError('No file was chosen'))
       return
@@ -263,13 +265,11 @@ export default function SourceStep(props: {
 
     // console.warn(props.data)
 
-
     props.handleNext()
     setTimeout(() => {
       onFileUpload()
     }, 1000)
   }
-
 
   return (
     <StepWrapper>
@@ -303,7 +303,11 @@ export default function SourceStep(props: {
             value={'url'}
           />
         </Box>
-        <PrimaryTextField fullWidth={true} placeholder="Enter  URL" disabled={vState.type!=='url'} />
+        <PrimaryTextField
+          fullWidth={true}
+          placeholder="Enter  URL"
+          disabled={vState.type !== 'url'}
+        />
 
         <Box>
           <Typography>Upload from your PC</Typography>
@@ -323,7 +327,10 @@ export default function SourceStep(props: {
             value={'netflix'}
           />
         </Box>
-        <PrimaryTextField placeholder="Enter the full movie name" disabled={vState.type!=='netflix'} />
+        <PrimaryTextField
+          placeholder="Enter the full movie name"
+          disabled={vState.type !== 'netflix'}
+        />
 
         <Box
           sx={{

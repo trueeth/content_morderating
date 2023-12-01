@@ -21,7 +21,7 @@ import SearchInput from '@components/common/search-input'
 import InfoIcon from '@mui/icons-material/Info'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
-import useTablePagination from '@hooks/useTablePagination'
+import useTablePagination from '@hooks/use-table-pagination'
 
 interface IProps {
   header: {
@@ -62,7 +62,7 @@ export default function TableActionWrapper(
 
   useEffect(() => {
     setState({ ...vState, title: props.header.title })
-  }, [props.header])
+  }, [props.header, vState])
 
   return (
     <Box

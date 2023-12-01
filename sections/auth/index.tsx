@@ -12,19 +12,19 @@ import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 export default function AuthSection() {
   const { login } = useAuthContext()
   const router = useRouter()
-  const [vState, setState] = useState({ username: '', pwd: '' , error:false})
-  const dispatch=useDispatch()
+  const [vState, setState] = useState({ username: '', pwd: '', error: false })
+  const dispatch = useDispatch()
   const handleUserInput = (key, value) => {
     setState({ ...vState, [key]: value })
   }
 
   const handleLogin = async () => {
-    if (vState.username==="demo"&&vState.pwd==="mBe@ver#123T") {
+    if (vState.username === 'demo' && vState.pwd === 'mBe@ver#123T') {
       await login(vState.username, vState.pwd)
       router.push('/dashboard')
       dispatch(openSnackbarSuccess('Login Success!'))
     } else {
-      setState({...vState, username:'', pwd:'', error:true})
+      setState({ ...vState, username: '', pwd: '', error: true })
     }
   }
 
@@ -35,7 +35,7 @@ export default function AuthSection() {
       dispatch(openSnackbarSuccess('Already You are logined!'))
       router.replace('/dashboard')
     }
-  }, [])
+  }, [dispatch, authenticated, router])
 
   return (
     <Box
@@ -75,17 +75,22 @@ export default function AuthSection() {
         >
           Enter your email address and password to access admin panel
         </Typography>
-        {vState.error?
+        {vState.error ? (
           <Typography
             fontSize={14}
-            sx={{ px: 0, mt: 2, color:'red !important', textAlign:'left', width:'80%'}}
+            sx={{
+              px: 0,
+              mt: 2,
+              color: 'red !important',
+              textAlign: 'left',
+              width: '80%'
+            }}
           >
             Incorrect Username or password
           </Typography>
-          :null}
+        ) : null}
 
         <Box sx={{ mt: 4, width: '80%' }}>
-
           <Typography fontSize={14} mb={1}>
             Username
           </Typography>
