@@ -41,8 +41,8 @@ const DocumentSubrow = (props: {
     return null
   }
 
-  const CustomizedTableRow = ({ children, onClick }) => (
-    <TableRow>
+  const CustomizedTableRow = ({ children, onClick, keyValue }) => (
+    <TableRow key={keyValue}>
       {children.map((item, idx) => {
         if (idx > 0 && idx < 5) {
           return (
@@ -105,7 +105,7 @@ const DocumentSubrow = (props: {
       >
         {subRows.map((row, index) => {
           return (
-            <CustomizedTableRow key={index} onClick={openScene(index)}>
+            <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
               <Checkbox />
               <Typography>{'Page #' + (index + 1)}</Typography>
               <Typography>{row.violationType}</Typography>

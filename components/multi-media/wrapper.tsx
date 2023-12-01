@@ -72,7 +72,7 @@ interface IActionPros {
   type: 'video' | 'document'
 }
 
-export function MediaActionwrapper(props: IActionPros) {
+export const MediaActionwrapper = (props: IActionPros)=> {
   const [vState, setState] = useState<{
     mediaContents: TResVideo.getMediaContents
     rows: (TVideoRowType | TDocumentRowType)[]
@@ -101,7 +101,10 @@ export function MediaActionwrapper(props: IActionPros) {
           dispatch(
             setPaginationTotalCount({ totalCount: videoContents.length })
           )
-          setState({ ...vState, mediaContents: videoContents, rows: tempRows })
+          setState(prevState => {
+            return{
+            ...prevState, mediaContents: videoContents, rows: tempRows
+          } })
         } else {
           let tempRows = mappingResToDocumentRow(tempContents)
 
@@ -113,16 +116,18 @@ export function MediaActionwrapper(props: IActionPros) {
             setPaginationTotalCount({ totalCount: documentContents.length })
           )
 
-          setState({
-            ...vState,
-            mediaContents: documentContents,
-            rows: tempRows
+          setState(prevState => {
+            return {
+            ...prevState,
+                mediaContents: documentContents,
+                rows: tempRows
+            }
           })
         }
       }
       dispatch(setApiData({ data: tempContents }))
     })()
-  }, [props, dispatch, vState])
+  }, [props, dispatch])
 
   return (
     <TableContainer

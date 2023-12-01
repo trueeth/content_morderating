@@ -84,7 +84,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
           sx={{
             bgcolor: '#fff',
             borderRadius: 2.5,
-            p: 3,
+            p: 3
           }}
           onClick={handleRemove}
         >

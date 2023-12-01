@@ -32,7 +32,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     <div className={'pb-50 flex flex-col justify-center item-center'}>
       <Head>
         <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/public/assets/images/favicon.ico" sizes="any" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <header className={'w-full'}>

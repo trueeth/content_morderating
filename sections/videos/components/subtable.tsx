@@ -43,8 +43,8 @@ const VideoSubtable = (props: {
     return null
   }
 
-  const CustomizedTableRow = ({ children, onClick, key, summary }) => (
-    <TableRow key={key}>
+  const CustomizedTableRow = ({ children, onClick, keyValue, summary }) => (
+    <TableRow key={keyValue}>
       {children.map((item, idx) => {
         if (idx > 0 && idx < 5) {
           return (
@@ -109,6 +109,7 @@ const VideoSubtable = (props: {
           return (
             <CustomizedTableRow
               key={index}
+              keyValue={index}
               onClick={openScene}
               summary={summaries[index]}
             >

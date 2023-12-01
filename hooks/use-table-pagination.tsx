@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Pagination, PaginationItem } from '@mui/material'
 import TablePagination from '@components/common/table-pagination'
 import { useDispatch, useSelector } from 'react-redux'
-import { setPaginationIndex } from '@store/reducers/page/reducers'
+import { setPageinit, setPaginationIndex } from '@store/reducers/page/reducers'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 
@@ -17,15 +17,21 @@ const useTablePagination = () => {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   useEffect(() => {
-    setState({
-      ...vState,
-      pageIndex: appState.pagination.pageIndex,
-      pageSize: appState.pagination.pageSize,
-      pageTotal: Math.ceil(
-        appState.pagination.totalCount / appState.pagination.pageSize
-      )
+    setState(prevState => {
+      return{
+        ...prevState,
+        pageIndex: appState.pagination.pageIndex,
+        pageSize: appState.pagination.pageSize,
+        pageTotal: Math.ceil(
+          appState.pagination.totalCount / appState.pagination.pageSize
+        )
+      }
     })
   }, [appState])
+
+  useEffect(() => {
+    dispatch(setPageinit())
+  }, [dispatch])
 
   const handlePageNext = () => {
     setState({ ...vState, pageIndex: vState.pageIndex + 1 })

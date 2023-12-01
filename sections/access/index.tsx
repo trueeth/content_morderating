@@ -8,9 +8,7 @@ import CustomToggleButtonGroup from '@components/common/toggle-button'
 export default function AccessSection() {
   const [vState, setState] = useState({ tabIndex: 0 })
 
-  // const setTabIndex = (e: any, newValue: number) => {
-  //   if (newValue !== null) setState({ ...vState, tabIndex: newValue })
-  // }
+
 
   const accessGroups = ['Users', 'Groups', 'Roles']
 

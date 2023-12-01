@@ -61,7 +61,9 @@ export default function TableActionWrapper(
   }
 
   useEffect(() => {
-    setState({ ...vState, title: props.header.title })
+    setState((prevState) => {
+      return { ...prevState, title: props.header.title }
+    })
   }, [props.header])
 
   return (
