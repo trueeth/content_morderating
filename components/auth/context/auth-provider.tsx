@@ -23,11 +23,11 @@ enum Types {
 
 type Payload = {
   [Types.INITIAL]: {
-    user: AuthUserType,
+    user: AuthUserType
     auth: string
   }
   [Types.LOGIN]: {
-    user: AuthUserType,
+    user: AuthUserType
     auth: string
   }
   [Types.REGISTER]: {
@@ -107,9 +107,7 @@ export function AuthProvider({ children }: Props) {
     })
   }, [])
 
-
   const initialize = useCallback(async () => {
-
     const auth = localStorage.getItem('auth')
 
     dispatch({
@@ -121,7 +119,7 @@ export function AuthProvider({ children }: Props) {
     })
   }, [])
 
-  useEffect( () => {
+  useEffect(() => {
     initialize()
   }, [initialize])
 

@@ -10,9 +10,8 @@ import StatusStep from './status-step'
 import SourceStep from './source-step'
 import LaunchStep from './launch-step'
 import { StepIcon } from '@mui/material'
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-
 
 export const StepWrapper = styled(Box)({
   borderRadius: '.625rem',
@@ -36,9 +35,11 @@ export default function UploadStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
-
-  const initialState={mediaType:'',newOld:{newTitle: '', type: 'new',replaceItem: null}}
-  const [vState, setState]=useState(initialState)
+  const initialState = {
+    mediaType: '',
+    newOld: { newTitle: '', type: 'new', replaceItem: null }
+  }
+  const [vState, setState] = useState(initialState)
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -95,15 +96,16 @@ export default function UploadStepper() {
 
       <TabPanel index={activeStep} value={0}>
         <TypeStep
-          handleNext={(val)=>{
-            setState({...vState, mediaType:val})
+          handleNext={(val) => {
+            setState({ ...vState, mediaType: val })
             handleNext()
-          }}></TypeStep>
+          }}
+        ></TypeStep>
       </TabPanel>
-      <TabPanel index={activeStep} value={1} >
+      <TabPanel index={activeStep} value={1}>
         <StatusStep
-          handleNext={(val)=>{
-            setState({...vState, newOld:val})
+          handleNext={(val) => {
+            setState({ ...vState, newOld: val })
             handleNext()
           }}
           handleBack={handleBack}

@@ -2,7 +2,10 @@
 
 import * as React from 'react'
 import MediaSectionHeader from '@components/multi-media/header'
-import { MediaActionwrapper, MediaWrapper } from '@components/multi-media/wrapper'
+import {
+  MediaActionwrapper,
+  MediaWrapper
+} from '@components/multi-media/wrapper'
 
 const VideoSection = () => {
   const WrapperHeader = () => {

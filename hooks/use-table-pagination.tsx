@@ -25,7 +25,7 @@ const useTablePagination = () => {
         appState.pagination.totalCount / appState.pagination.pageSize
       )
     })
-  }, [appState, vState])
+  }, [appState])
 
   const handlePageNext = () => {
     setState({ ...vState, pageIndex: vState.pageIndex + 1 })

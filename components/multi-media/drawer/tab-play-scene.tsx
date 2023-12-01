@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import {  useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import 'video-react/dist/video-react.css'
 import {
   Player,
@@ -52,7 +52,6 @@ export default function DrawerTabPlayScene() {
   const [containerWidth, setContainerWidth] = useState<number>()
   const containerRef = useRef<HTMLDivElement>(null)
 
-
   useEffect(() => {
     const container = containerRef.current
     if (container) {
@@ -65,15 +64,12 @@ export default function DrawerTabPlayScene() {
     }
   }, [pageNumber])
 
-
   function onDocumentLoadSuccess({ numPages: nextNumPages }): void {
     setNumPages(nextNumPages)
   }
 
-
   setTimeout(() => {
-    console.log(appState.drawer.pageIndex+1)
-    setPageNumber(appState.drawer.pageIndex+1)
+    setPageNumber(appState.drawer.pageIndex + 1)
   }, 1000)
 
   return (

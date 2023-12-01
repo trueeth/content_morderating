@@ -83,12 +83,7 @@ const handler = async (
       error: null
     })
   } catch (e) {
-    // if (e instanceof FormidableError) {
-    //   res.status(e.httpCode || 400).json({ data: null, error: e.message });
-    // } else {
-    //   console.error(e);
-    //   res.status(500).json({ data: null, error: "Internal Server Error" });
-    // }
+    console.log(e)
   }
 }
 

@@ -12,7 +12,11 @@ export default function StatusStep(props: {
   handleNext: (any) => void
   handleBack: () => void
 }) {
-  const [vState, setState] = useState({ newTitle: '', type: 'new',replaceItem: 0 })
+  const [vState, setState] = useState({
+    newTitle: '',
+    type: 'new',
+    replaceItem: 0
+  })
 
   const handleReplace = (event: any) => {
     setState({ ...vState, replaceItem: event.target.value })
@@ -21,10 +25,10 @@ export default function StatusStep(props: {
     setState({ ...vState, type: event.target.value })
   }
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
-  const handleNext=()=>{
-    if (vState.newTitle==''&&vState.type=="new") {
+  const handleNext = () => {
+    if (vState.newTitle == '' && vState.type == 'new') {
       dispatch(openSnackbarError('Title is empty'))
       return
     }
@@ -64,7 +68,13 @@ export default function StatusStep(props: {
             value={'new'}
           />
         </Box>
-        <PrimaryTextField placeholder="Enter the name" value={vState.newTitle} onChange={(event)=>setState({...vState, newTitle: event.target.value})} />
+        <PrimaryTextField
+          placeholder="Enter the name"
+          value={vState.newTitle}
+          onChange={(event) =>
+            setState({ ...vState, newTitle: event.target.value })
+          }
+        />
         <Typography>OR</Typography>
         <Box mt={-2}>
           <Typography>Replace{!isXs && 'existing one'}</Typography>

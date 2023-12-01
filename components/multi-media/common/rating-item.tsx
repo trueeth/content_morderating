@@ -6,9 +6,7 @@ import clsx from 'clsx'
 const RowRating = (props: { rating: string }) => {
   return (
     <React.Fragment>
-      <Box
-        className={`rating-${props.rating?.toLowerCase()}`}
-      >
+      <Box className={`rating-${props.rating?.toLowerCase()}`}>
         {props.rating}
       </Box>
     </React.Fragment>

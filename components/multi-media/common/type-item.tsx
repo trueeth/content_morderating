@@ -8,7 +8,11 @@ const TowType = (props: { type: EMediaType }) => {
   return (
     <React.Fragment>
       <Box display="flex" gap={0.5}>
-        {props.type==EMediaType.video?<Slideshow sx={{ color: '#888' }} />:<ArticleOutlined sx={{ color: '#888' }} />}
+        {props.type == EMediaType.video ? (
+          <Slideshow sx={{ color: '#888' }} />
+        ) : (
+          <ArticleOutlined sx={{ color: '#888' }} />
+        )}
         <Typography>{props.type}</Typography>
       </Box>
     </React.Fragment>

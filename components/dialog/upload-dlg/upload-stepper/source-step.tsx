@@ -191,48 +191,6 @@ export default function SourceStep(props: {
       console.error(e)
       dispatch(openSnackbarWarning('Sorry! something went wrong.'))
     }
-
-    // try {
-    //   var formData = new FormData()
-    //
-    //   formData.append('media', vState.uploadFile)
-    //
-    //   let startAt = Date.now()
-    //
-    //   const options: AxiosRequestConfig = {
-    //     headers: { 'Content-Type': 'multipart/form-data' },
-    //     onUploadProgress: (progressEvent: any) => {
-    //       const { loaded, total } = progressEvent
-    //
-    //       // Calculate the progress percentage
-    //       const percentage = (loaded * 100) / total
-    //
-    //       const timeElapsed = Date.now() - startAt
-    //       const uploadSpeed = loaded / timeElapsed
-    //       const duration = (total - loaded) / uploadSpeed
-    //       dispatch(
-    //         setUploadProgress({
-    //           progress: +percentage.toFixed(2),
-    //           remaining: duration
-    //         })
-    //       )
-    //     }
-    //   }
-    //
-    //   const {
-    //     data: { data }
-    //   } = await axios.post<{
-    //     data: {
-    //       url: string | string[]
-    //     }
-    //   }>('/api/upload', formData, options)
-    //
-    //   // console.log('File was uploaded successfully:', data)
-    //   dispatch(openSnackbarSuccess('File was uploaded successfully:'))
-    // } catch (error) {
-    //   // console.error(error)
-    //   dispatch(openSnackbarWarning('Sorry! something went wrong.'))
-    // }
   }
 
   const handleFileSelect = (file: TFile) => {
@@ -242,9 +200,6 @@ export default function SourceStep(props: {
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
   }
-
-  // if (vState.uploadFile)
-  //   console.log('uploadFileSize', vState.uploadFile.size / (1024 * 1024 * 1024))
 
   const handleStartUpload = async () => {
     if (!vState.uploadFile) {

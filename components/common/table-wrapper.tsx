@@ -62,7 +62,7 @@ export default function TableActionWrapper(
 
   useEffect(() => {
     setState({ ...vState, title: props.header.title })
-  }, [props.header, vState])
+  }, [props.header])
 
   return (
     <Box
