@@ -55,8 +55,9 @@ function VideoRow(props: {
 
   const handleDetail = async () => {
     if (vState.subRow.length > 0) {
-      if (vState.openSummary) setState({ ...vState, openSummary: false })
-      else setState({ ...vState, openSummary: false })
+      setState(prevState => {
+        return {...prevState, openSummary:!prevState.openSummary}
+      })
     } else {
       try {
         const videoSummaries: any = await apiGetVideoScenes(videoContent)

@@ -37,14 +37,15 @@ function DocumentRow(props: {
 
   useEffect(() => {
     setState(prevState => {
-      return {...prevState, openSummary:false}
+      return { ...prevState, openSummary: false }
     })
   }, [appState.pagination.pageIndex])
 
   const handleDetail = async () => {
     if (vState.subRow.length > 0) {
-      if (vState.openSummary) setState({ ...vState, openSummary: true })
-      else setState({ ...vState, openSummary: false })
+     setState(prevState => {
+       return {...prevState, openSummary:!prevState.openSummary}
+     })
     } else {
       const documentSummaries: any =
         documentContent?.Documents[0]?.DocumentChunks[0]?.AIChunkResponses
@@ -60,7 +61,6 @@ function DocumentRow(props: {
       }
     }
   }
-
 
 
   const rowActions = [
