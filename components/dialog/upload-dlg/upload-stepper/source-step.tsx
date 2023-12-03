@@ -22,6 +22,7 @@ import {
 import { TResVideo } from '@interfaces/apis/videos.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
+import { setApiLoading } from '@store/reducers/api/reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -52,68 +53,20 @@ const rejectStyle = {
   borderColor: '#ff1744'
 }
 
-const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
-  // --------drop zone-------
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isFocused,
-    isDragAccept,
-    isDragReject
-  } = useDropzone()
-
-  const style = useMemo(
-    () => ({
-      ...baseStyle,
-      ...(isFocused ? focusedStyle : {}),
-      ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {})
-    }),
-    [isFocused, isDragAccept, isDragReject]
-  )
-
-  useEffect(() => {
-    props.handleFileSelect(acceptedFiles[0])
-  }, [acceptedFiles.length, acceptedFiles, props])
-
-  return (
-    <Box {...getRootProps({ style })}>
-      <input {...getInputProps()} />
-      <Box className="flex">
-        <Box className="flex item-center mr-5">
-          <Image
-            src={fileUpload}
-            alt={'fileUpload'}
-            style={{
-              width: '1.5rem',
-              marginRight: '1rem'
-            }}
-          />
-        </Box>
-        <Box>
-          <Box
-            display="flex"
-            sx={{ flexDirection: { xs: 'column', md: 'row' } }}
-          >
-            <Typography
-              sx={{
-                mr: 1,
-                fontSize: '16px',
-                whiteSpace: 'nowrap',
-                color: '#333'
-              }}
-            >
-              Drag your file here or
-            </Typography>
-            <Typography style={{ color: 'var(--Primary1)' }}>Browse</Typography>
-          </Box>
-          <Typography>Maximum file size 2GB</Typography>
-        </Box>
-      </Box>
-    </Box>
-  )
-}
+// const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
+//   // --------drop zone-------
+//
+//
+//   const {handleFileSelect}=props
+//
+//   useEffect(() => {
+//     handleFileSelect(acceptedFiles[0])
+//   }, [acceptedFiles.length, acceptedFiles])
+//
+//   return (
+//
+//   )
+// }
 
 type TFile = File | null
 
@@ -138,6 +91,9 @@ export default function SourceStep(props: {
   const dispatch = useDispatch()
 
   const onFileUpload = async () => {
+
+    dispatch(setApiLoading(true))
+
     if (!vState.uploadFile) return
 
     let uploadInfo: TReqUpload.TGetUploadId = {
@@ -187,19 +143,49 @@ export default function SourceStep(props: {
         await apiUploadVideo(uploadId, formData, options)
       console.log('uploadContent', uploadContent)
       dispatch(openSnackbarSuccess('File was uploaded successfully:'))
+
+      dispatch(setApiLoading(false))
     } catch (e) {
       console.error(e)
-      dispatch(openSnackbarWarning('Sorry! something went wrong.'))
+      dispatch(openSnackbarWarning('Sorry! Something went wrong while uploading file.'))
     }
   }
 
   const handleFileSelect = (file: TFile) => {
-    setState({ ...vState, uploadFile: file })
+    setState(prevState => {
+      return { ...prevState, uploadFile: file }
+    })
   }
+
+
+  const {
+    acceptedFiles,
+    getRootProps,
+    getInputProps,
+    isFocused,
+    isDragAccept,
+    isDragReject
+  } = useDropzone()
+
+  const style = useMemo(
+    () => ({
+      ...baseStyle,
+      ...(isFocused ? focusedStyle : {}),
+      ...(isDragAccept ? acceptStyle : {}),
+      ...(isDragReject ? rejectStyle : {})
+    }),
+    [isFocused, isDragAccept, isDragReject]
+  )
+
+
+  useEffect(() => {
+    handleFileSelect(acceptedFiles[0])
+  }, [acceptedFiles.length, acceptedFiles])
 
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
   }
+
 
   const handleStartUpload = async () => {
     if (!vState.uploadFile) {
@@ -272,7 +258,40 @@ export default function SourceStep(props: {
             value={'pc'}
           />
         </Box>
-        <UploadPc handleFileSelect={handleFileSelect} />
+        <Box {...getRootProps({style})}>
+          <input {...getInputProps()} />
+          <Box className="flex">
+            <Box className="flex item-center mr-5">
+              <Image
+                src={fileUpload}
+                alt={'fileUpload'}
+                style={{
+                  width: '1.5rem',
+                  marginRight: '1rem'
+                }}
+              />
+            </Box>
+            <Box>
+              <Box
+                display="flex"
+                sx={{ flexDirection: { xs: 'column', md: 'row' } }}
+              >
+                <Typography
+                  sx={{
+                    mr: 1,
+                    fontSize: '16px',
+                    whiteSpace: 'nowrap',
+                    color: '#333'
+                  }}
+                >
+                  Drag your file here or
+                </Typography>
+                <Typography style={{ color: 'var(--Primary1)' }}>Browse</Typography>
+              </Box>
+              <Typography>Maximum file size 2GB</Typography>
+            </Box>
+          </Box>
+        </Box>
 
         <Box>
           <Typography>From Netflix</Typography>

@@ -94,7 +94,7 @@ export default function DrawerTabPlayScene() {
         <Player poster={vState.video.poster}>
           <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
           <ControlBar>
-            <ReplayControl seconds={10} order={1.1} />
+            <ReplayControl seconds={10} order={1.1}/>
             <ForwardControl seconds={30} order={1.2} />
             <CurrentTimeDisplay order={4.1} />
             <TimeDivider order={4.2} />

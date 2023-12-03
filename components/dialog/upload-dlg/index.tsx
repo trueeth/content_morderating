@@ -14,13 +14,17 @@ import CustomToggleButtonGroup from '@components/common/toggle-button'
 import UploadStepper from '@components/dialog/upload-dlg/upload-stepper'
 import { useEffect } from 'react'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
+import { openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
+  // console.log(appState)
   const handleClose = () => {
     dispatch(openVideoUploadDialog({ open: false }))
+    if (appState.api.loading)
+      dispatch(openSnackbarWarning('Please don\'t refresh page. We\'re processing your request!'))
   }
 
   const [vState, setState] = React.useState({ tabIndex: 0 })

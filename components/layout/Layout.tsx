@@ -42,7 +42,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
 
       <Snackbar
         open={appState.snackbar.open}
-        autoHideDuration={2000}
+        autoHideDuration={appState.snackbar.autoHideDuration}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >

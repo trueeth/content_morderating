@@ -12,8 +12,12 @@ const StyledButton = styled(Button)({
   color: 'white'
 })
 
-const PrimaryButton = styled(Button)(
-  ({ active = true }: { active?: boolean }) => ({
+const PrimaryButton = styled(Button, {
+  shouldForwardProp: (prop) => prop != 'active'
+})<{ active?: boolean;}>(
+  ({ active = true }: { active?: boolean }) => (
+
+    {
     boxShadow: 'none',
     textTransform: 'capitalize',
     fontSize: 16,

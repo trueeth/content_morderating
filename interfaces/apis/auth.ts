@@ -14,5 +14,5 @@ export declare namespace TResAuth {
 }
 
 export const apiIdentifyAuth = (params: TReqAuth.identify) => {
-  return request.get<TResAuth.identify>('identity/auth', { params: params })
+  return request.post<TResAuth.identify>('identity/auth',  params )
 }

@@ -18,10 +18,10 @@ const apiSlice = createSlice({
   initialState,
   reducers: {
     setApiLoading(state, action) {
-      state.loading = action.payload.loading
+      state.loading = action.payload
     },
     setApiData(state, action) {
-      state.data = action.payload.data
+      state.data = action.payload
       state.loading=false
     },
     setApiError(state, action) {

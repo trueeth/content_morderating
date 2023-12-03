@@ -8,22 +8,27 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
+import { apiIdentifyAuth } from '@interfaces/apis/auth'
 
 export default function AuthSection() {
   const { login } = useAuthContext()
   const router = useRouter()
   const [vState, setState] = useState({ username: '', pwd: '', error: false })
   const dispatch = useDispatch()
-  const handleUserInput = (key, value) => {
+  const handleUserInput = ({ key, value }: {
+    key: any,
+    value: any
+  }) => {
     setState({ ...vState, [key]: value })
   }
 
   const handleLogin = async () => {
-    if (vState.username === 'demo' && vState.pwd === 'mBe@ver#123T') {
+    try{
+      await apiIdentifyAuth({Username:vState.username,Password:vState.pwd})
       await login(vState.username, vState.pwd)
       router.push('/dashboard')
       dispatch(openSnackbarSuccess('Login Success!'))
-    } else {
+    } catch (e) {
       setState({ ...vState, username: '', pwd: '', error: true })
     }
   }
@@ -97,7 +102,7 @@ export default function AuthSection() {
           <PrimaryTextField
             placeholder="Enter your username"
             value={vState.username}
-            onChange={(e) => handleUserInput('username', e.target.value)}
+            onChange={(e) => handleUserInput({ key: 'username', value: e.target.value })}
             sx={{
               '& .MuiOutlinedInput-root': {
                 bgcolor: '#fff',
@@ -115,7 +120,7 @@ export default function AuthSection() {
           <PrimaryTextField
             placeholder="Enter your password"
             value={vState.pwd}
-            onChange={(e) => handleUserInput('pwd', e.target.value)}
+            onChange={(e) => handleUserInput({ key: 'pwd', value: e.target.value })}
             type={'password'}
             sx={{
               '& .MuiOutlinedInput-root': {

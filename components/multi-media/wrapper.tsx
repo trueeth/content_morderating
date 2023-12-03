@@ -88,7 +88,13 @@ export const MediaActionwrapper = (props: IActionPros)=> {
     ;(async () => {
       dispatch(setPageinit())
 
-      const tempContents: any = await apiGetMediaContents()
+      let tempContents: any= {  }
+
+      try {
+       tempContents = await apiGetMediaContents()
+      } catch (e) {
+        return
+      }
 
       if (tempContents != undefined) {
         if (props.type == 'video') {

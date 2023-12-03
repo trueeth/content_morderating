@@ -4,13 +4,15 @@ import { EAlert } from '@interfaces/enums'
 const initialState = {
   alertType: null,
   message: null,
-  open: false
+  open: false,
+  autoHideDuration:2000
 }
 
 export interface ISnackbarSlice {
   alertType: EAlert
   message?: string
-  open: boolean
+  open: boolean,
+  autoHideDuration:number,
 }
 
 const snackbarSlice = createSlice({
@@ -30,6 +32,7 @@ const snackbarSlice = createSlice({
     openSnackbarWarning(state, action) {
       state.alertType = EAlert.warning
       state.message = action.payload
+      state.autoHideDuration=5000
       state.open = true
     },
     openSnackbarSuccess(state, action) {

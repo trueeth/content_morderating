@@ -19,6 +19,10 @@ import { format, parseISO } from 'date-fns'
 import { apiGetVideoScenes } from '@interfaces/apis/videos'
 import { TResVideo } from '@interfaces/apis/videos.types'
 import mappingResVideoSubRow from '@interfaces/apis/mapping/video-sub-row'
+import { useSelector } from 'react-redux'
+import { IReduxState } from '@store/index'
+import { IAppSlice } from '@store/reducers'
+import { useEffect } from 'react'
 
 function VideoRow(props: {
   row: TVideoRowType
@@ -38,24 +42,42 @@ function VideoRow(props: {
     { title: 'Insights' }
   ]
 
+
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
+
+  useEffect(() => {
+    setState(prevState => {
+      return {...prevState, openSummary:false}
+    })
+  }, [appState.pagination.pageIndex])
+
+
   const handleDetail = async () => {
     if (vState.subRow.length > 0) {
       if (vState.openSummary) setState({ ...vState, openSummary: false })
-      else setState({ ...vState, openSummary: true })
+      else setState({ ...vState, openSummary: false })
     } else {
-      const videoSummaries: any = await apiGetVideoScenes(videoContent)
-      if (videoSummaries) {
-        let tempSubRow = mappingResVideoSubRow(videoSummaries.Content)
-        tempSubRow = tempSubRow.filter((val, index) => index < 5)
-        setState({
-          ...vState,
-          openSummary: true,
-          subRow: tempSubRow,
-          subRowSummaries: videoSummaries.Content
-        })
+      try {
+        const videoSummaries: any = await apiGetVideoScenes(videoContent)
+        if (videoSummaries) {
+          let tempSubRow = mappingResVideoSubRow(videoSummaries.Content)
+          tempSubRow = tempSubRow.filter((val, index) => index < 5)
+          setState({
+            ...vState,
+            openSummary: true,
+            subRow: tempSubRow,
+            subRowSummaries: videoSummaries.Content
+          })
+        }
+      } catch (e) {
+        console.log(e)
       }
+
     }
   }
+
+
 
   return (
     <React.Fragment>

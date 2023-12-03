@@ -14,11 +14,18 @@ import { format, parseISO } from 'date-fns'
 import { TResVideo } from '@interfaces/apis/videos.types'
 import DocumentSubrow from './subrow'
 import mappingResDocumentSubRow from '@interfaces/apis/mapping/document-sub-row'
+import { useSelector } from 'react-redux'
+import { IReduxState } from '@store/index'
+import { IAppSlice } from '@store/reducers'
+import { useEffect } from 'react'
 
 function DocumentRow(props: {
   row: TDocumentRowType
   documentContent: TResVideo.TMeidaContent
 }) {
+
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
   const { row, documentContent } = props
 
   const [vState, setState] = React.useState<{
@@ -27,10 +34,17 @@ function DocumentRow(props: {
     subRowSummaries: TResVideo.TDocumentAICunk[]
   }>({ openSummary: false, subRow: [], subRowSummaries: [] })
 
+
+  useEffect(() => {
+    setState(prevState => {
+      return {...prevState, openSummary:false}
+    })
+  }, [appState.pagination.pageIndex])
+
   const handleDetail = async () => {
     if (vState.subRow.length > 0) {
-      if (vState.openSummary) setState({ ...vState, openSummary: false })
-      else setState({ ...vState, openSummary: true })
+      if (vState.openSummary) setState({ ...vState, openSummary: true })
+      else setState({ ...vState, openSummary: false })
     } else {
       const documentSummaries: any =
         documentContent?.Documents[0]?.DocumentChunks[0]?.AIChunkResponses
@@ -46,6 +60,8 @@ function DocumentRow(props: {
       }
     }
   }
+
+
 
   const rowActions = [
     { title: 'Classification' },
