@@ -53,21 +53,6 @@ const rejectStyle = {
   borderColor: '#ff1744'
 }
 
-// const UploadPc = (props: { handleFileSelect?: (file: TFile) => void }) => {
-//   // --------drop zone-------
-//
-//
-//   const {handleFileSelect}=props
-//
-//   useEffect(() => {
-//     handleFileSelect(acceptedFiles[0])
-//   }, [acceptedFiles.length, acceptedFiles])
-//
-//   return (
-//
-//   )
-// }
-
 type TFile = File | null
 
 type TStateSource = {
@@ -91,7 +76,6 @@ export default function SourceStep(props: {
   const dispatch = useDispatch()
 
   const onFileUpload = async () => {
-
     dispatch(setApiLoading(true))
 
     if (!vState.uploadFile) return
@@ -139,24 +123,23 @@ export default function SourceStep(props: {
         }
       }
 
-      let uploadContent: { data: TResVideo.TMeidaContent } =
-        await apiUploadVideo(uploadId, formData, options)
-      console.log('uploadContent', uploadContent)
+      await apiUploadVideo(uploadId, formData, options)
       dispatch(openSnackbarSuccess('File was uploaded successfully:'))
 
       dispatch(setApiLoading(false))
     } catch (e) {
-      console.error(e)
-      dispatch(openSnackbarWarning('Sorry! Something went wrong while uploading file.'))
+      dispatch(setApiLoading(false))
+      dispatch(
+        openSnackbarWarning('Sorry! Something went wrong while uploading file.')
+      )
     }
   }
 
   const handleFileSelect = (file: TFile) => {
-    setState(prevState => {
+    setState((prevState) => {
       return { ...prevState, uploadFile: file }
     })
   }
-
 
   const {
     acceptedFiles,
@@ -177,7 +160,6 @@ export default function SourceStep(props: {
     [isFocused, isDragAccept, isDragReject]
   )
 
-
   useEffect(() => {
     handleFileSelect(acceptedFiles[0])
   }, [acceptedFiles.length, acceptedFiles])
@@ -185,7 +167,6 @@ export default function SourceStep(props: {
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
   }
-
 
   const handleStartUpload = async () => {
     if (!vState.uploadFile) {
@@ -258,7 +239,7 @@ export default function SourceStep(props: {
             value={'pc'}
           />
         </Box>
-        <Box {...getRootProps({style})}>
+        <Box {...getRootProps({ style })}>
           <input {...getInputProps()} />
           <Box className="flex">
             <Box className="flex item-center mr-5">
@@ -286,7 +267,9 @@ export default function SourceStep(props: {
                 >
                   Drag your file here or
                 </Typography>
-                <Typography style={{ color: 'var(--Primary1)' }}>Browse</Typography>
+                <Typography style={{ color: 'var(--Primary1)' }}>
+                  Browse
+                </Typography>
               </Box>
               <Typography>Maximum file size 2GB</Typography>
             </Box>

@@ -20,11 +20,14 @@ export default function UploadDialog() {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  // console.log(appState)
   const handleClose = () => {
-    dispatch(openVideoUploadDialog({ open: false }))
     if (appState.api.loading)
-      dispatch(openSnackbarWarning('Please don\'t refresh page. We\'re processing your request!'))
+      dispatch(
+        openSnackbarWarning(
+          "Please don't refresh page. We're processing your request!"
+        )
+      )
+    else dispatch(openVideoUploadDialog({ open: false }))
   }
 
   const [vState, setState] = React.useState({ tabIndex: 0 })
