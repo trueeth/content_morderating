@@ -33,15 +33,13 @@ export const apiGetMediaSourceItems = () => {
   return request.get<TResUpload.getMediaSources>('application/media-sources')
 }
 export const apiGetUploadMediaId = (params: TReqUpload.TGetUploadId) => {
-  return request.post('analysis/media', params)
+  return request.post('analysis/videos', params)
 }
 
 export const apiUploadVideo = (params: any, formData: FormData, options) => {
   return request.post<TResVideo.TVideoContent>(
-    'analysis/media/' +
+    'analysis/videos/' +
       params.Id +
-      '/videos/' +
-      params.Videos[0]?.Id +
       '/upload',
     formData,
     options
