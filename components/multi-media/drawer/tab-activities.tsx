@@ -11,29 +11,13 @@ import IconButton from '@mui/material/IconButton'
 import { Slideshow } from '@mui/icons-material'
 import { useState } from 'react'
 import { CSceneState } from '@interfaces/index'
+import { DrawerHistories } from '@interfaces/apis/_mock'
+import { useDispatch, useSelector } from 'react-redux'
+import { IReduxState } from '@store/index'
+import { IAppSlice } from '@store/reducers'
+import { apiUpdateVideoSceneSummary } from '@interfaces/apis/videos'
+import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 
-const historys: IHistoryRow[] = [
-  {
-    writerName: 'Mark Mohammad',
-    writeDate: '07:55PM SEP, 29, 2923',
-    description: 'Scene Added'
-  },
-  {
-    writerName: 'Carolina 5',
-    writeDate: '12:10PM SEP, 28, 2923',
-    description: 'Change status to Unapproved with note, This is good'
-  },
-  {
-    writerName: 'John L',
-    writeDate: '09:10PM SEP, 27, 2923',
-    description: 'Change Status to Approved'
-  },
-  {
-    writerName: 'Carolina S',
-    writeDate: '07:55PM SEP, 29, 2923',
-    description: 'Change Status to Processing with note Done'
-  }
-]
 
 interface IHistoryRow {
   writerName: string
@@ -114,12 +98,43 @@ const HistoryRow = (props: IHistoryRow) => {
 }
 
 export default function DrawerTabActivities() {
-  const [vState, setState] = useState({ scene: 'Processing' })
+  const [vState, setState] = useState({ scene: 'Processing', notes: '' })
   const handleScenceState = (
     event: React.MouseEvent<HTMLElement>,
     newState: string | null
   ) => {
-    setState({ scene: newState })
+    setState(prevState => ({ ...prevState, scene: newState }))
+  }
+
+  const dispatch = useDispatch()
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
+  const rowIndex = appState.drawer.rowIndex
+  const subRowIndex = appState.drawer.subRowIndex
+  const data = appState.api.data
+
+  const handleUpdate = async () => {
+    let urlParam = {
+      videoId: data[rowIndex].Id,
+      summaryId: data[rowIndex].VideoSummary?.SceneSummaries[subRowIndex].Id
+    }
+    const currentDate = new Date()
+    const isoString = currentDate.toISOString()
+
+    let parmas = {
+      'SceneSummaryId': data[rowIndex].VideoSummary?.SceneSummaries[subRowIndex].Id,
+      'OnModeratorModifiedUtc': isoString,
+      'Status': 'New',
+      'Rating': 'None',
+      'Notes': vState.notes,
+      'ModeratorUsername': 'demo'
+    }
+    try {
+      await apiUpdateVideoSceneSummary(urlParam, parmas)
+      dispatch(openSnackbarSuccess('Success, updated VideoSceneSummary data'))
+    } catch (e) {
+      dispatch(openSnackbarError('Error, updating VideoSceneSummary'))
+    }
   }
 
   return (
@@ -141,7 +156,7 @@ export default function DrawerTabActivities() {
         <ToggleButtonGroup
           value={vState.scene}
           exclusive
-          aria-label="text alignment"
+          aria-label='text alignment'
           onChange={handleScenceState}
         >
           {CSceneState.map((item, index) => (
@@ -172,19 +187,24 @@ export default function DrawerTabActivities() {
       >
         <CssTextField
           fullWidth
-          placeholder="Write your note"
+          placeholder='Write your note'
           sx={{ mr: 2 }}
           InputProps={{ sx: { height: '33px', fontSize: '0.8rem' } }}
+          value={vState.notes}
+          onChange={
+            val => setState(prevState => ({ ...prevState, notes: val.target.value }))
+          }
         ></CssTextField>
 
         <Button
-          variant="contained"
+          variant='contained'
           sx={{
             backgroundColor: 'var(--Primary1)',
             width: '130px',
             height: '33px',
             '&:hover': { backgroundColor: 'var(--Primary1)' }
           }}
+          onClick={handleUpdate}
         >
           Update
         </Button>
@@ -194,7 +214,7 @@ export default function DrawerTabActivities() {
       <Box>
         <Typography ml={3}>History</Typography>
         <Box>
-          {historys.map((item, index) => (
+          {DrawerHistories.map((item, index) => (
             <HistoryRow
               key={index}
               writerName={item.writerName}

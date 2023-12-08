@@ -104,6 +104,8 @@ const DocumentSubrow = (props: {
         }}
       >
         {subRows.map((row, index) => {
+          if (index==null)
+            return null
           return (
             <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
               <Checkbox />

@@ -1,54 +1,29 @@
-import Table from '@mui/material/Table'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import TableCell from '@mui/material/TableCell'
-import TableBody from '@mui/material/TableBody'
-import * as React from 'react'
-import { Checkbox, Typography } from '@mui/material'
-import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
-import { EVideoDetail } from '@interfaces/enums'
-import { useDispatch } from 'react-redux'
-import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
-import Button from '@mui/material/Button'
-import { MoreHoriz } from '@mui/icons-material'
-import { TResVideo } from '@interfaces/apis/videos.types'
+import React, { useState } from 'react';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableBody from '@mui/material/TableBody';
+import Checkbox from '@mui/material/Checkbox';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import MoreHoriz from '@mui/icons-material/MoreHoriz';
+import { useDispatch } from 'react-redux';
+import { TVideoSubRowType } from '@interfaces/types';
+import { EVideoDetail } from '@interfaces/enums';
+import { openMediaSubDrawer } from '@store/reducers/drawer/reducers';
 
-const VideoSubtable = (props: {
-  subRows: TVideoSubRowType[]
-  summaries: TResVideo.TMeidaSummaries[]
-  row: TVideoRowType
-}) => {
-  const [checked, setChecked] = React.useState(false)
 
-  const dispatch = useDispatch()
 
-  const openScene = (summary: TResVideo.TMeidaSummaries) => () => {
-    dispatch(
-      openMediaSubDrawer({
-        open: true,
-        summary: summary,
-        row: props.row,
-        type: 'video'
-      })
-    )
-  }
 
-  const handleChange = (e: any) => {
-    setChecked(e.target.checked)
-  }
+  // Define the table row component outside of the VideoSubtable to prevent unnecessary re-renders
 
-  const { subRows, summaries } = props
-
-  if (subRows === undefined || subRows?.length === 0) {
-    return null
-  }
-
-  const CustomizedTableRow = ({ children, onClick, keyValue, summary }) => (
+  const CustomizedTableRow = ({ children, onClick, keyValue }) => (
     <TableRow key={keyValue}>
       {children.map((item, idx) => {
         if (idx > 0 && idx < 5) {
           return (
-            <TableCell onClick={onClick(summary)} key={idx}>
+            <TableCell onClick={onClick} key={idx}>
               {item}
             </TableCell>
           )
@@ -57,6 +32,39 @@ const VideoSubtable = (props: {
       })}
     </TableRow>
   )
+
+
+const VideoSubtable = (props: {
+  rows: TVideoSubRowType[],
+  rowIndex:number
+}) => {
+  
+  
+  const [checked, setChecked] = React.useState(false)
+  const dispatch = useDispatch()
+
+  // Handler, opening of a specific scene's details
+  const openScene = ({rowIndex, subRowIndex}) => () => {
+    dispatch(
+      openMediaSubDrawer({
+        open: true,
+        type: 'video',
+        rowIndex:rowIndex,
+        subRowIndex:subRowIndex,
+      })
+    )
+  }
+
+  // Handler of the state of the checkbox
+  const handleChange = (e: any) => {
+    setChecked(e.target.checked)
+  }
+
+
+  // Return early if there are no rows to render
+  if (!props.rows || props.rows.length === 0) {
+    return null;
+  }
 
   return (
     <Table
@@ -105,30 +113,23 @@ const VideoSubtable = (props: {
           '& .MuiTypography-root': { color: '#555 !important' }
         }}
       >
-        {subRows.map((row, index) => {
-          return (
-            <CustomizedTableRow
-              key={index}
-              keyValue={index}
-              onClick={openScene}
-              summary={summaries[index]}
+        {props.rows.map((row, index) => (
+          <CustomizedTableRow key={index} keyValue={index} onClick={openScene({rowIndex:props.rowIndex, subRowIndex:index})}>
+            <Checkbox />
+            <Typography>{`Scene #${index + 1}`}</Typography>
+            <Typography>{row.violationType}</Typography>
+            <Typography whiteSpace="nowrap">{row.category}</Typography>
+            <Typography>{row.description}</Typography>
+            <Button
+              id={`scene-button-${index}`}
+              aria-controls="basic-menu"
+              aria-haspopup="true"
+              aria-expanded={false}
             >
-              <Checkbox />
-              <Typography>{'Scene #' + (index + 1)}</Typography>
-              <Typography>{row.violationType}</Typography>
-              <Typography whiteSpace="nowrap">{row.category}</Typography>
-              <Typography>{row.description}</Typography>
-              <Button
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-              >
-                <MoreHoriz className={'action-more-horiz'}></MoreHoriz>
-              </Button>
-            </CustomizedTableRow>
-          )
-        })}
+              <MoreHoriz className={'action-more-horiz'} />
+            </Button>
+          </CustomizedTableRow>
+        ))}
       </TableBody>
     </Table>
   )

@@ -23,7 +23,7 @@ const paginationSlice = createSlice({
       state.pageSize = action.payload.pageSize
     },
     setPaginationTotalCount(state, action) {
-      state.totalCount = action.payload.totalCount
+      state.totalCount = action.payload
     },
     setPagination(state, action) {
       state.totalCount = action.payload?.totalCount

@@ -1,19 +1,6 @@
 import request from '@interfaces/apis/base-api/request'
-import { TResVideo } from '@interfaces/apis/videos.types'
+import { TResVideo } from '@interfaces/apis/api.types'
 
-export declare namespace TReqUpload {
-  type TGetUploadId = {
-    Description?: string
-    Documents?: any
-    Id?: string
-    MediaSourceId?: string
-    MediaType?: string
-    ModeratorApprovalStatus?: string
-    Name?: string
-    Notes?: string
-    Videos?: any
-  }
-}
 
 export declare namespace TResUpload {
   type getMediaSources = {
@@ -32,18 +19,30 @@ export declare namespace TResUpload {
 export const apiGetMediaSourceItems = () => {
   return request.get<TResUpload.getMediaSources>('application/media-sources')
 }
-export const apiGetUploadMediaId = (params: TReqUpload.TGetUploadId) => {
-  return request.post('analysis/media', params)
+
+type TUploadInfo=  TResVideo.TVideoContent & {
+  ModeratorNotes?: string,
+  Rating?:string,
+}
+
+export const apiGetUploadMediaId = (params: TUploadInfo) => {
+  return request.post<TResVideo.TVideoContent>('analysis/videos', params)
 }
 
 export const apiUploadVideo = (params: any, formData: FormData, options) => {
   return request.post<TResVideo.TVideoContent>(
-    'analysis/media/' +
-      params.Id +
-      '/videos/' +
-      params.Videos[0]?.Id +
-      '/upload',
+    'analysis/videos/' +
+    params.Id +
+    '/upload',
     formData,
     options
+  )
+}
+export const apiUploadedVideoProcess = (params: any) => {
+  return request.post<TResVideo.TVideoContent>(
+    'analysis/videos/' +
+    params.videoId +
+    '/analyses/' +
+    '/process'
   )
 }

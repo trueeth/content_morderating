@@ -1,21 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { TResVideo } from '@interfaces/apis/videos.types'
+import { TResVideo } from '@interfaces/apis/api.types'
 import { TVideoRowType } from '@interfaces/types'
 
 const initialState = {
   mediaSubOpen: false,
-  summary: {},
-  videoContent: {},
   type: 'video',
-  pageIndex:0
+  rowIndex: 0,
+  subRowIndex: 0
 }
 
 export interface IDrawerSlice {
-  mediaSubOpen: boolean
-  summary: TResVideo.TMeidaSummaries
-  videoContent: TVideoRowType
-  type?: 'video' | 'document'
-  pageIndex?:number
+  mediaSubOpen: boolean,
+  type: 'video' | 'document',
+  rowIndex: number,
+  subRowIndex: number,
 }
 
 const drawerSlice = createSlice({
@@ -24,10 +22,12 @@ const drawerSlice = createSlice({
   reducers: {
     openMediaSubDrawer(state, action) {
       state.mediaSubOpen = action.payload.open
-      state.summary = action.payload.summary
-      state.videoContent = action.payload.row
-      state.type = action.payload.type
-      state.pageIndex=action.payload.pageIndex
+      if (action.payload.type)
+        state.type = action.payload.type
+      if (action.payload.rowIndex)
+        state.rowIndex = action.payload.rowIndex
+      if (action.payload.subRowIndex)
+        state.subRowIndex = action.payload.subRowIndex
     }
   }
 })

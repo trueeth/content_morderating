@@ -7,7 +7,7 @@ import { Box } from '@mui/material'
 
 interface IActionButton {
   title: string
-  action?: () => void
+  action?: (param?:any) => void
 }
 
 interface IProps {

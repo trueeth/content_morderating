@@ -5,14 +5,14 @@ const initialState = {
   alertType: null,
   message: null,
   open: false,
-  autoHideDuration: 2000
+  autoHideDuration:2000
 }
 
 export interface ISnackbarSlice {
   alertType: EAlert
   message?: string
-  open: boolean
-  autoHideDuration: number
+  open: boolean,
+  autoHideDuration:number,
 }
 
 const snackbarSlice = createSlice({
@@ -27,25 +27,25 @@ const snackbarSlice = createSlice({
     openSnackbarError(state, action) {
       state.alertType = EAlert.error
       state.message = action.payload
-      state.autoHideDuration = 3000
+      state.autoHideDuration=3000
       state.open = true
     },
     openSnackbarWarning(state, action) {
       state.alertType = EAlert.warning
       state.message = action.payload
-      state.autoHideDuration = 5000
+      state.autoHideDuration=5000
       state.open = true
     },
     openSnackbarSuccess(state, action) {
       state.alertType = EAlert.success
       state.message = action.payload
-      state.autoHideDuration = 3000
+      state.autoHideDuration=3000
       state.open = true
     },
     openSnackbarInfo(state, action) {
       state.alertType = EAlert.info
       state.message = action.payload
-      state.autoHideDuration = 3000
+      state.autoHideDuration=3000
       state.open = true
     },
     closeSnackbar(state) {

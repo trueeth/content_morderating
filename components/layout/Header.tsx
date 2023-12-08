@@ -41,7 +41,7 @@ function UserAction() {
     try {
       setAnchorEl(null)
       await logout()
-      router.replace('/')
+      router.replace('../')
     } catch (error) {
       console.error(error)
     }
@@ -88,7 +88,7 @@ const DropMenu = () => {
     event: Event | React.SyntheticEvent,
     type: string
   ) => {
-    router.push(type.toLowerCase())
+    router.replace('../'+type.toLowerCase())
     handleClose(event)
   }
 
@@ -189,7 +189,7 @@ const Header = () => {
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
       default:
-        router.push(`${url.toLowerCase()}`)
+        router.replace(`../${url.toLowerCase()}`)
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
     }

@@ -1,6 +1,4 @@
-'use client'
-
-import * as React from 'react'
+import * as React from 'react';
 import {
   Box,
   Paper,
@@ -12,34 +10,31 @@ import {
   TableRow,
   tableCellClasses,
   Typography
-} from '@mui/material'
-import useTablePagination from '@hooks/use-table-pagination'
-import MediaDrawer from '@components/multi-media/drawer'
-import { TResVideo } from '@interfaces/apis/videos.types'
-import { TDocumentRowType, TVideoRowType } from '@interfaces/types'
-import { IReduxState } from '@store/index'
-import { IAppSlice } from '@store/reducers'
-import {
-  setPageinit,
-  setPaginationTotalCount
-} from '@store/reducers/page/reducers'
-import { apiGetMediaContents } from '@interfaces/apis/videos'
-import mappingResToVideoRow from '@interfaces/apis/mapping/video-row'
-import { EDocumentColumn, EMediaType, EVideoColumn } from '@interfaces/enums'
-import mappingResToDocumentRow from '@interfaces/apis/mapping/document-row'
-import { setApiData } from '@store/reducers/api/reducers'
-import VideoRow from '@sections/videos/components/row'
-import DocumentRow from '@sections/documents/components/row'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+} from '@mui/material';
+import useTablePagination from '@hooks/use-table-pagination';
+import MediaDrawer from '@components/multi-media/drawer';
+import { TDocumentRowType, TVideoRowType } from '@interfaces/types';
+import { IReduxState } from '@store/index';
+import { IAppSlice } from '@store/reducers';
+import { EDocumentColumn, EMediaType, EVideoColumn } from '@interfaces/enums';
+import VideoRow from '@sections/videos/components/row';
+import DocumentRow from '@sections/documents/components/row';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { resToVideoRowAdapter } from '@interfaces/apis/data-adapter/data-video';
+import { apiGetVideoContents } from '@interfaces/apis/videos';
+import { setPaginationTotalCount } from '@store/reducers/page/reducers';
+import { setApiData, setApiError, setApiLoading } from '@store/reducers/api/reducers';
+import { apiGetDocumentContents } from '@interfaces/apis/documents';
 
+// MediaWrapper component
 interface IMediaProps {
-  header: React.ReactNode
-  content: React.ReactNode
+  header: React.ReactNode;
+  content: React.ReactNode;
 }
 
 export const MediaWrapper = (props: IMediaProps) => {
-  const { CustomPagination } = useTablePagination()
+  const { CustomPagination } = useTablePagination();
 
   return (
     <Box
@@ -65,75 +60,59 @@ export const MediaWrapper = (props: IMediaProps) => {
       <CustomPagination />
       <MediaDrawer />
     </Box>
-  )
-}
+  );
+};
 
+// MediaActionwrapper component
 interface IActionPros {
-  type: 'video' | 'document'
+  type: 'video' | 'document';
 }
 
-export const MediaActionwrapper = (props: IActionPros)=> {
+export const MediaActionwrapper = (props: IActionPros) => {
   const [vState, setState] = useState<{
-    mediaContents: TResVideo.getMediaContents
-    rows: (TVideoRowType | TDocumentRowType)[]
+    rows: (TVideoRowType | TDocumentRowType)[];
   }>({
-    mediaContents: {},
     rows: []
-  })
+  });
 
-  const dispatch = useDispatch()
-  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+  const dispatch = useDispatch();
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
+
+  const take = appState.pagination.pageSize;
+  const data = appState.api.data;
+  const skip = appState.pagination.pageSize * (appState.pagination.pageIndex - 1);
 
   useEffect(() => {
-    ;(async () => {
-      dispatch(setPageinit())
-
-      let tempContents: any= {  }
-
+    // Fetch data when component mounts or pagination change
+    (async () => {
       try {
-       tempContents = await apiGetMediaContents()
-      } catch (e) {
-        return
-      }
+        dispatch(setApiLoading(true));
 
-      if (tempContents != undefined) {
-        if (props.type == 'video') {
-          let tempRows = mappingResToVideoRow(tempContents)
+        // Choose the correct API function based on the media type
+        const apiFunction = props.type === 'video' ? apiGetVideoContents : apiGetDocumentContents;
 
-          const videoContents = tempContents.Content?.filter(
-            (val) => val.MediaType === EMediaType.video
-          )
+        const resData = await apiFunction({ '$take': take, '$skip': skip });
 
-          dispatch(
-            setPaginationTotalCount({ totalCount: videoContents.length })
-          )
-          setState(prevState => {
-            return{
-            ...prevState, mediaContents: videoContents, rows: tempRows
-          } })
+        if (resData.data !== null) {
+          // Update pagination information and API data
+          dispatch(setPaginationTotalCount(resData.data.TotalCount));
+          dispatch(setApiData(resData.data.Content));
+
+          // Adapt API response data and update local state
+          const mappingRows = resToVideoRowAdapter(resData.data.Content);
+          setState(prevState => ({ ...prevState, rows: mappingRows }));
         } else {
-          let tempRows = mappingResToDocumentRow(tempContents)
-
-          const documentContents = tempContents.Content?.filter(
-            (val) => val.MediaType === EMediaType.document
-          )
-
-          dispatch(
-            setPaginationTotalCount({ totalCount: documentContents.length })
-          )
-
-          setState(prevState => {
-            return {
-            ...prevState,
-                mediaContents: documentContents,
-                rows: tempRows
-            }
-          })
+          // No data available
+          setState(prevState => ({ ...prevState, rows: [] }));
         }
+      } catch (e) {
+        // Handle API error
+        console.error("Error of getContents:", e);
+        dispatch(setApiError(e));
+        setState(prevState => ({ ...prevState, rows: [] }));
       }
-      dispatch(setApiData({ data: tempContents }))
-    })()
-  }, [props, dispatch])
+    })();
+  }, [dispatch, take, skip, props.type]);
 
   return (
     <TableContainer
@@ -141,7 +120,7 @@ export const MediaActionwrapper = (props: IActionPros)=> {
       sx={{ borderRadius: '15px', px: 2, boxShadow: 'none' }}
     >
       <Table
-        aria-label="collapsible table"
+        aria-label='collapsible table'
         sx={{
           [`& .${tableCellClasses.root}`]: {
             borderBottom: 'none'
@@ -150,11 +129,12 @@ export const MediaActionwrapper = (props: IActionPros)=> {
           borderCollapse: 'separate'
         }}
       >
+        {/* TableHead */}
         <TableHead>
           <TableRow>
             <TableCell />
             {Object.values(
-              props.type == 'video' ? EVideoColumn : EDocumentColumn
+              props.type === 'video' ? EVideoColumn : EDocumentColumn
             ).map((item, index) => (
               <TableCell key={index}>
                 <Typography
@@ -172,35 +152,19 @@ export const MediaActionwrapper = (props: IActionPros)=> {
             ))}
           </TableRow>
         </TableHead>
+
+        {/* TableBody */}
         <TableBody>
-          {vState.rows
-            .filter((val, index) => {
-              let pageIndex = appState.pagination.pageIndex
-              let pageSize = appState.pagination.pageSize
-              let result = (pageIndex - 1) * pageSize < index
-              result = result && pageIndex * pageSize >= index
-              return result
-            })
-            .map((row, index) => {
-              if (props.type == 'video')
-                return (
-                  <VideoRow
-                    key={index}
-                    row={row}
-                    videoContent={vState.mediaContents[index]}
-                  />
-                )
-              else
-                return (
-                  <DocumentRow
-                    key={index}
-                    row={row}
-                    documentContent={vState.mediaContents[index]}
-                  />
-                )
-            })}
+          {vState.rows.map((row, index) => (
+            // Render VideoRow or DocumentRow based on the media type
+            props.type === 'video' ? (
+              <VideoRow key={index} row={row as TVideoRowType} rowIndex={index} />
+            ) : (
+              <DocumentRow key={index} row={row as TDocumentRowType} />
+            )
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};

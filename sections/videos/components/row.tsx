@@ -1,118 +1,89 @@
-import * as React from 'react'
-import Box from '@mui/material/Box'
-import Collapse from '@mui/material/Collapse'
-import IconButton from '@mui/material/IconButton'
-import TableCell from '@mui/material/TableCell'
-import TableRow from '@mui/material/TableRow'
-import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
-import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
-import TowType from '@components/multi-media/common/type-item'
-import RowStatus from '@components/multi-media/common/status-item'
-import RowRating from '@components/multi-media/common/rating-item'
-import RowClassification from '@components/multi-media/common/classification-item'
-import RowApproval from '@components/multi-media/common/approval-item'
-import RowFlaggedscenes from '@components/multi-media/common/flaggedscenes-item'
-import RowAction from '@components/multi-media/common/action-item'
-import VideoSubtable from './subtable'
-import { Typography } from '@mui/material'
-import { format, parseISO } from 'date-fns'
-import { apiGetVideoScenes } from '@interfaces/apis/videos'
-import { TResVideo } from '@interfaces/apis/videos.types'
-import mappingResVideoSubRow from '@interfaces/apis/mapping/video-sub-row'
-import { useSelector } from 'react-redux'
-import { IReduxState } from '@store/index'
-import { IAppSlice } from '@store/reducers'
-import { useEffect } from 'react'
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material';
+import { TVideoRowType } from '@interfaces/types';
+import TowType from '@components/multi-media/common/type-item';
+import RowStatus from '@components/multi-media/common/status-item';
+import RowRating from '@components/multi-media/common/rating-item';
+import RowClassification from '@components/multi-media/common/classification-item';
+import RowApproval from '@components/multi-media/common/approval-item';
+import RowFlaggedscenes from '@components/multi-media/common/flaggedscenes-item';
+import RowAction from '@components/multi-media/common/action-item';
+import VideoSubtable from './subtable';
+import { Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { IReduxState } from '@store/index';
+import { IAppSlice } from '@store/reducers';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 function VideoRow(props: {
-  row: TVideoRowType
-  videoContent: TResVideo.TMeidaContent
+  row: TVideoRowType,
+  rowIndex: number
 }) {
-  const { row, videoContent } = props
 
   const [vState, setState] = React.useState<{
     openSummary: boolean
-    subRow: TVideoSubRowType[]
-    subRowSummaries: TResVideo.TMeidaSummaries[]
-  }>({ openSummary: false, subRow: [], subRowSummaries: [] })
+  }>({ openSummary: false });
 
+  const router = useRouter();
+
+  // app state
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
+
+  // To reset the openSummary state when pageIndex changes
+  useEffect(() => {
+    setState(prevState => ({ ...prevState, openSummary: false }));
+  }, [appState.pagination.pageIndex]);
+
+  // Handler openSummary state
+  const handleDetail = () => {
+    if (props.row.subRows.length > 0) {
+      setState(prevState => ({ ...prevState, openSummary: !prevState.openSummary }));
+    }
+  };
+
+  // Actions to be displayed for each row
   const rowActions = [
     { title: 'Classification' },
     { title: 'Reports' },
-    { title: 'Insights' }
-  ]
-
-
-  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
-
-
-  useEffect(() => {
-    setState(prevState => {
-      return {...prevState, openSummary:false}
-    })
-  }, [appState.pagination.pageIndex])
-
-
-  const handleDetail = async () => {
-    if (vState.subRow.length > 0) {
-      setState(prevState => {
-        return {...prevState, openSummary:!prevState.openSummary}
-      })
-    } else {
-      try {
-        const videoSummaries: any = await apiGetVideoScenes(videoContent)
-        if (videoSummaries) {
-          let tempSubRow = mappingResVideoSubRow(videoSummaries.Content)
-          tempSubRow = tempSubRow.filter((val, index) => index < 5)
-          setState({
-            ...vState,
-            openSummary: true,
-            subRow: tempSubRow,
-            subRowSummaries: videoSummaries.Content
-          })
-        }
-      } catch (e) {
-        console.log(e)
-      }
-
+    {
+      title: 'Insights',
+      action: () => router.replace(`/videos/${appState.api.data[props.rowIndex].Id}`)
     }
-  }
-
-
+  ];
 
   return (
     <React.Fragment>
-      {/*-------main row-----------*/}
+      {/* Main row */}
       <TableRow
         sx={{
           '& > .MuiTableCell-root': {
             '&:first-of-type': {
-              borderBottomLeftRadius: vState.openSummary
-                ? '0px !important'
-                : '10px'
+              borderBottomLeftRadius: vState.openSummary ? '0px !important' : '10px'
             },
             '&:last-of-type': {
-              borderBottomRightRadius: vState.openSummary
-                ? '0px !important'
-                : '10px'
+              borderBottomRightRadius: vState.openSummary ? '0px !important' : '10px'
             }
           }
         }}
       >
+        {/* Expand/Collapse button */}
         <TableCell>
           <IconButton
-            aria-label="expand row"
-            size="small"
+            aria-label='expand row'
+            size='small'
             onClick={handleDetail}
           >
-            {vState.openSummary ? (
-              <KeyboardArrowDown />
-            ) : (
-              <KeyboardArrowRight />
-            )}
+            {vState.openSummary ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
           </IconButton>
         </TableCell>
 
+        {/* Name cell */}
         <TableCell sx={{ minWidth: '200px', maxWidth: '250px' }}>
           <Typography
             sx={{
@@ -122,60 +93,27 @@ function VideoRow(props: {
               overflow: 'hidden'
             }}
           >
-            {row.name}
+            {props.row.name}
           </Typography>
         </TableCell>
 
-        <TableCell>
-          <TowType type={row.type}></TowType>
-        </TableCell>
-
-        <TableCell>
-          <RowStatus status={row.status}></RowStatus>
-        </TableCell>
-
-        <TableCell>
-          <RowRating rating={row.rating}></RowRating>
-        </TableCell>
-
+        {/* Type, Status, Rating, Classification, Approvals, Submission Date, Flagged Scenes, Actions */}
+        <TableCell><TowType type={props.row.type}></TowType></TableCell>
+        <TableCell><RowStatus status={props.row.status}></RowStatus></TableCell>
+        <TableCell><RowRating rating={props.row.rating}></RowRating></TableCell>
         <TableCell>
           <Box className={'flex'}>
-            <RowClassification
-              classifications={row.classification}
-            ></RowClassification>
+            <RowClassification classifications={props.row.classification}></RowClassification>
           </Box>
         </TableCell>
-
-        <TableCell>
-          <Box className={'flex justify-center item-center approval'}>
-            <RowApproval approval={row.moderator_approval}></RowApproval>
-          </Box>
-        </TableCell>
-        <TableCell>
-          <Box className={'flex justify-center item-center approval'}>
-            <RowApproval approval={row.ai_approval}></RowApproval>
-          </Box>
-        </TableCell>
-        <TableCell>
-          <Box className={'flex'} maxWidth={'100px'}>
-            {row.submissionDate !== null
-              ? format(parseISO(row.submissionDate), 'MM/dd/yyyy hh:mm:ss a')
-              : ''}
-          </Box>
-        </TableCell>
-
-        <TableCell>
-          <RowFlaggedscenes
-            value={row.flaggedScenes ? row.flaggedScenes : 0}
-          ></RowFlaggedscenes>
-        </TableCell>
-
-        <TableCell>
-          <RowAction actions={rowActions} />
-        </TableCell>
+        <TableCell><Box className={'flex justify-center item-center approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'flex justify-center item-center approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'flex'} maxWidth={'100px'}>{props.row.submissionDate}</Box></TableCell>
+        <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell>
+        <TableCell><RowAction actions={rowActions} /></TableCell>
       </TableRow>
 
-      {/*---------sub common--------*/}
+      {/* Subrow */}
       <TableRow>
         <TableCell
           style={{
@@ -184,17 +122,14 @@ function VideoRow(props: {
           sx={{ p: 0 }}
           colSpan={12}
         >
-          <Collapse in={vState.openSummary} timeout="auto" unmountOnExit>
-            <VideoSubtable
-              subRows={vState.subRow}
-              summaries={vState.subRowSummaries}
-              row={row}
-            ></VideoSubtable>
+          {/* Subtable */}
+          <Collapse in={vState.openSummary} timeout='auto' unmountOnExit>
+            <VideoSubtable rows={props.row.subRows} rowIndex={props.rowIndex}></VideoSubtable>
           </Collapse>
         </TableCell>
       </TableRow>
     </React.Fragment>
-  )
+  );
 }
 
-export default VideoRow
+export default VideoRow;

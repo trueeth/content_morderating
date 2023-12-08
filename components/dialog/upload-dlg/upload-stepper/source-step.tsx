@@ -15,14 +15,14 @@ import {
   openSnackbarWarning
 } from '@store/reducers/snackbar/reducers'
 import {
-  apiGetUploadMediaId,
+  apiGetUploadMediaId, apiUploadedVideoProcess,
   apiUploadVideo,
-  TReqUpload
 } from '@interfaces/apis/upload'
-import { TResVideo } from '@interfaces/apis/videos.types'
+import { TResVideo } from '@interfaces/apis/api.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { setApiLoading } from '@store/reducers/api/reducers'
+import { extend } from 'dayjs'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -53,6 +53,7 @@ const rejectStyle = {
   borderColor: '#ff1744'
 }
 
+
 type TFile = File | null
 
 type TStateSource = {
@@ -76,20 +77,59 @@ export default function SourceStep(props: {
   const dispatch = useDispatch()
 
   const onFileUpload = async () => {
+
     dispatch(setApiLoading(true))
 
     if (!vState.uploadFile) return
 
-    let uploadInfo: TReqUpload.TGetUploadId = {
-      Description: 'trueet upload video',
-      Documents: [],
-      Id: '00000000-0000-0000-0000-000000000000',
-      MediaSourceId: '49f5cc65-53c4-4caf-94dc-d1f29e6665ec',
-      MediaType: 'Video',
-      ModeratorApprovalStatus: 'New',
-      Name: props.data.newOld.newTitle,
-      Notes: 'scenes video about mountain',
-      Videos: []
+    type TUploadInfo=  TResVideo.TVideoContent & {
+      ModeratorNotes?: string,
+      Rating?:string,
+    }
+
+    let uploadInfo: TUploadInfo = {
+      AIClassification : 'None',
+      AiClassificationEndTime : null,
+      AiClassificationStartTime : null,
+      AiClassificationStatus : "New",
+      AzureIndexerEndTime : null,
+      AzureIndexerStartTime : null,
+      AzureIndexerStatus : "New",
+      AzureIndexerVideoId : null,
+      Description : "trueeth video upload",
+      Duration : null,
+      FileName : null,
+      FrameAnalyticsStatus : "New",
+      FrameClassificationEndTime : null,
+      FrameClassificationStartTime : null,
+      FrameExractionEndTime : null,
+      FrameExractionStartTime : null,
+      FrameExtractionStatus : "New",
+      FrameRate : null,
+      Id : "00000000-0000-0000-0000-000000000000",
+      InternalVideoPath : null,
+      MediaSourceId : "49f5cc65-53c4-4caf-94dc-d1f29e6665ec",
+      ModeratorApprovalStatus : "New",
+      ModeratorClassification : "None",
+      ModeratorNotes : '',
+      Name : props.data.newOld.newTitle,
+      Notes : "a",
+      OriginalFileName : null,
+      ProcessingStatusPercentage : null,
+      Rating : "None",
+      SaveToCosmosEndTime : null,
+      SaveToCosmosStartTime : null,
+      SaveToCosmosStatus : "New",
+      Status : "New",
+      TranscripClassificationEndTime : null,
+      TranscripClassificationStartTime : null,
+      TranscriptAnalyticsStatus : "New",
+      TranscriptGenerationEndTime : null,
+      TranscriptGenerationStartTime : null,
+      TranscriptGenerationStatus : "New",
+      UploadedOnUtc : "0001-01-01T00:00:00+00:00",
+      VersionNumber : 0,
+      VideoSummary : null,
     }
 
     var formData = new FormData()
@@ -97,7 +137,6 @@ export default function SourceStep(props: {
 
     try {
       let uploadId = await apiGetUploadMediaId(uploadInfo)
-      console.log(uploadId, formData)
 
       let startAt = Date.now()
       const options: AxiosRequestConfig = {
@@ -123,23 +162,25 @@ export default function SourceStep(props: {
         }
       }
 
-      await apiUploadVideo(uploadId, formData, options)
+      let uploadContent: { data: TResVideo.TVideoContent } =
+        await apiUploadVideo(uploadId.data, formData, options)
       dispatch(openSnackbarSuccess('File was uploaded successfully:'))
+      dispatch(setApiLoading(false))
+      await apiUploadedVideoProcess(uploadId.data.Id)
 
-      dispatch(setApiLoading(false))
     } catch (e) {
+      console.error(e)
       dispatch(setApiLoading(false))
-      dispatch(
-        openSnackbarWarning('Sorry! Something went wrong while uploading file.')
-      )
+      dispatch(openSnackbarWarning('Sorry! Something went wrong while uploading file.'))
     }
   }
 
   const handleFileSelect = (file: TFile) => {
-    setState((prevState) => {
+    setState(prevState => {
       return { ...prevState, uploadFile: file }
     })
   }
+
 
   const {
     acceptedFiles,
@@ -160,6 +201,7 @@ export default function SourceStep(props: {
     [isFocused, isDragAccept, isDragReject]
   )
 
+
   useEffect(() => {
     handleFileSelect(acceptedFiles[0])
   }, [acceptedFiles.length, acceptedFiles])
@@ -167,6 +209,7 @@ export default function SourceStep(props: {
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
   }
+
 
   const handleStartUpload = async () => {
     if (!vState.uploadFile) {
@@ -227,7 +270,7 @@ export default function SourceStep(props: {
         </Box>
         <PrimaryTextField
           fullWidth={true}
-          placeholder="Enter  URL"
+          placeholder='Enter  URL'
           disabled={vState.type !== 'url'}
         />
 
@@ -241,8 +284,8 @@ export default function SourceStep(props: {
         </Box>
         <Box {...getRootProps({ style })}>
           <input {...getInputProps()} />
-          <Box className="flex">
-            <Box className="flex item-center mr-5">
+          <Box className='flex'>
+            <Box className='flex item-center mr-5'>
               <Image
                 src={fileUpload}
                 alt={'fileUpload'}
@@ -254,7 +297,7 @@ export default function SourceStep(props: {
             </Box>
             <Box>
               <Box
-                display="flex"
+                display='flex'
                 sx={{ flexDirection: { xs: 'column', md: 'row' } }}
               >
                 <Typography
@@ -267,9 +310,7 @@ export default function SourceStep(props: {
                 >
                   Drag your file here or
                 </Typography>
-                <Typography style={{ color: 'var(--Primary1)' }}>
-                  Browse
-                </Typography>
+                <Typography style={{ color: 'var(--Primary1)' }}>Browse</Typography>
               </Box>
               <Typography>Maximum file size 2GB</Typography>
             </Box>
@@ -285,7 +326,7 @@ export default function SourceStep(props: {
           />
         </Box>
         <PrimaryTextField
-          placeholder="Enter the full movie name"
+          placeholder='Enter the full movie name'
           disabled={vState.type !== 'netflix'}
         />
 

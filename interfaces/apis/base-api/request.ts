@@ -6,7 +6,7 @@ export const CServerUrl = 'https://gamr-cm-api-dev.azurewebsites.net/api/'
 const service = axios.create({
   baseURL: CServerUrl, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000000 // request timeout
+  timeout: 300000 // request timeout
 })
 
 // request interceptor
@@ -45,17 +45,15 @@ service.interceptors.response.use(
    */
   (response) => {
     const res = response.data
-
-    // if the custom code is not 20000, it is judged as an error.
+    // if the custom code is not 200, it is judged as an error.
     if (res.code >= 300) {
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+      if (res.code === 508 || res.code === 512 || res.code === 514) {
         console.log(res)
       }
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
-      return res
+      return response
     }
-    // return res
   },
   (error) => {
     console.log('err' + error) // for debug

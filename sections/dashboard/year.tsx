@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 
 import MenuItem from '@mui/material/MenuItem'
 import { Box, Select, SelectChangeEvent, Typography } from '@mui/material'
@@ -115,8 +115,8 @@ export default function SideYear() {
   }
 
   return (
-    <Box className="bg-white border-radius-5 h-full p-15 text-black">
-      <Box className="flex row justify-between">
+    <Box className='bg-white border-radius-5 h-full p-15 text-black'>
+      <Box className='flex row justify-between'>
         <Typography>Analytics of Year</Typography>
         <Select
           value={vState.year}
@@ -164,22 +164,24 @@ export default function SideYear() {
       </Box>
 
       <Box>
-        <ApexCharts
-          options={options}
-          series={vState.series}
-          type="bar"
-          height={350}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ApexCharts
+            options={options}
+            series={vState.series}
+            type='bar'
+            height={350}
+          />
+        </Suspense>
       </Box>
 
-      <Box className="flex justify-center">
-        <Box className="mr-15 flex item-center">
-          <Box className="flex chart-item-label bg-primary1 mr-3"></Box>
+      <Box className='flex justify-center'>
+        <Box className='mr-15 flex item-center'>
+          <Box className='flex chart-item-label bg-primary1 mr-3'></Box>
           <Typography>Documents</Typography>
         </Box>
 
-        <Box className="mr-15 flex item-center">
-          <Box className="flex chart-item-label bg-primary2 mr-3"></Box>
+        <Box className='mr-15 flex item-center'>
+          <Box className='flex chart-item-label bg-primary2 mr-3'></Box>
           <Typography>Videos</Typography>
         </Box>
       </Box>

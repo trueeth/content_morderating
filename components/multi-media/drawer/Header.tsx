@@ -4,9 +4,63 @@ import { useSelector } from 'react-redux'
 import { IAppSlice } from '@store/reducers'
 import { IReduxState } from '@store/index'
 import { format, parseISO } from 'date-fns'
+import { useMemo } from 'react'
+import { EClassificationType } from '@interfaces/enums'
 
 export default function DrawerHeader() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
+  const memorizedValue = useMemo(() => {
+
+    let memoValue: {
+      Name?: string,
+      Description?: string,
+      Index?: number,
+      Status?: string,
+      Rating?: string,
+      Classification?: EClassificationType[],
+      SubmissionDate?: string,
+      Approval?: string
+    } = {}
+
+    try {
+      const rowIndex = appState.drawer.rowIndex
+      const subRowIndex = appState.drawer.subRowIndex
+      const data = appState.api.data
+
+      const submissionDate = format(parseISO(data[rowIndex].UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
+
+
+      let classifications: EClassificationType[] = []
+      if (data[rowIndex].VideoSummary?.SexualSeverity == 'Extreme')
+        classifications.push(EClassificationType.sexual)
+      if (data[rowIndex].VideoSummary?.SelfHarmSeverity == 'Extreme')
+        classifications.push(EClassificationType.selfHarm)
+      if (data[rowIndex].VideoSummary?.HateSeverity == 'Extreme')
+        classifications.push(EClassificationType.hate)
+      if (data[rowIndex].VideoSummary?.ViolenceSeverity == 'Extreme')
+        classifications.push(EClassificationType.violance)
+
+
+      memoValue = {
+        Index: subRowIndex + 1,
+        Name: data[rowIndex].Name,
+        Description: 'Later, Muhammad bin Abdulaziz is appointed Crown Prince and assumes\n' +
+          '            many tasks and responsibilities in the government. Mohammed bin\n' +
+          '            Nayef is then appointed Crown Prince and Deputy Prime Minister, but\n' +
+          '            he is dismissed in 2017 and Mohammed bin Salman',
+        Status: data[rowIndex].Status,
+        Rating: data[rowIndex].VideoSummary.Rating,
+        Classification: classifications,
+        SubmissionDate: submissionDate,
+        Approval: data[rowIndex].ModeratorApprovalStatus
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
+    return memoValue
+  }, [appState.api.data, appState.drawer.rowIndex, appState.drawer.subRowIndex])
 
   return (
     <Box
@@ -16,21 +70,21 @@ export default function DrawerHeader() {
         p: 2
       }}
     >
-      <header className="flex justify-between">
+      <header className='flex justify-between'>
         {appState.drawer.type === 'video' ? (
           <>
             <Typography>
               Video for the{' '}
-              <strong>{appState.drawer.videoContent?.name}</strong>, Page #
-              {appState.drawer.summary?.IndexerSceneId}
+              <strong>{memorizedValue.Name}</strong>, Scene #
+              {memorizedValue.Index}
             </Typography>
             <RowAction />
           </>
         ) : (
           <>
             <Typography>
-              <strong>{appState.drawer.videoContent?.name}</strong> Book, Page #
-              3
+              <strong>{memorizedValue.Name}</strong> Book, Page #
+              {memorizedValue.Index}
             </Typography>
             <RowAction />
           </>
@@ -39,10 +93,7 @@ export default function DrawerHeader() {
       {appState.drawer.type === 'video' ? (
         <>
           <Typography>
-            Later, Muhammad bin Abdulaziz is appointed Crown Prince and assumes
-            many tasks and responsibilities in the government. Mohammed bin
-            Nayef is then appointed Crown Prince and Deputy Prime Minister, but
-            he is dismissed in 2017 and Mohammed bin Salman
+            {memorizedValue.Description}
           </Typography>
           <Box
             sx={{
@@ -62,32 +113,29 @@ export default function DrawerHeader() {
           >
             <Box>
               <Typography>STATUS : &nbsp;</Typography>
-              <Typography color="var(--Secondary)"> NEW</Typography>
+              <Typography color='var(--Secondary)'> NEW</Typography>
             </Box>
             <Box>
               <Typography>RATING : &nbsp;</Typography>
-              <Typography> {appState.drawer.videoContent?.rating}</Typography>
+              <Typography> {memorizedValue.Rating}</Typography>
             </Box>
             <Box>
               <Typography>CLASSIFICATION : &nbsp; </Typography>
               <Typography>
-                {appState.drawer.videoContent?.classification?.join(',')}
+                {memorizedValue.Classification?.join(',')}
               </Typography>
             </Box>
             <Box>
               <Typography>SUBMISSION DATE : &nbsp;</Typography>
               <Typography>
-                {appState.drawer.videoContent != null
-                  ? format(
-                      parseISO(appState.drawer.videoContent?.submissionDate),
-                      'MM/dd/yyyy hh:mm:ss a'
-                    )
-                  : ''}
+                {memorizedValue.SubmissionDate}
               </Typography>
             </Box>
             <Box>
               <Typography>APPROVAL : &nbsp; </Typography>
-              <Typography className="approve"> Approved</Typography>
+              <Typography className='approve'>
+                {memorizedValue.Approval}
+              </Typography>
             </Box>
           </Box>
         </>

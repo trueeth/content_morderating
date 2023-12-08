@@ -1,12 +1,15 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useMemo, useState } from 'react'
 import Head from 'next/head'
 import Header from './header'
 import UploadDialog from '../dialog/upload-dlg'
-import { Alert, Container, Snackbar } from '@mui/material'
+import { Alert, Container, Snackbar, Typography } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import { closeSnackbar } from '@store/reducers/snackbar/reducers'
+import Box from '@mui/material/Box'
+import LoadingIcons from 'react-loading-icons'
+
 
 type Props = {
   children?: ReactNode
@@ -14,6 +17,7 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
+
   const dispatch = useDispatch()
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -28,12 +32,17 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     if (appState.snackbar.open) dispatch(closeSnackbar())
   }
 
+
+
+
+
+
   return (
     <div className={'pb-50 flex flex-col justify-center item-center'}>
       <Head>
         <title>{title}</title>
-        <link rel="icon" href="/public/assets/images/favicon.ico" sizes="any" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel='icon' href='/assets/images/favicon.ico' sizes='any' />
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <header className={'w-full'}>
         <Header />
@@ -51,16 +60,52 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         </Alert>
       </Snackbar>
 
+      <Box
+        sx={{
+          position: 'fixed',
+          zIndex: 1500,
+          width: '100%',
+          top: '40%',
+          bottom: '30%',
+          left: 0,
+          right: 0,
+          display:'flex',
+          flexDirection:'column',
+          justifyContent:'center',
+          alignItems:'center',
+          ...(!appState.api.loading && {
+            display: 'none',
+          }),
+        }}
+      >
+        <Box sx={{
+          '& g': {
+            stroke:'var(--Primary1)'
+          },
+          display:'flex',
+          justifyContent:'center',
+          alignItems:'center',
+          color:'var(--Primary1)',
+          flexDirection:'column',
+        }}>
+          <LoadingIcons.Puff height={80} width={80} strokeWidth={3} />
+        </Box>
+      </Box>
       <Container
         sx={{
           mt: '100px',
           width: '100%',
           maxWidth: '1500px !important',
-          overflow: 'auto'
+          overflow: 'auto',
+          opacity:'1',
+          ...(appState.api.loading && {
+            opacity: '.6',
+          }),
         }}
       >
         {children}
       </Container>
+
     </div>
   )
 }

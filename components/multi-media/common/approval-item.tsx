@@ -13,11 +13,7 @@ const RowApproval = (props: { approval: string }) => {
         'text-center'
       )}
     >
-      {props.approval &&
-        (props.approval == EModeratorApprovalStatus.inReview ||
-        props.approval == EModeratorApprovalStatus.rejected
-          ? 'Approved'
-          : 'Disclined')}
+      {props.approval}
     </Box>
   )
 }

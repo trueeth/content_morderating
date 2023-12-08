@@ -146,7 +146,8 @@ export enum EApporval {
   review = 'In Review',
   approve = 'Approved',
   reject = 'Rejected',
-  pending = 'Pending'
+  pending = 'Pending',
+  none='None',
 }
 export enum EAlert {
   error = 'error',

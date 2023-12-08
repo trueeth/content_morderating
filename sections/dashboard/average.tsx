@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 
 import {
   Box,
@@ -77,8 +77,8 @@ export default function SideAverage() {
   const isMobile = useMediaQuery('(max-width: 1200px)')
 
   return (
-    <Box className="bg-white border-radius-5 h-full p-15 text-black">
-      <Box className="flex justify-between">
+    <Box className='bg-white border-radius-5 h-full p-15 text-black'>
+      <Box className='flex justify-between'>
         <Typography>Analytics Average</Typography>
         <Select
           value={vState.month}
@@ -122,17 +122,19 @@ export default function SideAverage() {
           height: '90%'
         }}
       >
-        <ReactApexChart
-          options={
-            isMobile
-              ? { ...options, legend: { position: 'bottom', show: true } }
-              : options
-          }
-          series={vState.series}
-          type="donut"
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ReactApexChart
+            options={
+              isMobile
+                ? { ...options, legend: { position: 'bottom', show: true } }
+                : options
+            }
+            series={vState.series}
+            type='donut'
+          />
+        </Suspense>
         <Box>
-          <Box className="flex justify-center mt-15">
+          <Box className='flex justify-center mt-15'>
             <PrimaryButton>
               <GetApp sx={{ color: 'white' }} />
               &nbsp;&nbsp;Download Report

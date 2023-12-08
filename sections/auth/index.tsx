@@ -26,7 +26,7 @@ export default function AuthSection() {
     try{
       await apiIdentifyAuth({Username:vState.username,Password:vState.pwd})
       await login(vState.username, vState.pwd)
-      router.push('/dashboard')
+      router.replace('/dashboard')
       dispatch(openSnackbarSuccess('Login Success!'))
     } catch (e) {
       setState({ ...vState, username: '', pwd: '', error: true })

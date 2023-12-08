@@ -11,9 +11,8 @@ import RowApproval from '@components/multi-media/common/approval-item'
 import RowAction from '@components/multi-media/common/action-item'
 import { Typography } from '@mui/material'
 import { format, parseISO } from 'date-fns'
-import { TResVideo } from '@interfaces/apis/videos.types'
+import { TResVideo } from '@interfaces/apis/api.types'
 import DocumentSubrow from './subrow'
-import mappingResDocumentSubRow from '@interfaces/apis/mapping/document-sub-row'
 import { useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
@@ -21,17 +20,16 @@ import { useEffect } from 'react'
 
 function DocumentRow(props: {
   row: TDocumentRowType
-  documentContent: TResVideo.TMeidaContent
 }) {
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  const { row, documentContent } = props
+  const { row } = props
 
   const [vState, setState] = React.useState<{
     openSummary: boolean
     subRow: TDocumentSubRowType[]
-    subRowSummaries: TResVideo.TDocumentAICunk[]
+    subRowSummaries: any[]
   }>({ openSummary: false, subRow: [], subRowSummaries: [] })
 
 
@@ -47,19 +45,20 @@ function DocumentRow(props: {
        return {...prevState, openSummary:!prevState.openSummary}
      })
     } else {
-      const documentSummaries: any =
-        documentContent?.Documents[0]?.DocumentChunks[0]?.AIChunkResponses
-      if (documentSummaries) {
-        let tempSubRow = mappingResDocumentSubRow(documentSummaries)
-        tempSubRow = tempSubRow.filter((val, index) => index < 5)
-        setState({
-          ...vState,
-          openSummary: true,
-          subRow: tempSubRow,
-          subRowSummaries: documentSummaries
-        })
-      }
+      // const documentSummaries: any =
+      //   documentContent?.Documents[0]?.DocumentChunks[0]?.AIChunkResponses
+      // if (documentSummaries) {
+      //   let tempSubRow = mappingResDocumentSubRow(documentSummaries)
+      //   tempSubRow = tempSubRow.filter((val, index) => index < 5)
+      //   setState({
+      //     ...vState,
+      //     openSummary: true,
+      //     subRow: tempSubRow,
+      //     subRowSummaries: documentSummaries
+      //   })
+      // }
     }
+
   }
 
 
