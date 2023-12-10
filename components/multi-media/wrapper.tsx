@@ -91,7 +91,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
         // Choose the correct API function based on the media type
         const apiFunction = props.type === 'video' ? apiGetVideoContents : apiGetDocumentContents;
 
-        const resData = await apiFunction({ '$take': take, '$skip': skip });
+        const resData = await apiFunction({ '$take': take, '$skip': skip, '$orderbyexpression':'UploadedOnUtc desc' });
 
         if (resData.data !== null) {
           // Update pagination information and API data
