@@ -5,10 +5,11 @@ import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import LoginImg from '@public/assets/images/login.png'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 import { apiIdentifyAuth } from '@interfaces/apis/auth'
+import { GetServerSideProps } from 'next'
 
 export default function AuthSection() {
   const { login } = useAuthContext()
@@ -26,8 +27,8 @@ export default function AuthSection() {
     try{
       await apiIdentifyAuth({Username:vState.username,Password:vState.pwd})
       await login(vState.username, vState.pwd)
-      router.replace('/dashboard')
       dispatch(openSnackbarSuccess('Login Success!'))
+      router.push('/dashboard')
     } catch (e) {
       setState({ ...vState, username: '', pwd: '', error: true })
     }
@@ -36,9 +37,9 @@ export default function AuthSection() {
   const { authenticated } = useAuthContext()
 
   useEffect(() => {
-    if (authenticated) {
+    if (authenticated&&vState.username=='') {
       dispatch(openSnackbarSuccess('Already You are logined!'))
-      router.replace('/dashboard')
+      router.push('/dashboard')
     }
   }, [dispatch, authenticated, router])
 
@@ -147,3 +148,4 @@ export default function AuthSection() {
     </Box>
   )
 }
+

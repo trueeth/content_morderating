@@ -53,7 +53,7 @@ function VideoRow(props: {
     { title: 'Reports' },
     {
       title: 'Insights',
-      action: () => router.replace(`/videos/${appState.api.data[props.rowIndex].Id}`)
+      action: () => router.push(`/videos/${appState.api.data[props.rowIndex].Id}`)
     }
   ];
 

@@ -5,9 +5,8 @@ import { Box, Table, TableContainer, Typography } from '@mui/material'
 import TableBody from '@mui/material/TableBody'
 import {
   EApporval,
-  EClassificationType,
-  ENewVideoData,
-  ERating
+  EClassificationType, EMediaRating,
+  ENewVideoData
 } from '@interfaces/enums'
 import { TNewVideoRowType } from '@interfaces/types'
 import TableRow from '@mui/material/TableRow'
@@ -19,7 +18,7 @@ const rows = [
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
-    rating: ERating.r18,
+    rating: EMediaRating.r18,
     classification: [
       EClassificationType.hate,
       EClassificationType.sexual,
@@ -30,7 +29,7 @@ const rows = [
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
-    rating: ERating.r18,
+    rating: EMediaRating.r18,
     classification: [
       EClassificationType.hate,
       EClassificationType.sexual,
@@ -41,7 +40,7 @@ const rows = [
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
-    rating: ERating.missing,
+    rating: EMediaRating.missing,
     classification: [
       EClassificationType.hate,
       EClassificationType.sexual,
@@ -52,7 +51,7 @@ const rows = [
   {
     name: 'Test Video for the system',
     date: '25/10/2023',
-    rating: ERating.missing,
+    rating: EMediaRating.missing,
     classification: [
       EClassificationType.hate,
       EClassificationType.sexual,
@@ -63,7 +62,7 @@ const rows = [
   {
     name: 'Content Moderation System UI/UX Design',
     date: '25/10/2023',
-    rating: ERating.r18,
+    rating: EMediaRating.r18,
     classification: [
       EClassificationType.hate,
       EClassificationType.sexual,

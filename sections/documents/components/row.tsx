@@ -156,7 +156,7 @@ function DocumentRow(props: {
           colSpan={12}
         >
           <Collapse in={vState.openSummary} timeout='auto' unmountOnExit>
-            <DocumentSubrow subRows={vState.subRow} row={row}></DocumentSubrow>
+            {/*<DocumentSubrow subRows={vState.subRow} row={row}></DocumentSubrow>*/}
           </Collapse>
         </TableCell>
       </TableRow>

@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Pagination, PaginationItem } from '@mui/material'
 import TablePagination from '@components/common/table-pagination'
 import { useDispatch, useSelector } from 'react-redux'
-import { setPageinit, setPaginationIndex } from '@store/reducers/page/reducers'
+import {
+  setPageinit,
+  // setPageinit,
+  setPaginationIndex
+} from '@store/reducers/page/reducers'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
+import { useRouter } from 'next/router'
 
 const useTablePagination = () => {
   const [vState, setState] = useState({
@@ -16,49 +21,58 @@ const useTablePagination = () => {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  useEffect(() => {
-    setState(prevState => {
-      return{
-        ...prevState,
-        pageIndex: appState.pagination.pageIndex,
-        pageSize: appState.pagination.pageSize,
-        pageTotal: Math.ceil(
-          appState.pagination.totalCount / appState.pagination.pageSize
-        )
-      }
-    })
-  }, [appState])
+  const router=useRouter()
+
 
   useEffect(() => {
-    dispatch(setPageinit())
+      router.push({pathname:router.pathname, query:{pageindex:appState.pagination.pageIndex, pagesize:appState.pagination.pageSize}})
+      setState(prevState => {
+        return{
+          ...prevState,
+          pageIndex: appState.pagination.pageIndex,
+          pageSize: appState.pagination.pageSize,
+          pageTotal: Math.ceil(
+            appState.pagination.totalCount / appState.pagination.pageSize
+          )
+        }
+      })
+  }, [appState, router.pathname])
+
+  useEffect(() => {
+    if(Object.keys(router.query).length==0)
+      dispatch(setPageinit())
   }, [dispatch])
 
-  const handlePageNext = () => {
-    setState({ ...vState, pageIndex: vState.pageIndex + 1 })
-    dispatch(
-      setPaginationIndex({
-        pageIndex: vState.pageIndex + 1
-      })
-    )
-  }
 
-  const handlePageBefore = () => {
-    setState({ ...vState, pageIndex: vState.pageIndex - 1 })
-    dispatch(
-      setPaginationIndex({
-        pageIndex: vState.pageIndex - 1
-      })
-    )
-  }
 
-  const setPageIndex = (pageIndex: number) => {
-    setState({ ...vState, pageIndex: pageIndex })
-    dispatch(
-      setPaginationIndex({
-        pageIndex: pageIndex
-      })
-    )
-  }
+  // @TODO will use after that
+  // const handlePageNext = () => {
+  //
+  //   setState({ ...vState, pageIndex: vState.pageIndex + 1 })
+  //   dispatch(
+  //     setPaginationIndex({
+  //       pageIndex: vState.pageIndex + 1
+  //     })
+  //   )
+  // }
+
+  // const handlePageBefore = () => {
+  //   setState({ ...vState, pageIndex: vState.pageIndex - 1 })
+  //   dispatch(
+  //     setPaginationIndex({
+  //       pageIndex: vState.pageIndex - 1
+  //     })
+  //   )
+  // }
+  //
+  // const setPageIndex = (pageIndex: number) => {
+  //   setState({ ...vState, pageIndex: pageIndex })
+  //   dispatch(
+  //     setPaginationIndex({
+  //       pageIndex: pageIndex
+  //     })
+  //   )
+  // }
 
   const handleChangePagination = (
     event: React.ChangeEvent,
@@ -92,7 +106,10 @@ const useTablePagination = () => {
     </TablePagination>
   )
 
-  return { CustomPagination, handlePageNext, handlePageBefore, setPageIndex }
+  return {
+    CustomPagination
+    // , handlePageNext, handlePageBefore, setPageIndex
+  }
 }
 
 export default useTablePagination

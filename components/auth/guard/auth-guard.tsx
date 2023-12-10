@@ -28,10 +28,10 @@ function Container({ children }: Props) {
   const check = useCallback(async () => {
     if (!authenticated) {
       setChecked(false)
-      router.replace('/auth')
+      router.push('/auth')
     } else {
       setChecked(true)
-      if (router.pathname == '/') router.replace('/dashboard')
+      if (router.pathname == '/') router.push('/dashboard')
     }
   }, [authenticated, router])
 

@@ -1,4 +1,4 @@
-import { EApporval, EModeratorApprovalStatus, EProcessingStatus, ERating } from '@interfaces/enums'
+import { EApporval, EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
 
 export declare namespace TReqVideo {
 
@@ -13,19 +13,19 @@ export declare namespace TResVideo {
   }
 
   type TVideoContent = {
-    AIClassification?: string
+    AIClassification?: EMediaRating
     AiClassificationEndTime?: string
     AiClassificationStartTime?: string
-    AiClassificationStatus?: string
+    AiClassificationStatus?: EProcessingStatus
     AzureIndexerEndTime?: string
     AzureIndexerStartTime?: string
-    AzureIndexerStatus?: string
+    AzureIndexerStatus?: EProcessingStatus
     AzureIndexerVideoId?: string
     Classification?: any
     Description?: string
     Duration?: number
     FileName?: string
-    FrameAnalyticsStatus?: string
+    FrameAnalyticsStatus?: EProcessingStatus
     FrameClassificationEndTime?: string
     FrameClassificationStartTime?: string
     FrameExractionEndTime?: string
@@ -35,22 +35,22 @@ export declare namespace TResVideo {
     Id?: string
     InternalVideoPath?: string
     MediaSourceId?: string
-    ModeratorApprovalStatus?: string
-    ModeratorClassification?: string
+    ModeratorApprovalStatus?: EModeratorApprovalStatus
+    ModeratorClassification?: EMediaRating
     Name?: string
     Notes?: string
     OriginalFileName?: string
     ProcessingStatusPercentage?: string
     SaveToCosmosEndTime?: string
     SaveToCosmosStartTime?: string
-    SaveToCosmosStatus?: string
-    Status?: string
+    SaveToCosmosStatus?: EProcessingStatus
+    Status?: EProcessingStatus
     TranscripClassificationEndTime?: string
     TranscripClassificationStartTime?: string
-    TranscriptAnalyticsStatus?: string
+    TranscriptAnalyticsStatus?: EProcessingStatus
     TranscriptGenerationEndTime?: string
     TranscriptGenerationStartTime?: string
-    TranscriptGenerationStatus?: string
+    TranscriptGenerationStatus?: EProcessingStatus
     UploadedOnUtc?: string
     VersionNumber?: number
     VideoSummary?: TVideoSummary
@@ -77,7 +77,7 @@ export declare namespace TResVideo {
     NumberOfOcrs?: number
     OnModeratorModifiedUtc?: string
     RacyScore?: number
-    Rating?: ERating
+    Rating?: EMediaRating
     SceneSummaries?: TVideoSceneSummary[]
     SelfHarmSeverity?: string
     SexualSeverity?: string

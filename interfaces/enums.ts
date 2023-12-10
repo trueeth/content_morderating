@@ -124,7 +124,7 @@ export enum EModeratorApprovalStatus {
   rejected = 'Rejected'
 }
 
-export enum ERating {
+export enum EMediaRating {
   none = 'None',
   g = 'G',
   pg = 'PG',

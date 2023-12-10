@@ -28,7 +28,7 @@ function Container({ children }: Props) {
 
   const check = useCallback(() => {
     if (authenticated) {
-      router.replace(returnTo)
+      router.push(returnTo)
     }
   }, [authenticated, returnTo, router])
 

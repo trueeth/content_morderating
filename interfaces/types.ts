@@ -1,7 +1,6 @@
 import {
   EApporval,
   EClassificationType,
-  ERating,
   EReportHistoryStatus,
   EScheduleType,
   EProcessingStatus,
@@ -9,18 +8,18 @@ import {
   EUserType,
   EMediaType,
   EModeratorApprovalStatus,
-  EViolationType
+  EViolationType, EMediaRating
 } from './enums'
 
 export type TVideoRowType = {
   name?: string
   type?: EMediaType
   status?: EProcessingStatus
-  rating?: ERating
+  rating?: EMediaRating
   classification?: EClassificationType[]
   submissionDate?: string
   moderator_approval?: EModeratorApprovalStatus
-  ai_approval?: EApporval
+  ai_approval?: EMediaRating
   flaggedScenes?: number
   subRows?: TVideoSubRowType[]
 }
@@ -36,7 +35,7 @@ export type TDocumentRowType = {
 
 export type TNewVideoRowType = {
   name: string
-  rating: ERating
+  rating: EMediaRating
   classification: EClassificationType[]
   date: string
   approval: EApporval
