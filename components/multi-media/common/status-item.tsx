@@ -5,7 +5,9 @@ import clsx from 'clsx'
 
 const RowStatus = (props: { status: EProcessingStatus }) => {
   return (
-    <Box className={`status-${props.status.toLowerCase()}`}>{props.status}</Box>
+    <Box className={`status-${props.status.toLowerCase()}`}>
+      {props.status?props.status:'Not Assigned'}
+    </Box>
   )
 }
 

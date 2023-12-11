@@ -1,3 +1,10 @@
+
+
+.not-assigned {
+  color: #00000091;
+  font-size: .7rem;
+}
+
 .status-new {
   color: var(--Primary2);
   font-size: 12px;
@@ -36,13 +43,11 @@
   line-height: 0.875rem; /* 100% */
 }
 
-.rating-r18 {
-  color: var(--Black);
+.rating {
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
   line-height: 0.875rem;
-  text-transform: uppercase;
 }
 
 .rating-none {
@@ -61,6 +66,70 @@
   align-items: center;
 }
 
+.rating-g {
+  color: var(--Primary1);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-transform: uppercase;
+}
+
+.rating-pg {
+  color: var(--Primary2);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-transform: uppercase;
+}
+
+.rating-pg12 {
+  color: var(--Primary2);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-transform: uppercase;
+}
+
+.rating-pg15 {
+  color: var(--Primary2);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-transform: uppercase;
+}
+
+.rating-r18 {
+  color: var(--Primary2);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-transform: uppercase;
+}
+
+.rating-r15 {
+  color: var(--Primary2);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-transform: uppercase;
+}
+
+.rating-missing {
+  color: #f40000;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-transform: uppercase;
+}
+
+
 .new {
   color: var(--Primary2);
   font-size: 12px;
@@ -75,7 +144,9 @@
   font-size: 0.6875rem;
   font-style: normal;
   font-weight: 500;
+  color: #00000091;
 }
+
 
 .review {
   color: #ff9432;

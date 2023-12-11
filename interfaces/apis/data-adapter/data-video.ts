@@ -43,7 +43,7 @@ export const resToVideoRowAdapter = (apiData: TResVideo.TVideoContent[]) => {
           videoSubRow.category = 'Content Video'
           videoSubRow.description = videoContent.Description
           if (!videoContent.Description)
-            videoSubRow.description='-'
+            videoSubRow.description='Not Assigned'
 
           // @TODO random data
           // let vioRand = Math.floor(Math.random() * 5) + 1
@@ -67,7 +67,7 @@ export const resToVideoRowAdapter = (apiData: TResVideo.TVideoContent[]) => {
           if (violationType.length>0){
             videoSubRow.violationType = violationType.join(", ")
           } else {
-            videoSubRow.violationType = '-'
+            videoSubRow.violationType = 'Not Assigned'
           }
 
           videoSubRow.sceneNumber = index + 1
