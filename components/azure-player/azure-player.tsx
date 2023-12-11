@@ -112,6 +112,7 @@ export class AzurePlayer extends React.Component<PlayerProps> {
   }
 
   componentWillUnmount() {
+    this.videoPlayer=null
     if (
       this.props.compId &&
       this.props.events &&
@@ -124,8 +125,7 @@ export class AzurePlayer extends React.Component<PlayerProps> {
             `video[id*="${this.props.compId}"]`
           ) as HTMLVideoElement
           if (elem) {
-            elem.addEventListener(event.domEvent, () => {
-              this.videoPlayer.currentTime(10)
+            elem.removeEventListener(event.domEvent, () => {
               event.listeners.forEach((listener) => {
                 listener()
               })

@@ -91,7 +91,7 @@ export default function DrawerTabPlayScene() {
         dispatch(openSnackbarError('Get error,while get streaming url'))
       }
     })()
-  }, [dispatch, data, rowIndex, subRowIndex, token])
+  }, [dispatch])
 
 
   return (
@@ -131,7 +131,7 @@ export default function DrawerTabPlayScene() {
       }}
     >
       {appState.drawer.type === 'video' ? (
-        playerUrl ?
+        playerUrl!='' ?
           <AzurePlayer
             compId='vid-1'
             events={[
