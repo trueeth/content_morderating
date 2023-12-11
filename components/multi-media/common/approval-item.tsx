@@ -6,6 +6,7 @@ const RowApproval = (props: { approval: string }) => {
   return (
     <Box
       className={clsx(
+        'not-assigned',
         props.approval === EModeratorApprovalStatus.approved && 'approve',
         props.approval === EModeratorApprovalStatus.new && 'new',
         props.approval === EModeratorApprovalStatus.rejected && 'reject',
@@ -13,7 +14,7 @@ const RowApproval = (props: { approval: string }) => {
         'text-center'
       )}
     >
-      {props.approval}
+      {props.approval?props.approval:'Not Assigned'}
     </Box>
   )
 }

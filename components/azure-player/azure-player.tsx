@@ -112,7 +112,6 @@ export class AzurePlayer extends React.Component<PlayerProps> {
   }
 
   componentWillUnmount() {
-    this.videoPlayer=null
     if (
       this.props.compId &&
       this.props.events &&
@@ -134,6 +133,10 @@ export class AzurePlayer extends React.Component<PlayerProps> {
         }
       })
     }
+
+    if (this.videoPlayer)
+      this.videoPlayer.dispose()
+    this.videoRef=null
   }
 
   createVideoPlayer = (amp: any) => {

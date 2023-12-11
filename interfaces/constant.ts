@@ -11,12 +11,12 @@ import {
 import { EVideoColumn } from './enums'
 
 export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string , url?:string , dialog?:string}> = [
-  // { icon: GridViewRounded, title: 'Dashboard', url:'dashboard' },
+  { icon: GridViewRounded, title: 'Dashboard', url:'dashboard' },
   { icon: Slideshow, title: 'Videos', url:'videos' },
-  // { icon: InsertDriveFileOutlined, title: 'Documents', url:'documents' },
-  // { icon: Update, title: 'Reports', url:'reports' },
-  // { icon: Lock, title: 'Access', url:'access' },
-  // { icon: Settings, title: 'Settings', url:'settings' },
+  { icon: InsertDriveFileOutlined, title: 'Documents', url:'documents' },
+  { icon: Update, title: 'Reports', url:'reports' },
+  { icon: Lock, title: 'Access', url:'access' },
+  { icon: Settings, title: 'Settings', url:'settings' },
   { icon: FileUpload, title: 'Upload' , dialog:'upload'}
 ]
 

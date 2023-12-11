@@ -7,13 +7,13 @@ const RowClassification = (props: {
 }) => {
   return (
     <React.Fragment>
-      {props.classifications.map((item, index) => {
+      {props.classifications.length>0 ?props.classifications.map((item, index) => {
         return (
-          <Box key={index} className={'classification-item'}>
+          <Box key={index} className={'classification-item '}>
             {item}
           </Box>
         )
-      })}
+      }):<Box className={'not-assigned text-7'} >Not Assigned</Box>}
     </React.Fragment>
   )
 }

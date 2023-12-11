@@ -30,6 +30,7 @@ import Paper from '@mui/material/Paper'
 import Headset from '/public/assets/images/icon/headset.svg'
 import { useAuthContext } from '@components/auth/hooks'
 import RowAction from '@components/multi-media/common/action-item'
+import { openSnackbarInfo } from '@store/reducers/snackbar/reducers'
 
 function UserAction() {
   const { logout } = useAuthContext()
@@ -50,7 +51,7 @@ function UserAction() {
     {
       title: 'Log Out',
       action: handleLogout
-    },
+    }
     // {
     //   title: 'Profile'
     // }
@@ -68,6 +69,7 @@ const DropMenu = () => {
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
 
+  const dispatch=useDispatch()
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen)
   }
@@ -87,7 +89,11 @@ const DropMenu = () => {
     event: Event | React.SyntheticEvent,
     type: string
   ) => {
-    router.push({pathname:'../'+type.toLowerCase(), query:null})
+    if (type == 'videos') {
+      router.push({ pathname: '../' + type.toLowerCase(), query: null })
+    } else {
+      dispatch(openSnackbarInfo('Sorry, this will come soon.'))
+    }
     handleClose(event)
   }
 
@@ -113,10 +119,10 @@ const DropMenu = () => {
     <React.Fragment>
       <TopButton
         ref={anchorRef}
-        id="composition-button"
+        id='composition-button'
         aria-controls={open ? 'composition-menu' : undefined}
         aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         onClick={handleToggle}
         main={true}
         active={
@@ -125,13 +131,13 @@ const DropMenu = () => {
       >
         <SvgIcon component={Slideshow} />
         <Typography ml={0.5}>Multimedia</Typography>
-        <SvgIcon component={ExpandMore} className="ml-5" />
+        <SvgIcon component={ExpandMore} className='ml-5' />
       </TopButton>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
-        placement="bottom-start"
+        placement='bottom-start'
         transition
         disablePortal
       >
@@ -151,16 +157,16 @@ const DropMenu = () => {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
-                  id="composition-menu"
-                  aria-labelledby="composition-button"
+                  id='composition-menu'
+                  aria-labelledby='composition-button'
                   onKeyDown={handleListKeyDown}
                 >
                   <MenuItem onClick={(e) => handleMenuClose(e, 'videos')}>
                     Videos
                   </MenuItem>
-                  {/* <MenuItem onClick={(e) => handleMenuClose(e, 'documents')}>
+                  <MenuItem onClick={(e) => handleMenuClose(e, 'documents')}>
                     Documents
-                  </MenuItem> */}
+                  </MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>
@@ -188,9 +194,16 @@ const Header = () => {
         dispatch(openVideoUploadDialog({ open: true }))
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
-      default:
-        router.push({pathname:`../${url.toLowerCase()}`, query:null})
+      case 'Videos':
+        router.push({ pathname: `../${url.toLowerCase()}`, query: null })
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
+        break
+      // default:
+      //   router.push({pathname:`../${url.toLowerCase()}`, query:null})
+      //   if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
+      //   break
+      default:
+        dispatch(openSnackbarInfo('Sorry, this part will come soon.'))
         break
     }
   }
@@ -202,7 +215,7 @@ const Header = () => {
   const HeaderDesktop = () => {
     return (
       <AppBar
-        position="fixed"
+        position='fixed'
         elevation={0}
         sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
       >
@@ -218,7 +231,7 @@ const Header = () => {
         >
           {/*-----logo----*/}
           <Box ml={4}>
-            <Image src={LogoImage} alt="logo" />
+            <Image src={LogoImage} alt='logo' />
           </Box>
 
           <Box
@@ -259,7 +272,7 @@ const Header = () => {
             <Box sx={{ p: 2, display: 'flex' }}>
               <AccountCircleOutlined fontSize={'large'} />
               <Box sx={{ ml: 1 }}>
-                {username && <Typography fontSize={14} whiteSpace="nowrap" width={120}>
+                {username && <Typography fontSize={14} whiteSpace='nowrap' width={120}>
                   {username}
                 </Typography>}
                 <Typography fontSize={10}>Admin</Typography>
@@ -278,7 +291,7 @@ const Header = () => {
   const HeaderMobile = () => {
     return (
       <AppBar
-        position="fixed"
+        position='fixed'
         elevation={0}
         sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
       >
@@ -293,17 +306,17 @@ const Header = () => {
           }}
         >
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleMobileDrawer(true)}
-            edge="start"
+            edge='start'
             sx={{ ml: 2, ...(isDesktop && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
 
           <Drawer
-            anchor="top"
+            anchor='top'
             open={vState.mobileMenuOpen}
             onClose={handleMobileDrawer(false)}
             sx={{
@@ -327,7 +340,7 @@ const Header = () => {
               }}
             >
               <Box>
-                <Image src={LogoImage} alt="logo" />
+                <Image src={LogoImage} alt='logo' />
               </Box>
 
               {CHeaderTabs.map((item, index) => (
@@ -354,9 +367,9 @@ const Header = () => {
             }}
           >
             <Box sx={{ py: 2, px: 1, display: 'flex' }}>
-              <Image src={UserLogo} alt="logo" />
+              <Image src={UserLogo} alt='logo' />
               <Box sx={{ ml: 1 }}>
-                {username && <Typography fontSize={14} whiteSpace="nowrap">
+                {username && <Typography fontSize={14} whiteSpace='nowrap'>
                   {username}
                 </Typography>}
                 <Typography fontSize={10}>Admin</Typography>

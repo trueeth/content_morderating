@@ -1,10 +1,13 @@
 import styled from "styled-components";
-
+import { StyledComponent } from '@emotion/styled'
+import { shouldForwardProp } from '@mui/system'
 interface CSSMedia {
   videoType: boolean;
   hidePlayButton: boolean;
   volumeControl: boolean;
 }
+
+
 
 export const CSSMediaWrapper = styled.div<CSSMedia>`
   .vjs-fullscreen-control.vjs-control.vjs-button.outline-enabled-control {

@@ -200,8 +200,8 @@ export default function DrawerTabPlayScene() {
             backgroundColor: 'black'
           }}>
             <Box sx={{
-              position: 'fixed',
-              top: '47%'
+              position: 'absolute',
+              top: '40%'
             }}>
               <LoadingIcons.Puff height={80} width={80} strokeWidth={3} />
             </Box>

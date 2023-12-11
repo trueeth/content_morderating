@@ -38,7 +38,7 @@ export default function DrawerTab() {
               : 'Preview thte Page'
           }
         />
-        <Tab label="Activities" />
+        {/*<Tab label="Activities" />*/}
       </Tabs>
       <Box>
         {/*<TabPanel value={vState.tabIndex} index={0}>*/}
@@ -47,9 +47,9 @@ export default function DrawerTab() {
         <TabPanel value={vState.tabIndex} index={0}>
           <DrawerTabPlayScene></DrawerTabPlayScene>
         </TabPanel>
-        <TabPanel value={vState.tabIndex} index={1}>
-          <DrawerTabActivities></DrawerTabActivities>
-        </TabPanel>
+        {/*<TabPanel value={vState.tabIndex} index={1}>*/}
+        {/*  <DrawerTabActivities></DrawerTabActivities>*/}
+        {/*</TabPanel>*/}
       </Box>
     </Box>
   )

@@ -89,17 +89,17 @@ const VideoSubtable = (props: {
             }
           }}
         >
-          <TableCell>
+          {/* <TableCell>
             <Checkbox
               checked={checked}
               onChange={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
             />
-          </TableCell>
+          </TableCell> */}
           {Object.values(EVideoDetail).map((item, index) => {
             return (
               <TableCell key={index}>
-                <Typography sx={{ fontSize: '13px', color: '#888' }}>
+                <Typography sx={{ fontSize: '13px', color: '#000' }}>
                   {item}
                 </Typography>
               </TableCell>
@@ -109,12 +109,12 @@ const VideoSubtable = (props: {
       </TableHead>
       <TableBody
         sx={{
-          '& .MuiTypography-root': { color: '#555 !important' }
+          '& .MuiTypography-root': { color: '#6f6f6f !important', fontSize:'.8rem' }
         }}
       >
         {props.rows.map((row, index) => (
           <CustomizedTableRow key={index} keyValue={index} onClick={openScene({rowIndex:props.rowIndex, subRowIndex:index})}>
-            <Checkbox />
+            {/* <Checkbox /> */}
             <Typography>{`Scene #${index + 1}`}</Typography>
             <Typography>{row.violationType}</Typography>
             <Typography whiteSpace="nowrap">{row.category}</Typography>
@@ -126,8 +126,8 @@ const VideoSubtable = (props: {
               aria-expanded={false}
             > */}
               {/*<MoreHoriz className={'action-more-horiz'} />*/}
-              {/* - */}
-            {/* </Button> */}
+              {/* -
+            </Button> */}
           </CustomizedTableRow>
         ))}
       </TableBody>
