@@ -43,6 +43,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <title>{title}</title>
         <link rel='icon' href='/assets/images/favicon.ico' sizes='any' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <link href="https://amp.azure.net/libs/amp/2.3.6/skins/amp-default/azuremediaplayer.min.css"  rel="stylesheet" />
+        <script src="https://amp.azure.net/libs/amp/2.3.6/azuremediaplayer.min.js" async></script>
       </Head>
       <header className={'w-full'}>
         <Header />

@@ -24,9 +24,9 @@ const drawerSlice = createSlice({
       state.mediaSubOpen = action.payload.open
       if (action.payload.type)
         state.type = action.payload.type
-      if (action.payload.rowIndex)
+      if (action.payload.rowIndex!==undefined)
         state.rowIndex = action.payload.rowIndex
-      if (action.payload.subRowIndex)
+      if (action.payload.subRowIndex!==undefined)
         state.subRowIndex = action.payload.subRowIndex
     }
   }

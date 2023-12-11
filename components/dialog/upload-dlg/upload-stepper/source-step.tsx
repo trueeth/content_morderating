@@ -16,13 +16,14 @@ import {
 } from '@store/reducers/snackbar/reducers'
 import {
   apiGetUploadMediaId, apiUploadedVideoProcess,
-  apiUploadVideo,
+  apiUploadVideo
 } from '@interfaces/apis/upload'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { setApiLoading } from '@store/reducers/api/reducers'
-import { extend } from 'dayjs'
+import { EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
+import { useRouter } from 'next/router'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -63,6 +64,8 @@ type TStateSource = {
   uploadRemaining?: number
 }
 
+const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
 export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
@@ -75,6 +78,7 @@ export default function SourceStep(props: {
     uploadRemaining: 0
   })
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const onFileUpload = async () => {
 
@@ -82,54 +86,54 @@ export default function SourceStep(props: {
 
     if (!vState.uploadFile) return
 
-    type TUploadInfo=  TResVideo.TVideoContent & {
+    type TUploadInfo = TResVideo.TVideoContent & {
       ModeratorNotes?: string,
-      Rating?:string,
+      Rating?: string,
     }
 
     let uploadInfo: TUploadInfo = {
-      AIClassification : 'None',
-      AiClassificationEndTime : null,
-      AiClassificationStartTime : null,
-      AiClassificationStatus : "New",
-      AzureIndexerEndTime : null,
-      AzureIndexerStartTime : null,
-      AzureIndexerStatus : "New",
-      AzureIndexerVideoId : null,
-      Description : "trueeth video upload",
-      Duration : null,
-      FileName : null,
-      FrameAnalyticsStatus : "New",
-      FrameClassificationEndTime : null,
-      FrameClassificationStartTime : null,
-      FrameExractionEndTime : null,
-      FrameExractionStartTime : null,
-      FrameExtractionStatus : "New",
-      FrameRate : null,
-      Id : "00000000-0000-0000-0000-000000000000",
-      InternalVideoPath : null,
-      MediaSourceId : "49f5cc65-53c4-4caf-94dc-d1f29e6665ec",
-      ModeratorApprovalStatus : "New",
-      ModeratorClassification : "None",
-      ModeratorNotes : '',
-      Name : props.data.newOld.newTitle,
-      Notes : "a",
-      OriginalFileName : null,
-      ProcessingStatusPercentage : null,
-      Rating : "None",
-      SaveToCosmosEndTime : null,
-      SaveToCosmosStartTime : null,
-      SaveToCosmosStatus : "New",
-      Status : "New",
-      TranscripClassificationEndTime : null,
-      TranscripClassificationStartTime : null,
-      TranscriptAnalyticsStatus : "New",
-      TranscriptGenerationEndTime : null,
-      TranscriptGenerationStartTime : null,
-      TranscriptGenerationStatus : "New",
-      UploadedOnUtc : "0001-01-01T00:00:00+00:00",
-      VersionNumber : 0,
-      VideoSummary : null,
+      AIClassification: EMediaRating.none,
+      AiClassificationEndTime: null,
+      AiClassificationStartTime: null,
+      AiClassificationStatus: EProcessingStatus.new,
+      AzureIndexerEndTime: null,
+      AzureIndexerStartTime: null,
+      AzureIndexerStatus: EProcessingStatus.new,
+      AzureIndexerVideoId: null,
+      Description: 'trueeth video upload',
+      Duration: null,
+      FileName: null,
+      FrameAnalyticsStatus: EProcessingStatus.new,
+      FrameClassificationEndTime: null,
+      FrameClassificationStartTime: null,
+      FrameExractionEndTime: null,
+      FrameExractionStartTime: null,
+      FrameExtractionStatus: 'New',
+      FrameRate: null,
+      Id: '00000000-0000-0000-0000-000000000000',
+      InternalVideoPath: null,
+      MediaSourceId: '49f5cc65-53c4-4caf-94dc-d1f29e6665ec',
+      ModeratorApprovalStatus: EModeratorApprovalStatus.new,
+      ModeratorClassification: EMediaRating.none,
+      ModeratorNotes: '',
+      Name: props.data.newOld.newTitle,
+      Notes: 'a',
+      OriginalFileName: null,
+      ProcessingStatusPercentage: null,
+      Rating: 'None',
+      SaveToCosmosEndTime: null,
+      SaveToCosmosStartTime: null,
+      SaveToCosmosStatus: EProcessingStatus.new,
+      Status: EProcessingStatus.new,
+      TranscripClassificationEndTime: null,
+      TranscripClassificationStartTime: null,
+      TranscriptAnalyticsStatus: EProcessingStatus.new,
+      TranscriptGenerationEndTime: null,
+      TranscriptGenerationStartTime: null,
+      TranscriptGenerationStatus: EProcessingStatus.new,
+      UploadedOnUtc: '0001-01-01T00:00:00+00:00',
+      VersionNumber: 0,
+      VideoSummary: null
     }
 
     var formData = new FormData()
@@ -165,15 +169,25 @@ export default function SourceStep(props: {
       let uploadContent: { data: TResVideo.TVideoContent } =
         await apiUploadVideo(uploadId.data, formData, options)
       dispatch(openSnackbarSuccess('File was uploaded successfully:'))
-      dispatch(setApiLoading(false))
-      await apiUploadedVideoProcess(uploadId.data.Id)
-
+      try {
+        await apiUploadedVideoProcess(uploadId.data.Id)
+      } catch (e) {
+        console.error(e)
+        dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
+      } finally {
+        dispatch(setApiLoading(false))
+        setTimeout(()=>{
+          router.reload()
+        },2000)
+      }
     } catch (e) {
       console.error(e)
-      dispatch(setApiLoading(false))
       dispatch(openSnackbarWarning('Sorry! Something went wrong while uploading file.'))
+      dispatch(setApiLoading(false))
     }
+
   }
+
 
   const handleFileSelect = (file: TFile) => {
     setState(prevState => {

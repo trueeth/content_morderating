@@ -36,7 +36,7 @@ const useTablePagination = () => {
           )
         }
       })
-  }, [appState, router.pathname])
+  }, [appState])
 
   useEffect(() => {
     if(Object.keys(router.query).length==0)

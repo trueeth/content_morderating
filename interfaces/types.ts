@@ -19,7 +19,7 @@ export type TVideoRowType = {
   classification?: EClassificationType[]
   submissionDate?: string
   moderator_approval?: EModeratorApprovalStatus
-  ai_approval?: EMediaRating
+  ai_approval?: EModeratorApprovalStatus
   flaggedScenes?: number
   subRows?: TVideoSubRowType[]
 }
@@ -71,7 +71,7 @@ export type THistoryRowType = {
 
 export type TVideoSubRowType = {
   sceneNumber?: number
-  violationType?: EViolationType
+  violationType?: string
   category?: string
   description?: string
 }

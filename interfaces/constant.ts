@@ -20,9 +20,8 @@ export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string , url?:s
   { icon: FileUpload, title: 'Upload' , dialog:'upload'}
 ]
 
-export const CDrawerState = [{ title: EVideoColumn.status, value: 1 }]
 
-// @TODO can be delete
+
 export const CSceneState = ['Processing', 'Approved', 'Unapproved']
 
 export const CFlaggedScenesMax = 10000

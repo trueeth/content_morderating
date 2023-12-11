@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 import { apiIdentifyAuth } from '@interfaces/apis/auth'
-import { GetServerSideProps } from 'next'
+// import { GetServerSideProps } from 'next'
 
 export default function AuthSection() {
   const { login } = useAuthContext()
@@ -41,7 +41,7 @@ export default function AuthSection() {
       dispatch(openSnackbarSuccess('Already You are logined!'))
       router.push('/dashboard')
     }
-  }, [dispatch, authenticated, router])
+  }, [dispatch, authenticated, router, vState.username])
 
   return (
     <Box

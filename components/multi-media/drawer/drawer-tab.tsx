@@ -30,7 +30,7 @@ export default function DrawerTab() {
           backgroundColor: 'var(--Secondry-L)'
         }}
       >
-        <Tab label="Overview" />
+        {/*<Tab label="Overview" />*/}
         <Tab
           label={
             appState.drawer.type === 'video'
@@ -41,13 +41,13 @@ export default function DrawerTab() {
         <Tab label="Activities" />
       </Tabs>
       <Box>
+        {/*<TabPanel value={vState.tabIndex} index={0}>*/}
+        {/*  <DrawerTabOverview></DrawerTabOverview>*/}
+        {/*</TabPanel>*/}
         <TabPanel value={vState.tabIndex} index={0}>
-          <DrawerTabOverview></DrawerTabOverview>
-        </TabPanel>
-        <TabPanel value={vState.tabIndex} index={1}>
           <DrawerTabPlayScene></DrawerTabPlayScene>
         </TabPanel>
-        <TabPanel value={vState.tabIndex} index={2}>
+        <TabPanel value={vState.tabIndex} index={1}>
           <DrawerTabActivities></DrawerTabActivities>
         </TabPanel>
       </Box>

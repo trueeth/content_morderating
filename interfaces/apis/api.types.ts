@@ -59,7 +59,7 @@ export declare namespace TResVideo {
 
   type TVideoSummary = {
     AdultScore?: number
-    AutomaticApprovalStatus?: string
+    AutomaticApprovalStatus?: EModeratorApprovalStatus
     HateSeverity?: string
     Id?: string
     IndexerVideoId?: string

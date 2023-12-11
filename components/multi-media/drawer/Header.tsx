@@ -5,7 +5,7 @@ import { IAppSlice } from '@store/reducers'
 import { IReduxState } from '@store/index'
 import { format, parseISO } from 'date-fns'
 import { useMemo } from 'react'
-import { EClassificationType } from '@interfaces/enums'
+import { EClassificationType, ESeverity } from '@interfaces/enums'
 
 export default function DrawerHeader() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -20,7 +20,7 @@ export default function DrawerHeader() {
       Rating?: string,
       Classification?: EClassificationType[],
       SubmissionDate?: string,
-      Approval?: string
+      AiApproval?: string
     } = {}
 
     try {
@@ -28,19 +28,23 @@ export default function DrawerHeader() {
       const subRowIndex = appState.drawer.subRowIndex
       const data = appState.api.data
 
+      const subRowData=data[rowIndex].VideoSummary?.SceneSummaries[subRowIndex];
+
       const submissionDate = format(parseISO(data[rowIndex].UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
 
-
       let classifications: EClassificationType[] = []
-      if (data[rowIndex].VideoSummary?.SexualSeverity == 'Extreme')
+
+      if (subRowData.SexualSeverity!==ESeverity.none)
         classifications.push(EClassificationType.sexual)
-      if (data[rowIndex].VideoSummary?.SelfHarmSeverity == 'Extreme')
-        classifications.push(EClassificationType.selfHarm)
-      if (data[rowIndex].VideoSummary?.HateSeverity == 'Extreme')
-        classifications.push(EClassificationType.hate)
-      if (data[rowIndex].VideoSummary?.ViolenceSeverity == 'Extreme')
+
+      if (subRowData.ViolenceSeverity!==ESeverity.none)
         classifications.push(EClassificationType.violance)
 
+      if (subRowData.SelfHarmSeverity!==ESeverity.none)
+        classifications.push(EClassificationType.selfHarm)
+
+      if (subRowData.HateSeverity!==ESeverity.none)
+        classifications.push(EClassificationType.hate)
 
       memoValue = {
         Index: subRowIndex + 1,
@@ -49,11 +53,11 @@ export default function DrawerHeader() {
           '            many tasks and responsibilities in the government. Mohammed bin\n' +
           '            Nayef is then appointed Crown Prince and Deputy Prime Minister, but\n' +
           '            he is dismissed in 2017 and Mohammed bin Salman',
-        Status: data[rowIndex].Status,
-        Rating: data[rowIndex].VideoSummary.Rating,
+        Status: subRowData.ModeratorApprovalStatus,
+        Rating: data[rowIndex].VideoSummary?.Rating,
         Classification: classifications,
         SubmissionDate: submissionDate,
-        Approval: data[rowIndex].ModeratorApprovalStatus
+        AiApproval: subRowData.AutomaticApprovalStatus
       }
     } catch (e) {
       console.log(e)
@@ -92,9 +96,9 @@ export default function DrawerHeader() {
       </header>
       {appState.drawer.type === 'video' ? (
         <>
-          <Typography>
-            {memorizedValue.Description}
-          </Typography>
+          {/*<Typography>*/}
+          {/*  {memorizedValue.Description}*/}
+          {/*</Typography>*/}
           <Box
             sx={{
               mt: 2,
@@ -113,7 +117,7 @@ export default function DrawerHeader() {
           >
             <Box>
               <Typography>STATUS : &nbsp;</Typography>
-              <Typography color='var(--Secondary)'> NEW</Typography>
+              <Typography color='var(--Secondary)'> {memorizedValue.Status}</Typography>
             </Box>
             <Box>
               <Typography>RATING : &nbsp;</Typography>
@@ -122,7 +126,7 @@ export default function DrawerHeader() {
             <Box>
               <Typography>CLASSIFICATION : &nbsp; </Typography>
               <Typography>
-                {memorizedValue.Classification?.join(',')}
+                {memorizedValue.Classification?.length>0? memorizedValue.Classification?.join(','):'-'}
               </Typography>
             </Box>
             <Box>
@@ -134,7 +138,7 @@ export default function DrawerHeader() {
             <Box>
               <Typography>APPROVAL : &nbsp; </Typography>
               <Typography className='approve'>
-                {memorizedValue.Approval}
+                {memorizedValue.AiApproval}
               </Typography>
             </Box>
           </Box>

@@ -10,13 +10,14 @@ import { styled } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import { Slideshow } from '@mui/icons-material'
 import { useState } from 'react'
-import { CSceneState } from '@interfaces/index'
+import { CSceneState, EModeratorApprovalStatus } from '@interfaces/index'
 import { DrawerHistories } from '@interfaces/apis/_mock'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import { apiUpdateVideoSceneSummary } from '@interfaces/apis/videos'
 import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
+import { useRouter } from 'next/router'
 
 
 interface IHistoryRow {
@@ -98,13 +99,15 @@ const HistoryRow = (props: IHistoryRow) => {
 }
 
 export default function DrawerTabActivities() {
-  const [vState, setState] = useState({ scene: 'Processing', notes: '' })
+  const [vState, setState] = useState({ moderatorStatus: 'Processing', notes: '' })
   const handleScenceState = (
     event: React.MouseEvent<HTMLElement>,
     newState: string | null
   ) => {
-    setState(prevState => ({ ...prevState, scene: newState }))
+    setState(prevState => ({ ...prevState, moderatorStatus: newState }))
   }
+
+  const router=useRouter()
 
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -121,10 +124,26 @@ export default function DrawerTabActivities() {
     const currentDate = new Date()
     const isoString = currentDate.toISOString()
 
+    let parmasStatus=EModeratorApprovalStatus.new
+    switch (vState.moderatorStatus) {
+      case CSceneState[0]:
+        parmasStatus=EModeratorApprovalStatus.inReview
+        break
+      case CSceneState[1]:
+        parmasStatus=EModeratorApprovalStatus.approved
+        break
+      case CSceneState[2]:
+        parmasStatus=EModeratorApprovalStatus.rejected
+        break
+      default:
+        break
+    }
+
+
     let parmas = {
       'SceneSummaryId': data[rowIndex].VideoSummary?.SceneSummaries[subRowIndex].Id,
       'OnModeratorModifiedUtc': isoString,
-      'Status': 'New',
+      'Status': parmasStatus,
       'Rating': 'None',
       'Notes': vState.notes,
       'ModeratorUsername': 'demo'
@@ -134,6 +153,10 @@ export default function DrawerTabActivities() {
       dispatch(openSnackbarSuccess('Success, updated VideoSceneSummary data'))
     } catch (e) {
       dispatch(openSnackbarError('Error, updating VideoSceneSummary'))
+    } finally {
+      setTimeout(()=>{
+        router.reload()
+      },2000)
     }
   }
 
@@ -154,7 +177,7 @@ export default function DrawerTabActivities() {
         }}
       >
         <ToggleButtonGroup
-          value={vState.scene}
+          value={vState.moderatorStatus}
           exclusive
           aria-label='text alignment'
           onChange={handleScenceState}
@@ -211,19 +234,19 @@ export default function DrawerTabActivities() {
       </Box>
 
       {/*  ------------History--------*/}
-      <Box>
-        <Typography ml={3}>History</Typography>
-        <Box>
-          {DrawerHistories.map((item, index) => (
-            <HistoryRow
-              key={index}
-              writerName={item.writerName}
-              writeDate={item.writeDate}
-              description={item.description}
-            />
-          ))}
-        </Box>
-      </Box>
+      {/*<Box>*/}
+      {/*  <Typography ml={3}>History</Typography>*/}
+      {/*  <Box>*/}
+      {/*    {DrawerHistories.map((item, index) => (*/}
+      {/*      <HistoryRow*/}
+      {/*        key={index}*/}
+      {/*        writerName={item.writerName}*/}
+      {/*        writeDate={item.writeDate}*/}
+      {/*        description={item.description}*/}
+      {/*      />*/}
+      {/*    ))}*/}
+      {/*  </Box>*/}
+      {/*</Box>*/}
     </Box>
   )
 }

@@ -7,13 +7,11 @@ import TableBody from '@mui/material/TableBody';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import MoreHoriz from '@mui/icons-material/MoreHoriz';
+// import MoreHoriz from '@mui/icons-material/MoreHoriz';
 import { useDispatch } from 'react-redux';
 import { TVideoSubRowType } from '@interfaces/types';
 import { EVideoDetail } from '@interfaces/enums';
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers';
-
-
 
 
   // Define the table row component outside of the VideoSubtable to prevent unnecessary re-renders
@@ -126,7 +124,8 @@ const VideoSubtable = (props: {
               aria-haspopup="true"
               aria-expanded={false}
             >
-              <MoreHoriz className={'action-more-horiz'} />
+              {/*<MoreHoriz className={'action-more-horiz'} />*/}
+              -
             </Button>
           </CustomizedTableRow>
         ))}

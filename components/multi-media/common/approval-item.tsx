@@ -6,9 +6,9 @@ const RowApproval = (props: { approval: string }) => {
   return (
     <Box
       className={clsx(
-        props.approval === EModeratorApprovalStatus.approved && 'reject',
-        props.approval === EModeratorApprovalStatus.new && 'reject',
-        props.approval === EModeratorApprovalStatus.rejected && 'pending',
+        props.approval === EModeratorApprovalStatus.approved && 'approve',
+        props.approval === EModeratorApprovalStatus.new && 'new',
+        props.approval === EModeratorApprovalStatus.rejected && 'reject',
         props.approval === EModeratorApprovalStatus.inReview && 'review',
         'text-center'
       )}

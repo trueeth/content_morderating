@@ -79,7 +79,6 @@ export const MediaActionwrapper = (props: IActionPros) => {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
 
   const take = appState.pagination.pageSize;
-  const data = appState.api.data;
   const skip = appState.pagination.pageSize * (appState.pagination.pageIndex - 1);
 
   useEffect(() => {

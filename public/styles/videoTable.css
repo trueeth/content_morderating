@@ -15,6 +15,14 @@
   text-transform: uppercase;
   line-height: 0.875rem; /* 100% */
 }
+.status-processing {
+  color: black;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 0.875rem; /* 100% */
+}
 .text-uppercase {
   text-transform: uppercase !important;
 }
@@ -51,6 +59,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.new {
+  color: var(--Primary2);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 0.875rem; /* 100% */
 }
 
 .approval {

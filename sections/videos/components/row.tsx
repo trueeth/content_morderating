@@ -74,13 +74,15 @@ function VideoRow(props: {
       >
         {/* Expand/Collapse button */}
         <TableCell>
-          <IconButton
+          {props.row.subRows.length>0?
+            <IconButton
             aria-label='expand row'
             size='small'
             onClick={handleDetail}
-          >
-            {vState.openSummary ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
-          </IconButton>
+        >
+          {vState.openSummary ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
+        </IconButton>:
+            null}
         </TableCell>
 
         {/* Name cell */}
