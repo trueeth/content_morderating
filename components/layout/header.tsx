@@ -14,7 +14,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import LogoImage from '../../public/assets/images/logo.png'
 import UserLogo from '../../public/assets/images/user.png'
-import { ExpandMore, Slideshow } from '@mui/icons-material'
+import { AccountCircleOutlined, ExpandMore, Slideshow } from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { TopButton } from '@components/common/styled-button'
@@ -257,7 +257,7 @@ const Header = () => {
             }}
           >
             <Box sx={{ p: 2, display: 'flex' }}>
-              <Image src={UserLogo} alt="logo" />
+              <AccountCircleOutlined fontSize={'large'} />
               <Box sx={{ ml: 1 }}>
                 {username && <Typography fontSize={14} whiteSpace="nowrap" width={120}>
                   {username}

@@ -19,7 +19,7 @@ import { openMediaSubDrawer } from '@store/reducers/drawer/reducers';
   const CustomizedTableRow = ({ children, onClick, keyValue }) => (
     <TableRow key={keyValue}>
       {children.map((item, idx) => {
-        if (idx > 0 && idx < 5) {
+        if (idx >= 0 && idx < 5) {
           return (
             <TableCell onClick={onClick} key={idx}>
               {item}
@@ -36,8 +36,7 @@ const VideoSubtable = (props: {
   rows: TVideoSubRowType[],
   rowIndex:number
 }) => {
-  
-  
+
   const [checked, setChecked] = React.useState(false)
   const dispatch = useDispatch()
 
