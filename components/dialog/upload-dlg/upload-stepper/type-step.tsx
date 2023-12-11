@@ -42,8 +42,8 @@ export default function TypeStep(props: { handleNext: (any) => void }) {
           onChange={handleChange}
         >
           <FormControlLabel value="Video" control={<Radio />} label="Video" />
-          <FormControlLabel value="Audio" control={<Radio />} label="Audio" />
-          <FormControlLabel value="Document" control={<Radio />} label="Book" />
+          {/* <FormControlLabel value="Audio" control={<Radio />} label="Audio" />
+          <FormControlLabel value="Document" control={<Radio />} label="Book" /> */}
         </RadioGroup>
         <Box sx={{ textAlign: 'center' }}>
           <PrimaryButton onClick={handleNext} sx={{ width: '100px' }}>

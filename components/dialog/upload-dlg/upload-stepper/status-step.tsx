@@ -75,16 +75,16 @@ export default function StatusStep(props: {
             setState({ ...vState, newTitle: event.target.value })
           }
         />
-        <Typography>OR</Typography>
-        <Box mt={-2}>
+        {/* <Typography>OR</Typography> */}
+        {/* <Box mt={-2}>
           <Typography>Replace{!isXs && 'existing one'}</Typography>
           <Radio
             checked={vState.type === 'old'}
             onChange={handleType}
             value={'old'}
           />
-        </Box>
-        <Select
+        </Box> */}
+        {/* <Select
           value={vState.replaceItem}
           onChange={handleReplace}
           fullWidth
@@ -123,7 +123,7 @@ export default function StatusStep(props: {
           >
             Poppy
           </MenuItem>
-        </Select>
+        </Select> */}
         <Box
           sx={{
             mt: 2,
