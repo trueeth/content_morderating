@@ -111,7 +111,7 @@ function VideoRow(props: {
         <TableCell><Box className={'flex justify-center item-center approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
         <TableCell><Box className={'flex justify-center item-center approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
         <TableCell><Box className={'flex'} maxWidth={'100px'}>{props.row.submissionDate}</Box></TableCell>
-        <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell>
+        {/* <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell> */}
         <TableCell><RowAction actions={rowActions} /></TableCell>
       </TableRow>
 

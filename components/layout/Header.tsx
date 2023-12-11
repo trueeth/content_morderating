@@ -51,9 +51,9 @@ function UserAction() {
       title: 'Log Out',
       action: handleLogout
     },
-    {
-      title: 'Profile'
-    }
+    // {
+    //   title: 'Profile'
+    // }
   ]
 
   return (
@@ -158,9 +158,9 @@ const DropMenu = () => {
                   <MenuItem onClick={(e) => handleMenuClose(e, 'videos')}>
                     Videos
                   </MenuItem>
-                  <MenuItem onClick={(e) => handleMenuClose(e, 'documents')}>
+                  {/* <MenuItem onClick={(e) => handleMenuClose(e, 'documents')}>
                     Documents
-                  </MenuItem>
+                  </MenuItem> */}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
@@ -174,6 +174,7 @@ const DropMenu = () => {
 const Header = () => {
   const hasMounted = useMounted()
   const isDesktop = useMediaQuery('(min-width: 1224px)')
+  const username = localStorage.getItem('username')
 
   const router = useRouter()
 
@@ -258,15 +259,15 @@ const Header = () => {
             <Box sx={{ p: 2, display: 'flex' }}>
               <Image src={UserLogo} alt="logo" />
               <Box sx={{ ml: 1 }}>
-                <Typography fontSize={14} whiteSpace="nowrap">
-                  Mathew Salomon
-                </Typography>
+                {username && <Typography fontSize={14} whiteSpace="nowrap" width={120}>
+                  {username}
+                </Typography>}
                 <Typography fontSize={10}>Admin</Typography>
               </Box>
               <UserAction />
             </Box>
             <Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              <Image src={Headset} alt={'headset'} width={24}></Image>
+              {/* <Image src={Headset} alt={'headset'} width={24}></Image> */}
             </Box>
           </Box>
         </Box>
@@ -355,14 +356,14 @@ const Header = () => {
             <Box sx={{ py: 2, px: 1, display: 'flex' }}>
               <Image src={UserLogo} alt="logo" />
               <Box sx={{ ml: 1 }}>
-                <Typography fontSize={14} whiteSpace="nowrap">
-                  Mathew Salomon
-                </Typography>
+                {username && <Typography fontSize={14} whiteSpace="nowrap">
+                  {username}
+                </Typography>}
                 <Typography fontSize={10}>Admin</Typography>
               </Box>
             </Box>
             <Box sx={{ px: 1, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              <HeadsetMicIcon />
+              {/* <HeadsetMicIcon /> */}
             </Box>
           </Box>
         </Box>

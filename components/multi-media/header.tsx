@@ -51,7 +51,7 @@ const MediaSectionHeader = (props: IProps) => {
         <Grid item>
           {/* Media title and Filters button */}
           <Typography>{props.title}</Typography>
-          <Button
+          {/* <Button
             variant="outlined"
             startIcon={<FilterList />}
             sx={{
@@ -63,15 +63,16 @@ const MediaSectionHeader = (props: IProps) => {
             }}
           >
             Filters
-          </Button>
+          </Button> */}
         </Grid>
 
         <Grid item container spacing={2} sx={{ width: 'fit-content' }}>
           {/* Group by select, SearchInput, and Export button */}
           <Grid item>
             {/* Label and Select for "Group by" */}
-            <Typography whiteSpace="nowrap">Group by:</Typography>
-            <Select
+            {/* <Typography whiteSpace="nowrap">Group by:</Typography> */}
+            {/* Menu items for each groupByValue */}
+            {/* <Select
               value={vState.groupBy}
               onChange={handleGroupByChange}
               sx={{
@@ -81,24 +82,23 @@ const MediaSectionHeader = (props: IProps) => {
                 fontSize: '.8rem',
               }}
             >
-              {/* Menu items for each groupByValue */}
               {props.groupByValue.map((val, index) => (
                 <MenuItem key={index} value={index} sx={{ fontSize: '.8rem' }}>
                   {val}
                 </MenuItem>
               ))}
-            </Select>
+            </Select> */}
           </Grid>
           <Grid item>
             {/* SearchInput component */}
-            <SearchInput />
+            {/* <SearchInput /> */}
           </Grid>
           <Grid item>
             {/* PrimaryButton for export */}
-            <PrimaryButton onClick={handleExport}>
+            {/* <PrimaryButton onClick={handleExport}>
               <GetApp sx={{ color: 'white' }} />
               Export
-            </PrimaryButton>
+            </PrimaryButton> */}
           </Grid>
         </Grid>
       </Grid>

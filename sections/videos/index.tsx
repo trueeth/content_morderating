@@ -10,7 +10,7 @@ import {
 const VideoSection = () => {
   const WrapperHeader = () => {
     const groupByValue = ['New Video', 'Rejected Video']
-    return <MediaSectionHeader title={'Video'} groupByValue={groupByValue} />
+    return <MediaSectionHeader title={'Videos'} groupByValue={groupByValue} />
   }
 
   return (

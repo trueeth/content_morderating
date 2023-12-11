@@ -31,7 +31,8 @@ function Container({ children }: Props) {
       router.push('/auth')
     } else {
       setChecked(true)
-      if (router.pathname == '/') router.push('/dashboard')
+      // if (router.pathname == '/') router.push('/dashboard')
+      if (router.pathname == '/') router.push('/videos')
     }
   }, [authenticated, router])
 

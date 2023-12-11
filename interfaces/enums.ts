@@ -7,7 +7,7 @@ export enum EVideoColumn {
   moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
-  flaggedScenes = 'FLAGGED SCENES',
+  // flaggedScenes = 'FLAGGED SCENES',
   actions = 'ACTIONS'
 }
 export enum EDocumentColumn {
@@ -92,8 +92,8 @@ export enum EVideoDetail {
   pageNumber = 'SCENE NUMBER',
   violationType = 'VIOLATION TYPE',
   category = 'CATEGORY',
-  description = 'DESCRIPTION',
-  action = 'ACTIONS'
+  // description = 'DESCRIPTION',
+  // action = 'ACTIONS'
 }
 
 export enum EDocDetail {

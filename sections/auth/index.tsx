@@ -28,7 +28,9 @@ export default function AuthSection() {
       await apiIdentifyAuth({Username:vState.username,Password:vState.pwd})
       await login(vState.username, vState.pwd)
       dispatch(openSnackbarSuccess('Login Success!'))
-      router.push('/dashboard')
+      localStorage.setItem('username', vState.username);
+      // router.push('/dashboard')
+      router.push('/videos')
     } catch (e) {
       setState({ ...vState, username: '', pwd: '', error: true })
     }
@@ -39,7 +41,8 @@ export default function AuthSection() {
   useEffect(() => {
     if (authenticated&&vState.username=='') {
       dispatch(openSnackbarSuccess('Already You are logined!'))
-      router.push('/dashboard')
+      // router.push('/dashboard')
+      router.push('/videos')
     }
   }, [dispatch, authenticated, router, vState.username])
 

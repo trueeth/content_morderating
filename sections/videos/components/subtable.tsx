@@ -74,7 +74,8 @@ const VideoSubtable = (props: {
         mb: 0.5,
         '& .MuiTableCell-root': {
           borderTop: 'none !important',
-          maxWidth: '400px'
+          maxWidth: '400px',
+          height: '60px',
         }
       }}
     >
@@ -84,17 +85,18 @@ const VideoSubtable = (props: {
             '& .MuiTableCell-root': {
               whiteSpace: 'nowrap',
               color: '#333',
-              fontSize: '12px'
+              fontSize: '12px',
+              height: '60px',
             }
           }}
         >
-          <TableCell>
+          {/* <TableCell>
             <Checkbox
               checked={checked}
               onChange={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
             />
-          </TableCell>
+          </TableCell> */}
           {Object.values(EVideoDetail).map((item, index) => {
             return (
               <TableCell key={index}>
@@ -113,20 +115,20 @@ const VideoSubtable = (props: {
       >
         {props.rows.map((row, index) => (
           <CustomizedTableRow key={index} keyValue={index} onClick={openScene({rowIndex:props.rowIndex, subRowIndex:index})}>
-            <Checkbox />
+            {/* <Checkbox /> */}
             <Typography>{`Scene #${index + 1}`}</Typography>
             <Typography>{row.violationType}</Typography>
             <Typography whiteSpace="nowrap">{row.category}</Typography>
-            <Typography>{row.description}</Typography>
-            <Button
+            {/* <Typography>{row.description}</Typography> */}
+            {/* <Button
               id={`scene-button-${index}`}
               aria-controls="basic-menu"
               aria-haspopup="true"
               aria-expanded={false}
-            >
+            > */}
               {/*<MoreHoriz className={'action-more-horiz'} />*/}
-              -
-            </Button>
+              {/* -
+            </Button> */}
           </CustomizedTableRow>
         ))}
       </TableBody>
