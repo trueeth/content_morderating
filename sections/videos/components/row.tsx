@@ -49,8 +49,8 @@ function VideoRow(props: {
 
   // Actions to be displayed for each row
   const rowActions = [
-    { title: 'Classification' },
-    { title: 'Reports' },
+    // { title: 'Classification' },
+    // { title: 'Reports' },
     {
       title: 'Insights',
       action: () => router.push(`/videos/${appState.api.data[props.rowIndex].Id}`)

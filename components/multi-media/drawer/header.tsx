@@ -105,6 +105,7 @@ export default function DrawerHeader() {
               display: 'flex',
               flexWrap: 'wrap',
               gap: 2,
+              width: '100%',
               '& .MuiBox-root': {
                 display: 'flex',
                 alignItems: 'center',
@@ -129,6 +130,23 @@ export default function DrawerHeader() {
                 {memorizedValue.Classification?.length>0? memorizedValue.Classification?.join(','):'-'}
               </Typography>
             </Box>
+          </Box>
+          <Box
+            sx={{
+              mt: 2,
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 2,
+              '& .MuiBox-root': {
+                display: 'flex',
+                alignItems: 'center',
+                '& .MuiTypography-root:first-of-type': {
+                  color: 'grey',
+                  fontSize: '14px'
+                }
+              }
+            }}
+          >
             <Box>
               <Typography>SUBMISSION DATE : &nbsp;</Typography>
               <Typography>
