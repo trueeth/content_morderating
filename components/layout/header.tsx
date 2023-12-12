@@ -270,8 +270,8 @@ const Header = () => {
             }}
           >
             <Box sx={{ p: 2, display: 'flex' }}>
-              <AccountCircleOutlined fontSize={'large'} />
-              <Box sx={{ ml: 1 }}>
+              <Image src={UserLogo} alt={'user'} style={{ borderRadius: '50%' }} />
+              <Box sx={{ ml: 2 }}>
                 {username && <Typography fontSize={14} whiteSpace='nowrap' width={120}>
                   {username}
                 </Typography>}
@@ -367,8 +367,8 @@ const Header = () => {
             }}
           >
             <Box sx={{ py: 2, px: 1, display: 'flex' }}>
-              <Image src={UserLogo} alt='logo' />
-              <Box sx={{ ml: 1 }}>
+              <Image src={UserLogo} alt={'user'} style={{ borderRadius: '50%' }} />
+              <Box sx={{ ml: 2 }}>
                 {username && <Typography fontSize={14} whiteSpace='nowrap'>
                   {username}
                 </Typography>}
