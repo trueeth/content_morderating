@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   Box,
   Paper,
@@ -10,22 +10,24 @@ import {
   TableRow,
   tableCellClasses,
   Typography
-} from '@mui/material';
-import useTablePagination from '@hooks/use-table-pagination';
-import MediaDrawer from '@components/multi-media/drawer';
-import { TDocumentRowType, TVideoRowType } from '@interfaces/types';
-import { IReduxState } from '@store/index';
-import { IAppSlice } from '@store/reducers';
-import { EDocumentColumn, EMediaType, EVideoColumn } from '@interfaces/enums';
-import VideoRow from '@sections/videos/components/row';
-import DocumentRow from '@sections/documents/components/row';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { resToVideoRowAdapter } from '@interfaces/apis/data-adapter/data-video';
-import { apiGetVideoContents } from '@interfaces/apis/videos';
-import { setPaginationTotalCount } from '@store/reducers/page/reducers';
-import { setApiData, setApiError, setApiLoading } from '@store/reducers/api/reducers';
-import { apiGetDocumentContents } from '@interfaces/apis/documents';
+} from '@mui/material'
+import useTablePagination from '@hooks/use-table-pagination'
+import MediaDrawer from '@components/multi-media/drawer'
+import { TDocumentRowType, TVideoRowType } from '@interfaces/types'
+import { IReduxState } from '@store/index'
+import { IAppSlice } from '@store/reducers'
+import { EDocumentColumn, EMediaType, EVideoColumn } from '@interfaces/enums'
+import VideoRow from '@sections/videos/components/row'
+import DocumentRow from '@sections/documents/components/row'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { resToVideoRowAdapter } from '@interfaces/apis/data-adapter/data-video'
+import { apiGetVideoContents } from '@interfaces/apis/videos'
+import { setPaginationTotalCount } from '@store/reducers/page/reducers'
+import { setApiData, setApiError, setApiLoading } from '@store/reducers/api/reducers'
+import { apiGetDocumentContents } from '@interfaces/apis/documents'
+import { resToDocumentRowAdapter } from '@interfaces/apis/data-adapter/data-document'
+import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
 
 // MediaWrapper component
 interface IMediaProps {
@@ -34,7 +36,7 @@ interface IMediaProps {
 }
 
 export const MediaWrapper = (props: IMediaProps) => {
-  const { CustomPagination } = useTablePagination();
+  const { CustomPagination } = useTablePagination()
 
   return (
     <Box
@@ -60,8 +62,8 @@ export const MediaWrapper = (props: IMediaProps) => {
       <CustomPagination />
       <MediaDrawer />
     </Box>
-  );
-};
+  )
+}
 
 // MediaActionwrapper component
 interface IActionPros {
@@ -73,45 +75,50 @@ export const MediaActionwrapper = (props: IActionPros) => {
     rows: (TVideoRowType | TDocumentRowType)[];
   }>({
     rows: []
-  });
+  })
 
-  const dispatch = useDispatch();
-  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
+  const dispatch = useDispatch()
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  const take = appState.pagination.pageSize;
-  const skip = appState.pagination.pageSize * (appState.pagination.pageIndex - 1);
+  const take = appState.pagination.pageSize
+  const skip = appState.pagination.pageSize * (appState.pagination.pageIndex - 1)
 
   useEffect(() => {
     // Fetch data when component mounts or pagination change
     (async () => {
       try {
-        dispatch(setApiLoading(true));
+        dispatch(setApiLoading(true))
 
         // Choose the correct API function based on the media type
-        const apiFunction = props.type === 'video' ? apiGetVideoContents : apiGetDocumentContents;
+        const apiFunction = props.type === 'video' ? apiGetVideoContents : apiGetDocumentContents
 
-        const resData = await apiFunction({ '$take': take, '$skip': skip, '$orderbyexpression':'UploadedOnUtc desc' });
+        const resData = await apiFunction({ '$take': take, '$skip': skip, '$orderbyexpression': 'UploadedOnUtc desc' })
 
         if (resData.data !== null) {
           // Update pagination information and API data
-          dispatch(setPaginationTotalCount(resData.data.TotalCount));
-          dispatch(setApiData(resData.data.Content));
+          dispatch(setPaginationTotalCount(resData.data.TotalCount))
+          dispatch(setApiData(resData.data.Content))
+
 
           // Adapt API response data and update local state
-          const mappingRows = resToVideoRowAdapter(resData.data.Content);
-          setState(prevState => ({ ...prevState, rows: mappingRows }));
+          let mappingRows = []
+          let resToRowAdapter = props.type === 'video' ? resToVideoRowAdapter : resToDocumentRowAdapter
+
+          mappingRows = resToRowAdapter(resData.data.Content)
+
+          setState(prevState => ({ ...prevState, rows: mappingRows }))
         } else {
           // No data available
-          setState(prevState => ({ ...prevState, rows: [] }));
+          setState(prevState => ({ ...prevState, rows: [] }))
         }
       } catch (e) {
         // Handle API error
-        console.error("Error of getContents:", e);
-        dispatch(setApiError(e));
-        setState(prevState => ({ ...prevState, rows: [] }));
+        console.error('Error of getContents:', e)
+        dispatch(setApiError(e))
+        setState(prevState => ({ ...prevState, rows: [] }))
       }
-    })();
-  }, [dispatch, take, skip, props.type]);
+    })()
+  }, [dispatch, take, skip, props.type])
 
   return (
     <TableContainer
@@ -165,5 +172,5 @@ export const MediaActionwrapper = (props: IActionPros) => {
         </TableBody>
       </Table>
     </TableContainer>
-  );
-};
+  )
+}

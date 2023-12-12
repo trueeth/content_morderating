@@ -27,7 +27,7 @@ export type TDocumentRowType = {
   name?: string
   type?: EMediaType
   submittedBy?: string
-  moderator_approval?: EModeratorApprovalStatus
+  moderator_approval?: EApporval
   ai_approval?: EApporval
   submissionDate?: string
   subRows?: TDocumentSubRowType[]

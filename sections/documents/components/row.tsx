@@ -63,8 +63,8 @@ function DocumentRow(props: {
 
 
   const rowActions = [
-    { title: 'Classification' },
-    { title: 'Reports' },
+    // { title: 'Classification' },
+    // { title: 'Reports' },
     { title: 'Insights' }
   ]
 
@@ -136,9 +136,7 @@ function DocumentRow(props: {
         </TableCell>
         <TableCell>
           <Box className={'flex'} maxWidth={'100px'}>
-            {row.submissionDate !== null && row.submissionDate !== ''
-              ? format(parseISO(row.submissionDate), 'MM/dd/yyyy hh:mm:ss a')
-              : ''}
+            {row.submissionDate}
           </Box>
         </TableCell>
         <TableCell>

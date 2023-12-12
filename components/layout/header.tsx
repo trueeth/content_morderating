@@ -69,7 +69,7 @@ const DropMenu = () => {
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen)
   }
@@ -89,11 +89,7 @@ const DropMenu = () => {
     event: Event | React.SyntheticEvent,
     type: string
   ) => {
-    if (type == 'videos') {
-      router.push({ pathname: '../' + type.toLowerCase(), query: null })
-    } else {
-      dispatch(openSnackbarInfo('Sorry, this will come soon.'))
-    }
+    router.push({ pathname: '../' + type.toLowerCase(), query: null })
     handleClose(event)
   }
 
@@ -270,7 +266,7 @@ const Header = () => {
             }}
           >
             <Box sx={{ p: 2, display: 'flex' }}>
-              <AccountCircleOutlined fontSize={'large'} />
+              <Image src={UserLogo} alt='logo' />
               <Box sx={{ ml: 1 }}>
                 {username && <Typography fontSize={14} whiteSpace='nowrap' width={120}>
                   {username}

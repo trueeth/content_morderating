@@ -185,6 +185,56 @@ export declare namespace TResDocument {
     TotalCount?: number
   }
 
-  type TDocumentContent = {}
+  type TDocumentContent = {
+    AiApproval ?: EApporval
+    CompletionTokens ?: number
+    CreateLanguageProjectEndTime ?: string
+    CreateLanguageProjectStartTime ?: string
+    CreateLanguageProjectStatus ?: EProcessingStatus
+    CreateSearchIndexEndTime ?: string
+    CreateSearchIndexStartTime ?: string
+    CreateSearchIndexStatus ?: EProcessingStatus
+    Description ?: string
+    DocumentBytes ?: string
+    DocumentSummarizationEndTime ?: string
+    DocumentSummarizationStartTime ?: string
+    DocumentSummarizationStatus ?: EProcessingStatus
+    DocumentUrl ?: string
+    EstimatedTokens ?: number
+    FileName ?: string
+    GptResponse ?: TGptResponse|any[]
+    Id ?: string
+    Language ?: string
+    MediaSourceId ?: string
+    ModeratorApprovalStatus ?: EApporval
+    ModeratorNotes ?: string
+    ModeratorResponse ?: TModeratorResponse|any[]
+    Name ?: string
+    Notes ?: string
+    OpenAIAnalysisEndTime ?: string
+    OpenAIAnalysisStartTime ?: string
+    OpenAIAnalysisStatus ?: EProcessingStatus
+    OpenAiModelDeployment ?: string
+    OriginalFileName ?: string
+    PdfUrl ?: string
+    PromptTokens ?: number
+    Rating ?: EMediaRating
+    RecognizeDocumentEndTime ?: string
+    RecognizeDocumentStartTime ?: string
+    RecognizeDocumentStatus ?: EProcessingStatus
+    Summary?: string
+    TotalProcessingStatus ?: EProcessingStatus
+    TotalTokens ?: number
+    UploadedOnUtc ?: string
+    VersionNumber ?: number
+  }
+
+  type TGptResponse={
+
+  }
+
+  type TModeratorResponse={
+
+  }
 
 }

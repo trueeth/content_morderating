@@ -3,7 +3,10 @@ import { EClassificationType, EMediaType, ESeverity, EViolationType } from '@int
 import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
 import { format, parseISO } from 'date-fns'
 
-export const resToVideoRowAdapter = (apiData: TResVideo.TVideoContent[]) => {
+export const resToVideoRowAdapter = (resData) => {
+
+  let apiData = resData as TResVideo.TVideoContent[]
+
   let result: TVideoRowType[] = []
   if (apiData.length > 0) {
 
