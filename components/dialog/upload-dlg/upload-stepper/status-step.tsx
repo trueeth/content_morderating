@@ -75,55 +75,55 @@ export default function StatusStep(props: {
             setState({ ...vState, newTitle: event.target.value })
           }
         />
-        <Typography>OR</Typography>
-        <Box mt={-2}>
-          <Typography>Replace{!isXs && 'existing one'}</Typography>
-          <Radio
-            checked={vState.type === 'old'}
-            onChange={handleType}
-            value={'old'}
-          />
-        </Box>
-        <Select
-          value={vState.replaceItem}
-          onChange={handleReplace}
-          fullWidth
-          sx={{
-            height: '40px',
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'var(--Primary1)'
-            },
-            bgcolor: 'white'
-          }}
-          renderValue={
-            vState.type !== null
-              ? undefined
-              : () => <Typography>Select from list</Typography>
-          }
-        >
-          <MenuItem
-            sx={{
-              '& .MuiTypography-root, input': {
-                sm: { fontSize: '.9rem' },
-                xs: { fontSize: '.7rem' }
-              }
-            }}
-            value={0}
-          >
-            Trolls
-          </MenuItem>
-          <MenuItem
-            sx={{
-              '& .MuiTypography-root, input': {
-                sm: { fontSize: '.9rem' },
-                xs: { fontSize: '.7rem' }
-              }
-            }}
-            value={1}
-          >
-            Poppy
-          </MenuItem>
-        </Select>
+        {/*<Typography>OR</Typography>*/}
+        {/*<Box mt={-2}>*/}
+        {/*  <Typography>Replace{!isXs && 'existing one'}</Typography>*/}
+        {/*  <Radio*/}
+        {/*    checked={vState.type === 'old'}*/}
+        {/*    onChange={handleType}*/}
+        {/*    value={'old'}*/}
+        {/*  />*/}
+        {/*</Box>*/}
+        {/*<Select*/}
+        {/*  value={vState.replaceItem}*/}
+        {/*  onChange={handleReplace}*/}
+        {/*  fullWidth*/}
+        {/*  sx={{*/}
+        {/*    height: '40px',*/}
+        {/*    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {*/}
+        {/*      borderColor: 'var(--Primary1)'*/}
+        {/*    },*/}
+        {/*    bgcolor: 'white'*/}
+        {/*  }}*/}
+        {/*  renderValue={*/}
+        {/*    vState.type !== null*/}
+        {/*      ? undefined*/}
+        {/*      : () => <Typography>Select from list</Typography>*/}
+        {/*  }*/}
+        {/*>*/}
+        {/*  <MenuItem*/}
+        {/*    sx={{*/}
+        {/*      '& .MuiTypography-root, input': {*/}
+        {/*        sm: { fontSize: '.9rem' },*/}
+        {/*        xs: { fontSize: '.7rem' }*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*    value={0}*/}
+        {/*  >*/}
+        {/*    Trolls*/}
+        {/*  </MenuItem>*/}
+        {/*  <MenuItem*/}
+        {/*    sx={{*/}
+        {/*      '& .MuiTypography-root, input': {*/}
+        {/*        sm: { fontSize: '.9rem' },*/}
+        {/*        xs: { fontSize: '.7rem' }*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*    value={1}*/}
+        {/*  >*/}
+        {/*    Poppy*/}
+        {/*  </MenuItem>*/}
+        {/*</Select>*/}
         <Box
           sx={{
             mt: 2,
