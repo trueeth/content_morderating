@@ -32,7 +32,10 @@ export default function UploadDialog() {
 
   const isXs = useMediaQuery('(max-width:500px)')
 
-  const uploadGroups = ['Upload', 'History']
+  const uploadGroups = [
+    'Upload',
+    'History'
+  ]
 
   useEffect(() => {
     dispatch(setUploadProgress({ progress: 0, remaining: 0 }))
@@ -91,17 +94,17 @@ export default function UploadDialog() {
                 mb: 3
               }}
             >
-              <CustomToggleButtonGroup
-                groupName={uploadGroups}
-                handleChange={(val) => setState({ ...vState, tabIndex: val })}
-              />
+              {/*<CustomToggleButtonGroup*/}
+              {/*  groupName={uploadGroups}*/}
+              {/*  handleChange={(val) => setState({ ...vState, tabIndex: val })}*/}
+              {/*/>*/}
             </Box>
             <TabPanel value={vState.tabIndex} index={0}>
               <UploadStepper></UploadStepper>
             </TabPanel>
-            <TabPanel value={vState.tabIndex} index={1}>
-              <HistoryTable></HistoryTable>
-            </TabPanel>
+            {/*<TabPanel value={vState.tabIndex} index={1}>*/}
+            {/*  <HistoryTable></HistoryTable>*/}
+            {/*</TabPanel>*/}
           </Box>
         </Box>
       </Dialog>

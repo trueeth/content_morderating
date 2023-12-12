@@ -274,19 +274,19 @@ export default function SourceStep(props: {
       >
         <Typography>Where is the source file</Typography>
 
-        <Box>
-          <Typography>Upload from URL option</Typography>
-          <Radio
-            checked={vState.type === 'url'}
-            onChange={handleType}
-            value={'url'}
-          />
-        </Box>
-        <PrimaryTextField
-          fullWidth={true}
-          placeholder='Enter  URL'
-          disabled={vState.type !== 'url'}
-        />
+        {/*<Box>*/}
+        {/*  <Typography>Upload from URL option</Typography>*/}
+        {/*  <Radio*/}
+        {/*    checked={vState.type === 'url'}*/}
+        {/*    onChange={handleType}*/}
+        {/*    value={'url'}*/}
+        {/*  />*/}
+        {/*</Box>*/}
+        {/*<PrimaryTextField*/}
+        {/*  fullWidth={true}*/}
+        {/*  placeholder='Enter  URL'*/}
+        {/*  disabled={vState.type !== 'url'}*/}
+        {/*/>*/}
 
         <Box>
           <Typography>Upload from your PC</Typography>
@@ -331,18 +331,18 @@ export default function SourceStep(props: {
           </Box>
         </Box>
 
-        <Box>
-          <Typography>From Netflix</Typography>
-          <Radio
-            checked={vState.type === 'netflix'}
-            onChange={handleType}
-            value={'netflix'}
-          />
-        </Box>
-        <PrimaryTextField
-          placeholder='Enter the full movie name'
-          disabled={vState.type !== 'netflix'}
-        />
+        {/*<Box>*/}
+        {/*  <Typography>From Netflix</Typography>*/}
+        {/*  <Radio*/}
+        {/*    checked={vState.type === 'netflix'}*/}
+        {/*    onChange={handleType}*/}
+        {/*    value={'netflix'}*/}
+        {/*  />*/}
+        {/*</Box>*/}
+        {/*<PrimaryTextField*/}
+        {/*  placeholder='Enter the full movie name'*/}
+        {/*  disabled={vState.type !== 'netflix'}*/}
+        {/*/>*/}
 
         <Box
           sx={{
