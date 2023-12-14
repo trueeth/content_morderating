@@ -83,41 +83,43 @@ export const MediaActionwrapper = (props: IActionPros) => {
   const take = appState.pagination.pageSize
   const skip = appState.pagination.pageSize * (appState.pagination.pageIndex - 1)
 
-  useEffect(() => {
-    // Fetch data when component mounts or pagination change
-    (async () => {
-      try {
-        dispatch(setApiLoading(true))
+  const fetchPageData =async () => {
+    try {
+      dispatch(setApiLoading(true))
 
-        // Choose the correct API function based on the media type
-        const apiFunction = props.type === 'video' ? apiGetVideoContents : apiGetDocumentContents
+      // Choose the correct API function based on the media type
+      const apiFunction = props.type === 'video' ? apiGetVideoContents : apiGetDocumentContents
 
-        const resData = await apiFunction({ '$take': take, '$skip': skip, '$orderbyexpression': 'UploadedOnUtc desc' })
+      const resData = await apiFunction({ '$take': take, '$skip': skip, '$orderbyexpression': 'UploadedOnUtc desc' })
 
-        if (resData.data !== null) {
-          // Update pagination information and API data
-          dispatch(setPaginationTotalCount(resData.data.TotalCount))
-          dispatch(setApiData(resData.data.Content))
+      if (resData.data !== null) {
+        // Update pagination information and API data
+        dispatch(setPaginationTotalCount(resData.data.TotalCount))
+        dispatch(setApiData(resData.data.Content))
 
 
-          // Adapt API response data and update local state
-          let mappingRows = []
-          let resToRowAdapter = props.type === 'video' ? resToVideoRowAdapter : resToDocumentRowAdapter
+        // Adapt API response data and update local state
+        let mappingRows = []
+        let resToRowAdapter = props.type === 'video' ? resToVideoRowAdapter : resToDocumentRowAdapter
 
-          mappingRows = resToRowAdapter(resData.data.Content)
+        mappingRows = resToRowAdapter(resData.data.Content)
 
-          setState(prevState => ({ ...prevState, rows: mappingRows }))
-        } else {
-          // No data available
-          setState(prevState => ({ ...prevState, rows: [] }))
-        }
-      } catch (e) {
-        // Handle API error
-        console.error('Error of getContents:', e)
-        dispatch(setApiError(e))
+        setState(prevState => ({ ...prevState, rows: mappingRows }))
+      } else {
+        // No data available
         setState(prevState => ({ ...prevState, rows: [] }))
       }
-    })()
+    } catch (e) {
+      // Handle API error
+      console.error('Error of getContents:', e)
+      dispatch(setApiError(e))
+      setState(prevState => ({ ...prevState, rows: [] }))
+    }
+  }
+
+  useEffect(() => {
+    // Fetch data when component mounts or pagination change
+    fetchPageData()
   }, [dispatch, take, skip, props.type])
 
   return (
@@ -166,7 +168,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
             props.type === 'video' ? (
               <VideoRow key={index} row={row as TVideoRowType} rowIndex={index} />
             ) : (
-              <DocumentRow key={index} row={row as TDocumentRowType} />
+              <DocumentRow key={index} row={row as TDocumentRowType} rowIndex={index} />
             )
           ))}
         </TableBody>

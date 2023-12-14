@@ -1,5 +1,5 @@
 import { Store } from '@reduxjs/toolkit'
-import { ToastsProvider } from './context/toast-context'
+import { ToastsProvider } from '@context/toast-context'
 import { Provider } from 'react-redux'
 
 const Providers: React.FC<

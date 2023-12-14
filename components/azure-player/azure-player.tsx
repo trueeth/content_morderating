@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { CSSMediaWrapper } from './media-css'
 import { PlayerDefaultProps, PlayerProps } from './models/azure-player-props'
-import { Box } from '@mui/material'
-import LoadingIcons from 'react-loading-icons'
+
 
 // made a special visibility handling by moving it from property to style
 const APContainer = styled.div<ICSS>`

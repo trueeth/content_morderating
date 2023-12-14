@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import { Slideshow, Article, ArticleOutlined } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 
-const TowType = (props: { type: EMediaType }) => {
+const RowType = (props: { type: EMediaType }) => {
   return (
     <React.Fragment>
       <Box display="flex" gap={0.5}>
@@ -19,4 +19,4 @@ const TowType = (props: { type: EMediaType }) => {
   )
 }
 
-export default TowType
+export default RowType

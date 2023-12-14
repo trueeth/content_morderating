@@ -11,8 +11,8 @@ import { apiGetVideoAnalysesStreamUrl } from '@interfaces/apis/videos'
 import { openSnackbarError } from '@store/reducers/snackbar/reducers'
 import LoadingIcons from 'react-loading-icons'
 import { AzurePlayer } from '@components/azure-player/azure-player'
+import { TResVideo } from '@interfaces/apis/api.types'
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
 
 const options = {
   cMapUrl: '/cmaps/',
@@ -35,7 +35,6 @@ const timeToSeconds = (time) => {
 export default function DrawerTabPlayScene() {
 
 
-
   const dispatch = useDispatch()
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -44,46 +43,20 @@ export default function DrawerTabPlayScene() {
   const data = appState.api.data
 
 
-  const [numPages, setNumPages] = useState<number>()
-  const [pageNumber, setPageNumber] = useState<number>(1)
   const [beginTime, setBeginTime] = useState<number>(0)
   const [playerUrl, setPlayerUrl] = useState<string>('')
   const [token, setToken] = useState<string>('')
-  const [file, setFile] = useState<PDFFile>('./test.pdf')
-  // const [containerWidth, setContainerWidth] = useState<number>()
 
-
-  const containerRef = useRef<HTMLDivElement>(null)
-
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (container) {
-      const pageElement = container.querySelector(
-        `[data-page-number="${pageNumber}"]`
-      )
-      if (pageElement) {
-        pageElement.scrollIntoView({ behavior: 'smooth' })
-      }
-    }
-  }, [pageNumber])
-
-  function onDocumentLoadSuccess({ numPages: nextNumPages }): void {
-    setNumPages(nextNumPages)
-  }
-
-  setTimeout(() => {
-    // setPageNumber(appState.drawer.pageIndex + 1)
-  }, 1000)
 
   useEffect(() => {
     (async () => {
       try {
         const resStreamUrl = await apiGetVideoAnalysesStreamUrl(data[rowIndex].Id)
         setToken(resStreamUrl.data.jwt)
-        let startTime = data[rowIndex].VideoSummary?.SceneSummaries[subRowIndex]?.SceneStart
-        if (startTime!=undefined||startTime!=''){
-          let seconds=timeToSeconds(startTime)
+        const videoRow = data[rowIndex] as TResVideo.TVideoContent
+        let startTime = videoRow.VideoSummary.SceneSummaries[subRowIndex]?.SceneStart
+        if (startTime != undefined || startTime != '') {
+          let seconds = timeToSeconds(startTime)
           setBeginTime(seconds)
         }
         setPlayerUrl(`${resStreamUrl.data.url}?token=Bearer ${token}`)
@@ -101,6 +74,8 @@ export default function DrawerTabPlayScene() {
         flexDirection: 'column',
         bgcolor: '#3d3d3d',
         p: 2,
+        margin: '0rem 2rem',
+        borderRadius: '.5rem',
         '& >div': {
           position: 'relative',
           borderRadius: '.3rem',
@@ -122,16 +97,16 @@ export default function DrawerTabPlayScene() {
             }
           }
         },
-        "& .vjs-loading-spinner":{
+        '& .vjs-loading-spinner': {
           background: 'url(/assets/images/buffering-rainbow-bg.png) !important'
         },
-        "& .vjs-loading-spinner::before":{
+        '& .vjs-loading-spinner::before': {
           content: 'url(/assets/images/buffering-rainbow.gif) !important'
         }
       }}
     >
-      {appState.drawer.type === 'video' ? (
-        playerUrl!='' ?
+      {
+        playerUrl != '' ?
           <AzurePlayer
             compId='vid-1'
             events={[
@@ -144,8 +119,8 @@ export default function DrawerTabPlayScene() {
                     if (elem) {
                       elem.style.visibility = 'hidden'
                     }
-                    if (elemLoading){
-                      elemLoading.style.visibility='hidden'
+                    if (elemLoading) {
+                      elemLoading.style.visibility = 'hidden'
                     }
                     return beginTime
                   }
@@ -206,31 +181,7 @@ export default function DrawerTabPlayScene() {
               <LoadingIcons.Puff height={80} width={80} strokeWidth={3} />
             </Box>
           </Box>
-      ) : (
-        <>
-          <div
-            ref={containerRef}
-            style={{ overflowY: 'auto', height: '600px' }}
-          >
-            <Document
-              file={file}
-              onLoadSuccess={onDocumentLoadSuccess}
-              options={options}
-            >
-              {Array.from(new Array(numPages), (el, index) => (
-                <Page
-                  key={`page_${index + 1}`}
-                  pageNumber={index + 1}
-                  width={maxWidth}
-                />
-              ))}
-            </Document>
-          </div>
-          <Typography>
-            Page {pageNumber} of {numPages}
-          </Typography>
-        </>
-      )}
+      }
     </Box>
   )
 }

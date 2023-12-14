@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { TResVideo } from '@interfaces/apis/api.types'
+import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
 
 const initialState = {
   data: [],
@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export interface IApiSlice {
-  data?: TResVideo.TVideoContent[]  | [],
+  data?: TResVideo.TVideoContent[]  | TResDocument.TDocumentContent [] | [],
   loading?: boolean,
   error?: string,
 }

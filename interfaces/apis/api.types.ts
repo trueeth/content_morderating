@@ -1,4 +1,4 @@
-import { EApporval, EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
+import { EApproval, EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
 
 export declare namespace TReqVideo {
 
@@ -115,67 +115,68 @@ export declare namespace TResVideo {
   }
 
   type TVideoAnalysisSearchResult = {
-    results: TVideoAnalysisResult[],
-    nextPage: {
-      pageSize: number,
-      skip: number,
-      done: boolean
+    results?: TVideoAnalysisResult[],
+    nextPage?: {
+      pageSize?: number,
+      skip?: number,
+      done?: boolean
     }
   }
 
   type TVideoAnalysisResult = {
-    accountId: string,
-    id: string,
-    partition: string,
-    externalId: string,
-    metadata: string,
-    name: string,
-    description: string,
-    created: string,
-    lastModified: string,
-    lastIndexed: string,
-    PrivacyMode: string,
-    userName: string,
-    isOwned: true,
-    isBase: true,
-    State: string,
-    ModerationState: string,
-    ReviewState: string,
-    processingProgress: string,
-    durationInSeconds: number,
-    thumbnailVideoId: string,
-    thumbnailId: string,
-    social: {
-      likedByUser: true,
-      likes: number,
-      views: number
+    accountId?: string,
+    id?: string,
+    partition?: string,
+    externalId?: string,
+    metadata?: string,
+    name?: string,
+    description?: string,
+    created?: string,
+    lastModified?: string,
+    lastIndexed?: string,
+    PrivacyMode?: string,
+    userName?: string,
+    isOwned?: true,
+    isBase?: true,
+    State?: string,
+    ModerationState?: string,
+    ReviewState?: string,
+    processingProgress?: string,
+    durationInSeconds?: number,
+    thumbnailVideoId?: string,
+    thumbnailId?: string,
+    social?: {
+      likedByUser?: true,
+      likes?: number,
+      views?: number
     },
-    searchMatches: [
+    searchMatches?: [
       {
-        startTime: string,
-        type: string,
-        text: string,
-        exactText: string
+        startTime?: string,
+        type?: string,
+        text?: string,
+        exactText?: string
       }
     ],
-    indexingPreset: string,
-    streamingPreset: string,
-    sourceLanguage: string,
-    sourceLanguages: [
+    indexingPreset?: string,
+    streamingPreset?: string,
+    sourceLanguage?: string,
+    sourceLanguages?: [
       string
     ],
-    personModelId: string,
-    animationModelId: string,
-    logoGroupId: string
+    personModelId?: string,
+    animationModelId?: string,
+    logoGroupId?: string
   }
 
   type TVideoAnalysisStreamingUrl = {
-    url:string,
-    jwt:string,
+    url?: string,
+    jwt?: string,
   }
 
 
 }
+
 
 export declare namespace TResDocument {
 
@@ -186,55 +187,142 @@ export declare namespace TResDocument {
   }
 
   type TDocumentContent = {
-    AiApproval ?: EApporval
-    CompletionTokens ?: number
-    CreateLanguageProjectEndTime ?: string
-    CreateLanguageProjectStartTime ?: string
-    CreateLanguageProjectStatus ?: EProcessingStatus
-    CreateSearchIndexEndTime ?: string
-    CreateSearchIndexStartTime ?: string
-    CreateSearchIndexStatus ?: EProcessingStatus
-    Description ?: string
-    DocumentBytes ?: string
-    DocumentSummarizationEndTime ?: string
-    DocumentSummarizationStartTime ?: string
-    DocumentSummarizationStatus ?: EProcessingStatus
-    DocumentUrl ?: string
-    EstimatedTokens ?: number
-    FileName ?: string
-    GptResponse ?: TGptResponse|any[]
-    Id ?: string
-    Language ?: string
-    MediaSourceId ?: string
-    ModeratorApprovalStatus ?: EApporval
-    ModeratorNotes ?: string
-    ModeratorResponse ?: TModeratorResponse|any[]
-    Name ?: string
-    Notes ?: string
-    OpenAIAnalysisEndTime ?: string
-    OpenAIAnalysisStartTime ?: string
-    OpenAIAnalysisStatus ?: EProcessingStatus
-    OpenAiModelDeployment ?: string
-    OriginalFileName ?: string
-    PdfUrl ?: string
-    PromptTokens ?: number
-    Rating ?: EMediaRating
-    RecognizeDocumentEndTime ?: string
-    RecognizeDocumentStartTime ?: string
-    RecognizeDocumentStatus ?: EProcessingStatus
+    AiApproval?: EApproval
+    CompletionTokens?: number
+    CreateLanguageProjectEndTime?: string
+    CreateLanguageProjectStartTime?: string
+    CreateLanguageProjectStatus?: EProcessingStatus
+    CreateSearchIndexEndTime?: string
+    CreateSearchIndexStartTime?: string
+    CreateSearchIndexStatus?: EProcessingStatus
+    Description?: string
+    DocumentBytes?: string
+    DocumentSummarizationEndTime?: string
+    DocumentSummarizationStartTime?: string
+    DocumentSummarizationStatus?: EProcessingStatus
+    DocumentUrl?: string
+    EstimatedTokens?: number
+    FileName?: string
+    GptResponse?: TGptResponse | any[]
+    Id?: string
+    Language?: string
+    MediaSourceId?: string
+    ModeratorApprovalStatus?: EApproval
+    ModeratorNotes?: string
+    ModeratorResponse?: TModeratorResponse | any[]
+    Name?: string
+    Notes?: string
+    OpenAIAnalysisEndTime?: string
+    OpenAIAnalysisStartTime?: string
+    OpenAIAnalysisStatus?: EProcessingStatus
+    OpenAiModelDeployment?: string
+    OriginalFileName?: string
+    PdfUrl?: string
+    PromptTokens?: number
+    Rating?: EMediaRating
+    RecognizeDocumentEndTime?: string
+    RecognizeDocumentStartTime?: string
+    RecognizeDocumentStatus?: EProcessingStatus
     Summary?: string
-    TotalProcessingStatus ?: EProcessingStatus
-    TotalTokens ?: number
-    UploadedOnUtc ?: string
-    VersionNumber ?: number
+    TotalProcessingStatus?: EProcessingStatus
+    TotalTokens?: number
+    UploadedOnUtc?: string
+    VersionNumber?: number
   }
 
-  type TGptResponse={
-
+  type TGptResponse = {
+    answers?: TGptAnswer[],
+    Topic?: {
+      Id?: string,
+      Name?: string
+    },
+    AiApproval?: EApproval
   }
 
-  type TModeratorResponse={
-
+  type TGptAnswer ={
+    questionId?: number,
+    question?: string,
+    answerFound?: true,
+    AiApproval?: EApproval,
+    ModeratorAnswerFound?: true,
+    ModeratorApprovalStatus?: EModeratorApprovalStatus,
+    ModeratorNotes?: string,
+    pageNumbers?: TGptAnswerPageNumber[]
   }
+
+  type TGptAnswerPageNumber={
+    pageNumber?: number,
+    opinion?: string,
+    snippet?: string,
+    AiApproval?: EApproval,
+    ModeratorAnswerFound?: true,
+    ModeratorApprovalStatus?: EModeratorApprovalStatus,
+    ModeratorLikeStatus?: EModeratorApprovalStatus,
+    ModeratorNotes?: string
+  }
+
+
+  type TModeratorResponse = {
+    Id?: string,
+    DocumentId?: string,
+    DocumentChunkId?: string,
+    TopicId?: string,
+    QuestionModeratorAction?: [
+      {
+        Id?: string,
+        Question?: string,
+        ApprovalStatus?: EApproval,
+        AnswerFound?: string,
+        Notes?: string
+      }
+    ]
+  }
+
+
+
+  type TDocumentContentDetail = {
+    Id?: string,
+    Name?: string,
+    Description?: string,
+    Notes?: string,
+    MediaSourceId?: string,
+    Rating?: EMediaRating,
+    ModeratorApprovalStatus?: EModeratorApprovalStatus,
+    ModeratorNotes?: string,
+    Language?: string,
+    TotalProcessingStatus?: EProcessingStatus,
+    DocumentBytes?: string,
+    DocumentUrl?: string,
+    OriginalFileName?: string,
+    FileName?: string,
+    VersionNumber?: number,
+    UploadedOnUtc?: string,
+    RecognizeDocumentStatus?: EProcessingStatus,
+    CreateSearchIndexStatus?: EProcessingStatus,
+    CreateLanguageProjectStatus?: EProcessingStatus,
+    RecognizeDocumentStartTime?: string,
+    RecognizeDocumentEndTime?: string,
+    CreateSearchIndexStartTime?: string,
+    CreateSearchIndexEndTime?: string,
+    CreateLanguageProjectStartTime?: string,
+    CreateLanguageProjectEndTime?: string,
+    OpenAIAnalysisStatus?: EProcessingStatus,
+    OpenAIAnalysisStartTime?: string,
+    OpenAIAnalysisEndTime?: string,
+    DocumentSummarizationStatus?: EProcessingStatus,
+    DocumentSummarizationStartTime?: string,
+    DocumentSummarizationEndTime?: string,
+    Summary?: string,
+    ModeratorResponse?: TModeratorResponse[],
+    EstimatedTokens?: number,
+    TotalTokens?: number,
+    PromptTokens?: number,
+    CompletionTokens?: number,
+    AiApproval?: EApproval,
+    OpenAiModelDeployment?: string,
+    PdfUrl?: string,
+    GptResponse?: TGptResponse[]
+  }
+
 
 }

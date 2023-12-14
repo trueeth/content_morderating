@@ -1,6 +1,6 @@
 export enum EVideoColumn {
   name = 'NAME',
-  type = 'TYPE',
+  // type = 'TYPE',
   status = 'STATUS',
   rating = 'RATING',
   classification = 'CLASSIFICATION',
@@ -12,12 +12,14 @@ export enum EVideoColumn {
 }
 export enum EDocumentColumn {
   name = 'NAME',
-  type = 'TYPE',
-  status = 'SUBMITED BY',
+  processingStatus = 'ProcessingStatus',
+  // type = 'TYPE',
+  // status = 'SUBMITED BY',
+  language = 'LANGUAGE',
   moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
-  actions = 'ACTIONS'
+  // actions = 'ACTIONS'
 }
 
 export enum ENewVideoData {
@@ -91,17 +93,16 @@ export enum EHistoryData {
 export enum EVideoDetail {
   pageNumber = 'SCENE NUMBER',
   violationType = 'VIOLATION TYPE',
-  category = 'CATEGORY',
+  category = 'SCENE STATUS',
   // description = 'DESCRIPTION',
   // action = 'ACTIONS'
 }
 
 export enum EDocDetail {
-  pageNumber = 'PAGE NUMBER',
-  violationType = 'VIOLATION TYPE',
-  category = 'CATEGORY',
-  description = 'DESCRIPTION',
-  action = 'ACTIONS'
+  topicNumber = 'TOPIC NUMBER',
+  topic = 'TOPIC',
+  status = 'STATUS',
+  // action = 'ACTIONS'
 }
 
 export enum EMediaType {
@@ -142,7 +143,7 @@ export enum EClassificationType {
   violance = 'V'
 }
 
-export enum EApporval {
+export enum EApproval {
   review = 'In Review',
   approve = 'Approved',
   reject = 'Rejected',

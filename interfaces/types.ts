@@ -1,5 +1,5 @@
 import {
-  EApporval,
+  EApproval,
   EClassificationType,
   EReportHistoryStatus,
   EScheduleType,
@@ -26,9 +26,10 @@ export type TVideoRowType = {
 export type TDocumentRowType = {
   name?: string
   type?: EMediaType
-  submittedBy?: string
-  moderator_approval?: EApporval
-  ai_approval?: EApporval
+  processingStatus?: EProcessingStatus
+  language?: string
+  moderator_approval?: EApproval
+  ai_approval?: EApproval
   submissionDate?: string
   subRows?: TDocumentSubRowType[]
 }
@@ -38,7 +39,7 @@ export type TNewVideoRowType = {
   rating: EMediaRating
   classification: EClassificationType[]
   date: string
-  approval: EApporval
+  approval: EApproval
 }
 
 export type TReportHistory = {
@@ -72,15 +73,14 @@ export type THistoryRowType = {
 export type TVideoSubRowType = {
   sceneNumber?: number
   violationType?: string
-  category?: string
+  status?: string
   description?: string
 }
 
 export type TDocumentSubRowType = {
   sceneNumber?: number
-  violationType?: EViolationType
-  category?: string
-  description?: string
+  topic?:string
+  aiApproval?:EApproval
 }
 
 export type THistoryData = {

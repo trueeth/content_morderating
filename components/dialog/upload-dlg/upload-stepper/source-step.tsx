@@ -15,17 +15,18 @@ import {
   openSnackbarWarning
 } from '@store/reducers/snackbar/reducers'
 import {
-  apiGetUploadMediaId, apiUploadDocument, apiUploadedVideoProcess,
+  apiGetUploadMediaId, apiUploadDocument, apiUploadDocumentProcess, apiUploadedVideoProcess,
   apiUploadVideo
 } from '@interfaces/apis/upload'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { setApiLoading } from '@store/reducers/api/reducers'
-import { EApporval, EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
+import { EApproval, EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
 import { useRouter } from 'next/router'
 import { CLanguage } from '@interfaces/constant'
 import { readFileAsBytes, uint8ArrayToBase64 } from '@utils/file'
+import { setPaginationIndex } from '@store/reducers/page/reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -183,7 +184,6 @@ export default function SourceStep(props: {
 
 
     await apiUploadVideo(uploadId.data, formData, getAxiosConfig(startAt))
-    dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     try {
       await apiUploadedVideoProcess(uploadId.data.Id)
     } catch (e) {
@@ -192,7 +192,7 @@ export default function SourceStep(props: {
     } finally {
       dispatch(setApiLoading(false))
       setTimeout(() => {
-        router.reload()
+        dispatch(setPaginationIndex({pageIndex:0}))
       }, 2000)
     }
   }
@@ -255,15 +255,17 @@ export default function SourceStep(props: {
       VersionNumber: 0
     }
 
+    const uploadedDocument = await apiUploadDocument(uploadDocumentInfo, getAxiosConfig(startAt,"json"))
+
     try {
-      await apiUploadDocument(uploadDocumentInfo, getAxiosConfig(startAt,"json"))
+        await apiUploadDocumentProcess(uploadedDocument.data.Id)
     } catch (e) {
       console.error(e)
       dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
     } finally {
       dispatch(setApiLoading(false))
       setTimeout(()=>{
-        router.reload()
+        dispatch(setPaginationIndex({pageIndex:0}))
       },2000)
     }
 
@@ -285,6 +287,7 @@ export default function SourceStep(props: {
       } else {
         await uploadDocument()
       }
+      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     } catch (e) {
       console.error(e)
       dispatch(openSnackbarWarning('Sorry! Something went wrong while uploading file.'))

@@ -4,7 +4,6 @@ import { useMemo, useReducer, useCallback, useEffect } from 'react'
 
 import { AuthContext } from './auth-context'
 import { AuthUserType, ActionMapType, AuthStateType } from '../types'
-import { stat } from 'fs'
 
 // ----------------------------------------------------------------------
 

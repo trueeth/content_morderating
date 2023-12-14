@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Tooltip, Typography } from '@mui/material'
 import Button from '@mui/material/Button';
 import { FilterList, GetApp } from '@mui/icons-material';
 import * as React from 'react';
@@ -6,6 +6,7 @@ import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { PrimaryButton } from '@components/common/styled-button';
 import SearchInput from '@components/common/search-input';
+import InfoIcon from '@mui/icons-material/Info'
 
 interface IProps {
   title: string;
@@ -51,7 +52,10 @@ const MediaSectionHeader = (props: IProps) => {
         <Grid item>
           {/* Media title and Filters button */}
           <Typography>{props.title}</Typography>
-          {/* <Button
+          <Tooltip title={props.title} sx={{padding:'0 0 7px 2px'}}>
+            <InfoIcon sx={{ color: 'grey', width: '16px' }} />
+          </Tooltip>
+           <Button
             variant="outlined"
             startIcon={<FilterList />}
             sx={{
@@ -63,16 +67,16 @@ const MediaSectionHeader = (props: IProps) => {
             }}
           >
             Filters
-          </Button> */}
+          </Button>
         </Grid>
 
         <Grid item container spacing={2} sx={{ width: 'fit-content' }}>
           {/* Group by select, SearchInput, and Export button */}
           <Grid item>
-            {/* Label and Select for "Group by" */}
-            {/* <Typography whiteSpace="nowrap">Group by:</Typography> */}
-            {/* Menu items for each groupByValue */}
-            {/* <Select
+             {/*Label and Select for "Group by"*/}
+             <Typography whiteSpace="nowrap">Group by:</Typography>
+             {/*Menu items for each groupByValue*/}
+            <Select
               value={vState.groupBy}
               onChange={handleGroupByChange}
               sx={{
@@ -87,18 +91,18 @@ const MediaSectionHeader = (props: IProps) => {
                   {val}
                 </MenuItem>
               ))}
-            </Select> */}
+            </Select>
           </Grid>
           <Grid item>
-            {/* SearchInput component */}
-            {/* <SearchInput /> */}
+             {/*SearchInput component*/}
+             <SearchInput />
           </Grid>
           <Grid item>
             {/* PrimaryButton for export */}
-            {/* <PrimaryButton onClick={handleExport}>
+            <PrimaryButton onClick={handleExport}>
               <GetApp sx={{ color: 'white' }} />
               Export
-            </PrimaryButton> */}
+            </PrimaryButton>
           </Grid>
         </Grid>
       </Grid>

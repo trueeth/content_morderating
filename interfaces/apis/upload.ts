@@ -51,3 +51,12 @@ export const apiUploadDocument = (params:any, options)=>{
   return request.post<TResDocument.TDocumentContent>('analysis/documents', { ...params },options)
 }
 
+
+export const apiUploadDocumentProcess = (params:any)=>{
+  return request.post<TResDocument.TDocumentContent>(
+    'analysis/documents/' +
+    params +
+    '/analyses/transcribe'
+  )
+}
+

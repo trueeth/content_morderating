@@ -1,12 +1,14 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { Box, Drawer, useMediaQuery } from '@mui/material'
 
-import DrawerHeader from './header'
+import DrawerHeader from './header-video'
 import DrawerTab from './drawer-tab'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
+import DrawerVideoHeader from './header-video'
+import DrawerDocumentHeader from '@components/multi-media/drawer/header-document'
 
 export default function MediaDrawer() {
   const dispatch = useDispatch()
@@ -53,7 +55,7 @@ export default function MediaDrawer() {
           />
         </Box>
 
-        <DrawerHeader />
+        {appState.drawer.type==='video'?<DrawerVideoHeader/>:<DrawerDocumentHeader/>}
         <DrawerTab />
       </Box>
     </Drawer>

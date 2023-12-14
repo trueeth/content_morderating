@@ -18,6 +18,7 @@ import { openMediaSubDrawer } from '@store/reducers/drawer/reducers';
 
   const CustomizedTableRow = ({ children, onClick, keyValue }) => (
     <TableRow key={keyValue}>
+      <TableCell />
       {children.map((item, idx) => {
         if (idx >= 0 && idx < 5) {
           return (
@@ -96,6 +97,7 @@ const VideoSubtable = (props: {
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </TableCell> */}
+          <TableCell sx={{width:'10%'}} />
           {Object.values(EVideoDetail).map((item, index) => {
             return (
               <TableCell key={index}>
@@ -109,7 +111,10 @@ const VideoSubtable = (props: {
       </TableHead>
       <TableBody
         sx={{
-          '& .MuiTypography-root': { color: '#6f6f6f !important', fontSize:'.8rem' }
+          '& .MuiTypography-root': {
+            color: '#6f6f6f !important',
+            fontSize:'.8rem'
+          }
         }}
       >
         {props.rows.map((row, index) => (
@@ -117,7 +122,7 @@ const VideoSubtable = (props: {
             {/* <Checkbox /> */}
             <Typography>{`Scene #${index + 1}`}</Typography>
             <Typography>{row.violationType}</Typography>
-            <Typography whiteSpace="nowrap">{row.category}</Typography>
+            <Typography whiteSpace="nowrap">{row.status}</Typography>
             {/* <Typography>{row.description}</Typography> */}
             {/* <Button
               id={`scene-button-${index}`}

@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material';
 import { TVideoRowType } from '@interfaces/types';
-import TowType from '@components/multi-media/common/type-item';
+import RowType from '@components/multi-media/common/type-item';
 import RowStatus from '@components/multi-media/common/status-item';
 import RowRating from '@components/multi-media/common/rating-item';
 import RowClassification from '@components/multi-media/common/classification-item';
@@ -100,7 +100,7 @@ function VideoRow(props: {
         </TableCell>
 
         {/* Type, Status, Rating, Classification, Approvals, Submission Date, Flagged Scenes, Actions */}
-        <TableCell><TowType type={props.row.type}></TowType></TableCell>
+        {/*<TableCell><RowType type={props.row.type}></RowType></TableCell>*/}
         <TableCell><RowStatus status={props.row.status}></RowStatus></TableCell>
         <TableCell><RowRating rating={props.row.rating}></RowRating></TableCell>
         <TableCell>

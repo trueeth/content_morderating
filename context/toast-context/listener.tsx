@@ -1,5 +1,5 @@
 import useToast from '../../hooks/use-toast'
-import { ToastContainer } from '../../components/toast'
+import { ToastContainer } from '@components/toast'
 
 const ToastListener = () => {
   const { toasts, remove } = useToast()

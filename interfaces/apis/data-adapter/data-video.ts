@@ -43,7 +43,7 @@ export const resToVideoRowAdapter = (resData) => {
         videoSubRows = videoContent.VideoSummary?.SceneSummaries.map((sceneSummary, index) => {
           let videoSubRow: TVideoSubRowType = {}
 
-          videoSubRow.category = 'Content Video'
+          videoSubRow.status = videoContent.ModeratorApprovalStatus
           videoSubRow.description = videoContent.Description
           if (!videoContent.Description)
             videoSubRow.description='Not Assigned'

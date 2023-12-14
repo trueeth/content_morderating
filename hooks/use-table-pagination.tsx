@@ -3,7 +3,7 @@ import { Pagination, PaginationItem } from '@mui/material'
 import TablePagination from '@components/common/table-pagination'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  setPageinit,
+  setPageinit, setPagination,
   // setPageinit,
   setPaginationIndex
 } from '@store/reducers/page/reducers'
@@ -21,13 +21,17 @@ const useTablePagination = () => {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  const router=useRouter()
+  const router = useRouter()
 
 
   useEffect(() => {
-      router.push({pathname:router.pathname, query:{pageindex:appState.pagination.pageIndex, pagesize:appState.pagination.pageSize}})
+    if (appState.pagination.pageIndex > 0) {
+      router.push({
+        pathname: router.pathname,
+        query: { pageindex: appState.pagination.pageIndex, pagesize: appState.pagination.pageSize }
+      })
       setState(prevState => {
-        return{
+        return {
           ...prevState,
           pageIndex: appState.pagination.pageIndex,
           pageSize: appState.pagination.pageSize,
@@ -36,13 +40,28 @@ const useTablePagination = () => {
           )
         }
       })
+    } else {
+      dispatch(setPaginationIndex({ pageIndex: 1 }))
+    }
   }, [appState])
 
   useEffect(() => {
-    if(Object.keys(router.query).length==0)
+    if (Object.keys(router.query).length == 0)
       dispatch(setPageinit())
   }, [dispatch])
 
+
+  useEffect(() => {
+    if (Object.keys(router.query).length > 0) {
+      const query = router.query
+      if (query.pageindex && query.pagesize) {
+        if (query.pageindex !==appState.pagination.pageIndex.toString() || query.pagesize!==appState.pagination.pageSize.toString()){
+          dispatch(setPaginationIndex(Number(query.pageindex)))
+          dispatch(setPaginationIndex(Number(query.pagesize)))
+        }
+      }
+    }
+  }, [router])
 
 
   // @TODO will use after that
@@ -96,8 +115,8 @@ const useTablePagination = () => {
     >
       <Pagination
         count={vState.pageTotal}
-        variant="outlined"
-        shape="rounded"
+        variant='outlined'
+        shape='rounded'
         siblingCount={1}
         page={vState.pageIndex}
         onChange={handleChangePagination}

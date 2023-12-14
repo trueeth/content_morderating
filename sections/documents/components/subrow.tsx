@@ -5,53 +5,57 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
 import { Checkbox, Typography } from '@mui/material'
-import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
+import { TDocumentSubRowType, TVideoRowType, TVideoSubRowType } from '@interfaces/types'
 import { EDocDetail } from '@interfaces/enums'
 import { useDispatch } from 'react-redux'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import Button from '@mui/material/Button'
 import { MoreHoriz } from '@mui/icons-material'
+import { TResDocument } from '@interfaces/apis/api.types'
+import { useMemo } from 'react'
+import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 
 const DocumentSubrow = (props: {
-  subRows: TVideoSubRowType[]
-  row: TVideoRowType
+  rowDetails:TResDocument.TDocumentContentDetail
+  rowIndex:number
 }) => {
-  const [checked, setChecked] = React.useState(false)
 
+
+  const { rowDetails } = props
   const dispatch = useDispatch()
 
-  const openScene = (index) => () => {
+  const openScene = (index:number) => () => {
     dispatch(
       openMediaSubDrawer({
-        open: true,
-        row: props.row,
+        open:true,
         type: 'document',
-        pageIndex: index
+        rowIndex: props.rowIndex,
+        subRowIndex:index,
+        drawerData:props.rowDetails
       })
     )
   }
 
-  const handleChange = (e: any) => {
-    setChecked(e.target.checked)
-  }
 
-  const { subRows } = props
-
-  if (subRows === undefined || subRows?.length === 0) {
+  if (rowDetails === undefined || rowDetails === null) {
     return null
   }
 
+  const memoRows = useMemo(()=>{
+    let rows:TDocumentSubRowType[] = []
+    rows = resToDocumentSubRowAdapter(rowDetails)
+    return rows
+  },[rowDetails])
+
   const CustomizedTableRow = ({ children, onClick, keyValue }) => (
     <TableRow key={keyValue}>
+      <TableCell />
       {children.map((item, idx) => {
-        if (idx > 0 && idx < 5) {
           return (
             <TableCell onClick={onClick} key={idx}>
               {item}
             </TableCell>
           )
-        }
-        return <TableCell key={idx}>{item}</TableCell>
       })}
     </TableRow>
   )
@@ -66,7 +70,8 @@ const DocumentSubrow = (props: {
         mb: 0.5,
         '& .MuiTableCell-root': {
           borderTop: 'none !important',
-          maxWidth: '400px'
+          maxWidth: '400px',
+          height: '60px',
         }
       }}
     >
@@ -76,21 +81,23 @@ const DocumentSubrow = (props: {
             '& .MuiTableCell-root': {
               whiteSpace: 'nowrap',
               color: '#333',
-              fontSize: '12px'
+              fontSize: '12px',
+              height: '60px',
             }
           }}
         >
-          <TableCell>
-            <Checkbox
-              checked={checked}
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-            />
-          </TableCell>
+          {/*<TableCell>*/}
+          {/*  <Checkbox*/}
+          {/*    checked={checked}*/}
+          {/*    onChange={handleChange}*/}
+          {/*    inputProps={{ 'aria-label': 'controlled' }}*/}
+          {/*  />*/}
+          {/*</TableCell>*/}
+          <TableCell sx={{width:'10%'}} />
           {Object.values(EDocDetail).map((item, index) => {
             return (
               <TableCell key={index}>
-                <Typography sx={{ fontSize: '13px', color: '#888' }}>
+                <Typography sx={{ fontSize: '13px', color: '#000' }}>
                   {item}
                 </Typography>
               </TableCell>
@@ -100,30 +107,35 @@ const DocumentSubrow = (props: {
       </TableHead>
       <TableBody
         sx={{
-          '& .MuiTypography-root': { color: '#555 !important' }
+          '& .MuiTypography-root': {
+            color: '#6f6f6f !important',
+            fontSize:'.8rem'
+          }
         }}
       >
-        {subRows.map((row, index) => {
+        {memoRows.length>0?
+          memoRows.map((row, index) => {
           if (index==null)
             return null
           return (
             <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
-              <Checkbox />
-              <Typography>{'Page #' + (index + 1)}</Typography>
-              <Typography>{row.violationType}</Typography>
-              <Typography whiteSpace="nowrap">{row.category}</Typography>
-              <Typography>{row.description}</Typography>
-              <Button
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-              >
-                <MoreHoriz className={'action-more-horiz'}></MoreHoriz>
-              </Button>
+              {/*<Checkbox />*/}
+              <Typography>{'Topic #' + (index + 1)}</Typography>
+              <Typography>{row.topic}</Typography>
+              <Typography whiteSpace="nowrap">{row.aiApproval}</Typography>
+              {/*<Button*/}
+              {/*  id="basic-button"*/}
+              {/*  aria-controls={open ? 'basic-menu' : undefined}*/}
+              {/*  aria-haspopup="true"*/}
+              {/*  aria-expanded={open ? 'true' : undefined}*/}
+              {/*>*/}
+              {/*  <MoreHoriz className={'action-more-horiz'}></MoreHoriz>*/}
+              {/*</Button>*/}
             </CustomizedTableRow>
           )
-        })}
+        }):
+          null
+        }
       </TableBody>
     </Table>
   )

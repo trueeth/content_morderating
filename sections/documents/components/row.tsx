@@ -6,31 +6,36 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
 import { TDocumentRowType, TDocumentSubRowType } from '@interfaces/types'
-import TowType from '@components/multi-media/common/type-item'
+import RowType from '@components/multi-media/common/type-item'
 import RowApproval from '@components/multi-media/common/approval-item'
 import RowAction from '@components/multi-media/common/action-item'
 import { Typography } from '@mui/material'
 import { format, parseISO } from 'date-fns'
-import { TResVideo } from '@interfaces/apis/api.types'
+import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
 import DocumentSubrow from './subrow'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import { useEffect } from 'react'
+import { apiGetDocumentContentDetails } from '@interfaces/apis/documents'
+import { openSnackbarError, openSnackbarWarning } from '@store/reducers/snackbar/reducers'
+import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 
 function DocumentRow(props: {
   row: TDocumentRowType
+  rowIndex?: number
 }) {
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   const { row } = props
+  const dispatch = useDispatch()
+
 
   const [vState, setState] = React.useState<{
     openSummary: boolean
-    subRow: TDocumentSubRowType[]
-    subRowSummaries: any[]
-  }>({ openSummary: false, subRow: [], subRowSummaries: [] })
+    rowDetails?: TResDocument.TDocumentContentDetail
+  }>({ openSummary: false, rowDetails: null })
 
 
   useEffect(() => {
@@ -39,34 +44,51 @@ function DocumentRow(props: {
     })
   }, [appState.pagination.pageIndex])
 
-  const handleDetail = async () => {
-    if (vState.subRow.length > 0) {
-     setState(prevState => {
-       return {...prevState, openSummary:!prevState.openSummary}
-     })
-    } else {
-      // const documentSummaries: any =
-      //   documentContent?.Documents[0]?.DocumentChunks[0]?.AIChunkResponses
-      // if (documentSummaries) {
-      //   let tempSubRow = mappingResDocumentSubRow(documentSummaries)
-      //   tempSubRow = tempSubRow.filter((val, index) => index < 5)
-      //   setState({
-      //     ...vState,
-      //     openSummary: true,
-      //     subRow: tempSubRow,
-      //     subRowSummaries: documentSummaries
-      //   })
-      // }
-    }
 
+  const fetchDetails = async () => {
+    const documentContent = appState.api.data[props.rowIndex]
+    let documentDetails = null
+    try {
+      documentDetails = (await apiGetDocumentContentDetails(documentContent.Id))
+    } catch (e) {
+      await Promise.reject(e)
+    }
+    return documentDetails
   }
 
 
-  const rowActions = [
-    // { title: 'Classification' },
-    // { title: 'Reports' },
-    { title: 'Insights' }
-  ]
+  const handleDetail = async () => {
+    if (vState.rowDetails) {
+      setState(prevState => {
+        return { ...prevState, openSummary: !prevState.openSummary }
+      })
+    } else {
+      let documentDetails = null
+      try {
+        documentDetails = await fetchDetails()
+      } catch (e) {
+        console.error(e)
+        dispatch(openSnackbarError('Get error, while fetching document details'))
+        return;
+      }
+      if (documentDetails.data?.GptResponse?.length==0){
+        dispatch(openSnackbarWarning("Sorry, there isn't any Document's GptResponses!"))
+        return;
+      }
+      setState(prevState => ({
+        ...prevState,
+        rowDetails: documentDetails.data,
+        openSummary:true
+      }))
+    }
+  }
+
+
+  // const rowActions = [
+  //   { title: 'Classification' },
+  //   { title: 'Reports' },
+  //   { title: 'Insights' }
+  // ]
 
   return (
     <React.Fragment>
@@ -114,13 +136,19 @@ function DocumentRow(props: {
           </Typography>
         </TableCell>
 
+        {/*<TableCell>*/}
+        {/*  <RowType type={row.type}></RowType>*/}
+        {/*</TableCell>*/}
+
         <TableCell>
-          <TowType type={row.type}></TowType>
+          <Box className={'flex'} maxWidth={'100px'}>
+            {row.processingStatus}
+          </Box>
         </TableCell>
 
         <TableCell>
           <Box className={'flex'} maxWidth={'100px'}>
-            {row.submittedBy}
+            {row.language}
           </Box>
         </TableCell>
 
@@ -139,9 +167,9 @@ function DocumentRow(props: {
             {row.submissionDate}
           </Box>
         </TableCell>
-        <TableCell>
-          <RowAction actions={rowActions} />
-        </TableCell>
+        {/*<TableCell>*/}
+        {/*  <RowAction actions={rowActions} />*/}
+        {/*</TableCell>*/}
       </TableRow>
 
       {/*---------sub common--------*/}
@@ -154,7 +182,7 @@ function DocumentRow(props: {
           colSpan={12}
         >
           <Collapse in={vState.openSummary} timeout='auto' unmountOnExit>
-            {/*<DocumentSubrow subRows={vState.subRow} row={row}></DocumentSubrow>*/}
+            <DocumentSubrow rowDetails={vState.rowDetails} rowIndex={props.rowIndex}></DocumentSubrow>
           </Collapse>
         </TableCell>
       </TableRow>

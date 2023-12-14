@@ -1,4 +1,4 @@
-import { EApporval, EModeratorApprovalStatus } from '@interfaces/index'
+import { EApproval, EModeratorApprovalStatus } from '@interfaces/index'
 import Box from '@mui/material/Box'
 import clsx from 'clsx'
 

@@ -4,7 +4,7 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import { Box, Table, TableContainer, Typography } from '@mui/material'
 import TableBody from '@mui/material/TableBody'
 import {
-  EApporval,
+  EApproval,
   EClassificationType, EMediaRating,
   ENewVideoData
 } from '@interfaces/enums'
@@ -24,7 +24,7 @@ const rows = [
       EClassificationType.sexual,
       EClassificationType.selfHarm
     ],
-    approval: EApporval.review
+    approval: EApproval.review
   },
   {
     name: 'Test Video for the system',
@@ -35,7 +35,7 @@ const rows = [
       EClassificationType.sexual,
       EClassificationType.selfHarm
     ],
-    approval: EApporval.review
+    approval: EApproval.review
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -46,7 +46,7 @@ const rows = [
       EClassificationType.sexual,
       EClassificationType.selfHarm
     ],
-    approval: EApporval.reject
+    approval: EApproval.reject
   },
   {
     name: 'Test Video for the system',
@@ -57,7 +57,7 @@ const rows = [
       EClassificationType.sexual,
       EClassificationType.selfHarm
     ],
-    approval: EApporval.pending
+    approval: EApproval.pending
   },
   {
     name: 'Content Moderation System UI/UX Design',
@@ -68,7 +68,7 @@ const rows = [
       EClassificationType.sexual,
       EClassificationType.selfHarm
     ],
-    approval: EApporval.approve
+    approval: EApproval.approve
   }
 ]
 

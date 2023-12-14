@@ -99,66 +99,11 @@ const HistoryRow = (props: IHistoryRow) => {
 }
 
 export default function DrawerTabActivities() {
-  const [vState, setState] = useState({ moderatorStatus: 'Processing', notes: '' })
-  const handleScenceState = (
-    event: React.MouseEvent<HTMLElement>,
-    newState: string | null
-  ) => {
-    setState(prevState => ({ ...prevState, moderatorStatus: newState }))
-  }
+  // const [vState, setState] = useState({ moderatorStatus: 'Processing', notes: '' })
 
-  const router=useRouter()
-
-  const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  const rowIndex = appState.drawer.rowIndex
-  const subRowIndex = appState.drawer.subRowIndex
-  const data = appState.api.data
 
-  const handleUpdate = async () => {
-    let urlParam = {
-      videoId: data[rowIndex].Id,
-      summaryId: data[rowIndex].VideoSummary?.SceneSummaries[subRowIndex].Id
-    }
-    const currentDate = new Date()
-    const isoString = currentDate.toISOString()
-
-    let parmasStatus=EModeratorApprovalStatus.new
-    switch (vState.moderatorStatus) {
-      case CSceneState[0]:
-        parmasStatus=EModeratorApprovalStatus.inReview
-        break
-      case CSceneState[1]:
-        parmasStatus=EModeratorApprovalStatus.approved
-        break
-      case CSceneState[2]:
-        parmasStatus=EModeratorApprovalStatus.rejected
-        break
-      default:
-        break
-    }
-
-
-    let parmas = {
-      'SceneSummaryId': data[rowIndex].VideoSummary?.SceneSummaries[subRowIndex].Id,
-      'OnModeratorModifiedUtc': isoString,
-      'Status': parmasStatus,
-      'Rating': 'None',
-      'Notes': vState.notes,
-      'ModeratorUsername': 'demo'
-    }
-    try {
-      await apiUpdateVideoSceneSummary(urlParam, parmas)
-      dispatch(openSnackbarSuccess('Success, updated VideoSceneSummary data'))
-    } catch (e) {
-      dispatch(openSnackbarError('Error, updating VideoSceneSummary'))
-    } finally {
-      setTimeout(()=>{
-        router.reload()
-      },2000)
-    }
-  }
 
   return (
     <Box
@@ -168,85 +113,25 @@ export default function DrawerTabActivities() {
         padding: 0
       }}
     >
-      <Typography sx={{ padding: '1rem' }}>Update Scene Status</Typography>
 
-      {/*---------Button group---------*/}
-      <Box
-        sx={{
-          pl: '1rem'
-        }}
-      >
-        <ToggleButtonGroup
-          value={vState.moderatorStatus}
-          exclusive
-          aria-label='text alignment'
-          onChange={handleScenceState}
-        >
-          {CSceneState.map((item, index) => (
-            <ToggleButton
-              value={item}
+
+        {/*------------History--------*/}
+      <Box>
+        <Typography ml={3} sx={{textAlign:'center', marginLeft:'0'}}>History</Typography>
+        <Box>
+          {DrawerHistories.length>0?
+            DrawerHistories.map((item, index) => (
+            <HistoryRow
               key={index}
-              sx={{
-                width: '130px',
-                height: '33px'
-              }}
-            >
-              {item}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      </Box>
-
-      {/*  -----------update-----------*/}
-      <Box
-        sx={{
-          m: '1rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: { xs: 'column', md: 'row' },
-          gap: 2
-        }}
-      >
-        <CssTextField
-          fullWidth
-          placeholder='Write your note'
-          sx={{ mr: 2 }}
-          InputProps={{ sx: { height: '33px', fontSize: '0.8rem' } }}
-          value={vState.notes}
-          onChange={
-            val => setState(prevState => ({ ...prevState, notes: val.target.value }))
+              writerName={item.writerName}
+              writeDate={item.writeDate}
+              description={item.description}
+            />
+          )):
+          <Typography sx={{textAlign:'center', paddingTop:'2rem'}}>No History yet</Typography>
           }
-        ></CssTextField>
-
-        <Button
-          variant='contained'
-          sx={{
-            backgroundColor: 'var(--Primary1)',
-            width: '130px',
-            height: '33px',
-            '&:hover': { backgroundColor: 'var(--Primary1)' }
-          }}
-          onClick={handleUpdate}
-        >
-          Update
-        </Button>
+        </Box>
       </Box>
-
-      {/*  ------------History--------*/}
-      {/*<Box>*/}
-      {/*  <Typography ml={3}>History</Typography>*/}
-      {/*  <Box>*/}
-      {/*    {DrawerHistories.map((item, index) => (*/}
-      {/*      <HistoryRow*/}
-      {/*        key={index}*/}
-      {/*        writerName={item.writerName}*/}
-      {/*        writeDate={item.writeDate}*/}
-      {/*        description={item.description}*/}
-      {/*      />*/}
-      {/*    ))}*/}
-      {/*  </Box>*/}
-      {/*</Box>*/}
     </Box>
   )
 }

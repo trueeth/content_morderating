@@ -22,7 +22,17 @@ export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string , url?:s
 
 
 
-export const CSceneState = ['Processing', 'Approved', 'Unapproved']
+export const CSceneState = ['Not Assigned', 'Approved', 'Unapproved']
+
+export const CDrawerVideoTabs = ['Play the Scene', 'Activities']
+
+export const CDrawerDocumentTabs = [
+  'Questions','Preview the Page','Summary', 'Activities'
+]
+
+export const CQuestionsColumns=[
+  'Question','Ai Detection','Moderator Detection','Moderator Approval','Pages'
+]
 
 export const CMediaType=["Video", "Document"]
 

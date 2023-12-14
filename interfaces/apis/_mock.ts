@@ -312,24 +312,5 @@ export const UserData: Array<TUserData> = [
 ]
 
 export const DrawerHistories = [
-  {
-    writerName: 'Mark Mohammad',
-    writeDate: '07:55PM SEP, 29, 2923',
-    description: 'Scene Added'
-  },
-  {
-    writerName: 'Carolina 5',
-    writeDate: '12:10PM SEP, 28, 2923',
-    description: 'Change status to Unapproved with note, This is good'
-  },
-  {
-    writerName: 'John L',
-    writeDate: '09:10PM SEP, 27, 2923',
-    description: 'Change Status to Approved'
-  },
-  {
-    writerName: 'Carolina S',
-    writeDate: '07:55PM SEP, 29, 2923',
-    description: 'Change Status to Processing with note Done'
-  }
+
 ]

@@ -6,7 +6,8 @@ const initialState = {
   mediaSubOpen: false,
   type: 'video',
   rowIndex: 0,
-  subRowIndex: 0
+  subRowIndex: 0,
+  drawerData:null
 }
 
 export interface IDrawerSlice {
@@ -14,6 +15,7 @@ export interface IDrawerSlice {
   type: 'video' | 'document',
   rowIndex: number,
   subRowIndex: number,
+  drawerData?: any,
 }
 
 const drawerSlice = createSlice({
@@ -28,6 +30,8 @@ const drawerSlice = createSlice({
         state.rowIndex = action.payload.rowIndex
       if (action.payload.subRowIndex!==undefined)
         state.subRowIndex = action.payload.subRowIndex
+      if (action.payload.drawerData!==undefined)
+        state.drawerData = action.payload.drawerData
     }
   }
 })
