@@ -1,5 +1,5 @@
 import request from '@interfaces/apis/base-api/request'
-import { TResVideo } from '@interfaces/apis/api.types'
+import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
 
 
 export declare namespace TResUpload {
@@ -38,6 +38,7 @@ export const apiUploadVideo = (params: any, formData: FormData, options) => {
     options
   )
 }
+
 export const apiUploadedVideoProcess = (params: any) => {
   return request.post<TResVideo.TVideoContent>(
     'analysis/videos/' +
@@ -45,3 +46,8 @@ export const apiUploadedVideoProcess = (params: any) => {
     '/analyses/process'
   )
 }
+
+export const apiUploadDocument = (params:any, options)=>{
+  return request.post<TResDocument.TDocumentContent>('analysis/documents', { ...params },options)
+}
+

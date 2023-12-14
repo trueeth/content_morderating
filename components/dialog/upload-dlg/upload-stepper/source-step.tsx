@@ -15,15 +15,17 @@ import {
   openSnackbarWarning
 } from '@store/reducers/snackbar/reducers'
 import {
-  apiGetUploadMediaId, apiUploadedVideoProcess,
+  apiGetUploadMediaId, apiUploadDocument, apiUploadedVideoProcess,
   apiUploadVideo
 } from '@interfaces/apis/upload'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { setApiLoading } from '@store/reducers/api/reducers'
-import { EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
+import { EApporval, EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
 import { useRouter } from 'next/router'
+import { CLanguage } from '@interfaces/constant'
+import { readFileAsBytes, uint8ArrayToBase64 } from '@utils/file'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -64,13 +66,12 @@ type TStateSource = {
   uploadRemaining?: number
 }
 
-const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-
 export default function SourceStep(props: {
   handleBack: () => void
   handleNext: () => void
   data: any
 }) {
+
   const [vState, setState] = useState<TStateSource>({
     type: 'pc',
     uploadFile: null,
@@ -80,18 +81,53 @@ export default function SourceStep(props: {
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const onFileUpload = async () => {
+  const getAxiosConfig = (startAt: number, type = 'form') => {
 
-    dispatch(setApiLoading(true))
+    const progressHandler = (progressEvent: any) => {
+      const { loaded, total } = progressEvent
 
-    if (!vState.uploadFile) return
+      // Calculate the progress percentage
+      const percentage = (loaded * 100) / total
+
+      const timeElapsed = Date.now() - startAt
+      const uploadSpeed = loaded / timeElapsed
+      const duration = (total - loaded) / uploadSpeed
+      dispatch(
+        setUploadProgress({
+          progress: +percentage.toFixed(2),
+          remaining: duration
+        })
+      )
+    }
+
+    const formOptions: AxiosRequestConfig = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Accept: 'multipart/form-data'
+      },
+      onUploadProgress: progressHandler
+    }
+
+
+    const jsonOptions: AxiosRequestConfig = {
+      headers: {
+        ContentType: 'application/json; charset=UTF-8',
+        Accept: '*/*'
+      },
+      onUploadProgress: progressHandler
+    }
+
+    return type == 'form' ? formOptions : jsonOptions
+  }
+
+  const uploadVideo = async () => {
 
     type TUploadInfo = TResVideo.TVideoContent & {
       ModeratorNotes?: string,
       Rating?: string,
     }
 
-    let uploadInfo: TUploadInfo = {
+    let uploadVideoInfo: TUploadInfo = {
       AIClassification: EMediaRating.none,
       AiClassificationEndTime: null,
       AiClassificationStartTime: null,
@@ -136,49 +172,118 @@ export default function SourceStep(props: {
       VideoSummary: null
     }
 
+
     var formData = new FormData()
     formData.append('file', vState.uploadFile)
 
+
+    let uploadId = await apiGetUploadMediaId(uploadVideoInfo)
+
+    let startAt = Date.now()
+
+
+    await apiUploadVideo(uploadId.data, formData, getAxiosConfig(startAt))
+    dispatch(openSnackbarSuccess('File was uploaded successfully:'))
     try {
-      let uploadId = await apiGetUploadMediaId(uploadInfo)
+      await apiUploadedVideoProcess(uploadId.data.Id)
+    } catch (e) {
+      console.error(e)
+      dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
+    } finally {
+      dispatch(setApiLoading(false))
+      setTimeout(() => {
+        router.reload()
+      }, 2000)
+    }
+  }
 
-      let startAt = Date.now()
-      const options: AxiosRequestConfig = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Accept: 'multipart/form-data'
-        },
-        onUploadProgress: (progressEvent: any) => {
-          const { loaded, total } = progressEvent
 
-          // Calculate the progress percentage
-          const percentage = (loaded * 100) / total
+  const uploadDocument = async () => {
 
-          const timeElapsed = Date.now() - startAt
-          const uploadSpeed = loaded / timeElapsed
-          const duration = (total - loaded) / uploadSpeed
-          dispatch(
-            setUploadProgress({
-              progress: +percentage.toFixed(2),
-              remaining: duration
-            })
-          )
-        }
-      }
+    const propsData = props.data.newOld
 
-      let uploadContent: { data: TResVideo.TVideoContent } =
-        await apiUploadVideo(uploadId.data, formData, options)
-      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
-      try {
-        await apiUploadedVideoProcess(uploadId.data.Id)
-      } catch (e) {
-        console.error(e)
-        dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
-      } finally {
-        dispatch(setApiLoading(false))
-        setTimeout(()=>{
-          router.reload()
-        },2000)
+
+    let startAt = Date.now()
+
+    const readerResult = await readFileAsBytes(vState.uploadFile)
+
+    const stringResult = uint8ArrayToBase64(readerResult)
+
+    let uploadDocumentInfo = {
+      AiApproval: EProcessingStatus.new,
+      CompletionTokens: 0,
+      CreateLanguageProjectEndTime: '0001-01-01T00:00:00+00:00',
+      CreateLanguageProjectStartTime: '0001-01-01T00:00:00+00:00',
+      CreateLanguageProjectStatus: 0,
+      CreateSearchIndexEndTime: '0001-01-01T00:00:00+00:00',
+      CreateSearchIndexStartTime: '0001-01-01T00:00:00+00:00',
+      CreateSearchIndexStatus: 0,
+      Description: null,
+      DocumentBytes: stringResult,
+      DocumentChunks: [],
+      DocumentSummarizationEndTime: '0001-01-01T00:00:00+00:00',
+      DocumentSummarizationStartTime: '0001-01-01T00:00:00+00:00',
+      DocumentSummarizationStatus: 0,
+      DocumentUrl: null,
+      EstimatedTokens: 0,
+      FileName: null,
+      GptResponse: [],
+      Id: '00000000-0000-0000-0000-000000000000',
+      Language: CLanguage[propsData.languageType],
+      MediaId: '00000000-0000-0000-0000-000000000000',
+      MediaSourceId: '49f5cc65-53c4-4caf-94dc-d1f29e6665ec',
+      ModeratorApprovalStatus: EProcessingStatus.new,
+      ModeratorNotes: null,
+      ModeratorResponse: [],
+      Name: propsData.newTitle,
+      Notes: null,
+      OpenAIAnalysisEndTime: '0001-01-01T00:00:00+00:00',
+      OpenAIAnalysisStartTime: '0001-01-01T00:00:00+00:00',
+      OpenAIAnalysisStatus: 0,
+      OpenAiModelDeployment: 'GPT35Turbo16K',
+      OriginalFileName: vState.uploadFile.name,
+      PdfUrl: null,
+      PromptTokens: 0,
+      Rating: 'None',
+      RecognizeDocumentEndTime: '0001-01-01T00:00:00+00:00',
+      RecognizeDocumentStartTime: '0001-01-01T00:00:00+00:00',
+      RecognizeDocumentStatus: 0,
+      Summary: null,
+      TotalProcessingStatus: 0,
+      TotalTokens: 0,
+      UploadedOnUtc: '0001-01-01T00:00:00+00:00',
+      VersionNumber: 0
+    }
+
+    try {
+      await apiUploadDocument(uploadDocumentInfo, getAxiosConfig(startAt,"json"))
+    } catch (e) {
+      console.error(e)
+      dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
+    } finally {
+      dispatch(setApiLoading(false))
+      setTimeout(()=>{
+        router.reload()
+      },2000)
+    }
+
+
+  }
+
+  const onFileUpload = async () => {
+
+
+    if (!vState.uploadFile) return
+
+    dispatch(setApiLoading(true))
+
+
+    try {
+      const mediaType = props.data.mediaType
+      if (mediaType === 'Video') {
+        await uploadVideo()
+      } else {
+        await uploadDocument()
       }
     } catch (e) {
       console.error(e)
@@ -230,10 +335,13 @@ export default function SourceStep(props: {
       dispatch(openSnackbarError('No file was chosen'))
       return
     }
-
     /** File validation */
-    if (vState.uploadFile.type.indexOf('video') < 0) {
+    if (props.data.mediaType == 'Video' && vState.uploadFile.type.indexOf('video') < 0) {
       dispatch(openSnackbarError('Please select a valid video'))
+      return
+    }
+    if (props.data.mediaType == 'Document' && vState.uploadFile.type.indexOf('pdf') < 0) {
+      dispatch(openSnackbarError('Please select a valid pdf'))
       return
     }
 
@@ -242,9 +350,8 @@ export default function SourceStep(props: {
       return
     }
 
-    // console.warn(props.data)
-
     props.handleNext()
+
     setTimeout(() => {
       onFileUpload()
     }, 1000)
@@ -288,13 +395,13 @@ export default function SourceStep(props: {
         {/*  disabled={vState.type !== 'url'}*/}
         {/*/>*/}
 
-        <Box>
+        <Box sx={{ paddingBottom: '.5rem' }}>
           <Typography>Upload from your PC</Typography>
-          <Radio
-            checked={vState.type === 'pc'}
-            onChange={handleType}
-            value={'pc'}
-          />
+          {/*<Radio*/}
+          {/*  checked={vState.type === 'pc'}*/}
+          {/*  onChange={handleType}*/}
+          {/*  value={'pc'}*/}
+          {/*/>*/}
         </Box>
         <Box {...getRootProps({ style })}>
           <input {...getInputProps()} />

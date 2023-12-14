@@ -4,6 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { PrimaryButton } from '@components/common/styled-button'
 import React, { useState } from 'react'
 
+
 export default function TypeStep(props: { handleNext: (any) => void }) {
   const [vState, setState] = useState('Video')
   const handleNext = () => {
@@ -43,7 +44,7 @@ export default function TypeStep(props: { handleNext: (any) => void }) {
         >
           <FormControlLabel value="Video" control={<Radio />} label="Video" />
           {/*<FormControlLabel value="Audio" control={<Radio />} label="Audio" />*/}
-          {/*<FormControlLabel value="Document" control={<Radio />} label="Book" />*/}
+          <FormControlLabel value="Document" control={<Radio />} label="Document" />
         </RadioGroup>
         <Box sx={{ textAlign: 'center' }}>
           <PrimaryButton onClick={handleNext} sx={{ width: '100px' }}>

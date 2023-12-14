@@ -41,7 +41,12 @@ export default function UploadStepper() {
   // Initial state for the component
   const initialState = {
     mediaType: '',
-    newOld: { newTitle: '', type: 'new', replaceItem: null },
+    newOld: {
+      newTitle: '',
+      type: 'new',
+      replaceItem: null,
+      languageType:0
+    },
   };
   const [vState, setState] = useState(initialState);
 
@@ -112,6 +117,7 @@ export default function UploadStepper() {
       <TabPanel index={activeStep} value={1}>
         {/* StatusStep component */}
         <StatusStep
+          mediaType={vState.mediaType}
           handleNext={(val) => {
             setState({ ...vState, newOld: val });
             handleNext();

@@ -24,6 +24,10 @@ export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string , url?:s
 
 export const CSceneState = ['Processing', 'Approved', 'Unapproved']
 
+export const CMediaType=["Video", "Document"]
+
+export const CLanguage=["English", "Arabic"]
+
 export const CFlaggedScenesMax = 10000
 
 export const CUploadSteps = ['MEDIA TYPE', 'NEW OR OLD', 'SOURCE', 'LAUNCH']

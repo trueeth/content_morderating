@@ -7,19 +7,22 @@ import { PrimaryButton } from '@components/common/styled-button'
 import { PrimaryTextField } from '@components/common/text-field'
 import { openSnackbarError } from '@store/reducers/snackbar/reducers'
 import { useDispatch } from 'react-redux'
+import { CLanguage } from '@interfaces/constant'
 
 export default function StatusStep(props: {
   handleNext: (any) => void
   handleBack: () => void
+  mediaType?:string
 }) {
   const [vState, setState] = useState({
     newTitle: '',
     type: 'new',
-    replaceItem: 0
+    replaceItem:null,
+    languageType: 0
   })
 
-  const handleReplace = (event: any) => {
-    setState({ ...vState, replaceItem: event.target.value })
+  const handleLanguageType = (event: any) => {
+    setState({ ...vState, languageType: event.target.value })
   }
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...vState, type: event.target.value })
@@ -60,13 +63,13 @@ export default function StatusStep(props: {
           }
         }}
       >
-        <Box>
-          <Typography>New Media</Typography>
-          <Radio
-            checked={vState.type === 'new'}
-            onChange={handleType}
-            value={'new'}
-          />
+        <Box sx={{paddingTop:'1.5rem'}}>
+          <Typography>Name</Typography>
+          {/*<Radio*/}
+          {/*  checked={vState.type === 'new'}*/}
+          {/*  onChange={handleType}*/}
+          {/*  value={'new'}*/}
+          {/*/>*/}
         </Box>
         <PrimaryTextField
           placeholder="Enter the name"
@@ -84,46 +87,48 @@ export default function StatusStep(props: {
         {/*    value={'old'}*/}
         {/*  />*/}
         {/*</Box>*/}
-        {/*<Select*/}
-        {/*  value={vState.replaceItem}*/}
-        {/*  onChange={handleReplace}*/}
-        {/*  fullWidth*/}
-        {/*  sx={{*/}
-        {/*    height: '40px',*/}
-        {/*    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {*/}
-        {/*      borderColor: 'var(--Primary1)'*/}
-        {/*    },*/}
-        {/*    bgcolor: 'white'*/}
-        {/*  }}*/}
-        {/*  renderValue={*/}
-        {/*    vState.type !== null*/}
-        {/*      ? undefined*/}
-        {/*      : () => <Typography>Select from list</Typography>*/}
-        {/*  }*/}
-        {/*>*/}
-        {/*  <MenuItem*/}
-        {/*    sx={{*/}
-        {/*      '& .MuiTypography-root, input': {*/}
-        {/*        sm: { fontSize: '.9rem' },*/}
-        {/*        xs: { fontSize: '.7rem' }*/}
-        {/*      }*/}
-        {/*    }}*/}
-        {/*    value={0}*/}
-        {/*  >*/}
-        {/*    Trolls*/}
-        {/*  </MenuItem>*/}
-        {/*  <MenuItem*/}
-        {/*    sx={{*/}
-        {/*      '& .MuiTypography-root, input': {*/}
-        {/*        sm: { fontSize: '.9rem' },*/}
-        {/*        xs: { fontSize: '.7rem' }*/}
-        {/*      }*/}
-        {/*    }}*/}
-        {/*    value={1}*/}
-        {/*  >*/}
-        {/*    Poppy*/}
-        {/*  </MenuItem>*/}
-        {/*</Select>*/}
+
+        {
+          props.mediaType==='Document'?
+            <>
+              <Box sx={{paddingTop:'1.5rem'}}>
+                <Typography>
+                  Language
+                </Typography>
+              </Box>
+              <Select
+                value={vState.languageType}
+                onChange={handleLanguageType}
+                fullWidth
+                sx={{
+                  height: '40px',
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'var(--Primary1)'
+                  },
+                  bgcolor: 'white'
+                }}
+              >
+                {
+                  CLanguage.map((val, index)=>(
+                    <MenuItem
+                      sx={{
+                        '& .MuiTypography-root, input': {
+                          sm: { fontSize: '.9rem' },
+                          xs: { fontSize: '.7rem' }
+                        }
+                      }}
+                      key={index}
+                      value={index}
+                    >
+                      {val}
+                    </MenuItem>))
+                }
+              </Select>
+            </>
+            :
+            null
+        }
+
         <Box
           sx={{
             mt: 2,
