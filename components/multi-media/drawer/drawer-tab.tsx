@@ -1,7 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material'
 import React, { useState } from 'react'
 import DrawerTabOverview from './tab-overview'
-import DrawerTabPlayScene from './tab-play-scene'
+import DrawerTabPlayScene from './video/tab-play-scene'
 import DrawerTabActivities from './tab-activities'
 import TabPanel from '@components/common/tab-panel'
 import { useSelector } from 'react-redux'
@@ -9,8 +9,8 @@ import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import { CDrawerDocumentTabs, CDrawerVideoTabs } from '@interfaces/constant'
 import Typography from '@mui/material/Typography'
-import DrawerTabQuestions from '@components/multi-media/drawer/tab-questions'
-import DrawerTabPreviewPage from '@components/multi-media/drawer/tab-preview-page'
+import DrawerTabQuestions from '@components/multi-media/drawer/document/tab-questions'
+import DrawerTabPreviewPage from '@components/multi-media/drawer/document/tab-preview-page'
 
 export default function DrawerTab() {
   const [vState, setState] = React.useState({ tabIndex: 0, pageNumber:0, questionIndex:0 })
@@ -50,7 +50,7 @@ export default function DrawerTab() {
         </TabPanel>
         <TabPanel value={vState.tabIndex} index={2}>
           <Box>
-            <Typography>{appState.drawer.drawerData?.Summary}</Typography>
+            <Typography sx={{padding:'2rem'}}>{appState.drawer.drawerData?.Summary}</Typography>
           </Box>
         </TabPanel>
         <TabPanel value={vState.tabIndex} index={3}>
