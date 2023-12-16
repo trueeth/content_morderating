@@ -26,7 +26,7 @@ service.interceptors.request.use(
   },
   (error) => {
     // do something with request error
-    console.log(error) // for debug
+    console.error(error) // for debug
     return Promise.reject(error)
   }
 )
@@ -48,7 +48,7 @@ service.interceptors.response.use(
     // if the custom code is not 200, it is judged as an error.
     if (res.code >= 300) {
       if (res.code === 508 || res.code === 512 || res.code === 514) {
-        console.log(res)
+        console.error(res)
       }
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
@@ -56,7 +56,7 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    console.log('err' + error) // for debug
+    console.error('err' + error) // for debug
     return Promise.reject(error)
   }
 )

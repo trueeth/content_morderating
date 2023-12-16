@@ -83,7 +83,7 @@ const handler = async (
       error: null
     })
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
 

@@ -46,7 +46,7 @@ export default function DrawerDocumentHeader() {
         ModeratorApproval:documentData.ModeratorApprovalStatus
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
 
     return memoValue

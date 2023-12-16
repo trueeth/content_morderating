@@ -54,10 +54,8 @@ export default function DocumentApprovalDlg() {
   const updateApprovalDocument = async () => {
 
     let approvalStatus = approvalConst[vState.approval]
-    console.log(approvalStatus)
     if (approvalStatus === approvalConst[0])
       approvalStatus = EModeratorApprovalStatus.inReview
-    console.log(approvalStatus)
 
     const params = {
       DocumentId: appState.api.data[dlgState.docIndex].Id,
@@ -151,7 +149,7 @@ export default function DocumentApprovalDlg() {
         dispatch(setPaginationIndex({ pageIndex: 0 }))
       }, 2000)
     } catch (e) {
-      console.log(e)
+      console.error(e)
       dispatch(openSnackbarError('Get Error while updating approval status'))
     } finally {
       dispatch(openDocumentApproval({ open: false }))
@@ -187,7 +185,6 @@ export default function DocumentApprovalDlg() {
     const gptResponse = documentDetailState?.GptResponse[dlgState.topicIndex]
 
     const setApprovalStatus = (val) => {
-      console.log(val)
       if (val === approvalConst[1])
         setState(prevState => ({ ...prevState, approval: 1 }))
       else if (val === approvalConst[2])

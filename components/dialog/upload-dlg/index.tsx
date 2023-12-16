@@ -18,7 +18,7 @@ export default function UploadDialog() {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  // console.log(appState)
+  // console.error(appState)
   const handleClose = () => {
     if (appState.api.loading)
       dispatch(openSnackbarWarning('Please don\'t refresh page. We\'re processing your request!'))

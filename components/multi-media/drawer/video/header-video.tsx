@@ -64,7 +64,7 @@ export default function DrawerVideoHeader() {
         AiApproval: subRowData.AutomaticApprovalStatus
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
 
     return memoValue
