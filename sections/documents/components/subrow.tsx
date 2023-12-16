@@ -4,7 +4,7 @@ import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
-import {  Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { TDocumentSubRowType } from '@interfaces/types'
 import { EDocDetail, EDocumentApprovalDlg } from '@interfaces/enums'
 import { useDispatch } from 'react-redux'
@@ -47,6 +47,20 @@ const DocumentSubrow = (props: {
     rows = resToDocumentSubRowAdapter(rowDetails)
     return rows
   },[rowDetails])
+
+
+  const rowActions=[
+    // { title: 'Classification' },
+    // { title: 'Reports' },
+    {
+      title: 'Reports' ,
+      // action:()=>dispatch(openDocumentApproval({
+      //   type:EDocumentApprovalDlg.topic,
+      //   docIndex:props.rowIndex,
+      //   topicIndex:index
+      // })),
+    }
+  ]
 
   const CustomizedTableRow = ({ children, onClick, keyValue }) => (
     <TableRow key={keyValue}>
@@ -132,18 +146,39 @@ const DocumentSubrow = (props: {
               <Typography whiteSpace="nowrap">
                 <RowApproval approval={row.aiApproval}/>
               </Typography>
-                <RowAction actions={[
-                  // { title: 'Classification' },
-                  // { title: 'Reports' },
-                  {
-                    title: 'Reports' ,
-                    action:()=>dispatch(openDocumentApproval({
-                      type:EDocumentApprovalDlg.topic,
-                      docIndex:props.rowIndex,
-                      topicIndex:index
-                    })),
+                {/*<RowAction actions={[*/}
+                {/*  // { title: 'Classification' },*/}
+                {/*  // { title: 'Reports' },*/}
+                {/*  {*/}
+                {/*    title: 'Reports' ,*/}
+                {/*    action:()=>dispatch(openDocumentApproval({*/}
+                {/*      type:EDocumentApprovalDlg.topic,*/}
+                {/*      docIndex:props.rowIndex,*/}
+                {/*      topicIndex:index*/}
+                {/*    })),*/}
+                {/*  }*/}
+                {/*]} />*/}
+
+              <Button
+                sx={{
+                  backgroundColor: 'var(--Primary1)',
+                  padding: '2px 10px',
+                  minWidth: '40px',
+                  color: '#fff',
+                  fontSize:'.7rem',
+                  '&:hover': {
+                    backgroundColor: '#4fc1d7'
                   }
-                ]} />
+                }}
+                // onClick={() => props.handlePageNum(val.pageNumber, questionIndex)}
+                onClick={()=>dispatch(openDocumentApproval({
+                  type:EDocumentApprovalDlg.topic,
+                  docIndex:props.rowIndex,
+                  topicIndex:index
+                }))}
+              >
+                {rowActions[0].title}
+              </Button>
             </CustomizedTableRow>
           )
         }):

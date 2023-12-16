@@ -220,3 +220,7 @@
   border: none;
   color: black;
 }
+
+.MuiTableCell-root{
+  font-family:"Roboto","Helvetica","Arial",sans-serif !important
+}

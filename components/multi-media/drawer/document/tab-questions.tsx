@@ -90,8 +90,10 @@ export default function DrawerTabQuestions() {
           >
             <TableCell>#</TableCell>
             {CQuestionsColumns.map((val, index) => {
-                if (index === 2||3||4)
+                if (index === (2||3))
                   return <TableCell style={{ maxWidth: '80px', whiteSpace: 'pre-wrap' }} key={index}>{val}</TableCell>
+                if (index === 4)
+                  return <TableCell style={{ maxWidth: '200px',minWidth:'150px', whiteSpace: 'pre-wrap' }} key={index}>{val}</TableCell>
                 return <TableCell key={index}>{val}</TableCell>
               }
             )}
@@ -140,6 +142,7 @@ export default function DrawerTabQuestions() {
                           padding: '3px 0px',
                           minWidth: '40px',
                           color: '#232323',
+                          fontSize:'.7rem',
                           '&:hover': {
                             backgroundColor: '#4fc1d7'
                           }
@@ -161,19 +164,41 @@ export default function DrawerTabQuestions() {
                 </Box>
               </TableCell>
               <TableCell>
-                <RowAction actions={[
-                  // { title: 'Classification' },
-                  // { title: 'Reports' },
-                  {
-                    title: 'Reports',
-                    action: () => dispatch(openDocumentApproval({
-                      type: EDocumentApprovalDlg.question,
-                      docIndex: appState.drawer.rowIndex,
-                      topicIndex: appState.drawer.subRowIndex,
-                      questionIndex: questionIndex
-                    }))
-                  }
-                ]} />
+                {/*<RowAction actions={[*/}
+                {/*  // { title: 'Classification' },*/}
+                {/*  // { title: 'Reports' },*/}
+                {/*  {*/}
+                {/*    title: 'Reports',*/}
+                {/*    action: () => dispatch(openDocumentApproval({*/}
+                {/*      type: EDocumentApprovalDlg.question,*/}
+                {/*      docIndex: appState.drawer.rowIndex,*/}
+                {/*      topicIndex: appState.drawer.subRowIndex,*/}
+                {/*      questionIndex: questionIndex*/}
+                {/*    }))*/}
+                {/*  }*/}
+                {/*]} />*/}
+
+                <Button
+                  sx={{
+                    backgroundColor: 'var(--Primary1)',
+                    padding: '2px 10px',
+                    minWidth: '40px',
+                    color: '#fff',
+                    fontSize:'.7rem',
+                    '&:hover': {
+                      backgroundColor: '#4fc1d7'
+                    }
+                  }}
+                  // onClick={() => props.handlePageNum(val.pageNumber, questionIndex)}
+                  onClick={ () => dispatch(openDocumentApproval({
+                    type: EDocumentApprovalDlg.question,
+                    docIndex: appState.drawer.rowIndex,
+                    topicIndex: appState.drawer.subRowIndex,
+                    questionIndex: questionIndex
+                  }))}
+                >
+                  {'Reports'}
+                </Button>
               </TableCell>
             </TableRow>
           )}

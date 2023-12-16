@@ -8,7 +8,7 @@ import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
 import { TDocumentRowType } from '@interfaces/types'
 import RowApproval from '@components/multi-media/common/approval-item'
 import RowAction from '@components/multi-media/common/action-item'
-import { Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { TResDocument } from '@interfaces/apis/api.types'
 import DocumentSubrow from './subrow'
 import { useDispatch, useSelector } from 'react-redux'
@@ -173,7 +173,23 @@ function DocumentRow(props: {
           </Box>
         </TableCell>
         <TableCell>
-          <RowAction actions={rowActions} />
+          {/*<RowAction actions={rowActions} />*/}
+          <Button
+            sx={{
+              backgroundColor: 'var(--Primary1)',
+              padding: '2px 10px',
+              minWidth: '40px',
+              color: '#fff',
+              fontSize:'.7rem',
+              '&:hover': {
+                backgroundColor: '#4fc1d7'
+              }
+            }}
+            // onClick={() => props.handlePageNum(val.pageNumber, questionIndex)}
+            onClick={rowActions[0].action}
+          >
+            {rowActions[0].title}
+          </Button>
         </TableCell>
       </TableRow>
 

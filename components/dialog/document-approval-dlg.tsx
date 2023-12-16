@@ -184,7 +184,7 @@ export default function DocumentApprovalDlg() {
     }
     const gptResponse = documentDetailState?.GptResponse[dlgState.topicIndex]
 
-    const setApprovalStatus = (val:any) => {
+    const setApprovalStatus = (val: any) => {
       if (val === approvalConst[1])
         setState(prevState => ({ ...prevState, approval: 1 }))
       else if (val === approvalConst[2])
@@ -227,10 +227,11 @@ export default function DocumentApprovalDlg() {
   return (
     <React.Fragment>
       {/*----------- document approval dialog ---------*/}
-      <Dialog fullWidth
-              maxWidth={memoValue.type !== EDocumentApprovalDlg.page ? 'xs' : 'lg'}
-              open={vState.open}
-              onClose={handleClose}>
+      <Dialog
+        // fullWidth
+        maxWidth={memoValue.type !== EDocumentApprovalDlg.page ? 'xs' : 'lg'}
+        open={vState.open}
+        onClose={handleClose}>
         <Box
           sx={{
             display: 'flex',
@@ -238,14 +239,18 @@ export default function DocumentApprovalDlg() {
             justifyContent: 'center',
             flexDirection: 'column',
             p: 3,
-            backgroundImage: memoValue.type === EDocumentApprovalDlg.page ? 'linear-gradient(to right, #fff9f9, #ebe9ff)' : 'white'
+            backgroundImage: 'linear-gradient(to right, #fff9f9, #ebe9ff)',
+            '& .MuiTypography-root':{
+                fontFamily:'"Roboto","Helvetica","Arial",sans-serif !important',
+                fontSize:'.9rem'
+            },
           }}
         >
           {/*---------title-----------*/}
-          <Box sx={{ display: 'flex', py: '2rem' }}>
+          <Box sx={{ display: 'flex', pt: '2rem', pb:'1rem' }}>
             <Typography
               sx={{
-                fontSize: '1.3rem',
+                fontSize: '1.3rem !important',
                 fontWeight: ' 600',
                 color: '#333',
                 textAlign: 'center'
@@ -259,7 +264,7 @@ export default function DocumentApprovalDlg() {
           </Box>
 
           {/*---------- Document description ----------*/}
-          <Box sx={{ paddingBottom: '2rem' }}>
+          <Box sx={{ paddingBottom: '1rem' }}>
             <Typography sx={{ textAlign: 'center' }}>
               {memoValue.description}
             </Typography>
@@ -311,7 +316,9 @@ export default function DocumentApprovalDlg() {
                       Ai Opinion&nbsp;:
                     </Typography>
                     <Typography sx={{ paddingLeft: '2rem' }}>
-                      The page portrays the question in a  <strong>{memoValue.pageInfo?.opinion ? memoValue.pageInfo?.opinion : 'no'}</strong>  way based on the Ai findings
+                      The page portrays the question in
+                      a <strong>{memoValue.pageInfo?.opinion ? memoValue.pageInfo?.opinion : 'no'}</strong> way based on
+                      the Ai findings
 
                     </Typography>
                   </Grid>
@@ -441,14 +448,21 @@ export default function DocumentApprovalDlg() {
               </Grid>
             </Box>
             /*----------Dialog content ------------*/
-            : <Box>
+            : <Box  sx={{
+              overflow: 'auto',
+              border: '1px solid #e2e2e2',
+              borderRadius: '0.5rem',
+              backgroundColor: 'white',
+              padding:'2rem'
+            }}>
               <Grid
                 container
                 spacing={2}
                 sx={{
                   '& .MuiGrid-item': {
                     display: 'flex',
-                    flexDirection: 'column'
+                    flexDirection: 'column',
+                    paddingTop: '2rem'
                   },
                   '& p': {
                     fontSize: '.9rem'
@@ -456,7 +470,7 @@ export default function DocumentApprovalDlg() {
                 }}
               >
                 {/*------moderator approval-----------*/}
-                <Grid item xs={12} md={10}>
+                <Grid item xs={12} md={12}>
                   <Typography>Moderator Approval :</Typography>
                   <CustomToggleButtonGroup
                     groupName={approvalConst}
@@ -465,7 +479,8 @@ export default function DocumentApprovalDlg() {
                       '& button': {
                         fontSize: '.75rem',
                         whiteSpace: 'nowrap',
-                        padding: '.4rem .6rem'
+                        padding: '.4rem .6rem',
+                        minWidth: '33.3%'
                       }
                     }}
                     value={vState.approval}
@@ -478,13 +493,13 @@ export default function DocumentApprovalDlg() {
 
                     <Grid item
                           xs={12}
-                          md={10}
+                          md={12}
                           sx={{ marginTop: '1rem' }}>
                       <Typography>Did you find an answer for this question in the book ?</Typography>
                       <RadioGroup
                         row
                         sx={{
-                          justifyContent: 'left',
+                          justifyContent: 'space-evenly',
                           '& span': {
                             fontSize: '.75rem'
                           }
@@ -506,7 +521,7 @@ export default function DocumentApprovalDlg() {
                     : null
                 }
                 {/*----------notes-----------*/}
-                <Grid item xs={12} md={10}>
+                <Grid item xs={12} md={12}>
                   <Typography>Notes:</Typography>
                   <PrimaryTextField
                     sx={{

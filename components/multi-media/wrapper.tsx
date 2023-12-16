@@ -136,7 +136,10 @@ export const MediaActionwrapper = (props: IActionPros) => {
             borderBottom: 'none'
           },
           borderSpacing: '0 0.3rem',
-          borderCollapse: 'separate'
+          borderCollapse: 'separate',
+          '& .MuiTableCell-root':{
+            fontFamily:'"Roboto","Helvetica","Arial",sans-serif !important',
+          },
         }}
       >
         {/* TableHead */}
