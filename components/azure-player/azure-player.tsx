@@ -20,13 +20,13 @@ const APContainer = styled.div<ICSS>`
   margin-top: 50px;
 `
 // made a special visibility handling by moving it from property to style
-const VideoComp = styled.video<ICSS>`
-  position: absolute;
-  width: ${(props) =>
-          props.position.width ? `${props.position.width}px` : '384px'};
-  height: ${(props) =>
-          props.position.height ? `${props.position.height}px` : '216px'};
-`
+// const VideoComp = styled.video<ICSS>`
+//   position: absolute;
+//   width: ${(props) =>
+//           props.position.width ? `${props.position.width}px` : '384px'};
+//   height: ${(props) =>
+//           props.position.height ? `${props.position.height}px` : '216px'};
+// `
 
 interface ICSS {
   position: { top: number; left: number; width: number; height: number };

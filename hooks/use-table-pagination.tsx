@@ -3,8 +3,7 @@ import { Pagination, PaginationItem } from '@mui/material'
 import TablePagination from '@components/common/table-pagination'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  setPageinit, setPagination,
-  // setPageinit,
+  setPageinit,
   setPaginationIndex
 } from '@store/reducers/page/reducers'
 import { IReduxState } from '@store/index'

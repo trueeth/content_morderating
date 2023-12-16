@@ -8,7 +8,6 @@ import {
   Update,
   Lock
 } from '@mui/icons-material'
-import { EVideoColumn } from './enums'
 
 export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string, url?: string, dialog?: string }> = [
   { icon: GridViewRounded, title: 'Dashboard', url: 'dashboard' },

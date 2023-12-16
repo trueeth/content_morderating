@@ -1,5 +1,5 @@
 import { StepWrapper } from './index'
-import { Box, Radio, Select, useMediaQuery, Typography } from '@mui/material'
+import { Box,  Select, useMediaQuery, Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'
@@ -24,9 +24,9 @@ export default function StatusStep(props: {
   const handleLanguageType = (event: any) => {
     setState({ ...vState, languageType: event.target.value })
   }
-  const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...vState, type: event.target.value })
-  }
+  // const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setState({ ...vState, type: event.target.value })
+  // }
 
   const dispatch = useDispatch()
 
@@ -38,7 +38,6 @@ export default function StatusStep(props: {
     props.handleNext(vState)
   }
 
-  const isXs = useMediaQuery('(max-width:500px)')
 
   return (
     <StepWrapper>

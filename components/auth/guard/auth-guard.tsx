@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -28,11 +28,11 @@ function Container({ children }: Props) {
   const check = useCallback(async () => {
     if (!authenticated) {
       setChecked(false)
-      router.push('/auth')
+      await router.push('/auth')
     } else {
       setChecked(true)
       // if (router.pathname == '/') router.push('/dashboard')
-      if (router.pathname == '/') router.push('/videos')
+      if (router.pathname == '/') await router.push('/videos')
     }
   }, [authenticated, router])
 

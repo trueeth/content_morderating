@@ -8,7 +8,7 @@ import {
   EUserType,
   EMediaType,
   EModeratorApprovalStatus,
-  EViolationType, EMediaRating
+  EMediaRating
 } from './enums'
 
 export type TVideoRowType = {

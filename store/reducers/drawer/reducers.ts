@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { TResVideo } from '@interfaces/apis/api.types'
-import { TVideoRowType } from '@interfaces/types'
+
 
 const initialState = {
   mediaSubOpen: false,

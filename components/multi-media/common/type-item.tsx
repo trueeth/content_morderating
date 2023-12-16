@@ -1,7 +1,7 @@
 import { EMediaType } from '@interfaces/index'
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import { Slideshow, Article, ArticleOutlined } from '@mui/icons-material'
+import { Slideshow, ArticleOutlined } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 
 const RowType = (props: { type: EMediaType }) => {

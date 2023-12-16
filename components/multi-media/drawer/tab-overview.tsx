@@ -5,7 +5,7 @@ import { IReduxState } from '@store/index'
 
 
 export default function DrawerTabOverview() {
-  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+  // const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   return (
     <Box

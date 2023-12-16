@@ -1,6 +1,5 @@
 import { Box, Tab, Tabs } from '@mui/material'
-import React, { useState } from 'react'
-import DrawerTabOverview from './tab-overview'
+import React from 'react'
 import DrawerTabPlayScene from './video/tab-play-scene'
 import DrawerTabActivities from './tab-activities'
 import TabPanel from '@components/common/tab-panel'
@@ -10,7 +9,6 @@ import { IAppSlice } from '@store/reducers'
 import { CDrawerDocumentTabs, CDrawerVideoTabs } from '@interfaces/constant'
 import Typography from '@mui/material/Typography'
 import DrawerTabQuestions from '@components/multi-media/drawer/document/tab-questions'
-import DrawerTabPreviewPage from '@components/multi-media/drawer/document/tab-preview-page'
 
 export default function DrawerTab() {
   const [vState, setState] = React.useState({

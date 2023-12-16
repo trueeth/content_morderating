@@ -1,23 +1,15 @@
 import {
   Box,
-  ToggleButtonGroup,
   TextField,
-  Typography,
-  ToggleButton,
-  Button
+  Typography
 } from '@mui/material'
 import { styled } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import { Slideshow } from '@mui/icons-material'
-import { useState } from 'react'
-import { CSceneState, EModeratorApprovalStatus } from '@interfaces/index'
 import { DrawerHistories } from '@interfaces/apis/_mock'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
-import { apiUpdateVideoSceneSummary } from '@interfaces/apis/videos'
-import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
-import { useRouter } from 'next/router'
 
 
 interface IHistoryRow {
@@ -104,7 +96,6 @@ export default function DrawerTabActivities() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
 
-
   return (
     <Box
       sx={{
@@ -115,20 +106,20 @@ export default function DrawerTabActivities() {
     >
 
 
-        {/*------------History--------*/}
+      {/*------------History--------*/}
       <Box>
-        <Typography ml={3} sx={{textAlign:'center', marginLeft:'0'}}>History</Typography>
+        <Typography ml={3} sx={{ textAlign: 'center', marginLeft: '0' }}>History</Typography>
         <Box>
-          {DrawerHistories.length>0?
+          {DrawerHistories.length > 0 ?
             DrawerHistories.map((item, index) => (
-            <HistoryRow
-              key={index}
-              writerName={item.writerName}
-              writeDate={item.writeDate}
-              description={item.description}
-            />
-          )):
-          <Typography sx={{textAlign:'center', paddingTop:'2rem'}}>No History yet</Typography>
+              <HistoryRow
+                key={index}
+                writerName={item.writerName}
+                writeDate={item.writeDate}
+                description={item.description}
+              />
+            )) :
+            <Typography sx={{ textAlign: 'center', paddingTop: '2rem' }}>No History yet</Typography>
           }
         </Box>
       </Box>

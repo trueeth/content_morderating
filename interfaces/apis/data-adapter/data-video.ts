@@ -1,9 +1,9 @@
 import { TResVideo } from '@interfaces/apis/api.types'
-import { EClassificationType, EMediaType, ESeverity, EViolationType } from '@interfaces/enums'
+import { EClassificationType, EMediaType, ESeverity } from '@interfaces/enums'
 import { TVideoRowType, TVideoSubRowType } from '@interfaces/types'
 import { format, parseISO } from 'date-fns'
 
-export const resToVideoRowAdapter = (resData) => {
+export const resToVideoRowAdapter = (resData:any) => {
 
   let apiData = resData as TResVideo.TVideoContent[]
 

@@ -3,7 +3,7 @@ import {
   Typography,
   Button
 } from '@mui/material'
-import { CQuestionsColumns, EDocumentApprovalDlg, EModeratorApprovalStatus } from '@interfaces/index'
+import { CQuestionsColumns, EDocumentApprovalDlg } from '@interfaces/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
@@ -19,18 +19,18 @@ import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import RowApproval from '@components/multi-media/common/approval-item'
 
 
-interface IHistoryRow {
-  writerName: string
-  writeDate: string
-  description: string
-}
+// interface IHistoryRow {
+//   writerName: string
+//   writeDate: string
+//   description: string
+// }
 
 
 interface IProps {
   // handlePageNum?: (val:number, index:number) => void
 }
 
-export default function DrawerTabQuestions(props: IProps) {
+export default function DrawerTabQuestions() {
 
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)

@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useReducer, useCallback, useEffect } from 'react'
+import React, { useMemo, useReducer, useCallback, useEffect } from 'react'
 
 import { AuthContext } from './auth-context'
 import { AuthUserType, ActionMapType, AuthStateType } from '../types'
@@ -124,9 +124,9 @@ export function AuthProvider({ children }: Props) {
 
   // ----------------------------------------------------------------------
 
-  const checkAuthenticated = state.user ? 'authenticated' : 'unauthenticated'
+  // const checkAuthenticated = state.user ? 'authenticated' : 'unauthenticated'
 
-  const status = checkAuthenticated
+  // const status = checkAuthenticated
 
   const memoizedValue = useMemo(
     () => ({

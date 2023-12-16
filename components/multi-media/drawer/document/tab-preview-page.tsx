@@ -1,16 +1,11 @@
 import { Box, Typography } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef} from 'react'
 import 'video-react/dist/video-react.css'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
-import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
-import { apiGetVideoAnalysesStreamUrl } from '@interfaces/apis/videos'
-import { openSnackbarError } from '@store/reducers/snackbar/reducers'
-import LoadingIcons from 'react-loading-icons'
-import { AzurePlayer } from '@components/azure-player/azure-player'
 import { TResDocument } from '@interfaces/apis/api.types'
 
 interface IProps {

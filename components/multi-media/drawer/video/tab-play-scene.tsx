@@ -1,10 +1,9 @@
-import { Box, Typography } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
+import { Box } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import 'video-react/dist/video-react.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
-import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import { apiGetVideoAnalysesStreamUrl } from '@interfaces/apis/videos'
@@ -14,16 +13,16 @@ import { AzurePlayer } from '@components/azure-player/azure-player'
 import { TResVideo } from '@interfaces/apis/api.types'
 
 
-const options = {
-  cMapUrl: '/cmaps/',
-  standardFontDataUrl: '/standard_fonts/'
-}
+// const options = {
+//   cMapUrl: '/cmaps/',
+//   standardFontDataUrl: '/standard_fonts/'
+// }
+//
+// const maxWidth = 800
+//
+// type PDFFile = string | File | null
 
-const maxWidth = 800
-
-type PDFFile = string | File | null
-
-const timeToSeconds = (time) => {
+const timeToSeconds = (time:string) => {
   const parts = time.split(':')
   const hours = parseInt(parts[0], 10) || 0
   const minutes = parseInt(parts[1], 10) || 0

@@ -26,7 +26,6 @@ export const StepWrapper = styled(Box)({
 // Main UploadStepper component
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const dispatch = useDispatch();
 
   // Handler the next step in the stepper
   const handleNext = () => {

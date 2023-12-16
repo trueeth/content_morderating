@@ -30,7 +30,7 @@ export default function AuthSection() {
       dispatch(openSnackbarSuccess('Login Success!'))
       localStorage.setItem('username', vState.username);
       // router.push('/dashboard')
-      router.push('/videos')
+      await router.push('/videos')
     } catch (e) {
       setState({ ...vState, username: '', pwd: '', error: true })
     }

@@ -1,9 +1,9 @@
-import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
-import { EClassificationType, EMediaType, ESeverity, EViolationType } from '@interfaces/enums'
-import { TDocumentRowType, TDocumentSubRowType, TVideoRowType, TVideoSubRowType } from '@interfaces/types'
+import { TResDocument  } from '@interfaces/apis/api.types'
+import { EMediaType } from '@interfaces/enums'
+import { TDocumentRowType, TDocumentSubRowType } from '@interfaces/types'
 import { format, parseISO } from 'date-fns'
 
-export const resToDocumentRowAdapter = (resData) => {
+export const resToDocumentRowAdapter = (resData:any) => {
 
   let apiData=resData as TResDocument.TDocumentContent[]
 
@@ -39,7 +39,7 @@ export const resToDocumentSubRowAdapter = (resData) => {
   let apiData=resData as TResDocument.TDocumentContentDetail
   const GptResponse = apiData.GptResponse
   if (GptResponse.length>0){
-    result = GptResponse.map((response, index)=>{
+    result = GptResponse.map((response)=>{
       let tempRow:TDocumentSubRowType = {  }
       tempRow.topic=response.Topic.Name
       tempRow.aiApproval=response.AiApproval

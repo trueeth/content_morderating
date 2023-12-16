@@ -1,7 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { Box, Drawer, useMediaQuery } from '@mui/material'
-
-import DrawerHeader from './video/header-video'
 import DrawerTab from './drawer-tab'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'

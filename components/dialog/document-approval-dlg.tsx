@@ -48,7 +48,7 @@ export default function DocumentApprovalDlg() {
 
   const handleClose = () => {
     dispatch(openDocumentApproval({ open: false }))
-    setState(prevState => (InitialState))
+    setState(InitialState)
   }
 
   const updateApprovalDocument = async () => {
@@ -71,16 +71,16 @@ export default function DocumentApprovalDlg() {
   }
   const updateApprovalDocTopic = async () => {
 
-    let approvalStatus = approvalConst[vState.approval];
-    if (approvalStatus===approvalConst[0])
-      approvalStatus=EModeratorApprovalStatus.inReview
-
-    const params = {
-      DocumentId: appState.api.data[dlgState.docIndex].Id,
-      Rating: 'None',
-      ModeratorApprovalStatus: approvalConst[vState.approval],
-      ModeratorNotes: vState.notes
-    }
+    // let approvalStatus = approvalConst[vState.approval];
+    // if (approvalStatus===approvalConst[0])
+    //   approvalStatus=EModeratorApprovalStatus.inReview
+    //
+    // const params = {
+    //   DocumentId: appState.api.data[dlgState.docIndex].Id,
+    //   Rating: 'None',
+    //   ModeratorApprovalStatus: approvalConst[vState.approval],
+    //   ModeratorNotes: vState.notes
+    // }
 
     // await apiUpdateApprovalDocTopic({documentId:params.DocumentId}, params)
 
@@ -156,7 +156,7 @@ export default function DocumentApprovalDlg() {
     } finally {
       dispatch(openDocumentApproval({ open: false }))
       dispatch(openMediaSubDrawer({ open: false }))
-      setState(prevState => (InitialState))
+      setState(InitialState)
     }
   }
 
