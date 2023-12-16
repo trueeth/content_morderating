@@ -35,7 +35,7 @@ const VideoSubtable = (props: {
   rowIndex:number
 }) => {
 
-  const [checked, setChecked] = React.useState(false)
+  // const [checked, setChecked] = React.useState(false)
   const dispatch = useDispatch()
 
   // Handler, opening of a specific scene's details
@@ -51,9 +51,9 @@ const VideoSubtable = (props: {
   }
 
   // Handler of the state of the checkbox
-  const handleChange = (e: any) => {
-    setChecked(e.target.checked)
-  }
+  // const handleChange = (e: any) => {
+  //   setChecked(e.target.checked)
+  // }
 
 
   // Return early if there are no rows to render

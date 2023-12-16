@@ -43,7 +43,7 @@ const DocumentSubrow = (props: {
   }
 
   const memoRows = useMemo(()=>{
-    let rows:TDocumentSubRowType[] = []
+    let rows:TDocumentSubRowType[]
     rows = resToDocumentSubRowAdapter(rowDetails)
     return rows
   },[rowDetails])

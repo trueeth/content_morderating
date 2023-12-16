@@ -1,8 +1,4 @@
 import { Box, Typography } from '@mui/material'
-import { useSelector } from 'react-redux'
-import { IAppSlice } from '@store/reducers'
-import { IReduxState } from '@store/index'
-
 
 export default function DrawerTabOverview() {
   // const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)

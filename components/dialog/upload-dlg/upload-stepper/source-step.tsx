@@ -79,7 +79,7 @@ export default function SourceStep(props: {
     uploadRemaining: 0
   })
   const dispatch = useDispatch()
-  const router = useRouter()
+  // const router = useRouter()
 
   const getAxiosConfig = (startAt: number, type = 'form') => {
 
@@ -327,9 +327,9 @@ export default function SourceStep(props: {
     handleFileSelect(acceptedFiles[0])
   }, [acceptedFiles.length, acceptedFiles])
 
-  const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...vState, type: event.target.value })
-  }
+  // const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setState({ ...vState, type: event.target.value })
+  // }
 
 
   const handleStartUpload = async () => {

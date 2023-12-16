@@ -5,7 +5,6 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import { StepIcon } from '@mui/material';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { CUploadSteps } from '@interfaces/constant';
 import TabPanel from '@components/common/tab-panel';
 import TypeStep from './type-step';

@@ -1,5 +1,5 @@
 import { StepWrapper } from './index'
-import { Box,  Select, useMediaQuery, Typography } from '@mui/material'
+import { Box,  Select,  Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'

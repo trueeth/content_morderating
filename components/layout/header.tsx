@@ -32,9 +32,7 @@ import { openSnackbarInfo } from '@store/reducers/snackbar/reducers'
 
 function UserAction() {
   const { logout } = useAuthContext()
-  const router = useRouter()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
 
   const handleLogout = async () => {
     try {

@@ -19,34 +19,32 @@ const VideoInsightSection = () => {
   // Extract videoId from the URL query parameters 
   const videoId = router.query.id as string;
 
+  const fetchData = async () => {
+
+    dispatch(setApiLoading(true)); // Show loading indicator
+    try {
+
+      const [resDataPlayer, resDataInsights] = await Promise.all([
+        apiGetVideoAnalysesWidgetPlayer(videoId),
+        apiGetVideoAnalysesWidgetInsight(videoId),
+      ]);
+
+      setState({
+        playerUrl: resDataPlayer.data.Url,
+        insightsUrl: resDataInsights.data.Url,
+      });
+    } catch (e) {
+      console.error(e);
+      dispatch(openSnackbarError('Get WidgetPlayer Error'));
+    } finally {
+      dispatch(setApiLoading(false)); // Hide loading indicator
+    }
+  };
+
   // Fetch data when component mounts or videoId changes
   useEffect(() => {
-
     if (!videoId) return;
-
     // Function to fetch data from insights, palyer Url
-    const fetchData = async () => {
-
-      dispatch(setApiLoading(true)); // Show loading indicator
-      try {
-        
-        const [resDataPlayer, resDataInsights] = await Promise.all([
-          apiGetVideoAnalysesWidgetPlayer(videoId),
-          apiGetVideoAnalysesWidgetInsight(videoId),
-        ]);
-       
-        setState({
-          playerUrl: resDataPlayer.data.Url,
-          insightsUrl: resDataInsights.data.Url,
-        });
-      } catch (e) {
-        console.error(e); 
-        dispatch(openSnackbarError('Get WidgetPlayer Error'));
-      } finally {
-        dispatch(setApiLoading(false)); // Hide loading indicator
-      }
-    };
-
     fetchData();
   }, [videoId, dispatch]); 
 
