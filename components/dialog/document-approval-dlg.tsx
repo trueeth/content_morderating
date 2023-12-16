@@ -53,10 +53,10 @@ export default function DocumentApprovalDlg() {
 
   const updateApprovalDocument = async () => {
 
-    let approvalStatus = approvalConst[vState.approval];
+    let approvalStatus = approvalConst[vState.approval]
     console.log(approvalStatus)
-    if (approvalStatus===approvalConst[0])
-      approvalStatus=EModeratorApprovalStatus.inReview
+    if (approvalStatus === approvalConst[0])
+      approvalStatus = EModeratorApprovalStatus.inReview
     console.log(approvalStatus)
 
     const params = {
@@ -87,9 +87,9 @@ export default function DocumentApprovalDlg() {
   }
   const updateApprovalDocQuestion = async () => {
 
-    let approvalStatus = approvalConst[vState.approval];
-    if (approvalStatus===approvalConst[0])
-      approvalStatus=EModeratorApprovalStatus.inReview
+    let approvalStatus = approvalConst[vState.approval]
+    if (approvalStatus === approvalConst[0])
+      approvalStatus = EModeratorApprovalStatus.inReview
 
     const params = {
       ModeratorAnswerFound: vState.answer === 'Yes',
@@ -106,9 +106,9 @@ export default function DocumentApprovalDlg() {
   }
   const updateApprovalDocPage = async () => {
 
-    let approvalStatus = approvalConst[vState.approval];
-    if (approvalStatus===approvalConst[0])
-      approvalStatus=EModeratorApprovalStatus.inReview
+    let approvalStatus = approvalConst[vState.approval]
+    if (approvalStatus === approvalConst[0])
+      approvalStatus = EModeratorApprovalStatus.inReview
 
     const params = {
       ModeratorAnswerFound: vState.answer === 'Yes',
@@ -128,28 +128,28 @@ export default function DocumentApprovalDlg() {
 
   const handleUpdate = async () => {
     let apiUpdateApproval = updateApprovalDocument
-    switch (memoValue.type){
+    switch (memoValue.type) {
       case EDocumentApprovalDlg.document:
         apiUpdateApproval = updateApprovalDocument
-        break;
+        break
       case EDocumentApprovalDlg.topic:
-        apiUpdateApproval=updateApprovalDocTopic
-        break;
+        apiUpdateApproval = updateApprovalDocTopic
+        break
       case EDocumentApprovalDlg.question:
-        apiUpdateApproval=updateApprovalDocQuestion
-        break;
+        apiUpdateApproval = updateApprovalDocQuestion
+        break
       case EDocumentApprovalDlg.page:
-        apiUpdateApproval=updateApprovalDocPage
-        break;
+        apiUpdateApproval = updateApprovalDocPage
+        break
       default:
-        break;
+        break
     }
     try {
       await apiUpdateApproval()
       dispatch(openSnackbarSuccess('Success updating approval status'))
-      setTimeout(()=>{
-        dispatch(setPaginationIndex({pageIndex:0}))
-      },2000)
+      setTimeout(() => {
+        dispatch(setPaginationIndex({ pageIndex: 0 }))
+      }, 2000)
     } catch (e) {
       console.log(e)
       dispatch(openSnackbarError('Get Error while updating approval status'))
@@ -186,14 +186,14 @@ export default function DocumentApprovalDlg() {
     }
     const gptResponse = documentDetailState?.GptResponse[dlgState.topicIndex]
 
-    const setApprovalStatus = (val)=>{
+    const setApprovalStatus = (val) => {
       console.log(val)
-      if (val===approvalConst[1])
-        setState(prevState => ({...prevState, approval:1}))
-      else if (val===approvalConst[2])
-        setState(prevState => ({...prevState, approval:2}))
+      if (val === approvalConst[1])
+        setState(prevState => ({ ...prevState, approval: 1 }))
+      else if (val === approvalConst[2])
+        setState(prevState => ({ ...prevState, approval: 2 }))
       else
-        setState(prevState => ({...prevState, approval:0}))
+        setState(prevState => ({ ...prevState, approval: 0 }))
     }
 
     switch (dlgState.type) {
@@ -314,7 +314,7 @@ export default function DocumentApprovalDlg() {
                       Ai Opinion&nbsp;:
                     </Typography>
                     <Typography sx={{ paddingLeft: '2rem' }}>
-                      {`The page portrays the question in a ${memoValue.pageInfo?.opinion} way based on the Ai findings`}
+                      The page portrays the question in a  <strong>{memoValue.pageInfo?.opinion ? memoValue.pageInfo?.opinion : 'no'}</strong>  way based on the Ai findings
 
                     </Typography>
                   </Grid>
