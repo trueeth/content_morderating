@@ -6,7 +6,7 @@ const PrimaryTextField = styled(TextField)({
     fontSize: '0.8rem'
   },
   '& .MuiOutlinedInput-root': {
-    height: '40px',
+    padding: '.5rem',
     fontSize: '1rem',
     backgroundColor: 'white',
 

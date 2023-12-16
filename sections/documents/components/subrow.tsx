@@ -6,7 +6,7 @@ import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
 import { Checkbox, Typography } from '@mui/material'
 import { TDocumentSubRowType, TVideoRowType, TVideoSubRowType } from '@interfaces/types'
-import { EDocDetail } from '@interfaces/enums'
+import { EDocDetail, EDocumentApprovalDlg } from '@interfaces/enums'
 import { useDispatch } from 'react-redux'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import Button from '@mui/material/Button'
@@ -14,6 +14,9 @@ import { MoreHoriz } from '@mui/icons-material'
 import { TResDocument } from '@interfaces/apis/api.types'
 import { useMemo } from 'react'
 import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
+import RowAction from '@components/multi-media/common/action-item'
+import { openDocumentApproval } from '@store/reducers/dialog/reducers'
+import RowApproval from '@components/multi-media/common/approval-item'
 
 const DocumentSubrow = (props: {
   rowDetails:TResDocument.TDocumentContentDetail
@@ -51,11 +54,17 @@ const DocumentSubrow = (props: {
     <TableRow key={keyValue}>
       <TableCell />
       {children.map((item, idx) => {
+        if (idx<2)
           return (
             <TableCell onClick={onClick} key={idx}>
               {item}
             </TableCell>
           )
+        return (
+          <TableCell  key={idx}>
+            {item}
+          </TableCell>
+        )
       })}
     </TableRow>
   )
@@ -120,17 +129,23 @@ const DocumentSubrow = (props: {
           return (
             <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
               {/*<Checkbox />*/}
-              <Typography>{'Topic #' + (index + 1)}</Typography>
+              {/*<Typography>{'Topic #' + (index + 1)}</Typography>*/}
               <Typography>{row.topic}</Typography>
-              <Typography whiteSpace="nowrap">{row.aiApproval}</Typography>
-              {/*<Button*/}
-              {/*  id="basic-button"*/}
-              {/*  aria-controls={open ? 'basic-menu' : undefined}*/}
-              {/*  aria-haspopup="true"*/}
-              {/*  aria-expanded={open ? 'true' : undefined}*/}
-              {/*>*/}
-              {/*  <MoreHoriz className={'action-more-horiz'}></MoreHoriz>*/}
-              {/*</Button>*/}
+              <Typography whiteSpace="nowrap">
+                <RowApproval approval={row.aiApproval}/>
+              </Typography>
+                <RowAction actions={[
+                  // { title: 'Classification' },
+                  // { title: 'Reports' },
+                  {
+                    title: 'Reports' ,
+                    action:()=>dispatch(openDocumentApproval({
+                      type:EDocumentApprovalDlg.topic,
+                      docIndex:props.rowIndex,
+                      topicIndex:index
+                    })),
+                  }
+                ]} />
             </CustomizedTableRow>
           )
         }):

@@ -13,6 +13,9 @@ const RowApproval = (props: { approval: string }) => {
         props.approval === EModeratorApprovalStatus.inReview && 'review',
         'text-center'
       )}
+      style={{
+        width:'fit-content'
+      }}
     >
       {props.approval?props.approval:'Not Assigned'}
     </Box>

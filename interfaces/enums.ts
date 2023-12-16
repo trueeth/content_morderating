@@ -19,7 +19,7 @@ export enum EDocumentColumn {
   moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
-  // actions = 'ACTIONS'
+  actions = 'ACTIONS'
 }
 
 export enum ENewVideoData {
@@ -99,10 +99,10 @@ export enum EVideoDetail {
 }
 
 export enum EDocDetail {
-  topicNumber = 'TOPIC NUMBER',
-  topic = 'TOPIC',
+  // topicNumber = 'TOPIC NUMBER',
+  topic = 'TOPIC NAME',
   status = 'STATUS',
-  // action = 'ACTIONS'
+  action = 'ACTIONS'
 }
 
 export enum EMediaType {
@@ -218,4 +218,11 @@ export enum ESeverity {
 export enum EViolationType {
   saudi = 'Saudi Discrimination',
   religion = 'Religion Discrimination'
+}
+
+export enum EDocumentApprovalDlg {
+  document='Document',
+  topic='Topic',
+  question='Question',
+  page='Page',
 }

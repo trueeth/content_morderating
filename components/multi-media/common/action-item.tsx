@@ -13,6 +13,7 @@ interface IActionButton {
 interface IProps {
   actions?: IActionButton[]
   sx?: any
+  actionProps?: any
 }
 
 export default function RowAction(props: IProps) {

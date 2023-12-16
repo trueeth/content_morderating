@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IAppSlice } from '@store/reducers'
 import { IReduxState } from '@store/index'
 import { format, parseISO } from 'date-fns'
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { EClassificationType, EModeratorApprovalStatus, ESeverity } from '@interfaces/enums'
 import { useRouter } from 'next/router'
 import { CSceneState } from '@interfaces/constant'
@@ -13,6 +13,7 @@ import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar
 import { styled } from '@mui/system'
 import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
 import { HeaderUpdate } from '@components/multi-media/drawer/header-update'
+import RowApproval from '@components/multi-media/common/approval-item'
 
 
 
@@ -30,7 +31,8 @@ export default function DrawerDocumentHeader() {
       ProcessingStatus?: string,
       Rating?: string,
       SubmissionDate?: string,
-      AiApproval?: string
+      AiApproval?: string,
+      ModeratorApproval?: string,
     } = {}
 
     try {
@@ -48,7 +50,8 @@ export default function DrawerDocumentHeader() {
         ProcessingStatus: documentData.TotalProcessingStatus,
         Rating: documentData.Rating,
         SubmissionDate: submissionDate,
-        AiApproval: gptResponse.AiApproval
+        AiApproval: gptResponse.AiApproval,
+        ModeratorApproval:documentData.ModeratorApprovalStatus
       }
     } catch (e) {
       console.log(e)
@@ -102,30 +105,60 @@ export default function DrawerDocumentHeader() {
               <Typography>LANGUAGE : &nbsp;</Typography>
               <Typography> {memorizedVideoValue.Language}</Typography>
             </Box>
+            {/*<Box>*/}
+            {/*  <Typography>PROCESSING STATUS : &nbsp;</Typography>*/}
+            {/*  <Typography color='var(--Secondary)'> {memorizedVideoValue.ProcessingStatus}</Typography>*/}
+            {/*</Box>*/}
+            {/*<Box>*/}
+            {/*  <Typography>RATING : &nbsp;</Typography>*/}
+            {/*  <Typography> {memorizedVideoValue.Rating}</Typography>*/}
+            {/*</Box>*/}
+            {/*<Box>*/}
+            {/*  <Typography>SUBMISSION DATE : &nbsp;</Typography>*/}
+            {/*  <Typography>*/}
+            {/*    {memorizedVideoValue.SubmissionDate}*/}
+            {/*  </Typography>*/}
+            {/*</Box>*/}
+            {/*<Box>*/}
+            {/*  <Typography>MODERATOR APPROVAL : &nbsp; </Typography>*/}
+            {/*  <RowApproval approval={memorizedVideoValue.ModeratorApproval} />*/}
+            {/*</Box>*/}
             <Box>
-              <Typography>PROCESSING STATUS : &nbsp;</Typography>
-              <Typography color='var(--Secondary)'> {memorizedVideoValue.ProcessingStatus}</Typography>
-            </Box>
-            <Box>
-              <Typography>RATING : &nbsp;</Typography>
-              <Typography> {memorizedVideoValue.Rating}</Typography>
-            </Box>
-            <Box>
-              <Typography>SUBMISSION DATE : &nbsp;</Typography>
-              <Typography>
-                {memorizedVideoValue.SubmissionDate}
-              </Typography>
-            </Box>
-            <Box>
-              <Typography>APPROVAL : &nbsp; </Typography>
-              <Typography className='approve'>
-                {memorizedVideoValue.AiApproval}
-              </Typography>
+              <Typography>AI APPROVAL : &nbsp; </Typography>
+              <RowApproval approval={memorizedVideoValue.AiApproval} />
             </Box>
           </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          padding: 0,
+        }}
+      >
+        {/*<Typography sx={{*/}
+        {/*  backgroundColor: 'var(--Secondry-L)',*/}
+        {/*  marginLeft: '-1rem',*/}
+        {/*  marginRight: '-1rem',*/}
+        {/*  color: 'black',*/}
+        {/*  fontSize: '.9rem',*/}
+        {/*  marginTop: '1rem',*/}
+        {/*  padding: '1rem',*/}
+        {/*}}>{'Summary'}</Typography>*/}
 
-      <Box>
-        <HeaderUpdate />
+
+        {/*  -----------summary text-----------*/}
+        {/*<Box*/}
+        {/*  sx={{*/}
+        {/*    m: '1rem',*/}
+        {/*    display: 'flex',*/}
+        {/*    justifyContent: 'space-between',*/}
+        {/*    alignItems: 'center',*/}
+        {/*    flexDirection: { xs: 'column', md: 'row' },*/}
+        {/*    gap: 2*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  <Typography>{appState.drawer.drawerData?.Summary}</Typography>*/}
+        {/*</Box>*/}
       </Box>
 
     </Box>

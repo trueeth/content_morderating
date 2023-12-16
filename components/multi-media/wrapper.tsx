@@ -28,6 +28,7 @@ import { setApiData, setApiError, setApiLoading } from '@store/reducers/api/redu
 import { apiGetDocumentContents } from '@interfaces/apis/documents'
 import { resToDocumentRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
+import DocumentApprovalDlg from '@components/dialog/document-approval-dlg'
 
 // MediaWrapper component
 interface IMediaProps {
@@ -61,6 +62,8 @@ export const MediaWrapper = (props: IMediaProps) => {
       </Box>
       <CustomPagination />
       <MediaDrawer />
+    {/*  -------document approva dlg---------*/}
+      <DocumentApprovalDlg/>
     </Box>
   )
 }

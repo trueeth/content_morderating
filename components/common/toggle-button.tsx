@@ -1,9 +1,11 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface IProps {
   groupName: string[]
   handleChange?: (val: number) => void
+  sx?:any
+  value?:number
 }
 
 export default function CustomToggleButtonGroup(props: IProps) {
@@ -18,12 +20,20 @@ export default function CustomToggleButtonGroup(props: IProps) {
     }
   }
 
+  useEffect(() => {
+    if (props.value!==undefined)
+      setState(prevState => ({...prevState, tabIndex: props.value}))
+  }, [props.value])
+
   return (
     <ToggleButtonGroup
       value={vState.tabIndex}
       onChange={setTabIndex}
       exclusive
-      sx={{ mt: 3 }}
+      sx={{
+        mt: 3,
+        ...props.sx
+    }}
     >
       {props.groupName.map((val, index) => (
         <ToggleButton

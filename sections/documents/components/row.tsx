@@ -20,6 +20,8 @@ import { useEffect } from 'react'
 import { apiGetDocumentContentDetails } from '@interfaces/apis/documents'
 import { openSnackbarError, openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
+import { openDocumentApproval } from '@store/reducers/dialog/reducers'
+import { EDocumentApprovalDlg } from '@interfaces/enums'
 
 function DocumentRow(props: {
   row: TDocumentRowType
@@ -58,7 +60,7 @@ function DocumentRow(props: {
 
 
   const handleDetail = async () => {
-    if (vState.rowDetails) {
+    if (vState.openSummary) {
       setState(prevState => {
         return { ...prevState, openSummary: !prevState.openSummary }
       })
@@ -78,17 +80,23 @@ function DocumentRow(props: {
       setState(prevState => ({
         ...prevState,
         rowDetails: documentDetails.data,
-        openSummary:true
+        openSummary:!prevState.openSummary
       }))
     }
   }
 
 
-  // const rowActions = [
-  //   { title: 'Classification' },
-  //   { title: 'Reports' },
-  //   { title: 'Insights' }
-  // ]
+  const rowActions = [
+    // { title: 'Classification' },
+    // { title: 'Reports' },
+    {
+      title: 'Reports',
+      action:()=>dispatch(openDocumentApproval({
+        type:EDocumentApprovalDlg.document,
+        docIndex:props.rowIndex
+      })),
+    }
+  ]
 
   return (
     <React.Fragment>
@@ -167,9 +175,9 @@ function DocumentRow(props: {
             {row.submissionDate}
           </Box>
         </TableCell>
-        {/*<TableCell>*/}
-        {/*  <RowAction actions={rowActions} />*/}
-        {/*</TableCell>*/}
+        <TableCell>
+          <RowAction actions={rowActions} />
+        </TableCell>
       </TableRow>
 
       {/*---------sub common--------*/}
