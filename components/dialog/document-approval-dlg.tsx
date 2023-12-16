@@ -184,7 +184,7 @@ export default function DocumentApprovalDlg() {
     }
     const gptResponse = documentDetailState?.GptResponse[dlgState.topicIndex]
 
-    const setApprovalStatus = (val) => {
+    const setApprovalStatus = (val:any) => {
       if (val === approvalConst[1])
         setState(prevState => ({ ...prevState, approval: 1 }))
       else if (val === approvalConst[2])
@@ -352,7 +352,9 @@ export default function DocumentApprovalDlg() {
                       }
                     }}
                     value={vState.answer}
-                    onChange={(e, v) => setState(prevState => ({ ...prevState, answer: v }))}
+                    onChange={(e, v) => {
+                      setState(prevState => ({ ...prevState, answer: v }))
+                    }}
                   >
                     <FormControlLabel value='Yes' control={<Radio />} label='Yes' />
                     {/*<FormControlLabel value="Audio" control={<Radio />} label="Audio" />*/}
