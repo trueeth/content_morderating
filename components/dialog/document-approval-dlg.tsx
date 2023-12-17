@@ -216,8 +216,6 @@ export default function DocumentApprovalDlg() {
         setApprovalStatus(gptResponse?.answers[dlgState?.questionIndex]?.ModeratorApprovalStatus)
         break
       case EDocumentApprovalDlg.page:
-        console.log(dlgState?.pageIndex)
-        console.log(gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers)
         tempMemo.title = `Page ${gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber} Approval`
         tempMemo.pageInfo = gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex] as TResDocument.TGptAnswerPageNumber
         tempMemo.description = `Question: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`

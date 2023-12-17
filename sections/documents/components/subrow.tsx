@@ -151,9 +151,7 @@ const DocumentSubrow = (props: {
               {/*<Checkbox />*/}
               <Typography>Topic # {(index + 1)}</Typography>
               <Typography>{row.topic}</Typography>
-              <Typography whiteSpace="nowrap">
-                <RowApproval approval={row.aiApproval}/>
-              </Typography>
+              <RowApproval approval={row.aiApproval}/>
               {/*  <RowAction actions={[
                   // { title: 'Classification' },
                   // { title: 'Reports' },

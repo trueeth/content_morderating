@@ -132,7 +132,6 @@ export class AzurePlayer extends React.Component<PlayerProps> {
         }
       })
     }
-    console.log('azure unmount')
     if (this.videoPlayer.current) {
       this.videoPlayer.current.dispose()
     }
