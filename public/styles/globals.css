@@ -56,6 +56,11 @@ body::-webkit-scrollbar {
   src: url('../assets/fonts/EuclidSquare-Medium.woff') format('opentype');
 }
 
+@font-face {
+  font-family: 'Raleway';
+  src: url('../assets/fonts/Raleway-Regular.ttf') format('opentype');
+}
+
 input[type='number']::-webkit-clear-button {
   display: none;
 }
