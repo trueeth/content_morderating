@@ -81,20 +81,23 @@ export default function DrawerTabQuestions() {
           <TableRow
             sx={{
               '& .MuiTableCell-root': {
-                whiteSpace: 'nowrap',
+                whiteSpace: 'pre-wrap',
                 color: '#333',
-                fontSize: '12px',
-                height: '40px'
+                fontSize: '.9rem',
+                height: '40px',
+                padding:'8px'
               }
             }}
           >
-            <TableCell>#</TableCell>
+            <TableCell sx={{minWidth:'50px', textAlign:'center'}}>#</TableCell>
             {CQuestionsColumns.map((val, index) => {
                 if (index === (2||3))
-                  return <TableCell style={{ maxWidth: '80px', whiteSpace: 'pre-wrap' }} key={index}>{val}</TableCell>
+                  return <TableCell className='menu-title' style={{ maxWidth: '60px',  }} key={index}>{val}</TableCell>
                 if (index === 4)
-                  return <TableCell style={{ maxWidth: '200px',minWidth:'150px', whiteSpace: 'pre-wrap' }} key={index}>{val}</TableCell>
-                return <TableCell key={index}>{val}</TableCell>
+                  return <TableCell className='menu-title' style={{ maxWidth: '200px',minWidth:'150px' }} key={index}>{val}</TableCell>
+                if (index === 0)
+                  return <TableCell className='menu-title' style={{ maxWidth: '200px',minWidth:'50px' }} key={index}>{val}</TableCell>
+                return <TableCell className='menu-title' key={index}>{val}</TableCell>
               }
             )}
           </TableRow>
@@ -109,8 +112,10 @@ export default function DrawerTabQuestions() {
         >
           {gptAnswers.map((val, questionIndex) =>
             <TableRow key={questionIndex}>
-              <TableCell>
-                {questionIndex + 1}
+              <TableCell >
+                <Typography sx={{textAlign:'center'}}>
+                  {questionIndex + 1}
+                </Typography>
               </TableCell>
               <TableCell>
                 {val.question}

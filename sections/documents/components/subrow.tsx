@@ -42,11 +42,11 @@ const DocumentSubrow = (props: {
     return null
   }
 
-  const memoRows = useMemo(()=>{
-    let rows:TDocumentSubRowType[]
+  const memoRows =(()=>{
+    let rows:TDocumentSubRowType[]=[]
     rows = resToDocumentSubRowAdapter(rowDetails)
     return rows
-  },[rowDetails])
+  })()
 
 
   const rowActions=[
@@ -92,7 +92,7 @@ const DocumentSubrow = (props: {
         '& .MuiTableCell-root': {
           borderTop: 'none !important',
           maxWidth: '400px',
-          height: '60px',
+          height: '45px',
         }
       }}
     >
@@ -103,7 +103,7 @@ const DocumentSubrow = (props: {
               whiteSpace: 'nowrap',
               color: '#333',
               fontSize: '12px',
-              height: '60px',
+              height: '50px',
             }
           }}
         >

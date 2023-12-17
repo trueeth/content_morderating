@@ -44,21 +44,14 @@ export default function DrawerTab() {
         </TabPanel>
         <TabPanel value={vState.tabIndex} index={1}>
           <DrawerTabQuestions
-          //   handlePageNum ={(val, index)=> {
-          //   if (val==0) {
-          //     setState(prevState => ({ ...prevState, pageNumber: 0 }))
-          //     return
-          //   }
-          //   setState(prevState => ({...prevState, tabIndex: 1, pageNumber: val, questionIndex: index}))
-          // }}
           ></DrawerTabQuestions>
         </TabPanel>
         {/*<TabPanel value={vState.tabIndex} index={2}>*/}
         {/*  <DrawerTabPreviewPage pageNum ={vState.pageNumber} questionIndex={vState.questionIndex}></DrawerTabPreviewPage>*/}
         {/*</TabPanel>*/}
-        {/*<TabPanel value={vState.tabIndex} index={3}>*/}
-        {/*  <DrawerTabActivities></DrawerTabActivities>*/}
-        {/*</TabPanel>*/}
+        <TabPanel value={vState.tabIndex} index={2}>
+          <DrawerTabActivities></DrawerTabActivities>
+        </TabPanel>
       </Box>
     )
 

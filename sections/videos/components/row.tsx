@@ -78,7 +78,11 @@ function VideoRow(props: {
             size='small'
             onClick={handleDetail}
         >
-          {vState.openSummary ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
+          {vState.openSummary ? <KeyboardArrowDown sx={{
+            fontSize:'1.2rem'
+          }} /> : <KeyboardArrowRight sx={{
+            fontSize:'1.2rem'
+          }}  />}
         </IconButton>:
             null}
         </TableCell>
@@ -106,20 +110,20 @@ function VideoRow(props: {
             <RowClassification classifications={props.row.classification}></RowClassification>
           </Box>
         </TableCell>
-        <TableCell><Box className={'flex justify-center item-center approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
-        <TableCell><Box className={'flex justify-center item-center approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
-        <TableCell><Box className={'flex'} maxWidth={'100px'}>{props.row.submissionDate}</Box></TableCell>
+        <TableCell><Box className={'flex  approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'flex  approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'flex'} minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
         {/* <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell> */}
         <TableCell><RowAction actions={rowActions} /></TableCell>
       </TableRow>
 
       {/* Subrow */}
-      <TableRow>
+      <TableRow className='media-row'>
         <TableCell
           style={{
-            border: 'none'
+            border: 'none',
+            padding: '0 !important'
           }}
-          sx={{ p: 0 }}
           colSpan={12}
         >
           {/* Subtable */}

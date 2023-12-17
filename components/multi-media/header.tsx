@@ -51,7 +51,12 @@ const MediaSectionHeader = (props: IProps) => {
       >
         <Grid item>
           {/* Media title and Filters button */}
-          <Typography>{props.title}</Typography>
+          <Typography sx={{
+            fontSize:'1.1rem',
+            pl:'16px',
+            pr:'8px',
+            color: '#1A2057',
+          }}>{props.title}</Typography>
           <Tooltip title={props.title} sx={{padding:'0 0 7px 2px'}}>
             <InfoIcon sx={{ color: 'grey', width: '16px' }} />
           </Tooltip>

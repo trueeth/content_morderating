@@ -21,7 +21,7 @@ export const resToDocumentRowAdapter = (resData:any) => {
       docmentRow.processingStatus =documentContent.TotalProcessingStatus
       docmentRow.submissionDate = ''
       if (documentContent.UploadedOnUtc != null && documentContent.UploadedOnUtc != '')
-        docmentRow.submissionDate = format(parseISO(documentContent.UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
+        docmentRow.submissionDate = format(parseISO(documentContent.UploadedOnUtc), 'MMM, dd,  yyyy hh:mm a')
 
 
       return docmentRow

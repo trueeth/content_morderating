@@ -12,7 +12,7 @@ export enum EVideoColumn {
 }
 export enum EDocumentColumn {
   name = 'NAME',
-  processingStatus = 'ProcessingStatus',
+  processingStatus = 'PROCESSING STATUS',
   // type = 'TYPE',
   // status = 'SUBMITED BY',
   language = 'LANGUAGE',

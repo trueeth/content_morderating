@@ -19,6 +19,7 @@ import { apiGetDocumentContentDetails } from '@interfaces/apis/documents'
 import { openSnackbarError, openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import { EDocumentApprovalDlg } from '@interfaces/enums'
+import RowStatus from '@components/multi-media/common/status-item'
 
 function DocumentRow(props: {
   row: TDocumentRowType
@@ -120,11 +121,11 @@ function DocumentRow(props: {
             size='small'
             onClick={handleDetail}
           >
-            {vState.openSummary ? (
-              <KeyboardArrowDown />
-            ) : (
-              <KeyboardArrowRight />
-            )}
+            {vState.openSummary ? <KeyboardArrowDown sx={{
+              fontSize:'1.2rem'
+            }} /> : <KeyboardArrowRight sx={{
+              fontSize:'1.2rem'
+            }}  />}
           </IconButton>
         </TableCell>
 
@@ -146,9 +147,7 @@ function DocumentRow(props: {
         {/*</TableCell>*/}
 
         <TableCell>
-          <Box className={'flex'} maxWidth={'100px'}>
-            {row.processingStatus}
-          </Box>
+            <RowStatus status={row.processingStatus}></RowStatus>
         </TableCell>
 
         <TableCell>
@@ -158,17 +157,17 @@ function DocumentRow(props: {
         </TableCell>
 
         <TableCell>
-          <Box className={'flex item-center approval'}>
+          <Box className={'flex item-left approval'}>
             <RowApproval approval={row.moderator_approval}></RowApproval>
           </Box>
         </TableCell>
         <TableCell>
-          <Box className={'flex item-center approval'}>
+          <Box className={'flex item-left approval'}>
             <RowApproval approval={row.ai_approval}></RowApproval>
           </Box>
         </TableCell>
         <TableCell>
-          <Box className={'flex'} maxWidth={'100px'}>
+          <Box className={'flex'} >
             {row.submissionDate}
           </Box>
         </TableCell>
@@ -194,7 +193,7 @@ function DocumentRow(props: {
       </TableRow>
 
       {/*---------sub common--------*/}
-      <TableRow>
+      <TableRow  className='media-row'>
         <TableCell
           style={{
             border: 'none'

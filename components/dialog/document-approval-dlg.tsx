@@ -241,7 +241,6 @@ export default function DocumentApprovalDlg() {
             p: 3,
             backgroundImage: 'linear-gradient(to right, #fff9f9, #ebe9ff)',
             '& .MuiTypography-root':{
-                fontFamily:'"Roboto","Helvetica","Arial",sans-serif !important',
                 fontSize:'.9rem'
             },
           }}

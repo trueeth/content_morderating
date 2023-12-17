@@ -221,6 +221,12 @@
   color: black;
 }
 
-.MuiTableCell-root{
-  font-family:"Roboto","Helvetica","Arial",sans-serif !important
+
+.MuiOutlinedInput-input{
+  padding: 4px 0 5px !important;
 }
+
+.MuiTableCell-root.MuiTableCell-body {
+  padding:12px 7px !important;
+}
+

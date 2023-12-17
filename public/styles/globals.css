@@ -46,7 +46,8 @@ body::-webkit-scrollbar {
 
 * {
   box-sizing: border-box;
-  font-family: 'Square' !important;
+  font-family: 'Raleway' !important;
+  font-weight: 600  !important;
   text-transform: none !important;
 }
 
@@ -119,6 +120,12 @@ input[type='number']::-webkit-inner-spin-button {
 .chart-item-label {
   width: 10px;
   height: 10px;
+}
+
+.menu-title{
+  font-size: 1.08rem;
+  font-family: 'Square' !important;
+  font-weight: 500 !important;
 }
 /*-----------------Dashboard chart style end-----------------*/
 

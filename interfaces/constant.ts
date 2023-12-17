@@ -26,9 +26,9 @@ export const CDrawerVideoTabs = ['Play the Scene', 'Activities']
 
 export const CDrawerDocumentTabs = [
   'Overview',
-  'Questions'
+  'Questions',
   // 'Summary',
-  // 'Activities'
+  'Activities'
 ]
 
 export const CQuestionsColumns = [
@@ -38,7 +38,7 @@ export const CQuestionsColumns = [
   'Ai Detection',
   // 'Moderator Detection',
   'Pages',
-  'Actions,'
+  'Actions'
 ]
 
 export const CMediaType = ['Video', 'Document']

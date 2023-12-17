@@ -1,14 +1,11 @@
-import { Box,  Typography } from '@mui/material'
-import {  useSelector } from 'react-redux'
+import { Box, Typography } from '@mui/material'
+import { useSelector } from 'react-redux'
 import { IAppSlice } from '@store/reducers'
 import { IReduxState } from '@store/index'
 import { format, parseISO } from 'date-fns'
 import React, { useMemo } from 'react'
 import { TResDocument } from '@interfaces/apis/api.types'
 import RowApproval from '@components/multi-media/common/approval-item'
-
-
-
 
 
 export default function DrawerDocumentHeader() {
@@ -30,8 +27,8 @@ export default function DrawerDocumentHeader() {
     try {
 
       let documentData = appState.drawer.drawerData as TResDocument.TDocumentContentDetail
-      let gptResponse =documentData?.GptResponse[appState.drawer.subRowIndex]
-      let submissionDate=''
+      let gptResponse = documentData?.GptResponse[appState.drawer.subRowIndex]
+      let submissionDate = ''
       if (documentData.UploadedOnUtc != null && documentData.UploadedOnUtc != '')
         submissionDate = format(parseISO(documentData.UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
 
@@ -43,7 +40,7 @@ export default function DrawerDocumentHeader() {
         Rating: documentData.Rating,
         SubmissionDate: submissionDate,
         AiApproval: gptResponse.AiApproval,
-        ModeratorApproval:documentData.ModeratorApprovalStatus
+        ModeratorApproval: documentData.ModeratorApprovalStatus
       }
     } catch (e) {
       console.error(e)
@@ -58,73 +55,76 @@ export default function DrawerDocumentHeader() {
         display: 'flex',
         flexDirection: 'column',
         p: 2,
-        width:'100%'
+        width: '100%'
       }}
     >
       <header className='flex justify-between'>
-            <Typography sx={{
-              fontSize: ' 1.2rem',
-              textAlign: 'center',
-              padding: '1rem 2rem',
-              width: '100%'
-            }}>
-              <strong>{memorizedVideoValue.Name}</strong>&nbsp; Book, &nbsp; Topic  &nbsp; &nbsp;
-              {memorizedVideoValue.Topic}
-            </Typography>
+        <Typography
+          sx={{
+            fontSize: ' 1.2rem',
+            textAlign: 'center',
+            padding: '1rem 2rem',
+            width: '100%'
+          }}
+          className='menu-title'
+        >
+          <strong>{memorizedVideoValue.Name}</strong>&nbsp; Book, &nbsp; Topic  &nbsp; &nbsp;
+          {memorizedVideoValue.Topic}
+        </Typography>
       </header>
-          {/*<Typography>*/}
-          {/*  {memorizedVideoValue.Description}*/}
-          {/*</Typography>*/}
-          <Box
-            sx={{
-              mt: 2,
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 2,
-              columnGap: '4rem',
-              padding: '0rem 1rem',
-              '& .MuiBox-root': {
-                display: 'flex',
-                alignItems: 'center',
-                '& .MuiTypography-root:first-of-type': {
-                  color: 'grey',
-                  fontSize: '14px'
-                }
-              }
-            }}
-          >
-            <Box>
-              <Typography>LANGUAGE : &nbsp;</Typography>
-              <Typography> {memorizedVideoValue.Language}</Typography>
-            </Box>
-            {/*<Box>*/}
-            {/*  <Typography>PROCESSING STATUS : &nbsp;</Typography>*/}
-            {/*  <Typography color='var(--Secondary)'> {memorizedVideoValue.ProcessingStatus}</Typography>*/}
-            {/*</Box>*/}
-            {/*<Box>*/}
-            {/*  <Typography>RATING : &nbsp;</Typography>*/}
-            {/*  <Typography> {memorizedVideoValue.Rating}</Typography>*/}
-            {/*</Box>*/}
-            {/*<Box>*/}
-            {/*  <Typography>SUBMISSION DATE : &nbsp;</Typography>*/}
-            {/*  <Typography>*/}
-            {/*    {memorizedVideoValue.SubmissionDate}*/}
-            {/*  </Typography>*/}
-            {/*</Box>*/}
-            {/*<Box>*/}
-            {/*  <Typography>MODERATOR APPROVAL : &nbsp; </Typography>*/}
-            {/*  <RowApproval approval={memorizedVideoValue.ModeratorApproval} />*/}
-            {/*</Box>*/}
-            <Box>
-              <Typography>AI APPROVAL : &nbsp; </Typography>
-              <RowApproval approval={memorizedVideoValue.AiApproval} />
-            </Box>
-          </Box>
+      {/*<Typography>*/}
+      {/*  {memorizedVideoValue.Description}*/}
+      {/*</Typography>*/}
+      <Box
+        sx={{
+          mt: 2,
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+          columnGap: '4rem',
+          padding: '0rem 1rem',
+          '& .MuiBox-root': {
+            display: 'flex',
+            alignItems: 'center',
+            '& .MuiTypography-root:first-of-type': {
+              color: 'grey',
+              fontSize: '14px'
+            }
+          }
+        }}
+      >
+        <Box>
+          <Typography>LANGUAGE : &nbsp;</Typography>
+          <Typography> {memorizedVideoValue.Language}</Typography>
+        </Box>
+        {/*<Box>*/}
+        {/*  <Typography>PROCESSING STATUS : &nbsp;</Typography>*/}
+        {/*  <Typography color='var(--Secondary)'> {memorizedVideoValue.ProcessingStatus}</Typography>*/}
+        {/*</Box>*/}
+        {/*<Box>*/}
+        {/*  <Typography>RATING : &nbsp;</Typography>*/}
+        {/*  <Typography> {memorizedVideoValue.Rating}</Typography>*/}
+        {/*</Box>*/}
+        {/*<Box>*/}
+        {/*  <Typography>SUBMISSION DATE : &nbsp;</Typography>*/}
+        {/*  <Typography>*/}
+        {/*    {memorizedVideoValue.SubmissionDate}*/}
+        {/*  </Typography>*/}
+        {/*</Box>*/}
+        {/*<Box>*/}
+        {/*  <Typography>MODERATOR APPROVAL : &nbsp; </Typography>*/}
+        {/*  <RowApproval approval={memorizedVideoValue.ModeratorApproval} />*/}
+        {/*</Box>*/}
+        <Box>
+          <Typography>AI APPROVAL : &nbsp; </Typography>
+          <RowApproval approval={memorizedVideoValue.AiApproval} />
+        </Box>
+      </Box>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          padding: 0,
+          padding: 0
         }}
       >
         {/*<Typography sx={{*/}

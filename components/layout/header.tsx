@@ -11,10 +11,11 @@ import {
   Typography
 } from '@mui/material'
 import * as React from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import LogoImage from '../../public/assets/images/logo.png'
 import UserLogo from '../../public/assets/images/user.png'
-import {  ExpandMore, Slideshow } from '@mui/icons-material'
+import { ExpandMore, Slideshow } from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { TopButton } from '@components/common/styled-button'
@@ -24,7 +25,6 @@ import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useMounted from '../../hooks/use-mounted'
-import { useState } from 'react'
 import Paper from '@mui/material/Paper'
 import { useAuthContext } from '@components/auth/hooks'
 import RowAction from '@components/multi-media/common/action-item'
@@ -104,7 +104,6 @@ const DropMenu = () => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus()
     }
-
     prevOpen.current = open
   }, [open])
   return (
@@ -122,7 +121,7 @@ const DropMenu = () => {
         }
       >
         <SvgIcon component={Slideshow} />
-        <Typography ml={0.5}>Multimedia</Typography>
+        <Typography ml={0.5} className='menu-title'>Multimedia</Typography>
         <SvgIcon component={ExpandMore} className='ml-5' />
       </TopButton>
       <Popper
@@ -153,10 +152,10 @@ const DropMenu = () => {
                   aria-labelledby='composition-button'
                   onKeyDown={handleListKeyDown}
                 >
-                  <MenuItem onClick={(e) => handleMenuClose(e, 'videos')}>
+                  <MenuItem className='menu-title' onClick={(e) => handleMenuClose(e, 'videos')}>
                     Videos
                   </MenuItem>
-                  <MenuItem onClick={(e) => handleMenuClose(e, 'documents')}>
+                  <MenuItem className='menu-title' onClick={(e) => handleMenuClose(e, 'documents')}>
                     Documents
                   </MenuItem>
                 </MenuList>
@@ -245,7 +244,7 @@ const Header = () => {
                       }
                     >
                       <SvgIcon component={item.icon} />
-                      <Typography ml={0.5}>{item.title}</Typography>
+                      <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
                     </TopButton>
                   </Box>
                 )
@@ -342,7 +341,7 @@ const Header = () => {
                     active={router.pathname === `/${item.title.toLowerCase()}`}
                   >
                     <SvgIcon component={item.icon} />
-                    <Typography ml={0.5}>{item.title}</Typography>
+                    <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
                   </TopButton>
                 </Box>
               ))}

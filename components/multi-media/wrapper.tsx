@@ -137,9 +137,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
           },
           borderSpacing: '0 0.3rem',
           borderCollapse: 'separate',
-          '& .MuiTableCell-root':{
-            fontFamily:'"Roboto","Helvetica","Arial",sans-serif !important',
-          },
+          px:'0rem'
         }}
       >
         {/* TableHead */}
@@ -148,21 +146,23 @@ export const MediaActionwrapper = (props: IActionPros) => {
             <TableCell />
             {Object.values(
               props.type === 'video' ? EVideoColumn : EDocumentColumn
-            ).map((item, index) => (
-              <TableCell key={index}>
-                <Typography
-                  sx={{
-                    padding: 0,
-                    whiteSpace: 'wrap',
-                    fontSize: '12px',
-                    color: '#888',
-                    maxWidth: '70px'
-                  }}
-                >
-                  {item}
-                </Typography>
-              </TableCell>
-            ))}
+            ).map((item, index) =>{
+              return  (
+                <TableCell key={index} sx={{padding:'8px'}}>
+                  <Typography
+                    sx={{
+                      padding: 0,
+                      whiteSpace: 'wrap',
+                      fontSize: '12px',
+                      color: '#808080',
+                      fontWeight:'500 !important'
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                </TableCell>
+              )
+            })}
           </TableRow>
         </TableHead>
 

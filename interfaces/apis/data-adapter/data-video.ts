@@ -20,7 +20,7 @@ export const resToVideoRowAdapter = (resData:any) => {
 
       videoRow.submissionDate = ''
       if (videoContent.UploadedOnUtc != null && videoContent.UploadedOnUtc != '')
-        videoRow.submissionDate = format(parseISO(videoContent.UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
+        videoRow.submissionDate = format(parseISO(videoContent.UploadedOnUtc), 'MMM, dd,  yyyy hh:mm a')
       videoRow.moderator_approval = videoContent.ModeratorApprovalStatus
       if (!!videoContent.VideoSummary?.AutomaticApprovalStatus)
         videoRow.ai_approval = videoContent.VideoSummary.AutomaticApprovalStatus

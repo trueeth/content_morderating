@@ -63,6 +63,9 @@ const theme = createTheme({
     MuiTableBody: {
       styleOverrides: {
         root: {
+          '& .MuiTableCell-head':{
+            padding:'0px'
+          },
           '& .MuiTableRow-root': {
             '& > .MuiTableCell-root': {
               textAlign: 'left',
@@ -70,14 +73,19 @@ const theme = createTheme({
               borderBottom: '1px solid #ccc',
               '&:first-of-type': {
                 borderLeft: '1px solid #ccc',
-                borderTopLeftRadius: '10px',
-                borderBottomLeftRadius: '10px'
+                borderTopLeftRadius: '6px',
+                borderBottomLeftRadius: '6px'
               },
               '&:last-of-type': {
                 borderRight: '1px solid #ccc',
-                borderTopRightRadius: '10px',
-                borderBottomRightRadius: '10px'
+                borderTopRightRadius: '6px',
+                borderBottomRightRadius: '6px'
               }
+            }
+          },
+          '& .media-row.MuiTableRow-root:nth-child(even)': {
+            '& > .MuiTableCell-root': {
+              padding: '0px !important'
             }
           }
         }

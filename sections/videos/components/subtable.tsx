@@ -72,7 +72,8 @@ const VideoSubtable = (props: {
         '& .MuiTableCell-root': {
           borderTop: 'none !important',
           maxWidth: '400px',
-          height: '60px'
+          height: '45px',
+          padding:'0px !important',
         }
       }}
     >
@@ -82,8 +83,8 @@ const VideoSubtable = (props: {
             '& .MuiTableCell-root': {
               whiteSpace: 'nowrap',
               color: '#333',
-              fontSize: '12px',
-              height: '60px'
+              fontSize: '.8rem',
+              height: '50px'
             }
           }}
         >
