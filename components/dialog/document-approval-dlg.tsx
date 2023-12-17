@@ -168,7 +168,7 @@ export default function DocumentApprovalDlg() {
   const approvalConst = [
     // 'Not Assigned',
     'Approved',
-    'Rejected',
+    'Rejected'
   ]
 
   useEffect(() => {
@@ -178,6 +178,7 @@ export default function DocumentApprovalDlg() {
   }, [dlgState])
 
 
+  /* eslint-disable */
   const memoValue = useMemo(() => {
     let tempMemo = {
       title: '',
@@ -228,7 +229,7 @@ export default function DocumentApprovalDlg() {
     }
     return tempMemo
   }, [dlgState?.type, dlgState?.questionIndex, dlgState?.pageIndex, dlgState?.docIndex, dlgState?.topicIndex, documentDetailState?.GptResponse[dlgState.topicIndex]?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber])
-
+  /*eslint-enable*/
 
   return (
     <React.Fragment>
@@ -246,13 +247,13 @@ export default function DocumentApprovalDlg() {
             flexDirection: 'column',
             p: 3,
             backgroundImage: 'linear-gradient(to right, #fff9f9, #ebe9ff)',
-            '& .MuiTypography-root':{
-                fontSize:'.9rem'
-            },
+            '& .MuiTypography-root': {
+              fontSize: '.9rem'
+            }
           }}
         >
           {/*---------title-----------*/}
-          <Box sx={{ display: 'flex', pt: '2rem', pb:'1rem' }}>
+          <Box sx={{ display: 'flex', pt: '2rem', pb: '1rem' }}>
             <Typography
               sx={{
                 fontSize: '1.3rem !important',
@@ -287,9 +288,9 @@ export default function DocumentApprovalDlg() {
               border: '1px solid #e2e2e2',
               borderRadius: '0.5rem',
               backgroundColor: 'white',
-              width:'100%',
-              '& *':{
-                fontWeight:'500 !important'
+              width: '100%',
+              '& *': {
+                fontWeight: '500 !important'
               }
             }}
             >
@@ -383,9 +384,9 @@ export default function DocumentApprovalDlg() {
                     <PrimaryTextField
                       sx={{
                         marginTop: '.5rem',
-                        '& textarea':{
-                          fontSize:'.9rem'
-                        },
+                        '& textarea': {
+                          fontSize: '.9rem'
+                        }
                       }}
                       value={vState.notes}
                       onChange={
@@ -413,7 +414,7 @@ export default function DocumentApprovalDlg() {
                       flexDirection: 'column',
                       bgcolor: '#3d3d3d',
                       p: 2,
-                      width:'100% !important',
+                      width: '100% !important',
                       borderRadius: '.5rem',
                       '& >div': {
                         position: 'relative',
@@ -448,7 +449,7 @@ export default function DocumentApprovalDlg() {
                       style={{
                         // overflowY: 'auto',
                         height: '600px',
-                        width:'100%',
+                        width: '100%'
                       }}
                     >
                       <iframe id='pdfid' width='100%' style={{ height: 'inherit' }}
@@ -461,14 +462,14 @@ export default function DocumentApprovalDlg() {
               </Grid>
             </Box>
             /*----------Dialog content ------------*/
-            : <Box  sx={{
+            : <Box sx={{
               overflow: 'auto',
               border: '1px solid #e2e2e2',
               borderRadius: '0.5rem',
               backgroundColor: 'white',
-              padding:'2rem',
-              '& *':{
-                fontWeight:'500 !important'
+              padding: '2rem',
+              '& *': {
+                fontWeight: '500 !important'
               }
             }}>
               <Grid
@@ -487,7 +488,7 @@ export default function DocumentApprovalDlg() {
               >
                 {/*------moderator approval-----------*/}
                 <Grid item xs={12} md={12}>
-                  <Typography sx={{pb:'.3rem'}}>Moderator Approval :</Typography>
+                  <Typography sx={{ pb: '.3rem' }}>Moderator Approval :</Typography>
                   <CustomToggleButtonGroup
                     groupName={approvalConst}
                     sx={{
@@ -542,9 +543,9 @@ export default function DocumentApprovalDlg() {
                   <PrimaryTextField
                     sx={{
                       marginTop: '.5rem',
-                      '& textarea':{
-                        fontSize:'.9rem'
-                      },
+                      '& textarea': {
+                        fontSize: '.9rem'
+                      }
                     }}
                     value={vState.notes}
                     onChange={

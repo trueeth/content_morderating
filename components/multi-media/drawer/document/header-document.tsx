@@ -11,6 +11,7 @@ import RowApproval from '@components/multi-media/common/approval-item'
 export default function DrawerDocumentHeader() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
+  /* eslint-disable */
   const memorizedVideoValue = useMemo(() => {
 
     let memoValue: {
@@ -48,6 +49,7 @@ export default function DrawerDocumentHeader() {
 
     return memoValue
   }, [appState.api.data, appState.drawer.rowIndex, appState.drawer.subRowIndex])
+  /* eslint-enable */
 
   return (
     <Box

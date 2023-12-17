@@ -47,6 +47,7 @@ export default function DrawerTabPlayScene() {
   const [token, setToken] = useState<string>('')
 
 
+  /* eslint-disable */
   useEffect(() => {
     (async () => {
       try {
@@ -64,7 +65,7 @@ export default function DrawerTabPlayScene() {
       }
     })()
   }, [dispatch])
-
+  /* eslint-enable */
 
   return (
     <Box

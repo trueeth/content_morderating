@@ -22,7 +22,7 @@ const useTablePagination = () => {
 
   const router = useRouter()
 
-
+  /* eslint-disable */
   useEffect(() => {
     if (appState.pagination.pageIndex > 0) {
       router.push({
@@ -61,7 +61,7 @@ const useTablePagination = () => {
       }
     }
   }, [router])
-
+  /* eslint-enable */
 
   // @TODO will use after that
   // const handlePageNext = () => {

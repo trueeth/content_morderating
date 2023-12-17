@@ -90,6 +90,7 @@ export const HeaderUpdate = () => {
     }
   }
 
+  /* eslint-disable */
   useEffect(()=>{
     const rowIndex = appState.drawer.rowIndex
     const subRowIndex = appState.drawer.subRowIndex
@@ -101,6 +102,7 @@ export const HeaderUpdate = () => {
     if (subRowData.ModeratorApprovalStatus===EModeratorApprovalStatus.rejected)
       setState(prevState => ({...prevState, moderatorStatus: CSceneState[1]}))
   },[])
+  /* eslint-enable */
 
   const updateDocumentQuestion = async () => {
     dispatch(openSnackbarInfo('This part will come soon'))

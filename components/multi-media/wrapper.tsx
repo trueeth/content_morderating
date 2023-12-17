@@ -118,12 +118,12 @@ export const MediaActionwrapper = (props: IActionPros) => {
       setState(prevState => ({ ...prevState, rows: [] }))
     }
   }
-
+  /* eslint-disable */
   useEffect(() => {
     // Fetch data when component mounts or pagination change
     fetchPageData()
   }, [dispatch, take, skip, props.type])
-
+  /* eslint-enable */
   return (
     <TableContainer
       component={Paper}
