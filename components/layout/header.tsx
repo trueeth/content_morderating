@@ -284,7 +284,7 @@ const Header = () => {
               </Box>
               <Box sx={{ ml: 2 }}>
                 {username &&
-                  <Typography fontSize={17} whiteSpace='nowrap' width={70} sx={{ fontWeight: '500 !important' }}>
+                  <Typography fontSize={14} whiteSpace='nowrap' width={70} sx={{ fontWeight: '500 !important', textTransform:'capitalize !important' }}>
                     {username}
                   </Typography>}
                 <Typography fontSize={10} sx={{ fontWeight: '400 !important' }}>Admin</Typography>
