@@ -127,30 +127,30 @@ export default function DrawerDocumentHeader() {
           padding: 0
         }}
       >
-        {/*<Typography sx={{*/}
-        {/*  backgroundColor: 'var(--Secondry-L)',*/}
-        {/*  marginLeft: '-1rem',*/}
-        {/*  marginRight: '-1rem',*/}
-        {/*  color: 'black',*/}
-        {/*  fontSize: '.9rem',*/}
-        {/*  marginTop: '1rem',*/}
-        {/*  padding: '1rem',*/}
-        {/*}}>{'Summary'}</Typography>*/}
+        {/*<Typography sx={{
+          backgroundColor: 'var(--Secondry-L)',
+          marginLeft: '-1rem',
+          marginRight: '-1rem',
+          color: 'black',
+          fontSize: '.9rem',
+          marginTop: '1rem',
+          padding: '1rem',
+        }}>{'Summary'}</Typography>*/}
 
 
         {/*  -----------summary text-----------*/}
-        {/*<Box*/}
-        {/*  sx={{*/}
-        {/*    m: '1rem',*/}
-        {/*    display: 'flex',*/}
-        {/*    justifyContent: 'space-between',*/}
-        {/*    alignItems: 'center',*/}
-        {/*    flexDirection: { xs: 'column', md: 'row' },*/}
-        {/*    gap: 2*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  <Typography>{appState.drawer.drawerData?.Summary}</Typography>*/}
-        {/*</Box>*/}
+        {/*<Box
+          sx={{
+            m: '1rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexDirection: { xs: 'column', md: 'row' },
+            gap: 2
+          }}
+        >
+          <Typography>{appState.drawer.drawerData?.Summary}</Typography>
+        </Box>*/}
       </Box>
 
     </Box>

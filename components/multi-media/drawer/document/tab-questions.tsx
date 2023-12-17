@@ -169,19 +169,19 @@ export default function DrawerTabQuestions() {
                 </Box>
               </TableCell>
               <TableCell>
-                {/*<RowAction actions={[*/}
-                {/*  // { title: 'Classification' },*/}
-                {/*  // { title: 'Reports' },*/}
-                {/*  {*/}
-                {/*    title: 'Reports',*/}
-                {/*    action: () => dispatch(openDocumentApproval({*/}
-                {/*      type: EDocumentApprovalDlg.question,*/}
-                {/*      docIndex: appState.drawer.rowIndex,*/}
-                {/*      topicIndex: appState.drawer.subRowIndex,*/}
-                {/*      questionIndex: questionIndex*/}
-                {/*    }))*/}
-                {/*  }*/}
-                {/*]} />*/}
+               {/* <RowAction actions={[
+                  // { title: 'Classification' },
+                  // { title: 'Reports' },
+                  {
+                    title: 'Reports',
+                    action: () => dispatch(openDocumentApproval({
+                      type: EDocumentApprovalDlg.question,
+                      docIndex: appState.drawer.rowIndex,
+                      topicIndex: appState.drawer.subRowIndex,
+                      questionIndex: questionIndex
+                    }))
+                  }
+                ]} />*/}
 
                 <Button
                   sx={{

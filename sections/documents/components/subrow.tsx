@@ -140,24 +140,24 @@ const DocumentSubrow = (props: {
             return null
           return (
             <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
-              {/*<Checkbox />*/}
-              {/*<Typography>{'Topic #' + (index + 1)}</Typography>*/}
+              {/*<Checkbox />
+              <Typography>{'Topic #' + (index + 1)}</Typography>*/}
               <Typography>{row.topic}</Typography>
               <Typography whiteSpace="nowrap">
                 <RowApproval approval={row.aiApproval}/>
               </Typography>
-                {/*<RowAction actions={[*/}
-                {/*  // { title: 'Classification' },*/}
-                {/*  // { title: 'Reports' },*/}
-                {/*  {*/}
-                {/*    title: 'Reports' ,*/}
-                {/*    action:()=>dispatch(openDocumentApproval({*/}
-                {/*      type:EDocumentApprovalDlg.topic,*/}
-                {/*      docIndex:props.rowIndex,*/}
-                {/*      topicIndex:index*/}
-                {/*    })),*/}
-                {/*  }*/}
-                {/*]} />*/}
+              {/*  <RowAction actions={[
+                  // { title: 'Classification' },
+                  // { title: 'Reports' },
+                  {
+                    title: 'Reports' ,
+                    action:()=>dispatch(openDocumentApproval({
+                      type:EDocumentApprovalDlg.topic,
+                      docIndex:props.rowIndex,
+                      topicIndex:index
+                    })),
+                  }
+                ]} />*/}
 
               <Button
                 sx={{
