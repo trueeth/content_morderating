@@ -287,7 +287,10 @@ export default function DocumentApprovalDlg() {
               border: '1px solid #e2e2e2',
               borderRadius: '0.5rem',
               backgroundColor: 'white',
-              width:'100%'
+              width:'100%',
+              '& *':{
+                fontWeight:'500 !important'
+              }
             }}
             >
               {/*
@@ -325,7 +328,6 @@ export default function DocumentApprovalDlg() {
                       The page portrays the question in
                       a <strong>{memoValue.pageInfo?.opinion ? memoValue.pageInfo?.opinion : 'no'}</strong> way based on
                       the Ai findings
-
                     </Typography>
                   </Grid>
                   {/*------snippet----------*/}
@@ -347,7 +349,8 @@ export default function DocumentApprovalDlg() {
                         '& button': {
                           fontSize: '.75rem',
                           whiteSpace: 'nowrap',
-                          padding: '.4rem .6rem'
+                          padding: '.4rem .6rem',
+                          minWidth: '40%'
                         }
                       }}
                       value={vState.approval}
@@ -379,7 +382,10 @@ export default function DocumentApprovalDlg() {
                     <Typography>Notes:</Typography>
                     <PrimaryTextField
                       sx={{
-                        marginTop: '.5rem'
+                        marginTop: '.5rem',
+                        '& textarea':{
+                          fontSize:'.9rem'
+                        },
                       }}
                       value={vState.notes}
                       onChange={
@@ -460,7 +466,10 @@ export default function DocumentApprovalDlg() {
               border: '1px solid #e2e2e2',
               borderRadius: '0.5rem',
               backgroundColor: 'white',
-              padding:'2rem'
+              padding:'2rem',
+              '& *':{
+                fontWeight:'500 !important'
+              }
             }}>
               <Grid
                 container
@@ -487,7 +496,7 @@ export default function DocumentApprovalDlg() {
                         fontSize: '.75rem',
                         whiteSpace: 'nowrap',
                         padding: '.4rem .6rem',
-                        minWidth: '33.3%'
+                        minWidth: '40%'
                       }
                     }}
                     value={vState.approval}
@@ -532,7 +541,10 @@ export default function DocumentApprovalDlg() {
                   <Typography>Notes:</Typography>
                   <PrimaryTextField
                     sx={{
-                      marginTop: '.5rem'
+                      marginTop: '.5rem',
+                      '& textarea':{
+                        fontSize:'.9rem'
+                      },
                     }}
                     value={vState.notes}
                     onChange={
