@@ -38,15 +38,15 @@ const dialogSlice = createSlice({
       if (action.payload.open!==undefined)
         state.documentApproval.open = action.payload.open
       else state.documentApproval.open = true
-      if (action.payload.type)
+      if (action.payload.type!==undefined)
         state.documentApproval.type = action.payload.type
-      if (action.payload.docIndex)
+      if (action.payload.docIndex!==undefined)
         state.documentApproval.docIndex = action.payload.docIndex
-      if (action.payload.topicIndex)
+      if (action.payload.topicIndex!==undefined)
         state.documentApproval.topicIndex = action.payload.topicIndex
-      if (action.payload.questionIndex)
+      if (action.payload.questionIndex!==undefined)
         state.documentApproval.questionIndex = action.payload.questionIndex
-      if (action.payload.pageIndex)
+      if (action.payload.pageIndex!==undefined)
         state.documentApproval.pageIndex = action.payload.pageIndex
     }
   }

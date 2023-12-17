@@ -106,7 +106,7 @@ export default function DocumentApprovalDlg() {
 
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
-      approvalStatus = EModeratorApprovalStatus.inReview
+      approvalStatus = EModeratorApprovalStatus.new
 
     const params = {
       ModeratorAnswerFound: vState.answer === 'Yes',
@@ -211,6 +211,8 @@ export default function DocumentApprovalDlg() {
         setApprovalStatus(gptResponse?.answers[dlgState?.questionIndex]?.ModeratorApprovalStatus)
         break
       case EDocumentApprovalDlg.page:
+        console.log(dlgState?.pageIndex)
+        console.log(gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers)
         tempMemo.title = `Page ${gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber} Approval`
         tempMemo.pageInfo = gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex] as TResDocument.TGptAnswerPageNumber
         tempMemo.description = `Question: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
@@ -221,7 +223,7 @@ export default function DocumentApprovalDlg() {
         break
     }
     return tempMemo
-  }, [dlgState?.type, dlgState?.questionIndex, dlgState?.pageIndex, dlgState?.docIndex, dlgState?.topicIndex])
+  }, [dlgState?.type, dlgState?.questionIndex, dlgState?.pageIndex, dlgState?.docIndex, dlgState?.topicIndex, documentDetailState?.GptResponse[dlgState.topicIndex]?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber])
 
 
   return (
@@ -435,7 +437,7 @@ export default function DocumentApprovalDlg() {
                     <div
                       style={{
                         // overflowY: 'auto',
-                        height: '550px',
+                        height: '600px',
                         width:'100%',
                       }}
                     >

@@ -64,7 +64,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiTableCell-head':{
-            padding:'0px'
+            px:'7px'
           },
           '& .MuiTableRow-root': {
             '& > .MuiTableCell-root': {
