@@ -88,7 +88,7 @@ export default function DrawerDocumentHeader() {
             alignItems: 'center',
             '& .MuiTypography-root:first-of-type': {
               color: 'grey',
-              fontSize: '14px'
+              fontSize: '12px'
             }
           }
         }}

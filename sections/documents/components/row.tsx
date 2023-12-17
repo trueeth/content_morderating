@@ -17,7 +17,7 @@ import { useEffect } from 'react'
 import { apiGetDocumentContentDetails } from '@interfaces/apis/documents'
 import { openSnackbarError, openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import { openDocumentApproval } from '@store/reducers/dialog/reducers'
-import { EDocumentApprovalDlg } from '@interfaces/enums'
+import { EDocumentApprovalDlg, EProcessingStatus } from '@interfaces/enums'
 import RowStatus from '@components/multi-media/common/status-item'
 
 function DocumentRow(props: {
@@ -71,7 +71,7 @@ function DocumentRow(props: {
         return;
       }
       if (documentDetails.data?.GptResponse?.length==0){
-        dispatch(openSnackbarWarning("Sorry, there isn't any Document's GptResponses!"))
+        dispatch(openSnackbarWarning("This document has no topics"))
         return;
       }
       setState(prevState => ({
@@ -115,17 +115,17 @@ function DocumentRow(props: {
         }}
       >
         <TableCell>
-          <IconButton
+          {row.processingStatus!==EProcessingStatus.new && <IconButton
             aria-label='expand row'
             size='small'
             onClick={handleDetail}
           >
             {vState.openSummary ? <KeyboardArrowDown sx={{
-              fontSize:'1.2rem'
+              fontSize: '1.2rem'
             }} /> : <KeyboardArrowRight sx={{
-              fontSize:'1.2rem'
-            }}  />}
-          </IconButton>
+              fontSize: '1.2rem'
+            }} />}
+          </IconButton>}
         </TableCell>
 
         <TableCell sx={{ minWidth: '200px', maxWidth: '250px' }}>

@@ -26,6 +26,7 @@ import { useRouter } from 'next/router'
 import { CLanguage } from '@interfaces/constant'
 import { readFileAsBytes, uint8ArrayToBase64 } from '@utils/file'
 import { setPaginationIndex } from '@store/reducers/page/reducers'
+import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -190,6 +191,9 @@ export default function SourceStep(props: {
       dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
     } finally {
       dispatch(setApiLoading(false))
+      setTimeout(() => {
+        dispatch(openVideoUploadDialog({open:false}))
+      }, 1500)
       setTimeout(() => {
         dispatch(setPaginationIndex({pageIndex:0}))
       }, 2000)
@@ -383,27 +387,27 @@ export default function SourceStep(props: {
       >
         <Typography>Where is the source file</Typography>
 
-        {/*<Box>*/}
-        {/*  <Typography>Upload from URL option</Typography>*/}
-        {/*  <Radio*/}
-        {/*    checked={vState.type === 'url'}*/}
-        {/*    onChange={handleType}*/}
-        {/*    value={'url'}*/}
-        {/*  />*/}
-        {/*</Box>*/}
-        {/*<PrimaryTextField*/}
-        {/*  fullWidth={true}*/}
-        {/*  placeholder='Enter  URL'*/}
-        {/*  disabled={vState.type !== 'url'}*/}
-        {/*/>*/}
+        {/*<Box>
+          <Typography>Upload from URL option</Typography>
+          <Radio
+            checked={vState.type === 'url'}
+            onChange={handleType}
+            value={'url'}
+          />
+        </Box>
+        <PrimaryTextField
+          fullWidth={true}
+          placeholder='Enter  URL'
+          disabled={vState.type !== 'url'}
+        />*/}
 
         <Box sx={{ paddingBottom: '.5rem' }}>
           <Typography>Upload from your PC</Typography>
-          {/*<Radio*/}
-          {/*  checked={vState.type === 'pc'}*/}
-          {/*  onChange={handleType}*/}
-          {/*  value={'pc'}*/}
-          {/*/>*/}
+          {/*<Radio
+            checked={vState.type === 'pc'}
+            onChange={handleType}
+            value={'pc'}
+          />*/}
         </Box>
         <Box {...getRootProps({ style })}>
           <input {...getInputProps()} />
@@ -440,18 +444,18 @@ export default function SourceStep(props: {
           </Box>
         </Box>
 
-        {/*<Box>*/}
-        {/*  <Typography>From Netflix</Typography>*/}
-        {/*  <Radio*/}
-        {/*    checked={vState.type === 'netflix'}*/}
-        {/*    onChange={handleType}*/}
-        {/*    value={'netflix'}*/}
-        {/*  />*/}
-        {/*</Box>*/}
-        {/*<PrimaryTextField*/}
-        {/*  placeholder='Enter the full movie name'*/}
-        {/*  disabled={vState.type !== 'netflix'}*/}
-        {/*/>*/}
+       {/* <Box>
+          <Typography>From Netflix</Typography>
+          <Radio
+            checked={vState.type === 'netflix'}
+            onChange={handleType}
+            value={'netflix'}
+          />
+        </Box>
+        <PrimaryTextField
+          placeholder='Enter the full movie name'
+          disabled={vState.type !== 'netflix'}
+        />*/}
 
         <Box
           sx={{

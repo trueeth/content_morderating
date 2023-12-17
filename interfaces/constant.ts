@@ -1,28 +1,27 @@
 import {
-  FileUpload,
-  GridViewRounded,
   InsertDriveFileOutlined,
-  Settings,
-  Slideshow,
-  SvgIconComponent,
-  Update,
-  Lock
 } from '@mui/icons-material'
 
-export const CHeaderTabs: Array<{ icon: SvgIconComponent; title: string, url?: string, dialog?: string }> = [
-  { icon: GridViewRounded, title: 'Dashboard', url: 'dashboard' },
-  { icon: Slideshow, title: 'Videos', url: 'videos' },
-  { icon: InsertDriveFileOutlined, title: 'Documents', url: 'documents' },
-  { icon: Update, title: 'Reports', url: 'reports' },
-  { icon: Lock, title: 'Access', url: 'access' },
-  { icon: Settings, title: 'Settings', url: 'settings' },
-  { icon: FileUpload, title: 'Upload', dialog: 'upload' }
+const iconUrl = (icon: string) => `/assets/images/icon/${icon}.svg`;
+
+
+export const CHeaderTabs: Array<{ icon:string; title: string, url?: string, dialog?: string }> = [
+  { icon: iconUrl('dashboard'), title: 'Dashboard', url: 'dashboard' },
+  { icon: iconUrl('dashboard'), title: 'Videos', url: 'videos' },
+  { icon: iconUrl('dashboard'), title: 'Documents', url: 'documents' },
+  { icon: iconUrl('report'), title: 'Reports', url: 'reports' },
+  { icon: iconUrl('access'), title: 'Access', url: 'access' },
+  { icon: iconUrl('setting'), title: 'Settings', url: 'settings' },
+  { icon: iconUrl('upload'), title: 'Upload', dialog: 'upload' }
 ]
 
 
 export const CSceneState = ['Not Assigned', 'Approved', 'Unapproved']
 
-export const CDrawerVideoTabs = ['Play the Scene', 'Activities']
+export const CDrawerVideoTabs = [
+  'Play the Scene',
+  'Activities'
+]
 
 export const CDrawerDocumentTabs = [
   'Overview',

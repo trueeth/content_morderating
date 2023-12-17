@@ -12,7 +12,7 @@ import DrawerTabQuestions from '@components/multi-media/drawer/document/tab-ques
 
 export default function DrawerTab() {
   const [vState, setState] = React.useState({
-    tabIndex: 0,
+    tabIndex: 0
     // pageNumber:0,
     // questionIndex:0,
   })
@@ -27,35 +27,36 @@ export default function DrawerTab() {
 
   const videoTabPanels = (
     <Box>
-    <TabPanel value={vState.tabIndex} index={0}>
-      <DrawerTabPlayScene></DrawerTabPlayScene>
-    </TabPanel>
-    <TabPanel value={vState.tabIndex} index={1}>
-      <DrawerTabActivities></DrawerTabActivities>
-    </TabPanel>
-  </Box>
+      <TabPanel value={vState.tabIndex} index={0}>
+        <DrawerTabPlayScene></DrawerTabPlayScene>
+      </TabPanel>
+      <TabPanel value={vState.tabIndex} index={1}>
+        <DrawerTabActivities></DrawerTabActivities>
+      </TabPanel>
+    </Box>
   )
-  const documentTabPanels =(
-      <Box>
-        <TabPanel value={vState.tabIndex} index={0}>
-          <Box>
-            <Typography sx={{padding:'2rem'}}>{appState.drawer.drawerData?.Summary}</Typography>
-          </Box>
-        </TabPanel>
-        <TabPanel value={vState.tabIndex} index={1}>
-          <DrawerTabQuestions
-          ></DrawerTabQuestions>
-        </TabPanel>
-        {/*<TabPanel value={vState.tabIndex} index={2}>*/}
-        {/*  <DrawerTabPreviewPage pageNum ={vState.pageNumber} questionIndex={vState.questionIndex}></DrawerTabPreviewPage>*/}
-        {/*</TabPanel>*/}
-        <TabPanel value={vState.tabIndex} index={2}>
-          <DrawerTabActivities></DrawerTabActivities>
-        </TabPanel>
-      </Box>
-    )
 
-  const tabPanels = appState.drawer.type==='video'?videoTabPanels:documentTabPanels
+  const documentTabPanels = (
+    <Box>
+      <TabPanel value={vState.tabIndex} index={0}>
+        <Box>
+          <Typography sx={{ padding: '2rem' }}>{appState.drawer.drawerData?.Summary}</Typography>
+        </Box>
+      </TabPanel>
+      <TabPanel value={vState.tabIndex} index={1}>
+        <DrawerTabQuestions
+        ></DrawerTabQuestions>
+      </TabPanel>
+      {/*<TabPanel value={vState.tabIndex} index={2}>*/}
+      {/*  <DrawerTabPreviewPage pageNum ={vState.pageNumber} questionIndex={vState.questionIndex}></DrawerTabPreviewPage>*/}
+      {/*</TabPanel>*/}
+      <TabPanel value={vState.tabIndex} index={2}>
+        <DrawerTabActivities></DrawerTabActivities>
+      </TabPanel>
+    </Box>
+  )
+
+  const tabPanels = appState.drawer.type === 'video' ? videoTabPanels : documentTabPanels
 
   return (
     <Box className='w-full'>

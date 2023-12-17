@@ -221,15 +221,15 @@ export default function DocumentApprovalDlg() {
         break
     }
     return tempMemo
-  }, [dlgState])
+  }, [dlgState?.type, dlgState?.questionIndex, dlgState?.pageIndex, dlgState?.docIndex, dlgState?.topicIndex])
 
 
   return (
     <React.Fragment>
       {/*----------- document approval dialog ---------*/}
       <Dialog
-        // fullWidth
-        maxWidth={memoValue.type !== EDocumentApprovalDlg.page ? 'xs' : 'lg'}
+        fullWidth
+        maxWidth={memoValue.type !== EDocumentApprovalDlg.page ? 'xs' : 'xl'}
         open={vState.open}
         onClose={handleClose}>
         <Box
@@ -276,11 +276,12 @@ export default function DocumentApprovalDlg() {
             * Dialog content while there is a specific page
             * */
             <Box sx={{
-              height: '600px',
+              height: '620px',
               overflow: 'auto',
               border: '1px solid #e2e2e2',
               borderRadius: '0.5rem',
-              backgroundColor: 'white'
+              backgroundColor: 'white',
+              width:'100%'
             }}
             >
               {/*
@@ -400,7 +401,7 @@ export default function DocumentApprovalDlg() {
                       flexDirection: 'column',
                       bgcolor: '#3d3d3d',
                       p: 2,
-                      margin: '0rem 2rem',
+                      width:'100% !important',
                       borderRadius: '.5rem',
                       '& >div': {
                         position: 'relative',
@@ -434,11 +435,12 @@ export default function DocumentApprovalDlg() {
                     <div
                       style={{
                         // overflowY: 'auto',
-                        height: '500px'
+                        height: '550px',
+                        width:'100%',
                       }}
                     >
                       <iframe id='pdfid' width='100%' style={{ height: 'inherit' }}
-                              src={`${appState.drawer.drawerData?.PdfUrl}#page=${memoValue.pageInfo?.pageNumber}`}
+                              src={`${appState.drawer.drawerData?.PdfUrl}#page=${memoValue.pageInfo?.pageNumber}.5`}
                               scrolling='no'></iframe>
                     </div>
                   </Box>
@@ -461,7 +463,7 @@ export default function DocumentApprovalDlg() {
                   '& .MuiGrid-item': {
                     display: 'flex',
                     flexDirection: 'column',
-                    paddingTop: '2rem'
+                    paddingTop: '1rem'
                   },
                   '& p': {
                     fontSize: '.9rem'
@@ -470,7 +472,7 @@ export default function DocumentApprovalDlg() {
               >
                 {/*------moderator approval-----------*/}
                 <Grid item xs={12} md={12}>
-                  <Typography>Moderator Approval :</Typography>
+                  <Typography sx={{pb:'.3rem'}}>Moderator Approval :</Typography>
                   <CustomToggleButtonGroup
                     groupName={approvalConst}
                     sx={{

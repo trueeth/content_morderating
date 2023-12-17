@@ -52,13 +52,14 @@ body::-webkit-scrollbar {
 }
 
 @font-face {
-  font-family: 'Square';
-  src: url('../assets/fonts/EuclidSquare-Medium.woff') format('opentype');
-}
-
-@font-face {
   font-family: 'Raleway';
   src: url('../assets/fonts/Raleway-Regular.ttf') format('opentype');
+}
+
+
+@font-face {
+  font-family: 'Square';
+  src: url('../assets/fonts/EuclidSquare-Medium.woff') format('opentype');
 }
 
 input[type='number']::-webkit-clear-button {
@@ -128,9 +129,8 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .menu-title{
-  font-size: 1.08rem;
-  font-family: 'Square', serif !important;
-  font-weight: 500 !important;
+  font-size: .9rem !important;
+  font-weight: 600 !important;
 }
 /*-----------------Dashboard chart style end-----------------*/
 

@@ -29,14 +29,15 @@ import Paper from '@mui/material/Paper'
 import { useAuthContext } from '@components/auth/hooks'
 import RowAction from '@components/multi-media/common/action-item'
 import { openSnackbarInfo } from '@store/reducers/snackbar/reducers'
+import SlideShow from '@public/assets/images/icon/slide.svg'
 
 function UserAction() {
   const { logout } = useAuthContext()
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
   const handleLogout = async () => {
     try {
-      setAnchorEl(null)
+      // setAnchorEl(null)
       await logout()
     } catch (error) {
       console.error(error)
@@ -120,7 +121,16 @@ const DropMenu = () => {
           router.pathname === `/videos` || router.pathname === `/documents`
         }
       >
-        <SvgIcon component={Slideshow} />
+        <Box
+          component="img"
+          src='/assets/images/icon/slide.svg'
+          sx={{
+            width: 20,
+            height: 20,
+            flexShrink: 0,
+            // filter:'brightness(0) invert(1)'
+          }}
+        />
         <Typography ml={0.5} className='menu-title'>Multimedia</Typography>
         <SvgIcon component={ExpandMore} className='ml-5' />
       </TopButton>
@@ -243,7 +253,15 @@ const Header = () => {
                         router.pathname === `/${item.title.toLowerCase()}`
                       }
                     >
-                      <SvgIcon component={item.icon} />
+                      <Box
+                        component="img"
+                        src={item.icon}
+                        sx={{
+                          width: 20,
+                          height: 20,
+                          flexShrink: 0,
+                        }}
+                      />
                       <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
                     </TopButton>
                   </Box>
@@ -340,7 +358,15 @@ const Header = () => {
                     main={item.title !== 'Upload'}
                     active={router.pathname === `/${item.title.toLowerCase()}`}
                   >
-                    <SvgIcon component={item.icon} />
+                    <Box
+                      component="img"
+                      src={item.icon}
+                      sx={{
+                        width: 20,
+                        height: 20,
+                        flexShrink: 0,
+                      }}
+                    />
                     <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
                   </TopButton>
                 </Box>

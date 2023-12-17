@@ -90,13 +90,15 @@ export default function DrawerTabQuestions() {
           >
             <TableCell sx={{minWidth:'50px', textAlign:'center'}}>#</TableCell>
             {CQuestionsColumns.map((val, index) => {
-                if (index === (2||3))
-                  return <TableCell className='menu-title' style={{ maxWidth: '60px',  }} key={index}>{val}</TableCell>
+                if (index === 2)
+                  return <TableCell className='menu-title' style={{ minWidth: '100px',  }} key={index}>{val}</TableCell>
+                if (index === 3)
+                  return <TableCell className='menu-title' style={{ minWidth: '100px',  }} key={index}>{val}</TableCell>
                 if (index === 4)
                   return <TableCell className='menu-title' style={{ maxWidth: '200px',minWidth:'150px' }} key={index}>{val}</TableCell>
                 if (index === 0)
                   return <TableCell className='menu-title' style={{ maxWidth: '200px',minWidth:'50px' }} key={index}>{val}</TableCell>
-                return <TableCell className='menu-title' key={index}>{val}</TableCell>
+                return <TableCell className='menu-title' style={{minWidth:'80px'}} key={index}>{val}</TableCell>
               }
             )}
           </TableRow>
@@ -188,7 +190,7 @@ export default function DrawerTabQuestions() {
                     padding: '2px 10px',
                     minWidth: '40px',
                     color: '#fff',
-                    fontSize:'.7rem',
+                    fontSize:'.6rem',
                     '&:hover': {
                       backgroundColor: '#4fc1d7'
                     }
