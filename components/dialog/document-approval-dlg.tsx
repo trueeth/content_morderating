@@ -165,7 +165,11 @@ export default function DocumentApprovalDlg() {
   const documentState = appState.api.data[appState.dialog.documentApproval.docIndex]
   const dlgState = appState.dialog.documentApproval
 
-  const approvalConst = ['Not Assigned', 'Approved', 'Rejected']
+  const approvalConst = [
+    // 'Not Assigned',
+    'Approved',
+    'Rejected',
+  ]
 
   useEffect(() => {
     if (dlgState.open) {
