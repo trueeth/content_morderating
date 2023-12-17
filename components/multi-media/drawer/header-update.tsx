@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CSceneState } from '@interfaces/constant'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,6 +10,8 @@ import { openSnackbarError, openSnackbarInfo, openSnackbarSuccess } from '@store
 import { Box, Button, TextField, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { TResVideo } from '@interfaces/apis/api.types'
+import { setPaginationIndex } from '@store/reducers/page/reducers'
+import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 
 
 const CssTextField = styled(TextField)({
@@ -56,13 +58,13 @@ export const HeaderUpdate = () => {
 
     let parmasStatus = EModeratorApprovalStatus.new
     switch (vState.moderatorStatus) {
+      // case CSceneState[0]:
+      //   parmasStatus = EModeratorApprovalStatus.inReview
+      //   break
       case CSceneState[0]:
-        parmasStatus = EModeratorApprovalStatus.inReview
-        break
-      case CSceneState[1]:
         parmasStatus = EModeratorApprovalStatus.approved
         break
-      case CSceneState[2]:
+      case CSceneState[1]:
         parmasStatus = EModeratorApprovalStatus.rejected
         break
       default:
@@ -79,14 +81,26 @@ export const HeaderUpdate = () => {
     try {
       await apiUpdateVideoSceneSummary(urlParam, parmas)
       dispatch(openSnackbarSuccess('Success, updated VideoSceneSummary data'))
+      dispatch(openMediaSubDrawer({ open: false }))
+      setTimeout(() => {
+        dispatch(setPaginationIndex({ pageIndex: 0 }))
+      }, 2000)
     } catch (e) {
       dispatch(openSnackbarError('Error, updating VideoSceneSummary'))
-    } finally {
-      setTimeout(() => {
-        router.reload()
-      }, 2000)
     }
   }
+
+  useEffect(()=>{
+    const rowIndex = appState.drawer.rowIndex
+    const subRowIndex = appState.drawer.subRowIndex
+    const data = appState.api.data
+
+    let rowVideoData = data[rowIndex] as TResVideo.TVideoContent
+    const subRowData = rowVideoData.VideoSummary?.SceneSummaries[subRowIndex]
+
+    if (subRowData.ModeratorApprovalStatus===EModeratorApprovalStatus.rejected)
+      setState(prevState => ({...prevState, moderatorStatus: CSceneState[1]}))
+  },[])
 
   const updateDocumentQuestion = async () => {
     dispatch(openSnackbarInfo('This part will come soon'))

@@ -45,6 +45,7 @@ export const resToVideoRowAdapter = (resData:any) => {
 
           videoSubRow.status = videoContent.ModeratorApprovalStatus
           videoSubRow.description = videoContent.Description
+          videoSubRow.moderatorStatus=sceneSummary.ModeratorApprovalStatus
           if (!videoContent.Description)
             videoSubRow.description='Not Assigned'
 

@@ -7,22 +7,30 @@ import { IAppSlice } from '@store/reducers'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import DrawerVideoHeader from './video/header-video'
 import DrawerDocumentHeader from '@components/multi-media/drawer/document/header-document'
+import { useEffect, useState } from 'react'
 
 export default function MediaDrawer() {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+  const [vState, setState] = useState({ open: false })
 
   const isXL = useMediaQuery('(min-width:800px)')
 
   const handleClose = () => {
+    setState(prevState => ({ ...prevState, open: false }))
     dispatch(openMediaSubDrawer({ open: false }))
   }
 
+  useEffect(() => {
+    if (appState.drawer.mediaSubOpen)
+      setState(prevState => ({ ...prevState, open: true }))
+  }, [appState.drawer.mediaSubOpen])
+
   return (
     <Drawer
-      anchor="right"
+      anchor='right'
       onClose={handleClose}
-      open={appState.drawer.mediaSubOpen}
+      open={vState.open}
       PaperProps={{
         style: {
           boxShadow: 'none',
@@ -48,12 +56,12 @@ export default function MediaDrawer() {
         >
           <CloseIcon
             onClick={handleClose}
-            fontSize="small"
+            fontSize='small'
             sx={{ cursor: 'pointer', mr: 2 }}
           />
         </Box>
 
-        {appState.drawer.type==='video'?<DrawerVideoHeader/>:<DrawerDocumentHeader/>}
+        {appState.drawer.type === 'video' ? <DrawerVideoHeader /> : <DrawerDocumentHeader />}
         <DrawerTab />
       </Box>
     </Drawer>

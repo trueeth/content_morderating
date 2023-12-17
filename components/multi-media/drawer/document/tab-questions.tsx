@@ -55,7 +55,6 @@ export default function DrawerTabQuestions() {
         flexDirection: 'column',
         padding: '3rem 2rem',
         marginTop: '-1rem',
-        backgroundColor: '#ececec'
       }}
     >
 
@@ -66,7 +65,6 @@ export default function DrawerTabQuestions() {
           borderCollapse: 'collapse',
           mt: -0.5,
           mb: 0.5,
-          backgroundColor: 'white',
           borderRadius: '.3rem',
           '& .MuiTableCell-root': {
             borderTop: 'none !important',

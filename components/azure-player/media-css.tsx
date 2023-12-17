@@ -1,8 +1,8 @@
 import styled from "styled-components";
 interface CSSMedia {
-  videoType: boolean;
-  hidePlayButton: boolean;
-  volumeControl: boolean;
+  videoType?: boolean;
+  hidePlayButton?: boolean;
+  volumeControl?: boolean;
 }
 
 

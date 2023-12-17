@@ -92,17 +92,18 @@ export enum EHistoryData {
 
 export enum EVideoDetail {
   pageNumber = 'SCENE NUMBER',
-  violationType = 'VIOLATION TYPE',
-  category = 'SCENE STATUS',
+  status = 'SCENE STATUS',
+  aiclassification = 'AI CLASSIFICATION',
+  aiapproval = 'AI APPROVAL',
   // description = 'DESCRIPTION',
   // action = 'ACTIONS'
 }
 
 export enum EDocDetail {
-  // topicNumber = 'TOPIC NUMBER',
+  topicNumber = 'TOPIC NUMBER',
   topic = 'TOPIC NAME',
-  status = 'STATUS',
-  action = 'ACTIONS'
+  status = 'AI CLASSIFICATION',
+  // action = 'ACTIONS'
 }
 
 export enum EMediaType {

@@ -7,6 +7,7 @@ import { useMemo } from 'react'
 import { EClassificationType, ESeverity } from '@interfaces/enums'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { HeaderUpdate } from '@components/multi-media/drawer/header-update'
+import RowApproval from '@components/multi-media/common/approval-item'
 
 
 export default function DrawerVideoHeader() {
@@ -112,14 +113,14 @@ export default function DrawerVideoHeader() {
       >
         <Box>
           <Typography>STATUS : &nbsp;</Typography>
-          <Typography color='var(--Secondary)'> {memorizedVideoValue.Status}</Typography>
+          <RowApproval approval={memorizedVideoValue.Status}/>
         </Box>
         <Box>
           <Typography>RATING : &nbsp;</Typography>
           <Typography> {memorizedVideoValue.Rating}</Typography>
         </Box>
         <Box>
-          <Typography>CLASSIFICATION : &nbsp; </Typography>
+          <Typography>AI CLASSIFICATION : &nbsp; </Typography>
           <Typography>
             {memorizedVideoValue.Classification?.length > 0 ? memorizedVideoValue.Classification?.join(',') : 'Not Assigned'}
           </Typography>
@@ -131,10 +132,8 @@ export default function DrawerVideoHeader() {
           </Typography>
         </Box>
         <Box>
-          <Typography>APPROVAL : &nbsp; </Typography>
-          <Typography className='approve'>
-            {memorizedVideoValue.AiApproval}
-          </Typography>
+          <Typography>AI APPROVAL : &nbsp; </Typography>
+          <RowApproval approval={memorizedVideoValue.AiApproval}/>
         </Box>
       </Box>
       <Box>

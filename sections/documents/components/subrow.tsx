@@ -76,6 +76,7 @@ const DocumentSubrow = (props: {
           </TableCell>
         )
       })}
+      <TableCell />
     </TableRow>
   )
 
@@ -112,16 +113,25 @@ const DocumentSubrow = (props: {
           {/*    inputProps={{ 'aria-label': 'controlled' }}*/}
           {/*  />*/}
           {/*</TableCell>*/}
-          <TableCell sx={{width:'10%'}} />
+          <TableCell sx={{width:'7%'}} />
           {Object.values(EDocDetail).map((item, index) => {
+            if (index===0)
+              return (
+                <TableCell key={index} sx={{width:'15%'}}>
+                  <Typography sx={{ fontSize: '13px', color: '#000' }}>
+                   {item}
+                  </Typography>
+                </TableCell>
+              )
             return (
-              <TableCell key={index}>
+              <TableCell key={index} sx={{width:'20%'}}>
                 <Typography sx={{ fontSize: '13px', color: '#000' }}>
                   {item}
                 </Typography>
               </TableCell>
             )
           })}
+          <TableCell />
         </TableRow>
       </TableHead>
       <TableBody
@@ -138,8 +148,8 @@ const DocumentSubrow = (props: {
             return null
           return (
             <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
-              {/*<Checkbox />
-              <Typography>{'Topic #' + (index + 1)}</Typography>*/}
+              {/*<Checkbox />*/}
+              <Typography>Topic # {(index + 1)}</Typography>
               <Typography>{row.topic}</Typography>
               <Typography whiteSpace="nowrap">
                 <RowApproval approval={row.aiApproval}/>
@@ -157,26 +167,6 @@ const DocumentSubrow = (props: {
                   }
                 ]} />*/}
 
-              <Button
-                sx={{
-                  backgroundColor: 'var(--Primary1)',
-                  padding: '2px 10px',
-                  minWidth: '40px',
-                  color: '#fff',
-                  fontSize:'.7rem',
-                  '&:hover': {
-                    backgroundColor: '#4fc1d7'
-                  }
-                }}
-                // onClick={() => props.handlePageNum(val.pageNumber, questionIndex)}
-                onClick={()=>dispatch(openDocumentApproval({
-                  type:EDocumentApprovalDlg.topic,
-                  docIndex:props.rowIndex,
-                  topicIndex:index
-                }))}
-              >
-                {rowActions[0].title}
-              </Button>
             </CustomizedTableRow>
           )
         }):

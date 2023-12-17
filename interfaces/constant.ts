@@ -16,7 +16,11 @@ export const CHeaderTabs: Array<{ icon:string; title: string, url?: string, dial
 ]
 
 
-export const CSceneState = ['Not Assigned', 'Approved', 'Unapproved']
+export const CSceneState = [
+  // 'Not Assigned',
+  'Approved',
+  'Rejected'
+]
 
 export const CDrawerVideoTabs = [
   'Play the Scene',

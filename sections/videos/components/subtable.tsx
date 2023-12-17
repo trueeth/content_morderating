@@ -9,13 +9,14 @@ import { useDispatch } from 'react-redux'
 import { TVideoSubRowType } from '@interfaces/types'
 import { EVideoDetail } from '@interfaces/enums'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
+import RowApproval from '@components/multi-media/common/approval-item'
 
 
 // Define the table row component outside of the VideoSubtable to prevent unnecessary re-renders
 
 const CustomizedTableRow = ({ children, onClick, keyValue }) => (
   <TableRow key={keyValue}>
-    <TableCell />
+    <TableCell  onClick={onClick} />
     {children.map((item, idx) => {
       if (idx >= 0 && idx < 5) {
         return (
@@ -26,6 +27,7 @@ const CustomizedTableRow = ({ children, onClick, keyValue }) => (
       }
       return <TableCell key={idx}>{item}</TableCell>
     })}
+    <TableCell  onClick={onClick} />
   </TableRow>
 )
 
@@ -95,16 +97,25 @@ const VideoSubtable = (props: {
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </TableCell> */}
-          <TableCell sx={{ width: '10%' }} />
+          <TableCell sx={{width:'7%'}} />
           {Object.values(EVideoDetail).map((item, index) => {
+            if (index===0)
+              return (
+                <TableCell key={index} sx={{width:'15%'}}>
+                  <Typography sx={{ fontSize: '13px', color: '#000' }}>
+                    {item}
+                  </Typography>
+                </TableCell>
+              )
             return (
-              <TableCell key={index}>
+              <TableCell key={index} sx={{width:'20%'}}>
                 <Typography sx={{ fontSize: '13px', color: '#000' }}>
                   {item}
                 </Typography>
               </TableCell>
             )
           })}
+          <TableCell sx={{ width: '20%' }} />
         </TableRow>
       </TableHead>
       <TableBody
@@ -120,6 +131,7 @@ const VideoSubtable = (props: {
                               onClick={openScene({ rowIndex: props.rowIndex, subRowIndex: index })}>
             {/* <Checkbox /> */}
             <Typography>{`Scene #${index + 1}`}</Typography>
+            <RowApproval approval={row.moderatorStatus} />
             <Typography>{row.violationType}</Typography>
             <Typography whiteSpace='nowrap'>{row.status}</Typography>
             {/* <Typography>{row.description}</Typography> */}

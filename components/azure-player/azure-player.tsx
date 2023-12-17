@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { CSSMediaWrapper } from './media-css'
 import { PlayerDefaultProps, PlayerProps } from './models/azure-player-props'
@@ -70,14 +70,14 @@ export class AzurePlayer extends React.Component<PlayerProps> {
     position: { top: 0, left: 0, width: 384, height: 216 },
     ampLoadTimeout: 300
   }
-  videoPlayer: any
+  videoPlayer: any =  React.createRef();
   videoRef: any
 
   componentDidMount() {
     this.waitForAmp()
       .then((amp) => {
-        this.videoPlayer = this.createVideoPlayer(amp)
-        this.videoPlayer.src([this.props.source])
+        this.videoPlayer.current = this.createVideoPlayer(amp)
+        this.videoPlayer.current.src([this.props.source])
       })
       .then(() => {
         if (
@@ -94,7 +94,7 @@ export class AzurePlayer extends React.Component<PlayerProps> {
                 elem.addEventListener(event.domEvent, () => {
                   if (event.domEvent === 'play') {
                     let currentTime = event.listeners[0]()
-                    this.videoPlayer.currentTime(currentTime)
+                    this.videoPlayer.current.currentTime(currentTime)
                   }
                   event.listeners.forEach((listener) => {
                     listener()
@@ -132,10 +132,11 @@ export class AzurePlayer extends React.Component<PlayerProps> {
         }
       })
     }
-
-    if (this.videoPlayer)
-      this.videoPlayer.dispose()
-    this.videoRef=null
+    console.log('azure unmount')
+    if (this.videoPlayer.current) {
+      this.videoPlayer.current.dispose()
+    }
+    this.videoRef = null
   }
 
   createVideoPlayer = (amp: any) => {

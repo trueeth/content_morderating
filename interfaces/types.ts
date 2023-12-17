@@ -72,6 +72,7 @@ export type THistoryRowType = {
 
 export type TVideoSubRowType = {
   sceneNumber?: number
+  moderatorStatus?: string
   violationType?: string
   status?: string
   description?: string
