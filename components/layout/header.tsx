@@ -15,7 +15,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import LogoImage from '../../public/assets/images/logo.png'
 import UserLogo from '../../public/assets/images/user.png'
-import { ExpandMore, Slideshow } from '@mui/icons-material'
+import { ExpandMore } from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { TopButton } from '@components/common/styled-button'
@@ -29,7 +29,6 @@ import Paper from '@mui/material/Paper'
 import { useAuthContext } from '@components/auth/hooks'
 import RowAction from '@components/multi-media/common/action-item'
 import { openSnackbarInfo } from '@store/reducers/snackbar/reducers'
-import SlideShow from '@public/assets/images/icon/slide.svg'
 
 function UserAction() {
   const { logout } = useAuthContext()
@@ -122,12 +121,12 @@ const DropMenu = () => {
         }
       >
         <Box
-          component="img"
+          component='img'
           src='/assets/images/icon/slide.svg'
           sx={{
             width: 20,
             height: 20,
-            flexShrink: 0,
+            flexShrink: 0
             // filter:'brightness(0) invert(1)'
           }}
         />
@@ -254,12 +253,12 @@ const Header = () => {
                       }
                     >
                       <Box
-                        component="img"
+                        component='img'
                         src={item.icon}
                         sx={{
                           width: 20,
                           height: 20,
-                          flexShrink: 0,
+                          flexShrink: 0
                         }}
                       />
                       <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
@@ -274,22 +273,26 @@ const Header = () => {
             sx={{
               display: 'flex',
               justifyContent: 'right',
-              bgcolor: 'var(--Primary3)',
-              width: '330px'
+              bgcolor: 'var(--Primary3)'
             }}
           >
             <Box sx={{ p: 2, display: 'flex' }}>
-              <Image src={UserLogo} alt='logo' />
-              <Box sx={{ ml: 1 }}>
-                {username && <Typography fontSize={14} whiteSpace='nowrap' width={120}>
-                  {username}
-                </Typography>}
-                <Typography fontSize={10}>Admin</Typography>
+              <Box
+                className='user-logo'
+              >
+                <Image src={UserLogo} width={33} alt='logo' />
+              </Box>
+              <Box sx={{ ml: 2 }}>
+                {username &&
+                  <Typography fontSize={17} whiteSpace='nowrap' width={70} sx={{ fontWeight: '500 !important' }}>
+                    {username}
+                  </Typography>}
+                <Typography fontSize={10} sx={{ fontWeight: '400 !important' }}>Admin</Typography>
               </Box>
               <UserAction />
             </Box>
             <Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              {/* <Image src={Headset} alt={'headset'} width={24}></Image> */}
+               {/*<Image src={Headset} alt={'headset'} width={24}></Image>*/}
             </Box>
           </Box>
         </Box>
@@ -359,12 +362,12 @@ const Header = () => {
                     active={router.pathname === `/${item.title.toLowerCase()}`}
                   >
                     <Box
-                      component="img"
+                      component='img'
                       src={item.icon}
                       sx={{
                         width: 20,
                         height: 20,
-                        flexShrink: 0,
+                        flexShrink: 0
                       }}
                     />
                     <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
