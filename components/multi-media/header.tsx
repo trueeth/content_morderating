@@ -1,11 +1,5 @@
 import { Box, Grid, Tooltip, Typography } from '@mui/material'
-import Button from '@mui/material/Button';
-import { FilterList, GetApp } from '@mui/icons-material';
 import * as React from 'react';
-import { Select } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import { PrimaryButton } from '@components/common/styled-button';
-import SearchInput from '@components/common/search-input';
 import InfoIcon from '@mui/icons-material/Info'
 
 interface IProps {
@@ -15,17 +9,17 @@ interface IProps {
 }
 
 const MediaSectionHeader = (props: IProps) => {
-  const [vState, setState] = React.useState({ groupBy: 0 });
+  // const [vState, setState] = React.useState({ groupBy: 0 });
 
   // Handler change in the "Group by" select menu
-  const handleGroupByChange = (event: any) => {
-    setState({ groupBy: event.target.value as number });
-  };
+  // const handleGroupByChange = (event: any) => {
+  //   setState({ groupBy: event.target.value as number });
+  // };
 
   // Handler export button click
-  const handleExport = () => {
-    // console.warn('Media Export');
-  };
+  // const handleExport = () => {
+  //   // console.warn('Media Export');
+  // };
 
   return (
     <Box

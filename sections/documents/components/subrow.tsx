@@ -10,9 +10,7 @@ import { EDocDetail, EDocumentApprovalDlg } from '@interfaces/enums'
 import { useDispatch } from 'react-redux'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import { TResDocument } from '@interfaces/apis/api.types'
-import { useMemo } from 'react'
 import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
-import RowAction from '@components/multi-media/common/action-item'
 import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import RowApproval from '@components/multi-media/common/approval-item'
 
@@ -43,7 +41,7 @@ const DocumentSubrow = (props: {
   }
 
   const memoRows =(()=>{
-    let rows:TDocumentSubRowType[]=[]
+    let rows:TDocumentSubRowType[]
     rows = resToDocumentSubRowAdapter(rowDetails)
     return rows
   })()

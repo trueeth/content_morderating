@@ -46,7 +46,7 @@ body::-webkit-scrollbar {
 
 * {
   box-sizing: border-box;
-  font-family: 'Raleway' !important;
+  font-family: 'Raleway', serif !important;
   font-weight: 600  !important;
   text-transform: none !important;
 }
@@ -129,7 +129,7 @@ input[type='number']::-webkit-inner-spin-button {
 
 .menu-title{
   font-size: 1.08rem;
-  font-family: 'Square' !important;
+  font-family: 'Square', serif !important;
   font-weight: 500 !important;
 }
 /*-----------------Dashboard chart style end-----------------*/

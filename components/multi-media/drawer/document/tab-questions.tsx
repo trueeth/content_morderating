@@ -14,7 +14,6 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableBody from '@mui/material/TableBody'
 import { TResDocument } from '@interfaces/apis/api.types'
-import RowAction from '@components/multi-media/common/action-item'
 import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import RowApproval from '@components/multi-media/common/approval-item'
 
@@ -26,9 +25,9 @@ import RowApproval from '@components/multi-media/common/approval-item'
 // }
 
 
-interface IProps {
-  // handlePageNum?: (val:number, index:number) => void
-}
+// interface IProps {
+//   // handlePageNum?: (val:number, index:number) => void
+// }
 
 export default function DrawerTabQuestions() {
 
