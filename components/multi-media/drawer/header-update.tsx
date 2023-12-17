@@ -12,7 +12,6 @@ import { styled } from '@mui/system'
 import { TResVideo } from '@interfaces/apis/api.types'
 
 
-
 const CssTextField = styled(TextField)({
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
@@ -28,7 +27,7 @@ const CssTextField = styled(TextField)({
 })
 
 
-export const  HeaderUpdate=()=> {
+export const HeaderUpdate = () => {
   const [vState, setState] = useState({ moderatorStatus: CSceneState[0], notes: '' })
   const handleScenceState = (
     event: React.MouseEvent<HTMLElement>,
@@ -89,17 +88,17 @@ export const  HeaderUpdate=()=> {
     }
   }
 
-  const updateDocumentQuestion = async ()=>{
+  const updateDocumentQuestion = async () => {
     dispatch(openSnackbarInfo('This part will come soon'))
   }
-  const handleUpdate = appState.drawer.type==='video'?updateVideoScene:updateDocumentQuestion
+  const handleUpdate = appState.drawer.type === 'video' ? updateVideoScene : updateDocumentQuestion
 
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        padding: 0,
+        padding: 0
       }}
     >
       <Typography sx={{
@@ -109,8 +108,8 @@ export const  HeaderUpdate=()=> {
         color: 'black',
         fontSize: '.9rem',
         marginTop: '1rem',
-        padding: '1rem',
-      }}>{appState.drawer.type==='video'?'Update Scene Status':'Update Topic'}</Typography>
+        padding: '1rem'
+      }}>{appState.drawer.type === 'video' ? 'Update Scene Status' : 'Update Topic'}</Typography>
 
       {/*---------Button group---------*/}
       <Box
@@ -155,7 +154,13 @@ export const  HeaderUpdate=()=> {
           fullWidth
           placeholder='Write your note'
           sx={{ mr: 2 }}
-          InputProps={{ sx: { height: '33px', fontSize: '0.8rem' } }}
+          InputProps={{
+            sx: {
+              height: '33px',
+              fontSize: '0.8rem',
+              padding: '11px'
+            }
+          }}
           value={vState.notes}
           onChange={
             val => setState(prevState => ({ ...prevState, notes: val.target.value }))
