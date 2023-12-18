@@ -18,7 +18,7 @@ export type TVideoRowType = {
   rating?: EMediaRating
   classification?: EClassificationType[]
   submissionDate?: string
-  moderator_approval?: EModeratorApprovalStatus
+  moderator_approval?: string
   ai_approval?: EModeratorApprovalStatus
   flaggedScenes?: number
   subRows?: TVideoSubRowType[]

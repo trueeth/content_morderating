@@ -21,7 +21,11 @@ export const resToVideoRowAdapter = (resData:any) => {
       videoRow.submissionDate = ''
       if (videoContent.UploadedOnUtc != null && videoContent.UploadedOnUtc != '')
         videoRow.submissionDate = format(parseISO(videoContent.UploadedOnUtc), 'MMM, dd,  yyyy hh:mm a')
+
       videoRow.moderator_approval = videoContent.ModeratorApprovalStatus
+      if (!!videoContent?.VideoSummary?.ModeratorApprovalStatus)
+      videoRow.moderator_approval = videoContent?.VideoSummary?.ModeratorApprovalStatus
+
       if (!!videoContent.VideoSummary?.AutomaticApprovalStatus)
         videoRow.ai_approval = videoContent.VideoSummary.AutomaticApprovalStatus
       videoRow.flaggedScenes = videoContent.VideoSummary?.NumberOfFragments
@@ -43,7 +47,7 @@ export const resToVideoRowAdapter = (resData:any) => {
         videoSubRows = videoContent.VideoSummary?.SceneSummaries.map((sceneSummary, index) => {
           let videoSubRow: TVideoSubRowType = {}
 
-          videoSubRow.status = videoContent.ModeratorApprovalStatus
+          videoSubRow.status = videoContent.VideoSummary.ModeratorApprovalStatus
           videoSubRow.description = videoContent.Description
           videoSubRow.moderatorStatus=sceneSummary.ModeratorApprovalStatus
           if (!videoContent.Description)

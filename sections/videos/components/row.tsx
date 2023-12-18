@@ -1,23 +1,24 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import TableCell from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
-import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material';
-import { TVideoRowType } from '@interfaces/types';
-import RowStatus from '@components/multi-media/common/status-item';
-import RowRating from '@components/multi-media/common/rating-item';
-import RowClassification from '@components/multi-media/common/classification-item';
-import RowApproval from '@components/multi-media/common/approval-item';
-import RowAction from '@components/multi-media/common/action-item';
-import VideoSubtable from './subtable';
-import { Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { IReduxState } from '@store/index';
-import { IAppSlice } from '@store/reducers';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import * as React from 'react'
+import { useEffect } from 'react'
+import Box from '@mui/material/Box'
+import Collapse from '@mui/material/Collapse'
+import IconButton from '@mui/material/IconButton'
+import TableCell from '@mui/material/TableCell'
+import TableRow from '@mui/material/TableRow'
+import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
+import { TVideoRowType } from '@interfaces/types'
+import RowStatus from '@components/multi-media/common/status-item'
+import RowRating from '@components/multi-media/common/rating-item'
+import RowClassification from '@components/multi-media/common/classification-item'
+import RowApproval from '@components/multi-media/common/approval-item'
+import RowAction from '@components/multi-media/common/action-item'
+import VideoSubtable from './subtable'
+import { Typography } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { IReduxState } from '@store/index'
+import { IAppSlice } from '@store/reducers'
+import { useRouter } from 'next/navigation'
+import { openVideoApproval } from '@store/reducers/dialog/reducers'
 
 function VideoRow(props: {
   row: TVideoRowType,
@@ -26,34 +27,39 @@ function VideoRow(props: {
 
   const [vState, setState] = React.useState<{
     openSummary: boolean
-  }>({ openSummary: false });
+  }>({ openSummary: false })
 
-  const router = useRouter();
+  const router = useRouter()
+
+  const dispatch=useDispatch()
 
   // app state
-  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
+  const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   // To reset the openSummary state when pageIndex changes
   useEffect(() => {
-    setState(prevState => ({ ...prevState, openSummary: false }));
-  }, [appState.pagination.pageIndex]);
+    setState(prevState => ({ ...prevState, openSummary: false }))
+  }, [appState.pagination.pageIndex])
 
   // Handler openSummary state
   const handleDetail = () => {
     if (props.row.subRows.length > 0) {
-      setState(prevState => ({ ...prevState, openSummary: !prevState.openSummary }));
+      setState(prevState => ({ ...prevState, openSummary: !prevState.openSummary }))
     }
-  };
+  }
 
   // Actions to be displayed for each row
   const rowActions = [
     // { title: 'Classification' },
-    // { title: 'Reports' },
     {
       title: 'Insights',
       action: () => router.push(`/videos/${appState.api.data[props.rowIndex].Id}`)
+    },
+    {
+      title: 'Reports',
+      action:()=>dispatch(openVideoApproval({rowIndex:props.rowIndex}))
     }
-  ];
+  ]
 
   return (
     <React.Fragment>
@@ -72,18 +78,18 @@ function VideoRow(props: {
       >
         {/* Expand/Collapse button */}
         <TableCell>
-          {props.row.subRows.length>0?
+          {props.row.subRows.length > 0 ?
             <IconButton
-            aria-label='expand row'
-            size='small'
-            onClick={handleDetail}
-        >
-          {vState.openSummary ? <KeyboardArrowDown sx={{
-            fontSize:'1.2rem'
-          }} /> : <KeyboardArrowRight sx={{
-            fontSize:'1.2rem'
-          }}  />}
-        </IconButton>:
+              aria-label='expand row'
+              size='small'
+              onClick={handleDetail}
+            >
+              {vState.openSummary ? <KeyboardArrowDown sx={{
+                fontSize: '1.2rem'
+              }} /> : <KeyboardArrowRight sx={{
+                fontSize: '1.2rem'
+              }} />}
+            </IconButton> :
             null}
         </TableCell>
 
@@ -133,7 +139,7 @@ function VideoRow(props: {
         </TableCell>
       </TableRow>
     </React.Fragment>
-  );
+  )
 }
 
-export default VideoRow;
+export default VideoRow

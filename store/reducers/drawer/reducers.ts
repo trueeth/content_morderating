@@ -23,7 +23,7 @@ const drawerSlice = createSlice({
   reducers: {
     openMediaSubDrawer(state, action) {
       state.mediaSubOpen = action.payload.open
-      if (action.payload.type)
+      if (action.payload.type!==undefined)
         state.type = action.payload.type
       if (action.payload.rowIndex!==undefined)
         state.rowIndex = action.payload.rowIndex

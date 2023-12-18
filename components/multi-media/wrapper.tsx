@@ -28,6 +28,7 @@ import { setApiData, setApiError, setApiLoading } from '@store/reducers/api/redu
 import { apiGetDocumentContents } from '@interfaces/apis/documents'
 import { resToDocumentRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 import DocumentApprovalDlg from '@components/dialog/document-approval-dlg'
+import VideoApprovalDlg from '@components/dialog/video-approval-dlg'
 
 // MediaWrapper component
 interface IMediaProps {
@@ -63,6 +64,7 @@ export const MediaWrapper = (props: IMediaProps) => {
       <MediaDrawer />
     {/*  -------document approva dlg---------*/}
       <DocumentApprovalDlg/>
+      <VideoApprovalDlg />
     </Box>
   )
 }

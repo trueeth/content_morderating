@@ -56,6 +56,8 @@ export default function DocumentApprovalDlg() {
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
       approvalStatus = EModeratorApprovalStatus.inReview
+    if (approvalStatus === approvalConst[1])
+      approvalStatus = EModeratorApprovalStatus.rejected
 
     const params = {
       DocumentId: appState.api.data[dlgState.docIndex].Id,
@@ -88,6 +90,8 @@ export default function DocumentApprovalDlg() {
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
       approvalStatus = EModeratorApprovalStatus.inReview
+    if (approvalStatus === approvalConst[1])
+      approvalStatus = EModeratorApprovalStatus.rejected
 
     const params = {
       ModeratorAnswerFound: vState.answer === 'Yes',
@@ -106,7 +110,9 @@ export default function DocumentApprovalDlg() {
 
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
-      approvalStatus = EModeratorApprovalStatus.new
+      approvalStatus = EModeratorApprovalStatus.inReview
+    if (approvalStatus === approvalConst[1])
+      approvalStatus = EModeratorApprovalStatus.rejected
 
     const params = {
       ModeratorAnswerFound: vState.answer === 'Yes',
@@ -145,6 +151,8 @@ export default function DocumentApprovalDlg() {
     try {
       await apiUpdateApproval()
       dispatch(openSnackbarSuccess('Success updating approval status'))
+      dispatch(openMediaSubDrawer({ open: false }))
+      dispatch(openDocumentApproval({ open: false }))
       setTimeout(() => {
         dispatch(setPaginationIndex({ pageIndex: 0 }))
       }, 2000)
@@ -152,8 +160,6 @@ export default function DocumentApprovalDlg() {
       console.error(e)
       dispatch(openSnackbarError('Get Error while updating approval status'))
     } finally {
-      dispatch(openDocumentApproval({ open: false }))
-      dispatch(openMediaSubDrawer({ open: false }))
       setState(InitialState)
     }
   }

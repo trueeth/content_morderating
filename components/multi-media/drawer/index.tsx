@@ -22,8 +22,7 @@ export default function MediaDrawer() {
   }
 
   useEffect(() => {
-    if (appState.drawer.mediaSubOpen)
-      setState(prevState => ({ ...prevState, open: true }))
+      setState(prevState => ({ ...prevState, open: appState.drawer.mediaSubOpen }))
   }, [appState.drawer.mediaSubOpen])
 
   return (

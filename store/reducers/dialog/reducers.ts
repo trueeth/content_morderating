@@ -10,6 +10,10 @@ const initialState = {
     docIndex: 0,
     topicIndex: 0,
     pageIndex: 0
+  },
+  videoApproval: {
+    open: false,
+    rowIndex: 0
   }
 }
 
@@ -24,6 +28,10 @@ export interface IDialogSlice {
     questionIndex: number
     pageIndex: number
   }
+  videoApproval: {
+    open: boolean
+    rowIndex: number
+  }
 }
 
 const dialogSlice = createSlice({
@@ -33,27 +41,37 @@ const dialogSlice = createSlice({
     openVideoUploadDialog(state, action) {
       state.videoUpload = action.payload.open
     },
-    openDocumentApproval(state, action) {
 
-      if (action.payload.open!==undefined)
+    openDocumentApproval(state, action) {
+      if (action.payload.open !== undefined)
         state.documentApproval.open = action.payload.open
       else state.documentApproval.open = true
-      if (action.payload.type!==undefined)
+      if (action.payload.type !== undefined)
         state.documentApproval.type = action.payload.type
-      if (action.payload.docIndex!==undefined)
+      if (action.payload.docIndex !== undefined)
         state.documentApproval.docIndex = action.payload.docIndex
-      if (action.payload.topicIndex!==undefined)
+      if (action.payload.topicIndex !== undefined)
         state.documentApproval.topicIndex = action.payload.topicIndex
-      if (action.payload.questionIndex!==undefined)
+      if (action.payload.questionIndex !== undefined)
         state.documentApproval.questionIndex = action.payload.questionIndex
-      if (action.payload.pageIndex!==undefined)
+      if (action.payload.pageIndex !== undefined)
         state.documentApproval.pageIndex = action.payload.pageIndex
+    },
+
+    openVideoApproval(state, action) {
+      if (action.payload.open !== undefined)
+        state.videoApproval.open = action.payload.open
+      else state.videoApproval.open = true
+      if (action.payload.rowIndex !== undefined)
+        state.videoApproval.rowIndex = action.payload.rowIndex
     }
-  }
+
+  },
 })
 
 export default dialogSlice.reducer
 export const {
   openVideoUploadDialog,
-  openDocumentApproval
+  openDocumentApproval,
+  openVideoApproval,
 } = dialogSlice.actions

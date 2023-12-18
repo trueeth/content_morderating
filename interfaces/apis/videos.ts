@@ -31,5 +31,8 @@ export const apiGetVideoAnalysesAccessToken = (videoId?: string | string[]) => {
   return request.get<{accessToken:string}>(`analysis/videos/${videoId}/analyses/access-token`)
 }
 
+export const apiUpdateApprovalVideoSummary = (urlConfig?: any, params?:object) => {
+  return request.post<any>(`analysis/videos/${urlConfig.videoId}/approval`, params)
+}
 
 

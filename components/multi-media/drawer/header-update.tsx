@@ -62,7 +62,7 @@ export const HeaderUpdate = () => {
       //   parmasStatus = EModeratorApprovalStatus.inReview
       //   break
       case CSceneState[0]:
-        parmasStatus = EModeratorApprovalStatus.approved
+        parmasStatus = EModeratorApprovalStatus.inReview
         break
       case CSceneState[1]:
         parmasStatus = EModeratorApprovalStatus.rejected
@@ -71,7 +71,7 @@ export const HeaderUpdate = () => {
         break
     }
     let parmas = {
-      'SceneSummaryId': rowVideoData.VideoSummary?.SceneSummaries[subRowIndex].Id,
+      'SceneSummaryId': rowVideoData?.VideoSummary?.SceneSummaries[subRowIndex].Id,
       'OnModeratorModifiedUtc': isoString,
       'Status': parmasStatus,
       'Rating': 'None',
