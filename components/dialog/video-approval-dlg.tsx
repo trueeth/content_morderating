@@ -20,6 +20,7 @@ import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import { apiUpdateApprovalVideoSummary } from '@interfaces/apis/videos'
 import { TResVideo } from '@interfaces/apis/api.types'
 import MenuItem from '@mui/material/MenuItem'
+import { setRefresh } from '@store/reducers/api/reducers'
 
 
 type TState = {
@@ -79,7 +80,7 @@ export default function VideoApprovalDlg() {
       await updateApprovalVideo()
       dispatch(openSnackbarSuccess('Success updating approval status'))
       setTimeout(() => {
-        dispatch(setPaginationIndex({ pageIndex: 0 }))
+        dispatch(setRefresh(true))
       }, 2000)
     } catch (e) {
       console.error(e)
@@ -102,6 +103,7 @@ export default function VideoApprovalDlg() {
     'Rejected'
   ]
 
+  /*eslint-disable*/
   useEffect(() => {
     if (dlgState.open) {
       {
@@ -116,6 +118,7 @@ export default function VideoApprovalDlg() {
       }
     }
   }, [dlgState])
+  /*eslint-enable*/
 
 
   const setApprovalStatus = (val: any) => {

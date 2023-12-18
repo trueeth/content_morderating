@@ -23,6 +23,7 @@ import {
 import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 import { setPaginationIndex } from '@store/reducers/page/reducers'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
+import { setRefresh } from '@store/reducers/api/reducers'
 
 
 type TState = {
@@ -154,7 +155,7 @@ export default function DocumentApprovalDlg() {
       dispatch(openMediaSubDrawer({ open: false }))
       dispatch(openDocumentApproval({ open: false }))
       setTimeout(() => {
-        dispatch(setPaginationIndex({ pageIndex: 0 }))
+        dispatch(setRefresh(true))
       }, 2000)
     } catch (e) {
       console.error(e)
@@ -198,8 +199,6 @@ export default function DocumentApprovalDlg() {
     const setApprovalStatus = (val: any) => {
       if (val === approvalConst[1])
         setState(prevState => ({ ...prevState, approval: 1 }))
-      else if (val === approvalConst[2])
-        setState(prevState => ({ ...prevState, approval: 2 }))
       else
         setState(prevState => ({ ...prevState, approval: 0 }))
     }
@@ -219,6 +218,7 @@ export default function DocumentApprovalDlg() {
         tempMemo.title = 'Question Approval'
         tempMemo.description = `Question: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
         tempMemo.visibleQuestion = true
+        console.log(gptResponse?.answers[dlgState?.questionIndex]?.ModeratorApprovalStatus)
         setApprovalStatus(gptResponse?.answers[dlgState?.questionIndex]?.ModeratorApprovalStatus)
         break
       case EDocumentApprovalDlg.page:
@@ -232,7 +232,15 @@ export default function DocumentApprovalDlg() {
         break
     }
     return tempMemo
-  }, [dlgState?.type, dlgState?.questionIndex, dlgState?.pageIndex, dlgState?.docIndex, dlgState?.topicIndex, documentDetailState?.GptResponse[dlgState.topicIndex]?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber])
+  }, [
+    dlgState?.type,
+    dlgState?.questionIndex,
+    dlgState?.pageIndex,
+    dlgState?.docIndex,
+    dlgState?.topicIndex,
+    documentDetailState?.GptResponse[dlgState.topicIndex]?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber,
+    appState?.api?.refresh
+  ])
   /*eslint-enable*/
 
   return (

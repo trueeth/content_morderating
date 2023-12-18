@@ -152,19 +152,6 @@ const DocumentSubrow = (props: {
               <Typography>Topic # {(index + 1)}</Typography>
               <Typography>{row.topic}</Typography>
               <RowApproval approval={row.aiApproval}/>
-              {/*  <RowAction actions={[
-                  // { title: 'Classification' },
-                  // { title: 'Reports' },
-                  {
-                    title: 'Reports' ,
-                    action:()=>dispatch(openDocumentApproval({
-                      type:EDocumentApprovalDlg.topic,
-                      docIndex:props.rowIndex,
-                      topicIndex:index
-                    })),
-                  }
-                ]} />*/}
-
             </CustomizedTableRow>
           )
         }):

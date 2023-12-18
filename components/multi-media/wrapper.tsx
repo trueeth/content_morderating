@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { resToVideoRowAdapter } from '@interfaces/apis/data-adapter/data-video'
 import { apiGetVideoContents } from '@interfaces/apis/videos'
 import { setPaginationTotalCount } from '@store/reducers/page/reducers'
-import { setApiData, setApiError, setApiLoading } from '@store/reducers/api/reducers'
+import { setApiData, setApiError, setApiLoading, setRefresh } from '@store/reducers/api/reducers'
 import { apiGetDocumentContents } from '@interfaces/apis/documents'
 import { resToDocumentRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 import DocumentApprovalDlg from '@components/dialog/document-approval-dlg'
@@ -85,6 +85,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   const take = appState.pagination.pageSize
+  const refresh = appState.api.refresh
   const skip = appState.pagination.pageSize * (appState.pagination.pageIndex - 1)
 
   const fetchPageData =async () => {
@@ -118,6 +119,8 @@ export const MediaActionwrapper = (props: IActionPros) => {
       console.error('Error of getContents:', e)
       dispatch(setApiError(e))
       setState(prevState => ({ ...prevState, rows: [] }))
+    } finally {
+      dispatch(setRefresh(false))
     }
   }
   /* eslint-disable */
@@ -125,6 +128,11 @@ export const MediaActionwrapper = (props: IActionPros) => {
     // Fetch data when component mounts or pagination change
     fetchPageData()
   }, [dispatch, take, skip, props.type])
+
+  useEffect(() => {
+    if (refresh)
+      fetchPageData()
+  }, [refresh])
   /* eslint-enable */
   return (
     <TableContainer

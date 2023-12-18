@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
@@ -13,12 +14,12 @@ import DocumentSubrow from './subrow'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
-import { useEffect } from 'react'
 import { apiGetDocumentContentDetails } from '@interfaces/apis/documents'
 import { openSnackbarError, openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import { EDocumentApprovalDlg, EProcessingStatus } from '@interfaces/enums'
 import RowStatus from '@components/multi-media/common/status-item'
+import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 
 function DocumentRow(props: {
   row: TDocumentRowType
@@ -34,7 +35,10 @@ function DocumentRow(props: {
   const [vState, setState] = React.useState<{
     openSummary: boolean
     rowDetails?: TResDocument.TDocumentContentDetail
-  }>({ openSummary: false, rowDetails: null })
+  }>({
+    openSummary: false,
+    rowDetails: null
+  })
 
 
   useEffect(() => {
@@ -52,6 +56,15 @@ function DocumentRow(props: {
     } catch (e) {
       await Promise.reject(e)
     }
+    if (documentDetails?.data?.GptResponse?.length == 0) {
+      dispatch(openSnackbarWarning('This document has no topics'))
+      return
+    }
+    setState(prevState => ({
+      ...prevState,
+      rowDetails: documentDetails.data,
+      openSummary: !prevState.openSummary
+    }))
     return documentDetails
   }
 
@@ -62,25 +75,31 @@ function DocumentRow(props: {
         return { ...prevState, openSummary: !prevState.openSummary }
       })
     } else {
-      let documentDetails = null
       try {
-        documentDetails = await fetchDetails()
+        await fetchDetails()
       } catch (e) {
         console.error(e)
         dispatch(openSnackbarError('Get error, while fetching document details'))
-        return;
+        return
       }
-      if (documentDetails.data?.GptResponse?.length==0){
-        dispatch(openSnackbarWarning("This document has no topics"))
-        return;
-      }
-      setState(prevState => ({
-        ...prevState,
-        rowDetails: documentDetails.data,
-        openSummary:!prevState.openSummary
-      }))
+
     }
   }
+
+  useEffect(() => {
+    if (appState.api.refresh && props.rowIndex === appState.drawer.rowIndex) {
+      (async () => {
+        try {
+          const resDetails = await fetchDetails()
+          openMediaSubDrawer({open:true,drawerData:resDetails.data })
+        } catch (e) {
+          console.error(e)
+          dispatch(openSnackbarError('Get error, while fetching document details'))
+          return
+        }
+      })()
+    }
+  }, [appState.api.refresh])
 
 
   const rowActions = [
@@ -88,10 +107,10 @@ function DocumentRow(props: {
     // { title: 'Reports' },
     {
       title: 'Reports',
-      action:()=>dispatch(openDocumentApproval({
-        type:EDocumentApprovalDlg.document,
-        docIndex:props.rowIndex
-      })),
+      action: () => dispatch(openDocumentApproval({
+        type: EDocumentApprovalDlg.document,
+        docIndex: props.rowIndex
+      }))
     }
   ]
 
@@ -115,7 +134,7 @@ function DocumentRow(props: {
         }}
       >
         <TableCell>
-          {row.processingStatus!==EProcessingStatus.new && <IconButton
+          {row.processingStatus !== EProcessingStatus.new && <IconButton
             aria-label='expand row'
             size='small'
             onClick={handleDetail}
@@ -146,7 +165,7 @@ function DocumentRow(props: {
         {/*</TableCell>*/}
 
         <TableCell>
-            <RowStatus status={row.processingStatus}></RowStatus>
+          <RowStatus status={row.processingStatus}></RowStatus>
         </TableCell>
 
         <TableCell>
@@ -166,7 +185,7 @@ function DocumentRow(props: {
           </Box>
         </TableCell>
         <TableCell>
-          <Box className={'flex'} >
+          <Box className={'flex'}>
             {row.submissionDate}
           </Box>
         </TableCell>
@@ -178,7 +197,7 @@ function DocumentRow(props: {
               padding: '2px 10px',
               minWidth: '40px',
               color: '#fff',
-              fontSize:'.7rem',
+              fontSize: '.7rem',
               '&:hover': {
                 backgroundColor: '#4fc1d7'
               }
@@ -192,7 +211,7 @@ function DocumentRow(props: {
       </TableRow>
 
       {/*---------sub common--------*/}
-      <TableRow  className='media-row'>
+      <TableRow className='media-row'>
         <TableCell
           style={{
             border: 'none'

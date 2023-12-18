@@ -20,7 +20,7 @@ import {
 import { TResVideo } from '@interfaces/apis/api.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
-import { setApiLoading } from '@store/reducers/api/reducers'
+import { setApiLoading, setRefresh } from '@store/reducers/api/reducers'
 import {  EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
 import { useRouter } from 'next/router'
 import { CLanguage } from '@interfaces/constant'
@@ -195,7 +195,7 @@ export default function SourceStep(props: {
         dispatch(openVideoUploadDialog({open:false}))
       }, 1500)
       setTimeout(() => {
-        dispatch(setPaginationIndex({pageIndex:0}))
+        dispatch(setRefresh(true))
       }, 2000)
     }
   }

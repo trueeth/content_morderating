@@ -4,13 +4,15 @@ import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
 const initialState = {
   data: [],
   loading: false,
-  error: ''
+  error: '',
+  refresh:false,
 }
 
 export interface IApiSlice {
   data?: TResVideo.TVideoContent[]  | TResDocument.TDocumentContent [] | [],
   loading?: boolean,
   error?: string,
+  refresh:boolean,
 }
 
 const apiSlice = createSlice({
@@ -30,6 +32,11 @@ const apiSlice = createSlice({
       state.loading=false
       state.data=[]
       state.error = action.payload
+    },
+    setRefresh(state,action){
+      if (action.payload!==undefined)
+        state.refresh=action.payload
+      else state.refresh=true
     }
   }
 })
@@ -38,5 +45,6 @@ export default apiSlice.reducer
 export const {
   setApiLoading,
   setApiData,
-  setApiError
+  setApiError,
+  setRefresh,
 } = apiSlice.actions

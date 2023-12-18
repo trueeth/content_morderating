@@ -5,6 +5,7 @@ import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import TableCell from '@mui/material/TableCell'
 import * as React from 'react'
+import { useMemo } from 'react'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -30,17 +31,24 @@ export default function DrawerTabQuestions() {
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  const gptAnswers = appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
 
   const dispatch = useDispatch()
 
 
-  if (!gptAnswers || gptAnswers.length == 0)
+
+  const memoValue = useMemo(()=>{
+    return appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
+  },[
+    appState?.api?.refresh,
+    appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers,
+    appState.drawer.drawerData
+  ])
+
+
+  if (!memoValue || memoValue.length == 0)
     return (
       <Typography>No answers</Typography>
     )
-
-
   return (
     <Box
       sx={{
@@ -104,7 +112,7 @@ export default function DrawerTabQuestions() {
             }
           }}
         >
-          {gptAnswers.map((val, questionIndex) =>
+          {memoValue.map((val, questionIndex) =>
             <TableRow key={questionIndex}>
               <TableCell>
                 <Typography sx={{ textAlign: 'center' }}>

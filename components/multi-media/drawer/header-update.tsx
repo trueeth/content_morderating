@@ -12,6 +12,7 @@ import { styled } from '@mui/system'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { setPaginationIndex } from '@store/reducers/page/reducers'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
+import { setRefresh } from '@store/reducers/api/reducers'
 
 
 const CssTextField = styled(TextField)({
@@ -83,7 +84,7 @@ export const HeaderUpdate = () => {
       dispatch(openSnackbarSuccess('Success, updated VideoSceneSummary data'))
       dispatch(openMediaSubDrawer({ open: false }))
       setTimeout(() => {
-        dispatch(setPaginationIndex({ pageIndex: 0 }))
+        dispatch(setRefresh(true))
       }, 2000)
     } catch (e) {
       dispatch(openSnackbarError('Error, updating VideoSceneSummary'))
