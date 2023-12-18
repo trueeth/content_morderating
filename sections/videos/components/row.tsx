@@ -19,6 +19,7 @@ import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import { useRouter } from 'next/navigation'
 import { openVideoApproval } from '@store/reducers/dialog/reducers'
+import { EProcessingStatus } from '@interfaces/enums'
 
 function VideoRow(props: {
   row: TVideoRowType,
@@ -120,7 +121,13 @@ function VideoRow(props: {
         <TableCell><Box className={'flex  approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
         <TableCell><Box className={'flex'} minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
         {/* <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell> */}
-        <TableCell><RowAction actions={rowActions} /></TableCell>
+        <TableCell>
+          {
+            props.row.status=== EProcessingStatus.processed?
+            <RowAction actions={rowActions} />:
+              <Typography sx={{fontSize:'.7rem'}}>Processing</Typography>
+          }
+        </TableCell>
       </TableRow>
 
       {/* Subrow */}

@@ -136,7 +136,7 @@ function DocumentRow(props: {
         }}
       >
         <TableCell>
-          {row.processingStatus !== EProcessingStatus.new && <IconButton
+          {row.processingStatus === EProcessingStatus.processed && <IconButton
             aria-label='expand row'
             size='small'
             onClick={handleDetail}
@@ -193,7 +193,7 @@ function DocumentRow(props: {
         </TableCell>
         <TableCell>
           {/*<RowAction actions={rowActions} />*/}
-          <Button
+          {row.processingStatus === EProcessingStatus.processed ? <Button
             sx={{
               backgroundColor: 'var(--Primary1)',
               padding: '2px 10px',
@@ -208,7 +208,9 @@ function DocumentRow(props: {
             onClick={rowActions[0].action}
           >
             {rowActions[0].title}
-          </Button>
+          </Button>:
+            <Typography sx={{fontSize:'.7rem'}}>Processing</Typography>
+          }
         </TableCell>
       </TableRow>
 
