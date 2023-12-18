@@ -51,7 +51,7 @@ const DocumentSubrow = (props: {
     // { title: 'Classification' },
     // { title: 'Reports' },
     {
-      title: 'Reports' ,
+      title: 'Approval' ,
       // action:()=>dispatch(openDocumentApproval({
       //   type:EDocumentApprovalDlg.topic,
       //   docIndex:props.rowIndex,

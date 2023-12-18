@@ -8,24 +8,21 @@ import { CSSProperties } from 'styled-components'
 import fileUpload from '/public/assets/images/icon/fileUpload.svg'
 import Image from 'next/image'
 import { useDispatch } from 'react-redux'
+import { openSnackbarError, openSnackbarSuccess, openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import {
-  openSnackbarError,
-  openSnackbarSuccess,
-  openSnackbarWarning
-} from '@store/reducers/snackbar/reducers'
-import {
-  apiGetUploadMediaId, apiUploadDocument, apiUploadDocumentProcess, apiUploadedVideoProcess,
+  apiGetUploadMediaId,
+  apiUploadDocument,
+  apiUploadDocumentProcess,
+  apiUploadedVideoProcess,
   apiUploadVideo
 } from '@interfaces/apis/upload'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { setApiLoading, setRefresh } from '@store/reducers/api/reducers'
-import {  EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
-import { useRouter } from 'next/router'
+import { EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
 import { CLanguage } from '@interfaces/constant'
 import { readFileAsBytes, uint8ArrayToBase64 } from '@utils/file'
-import { setPaginationIndex } from '@store/reducers/page/reducers'
 import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
 
 const baseStyle: CSSProperties = {
@@ -192,11 +189,11 @@ export default function SourceStep(props: {
     } finally {
       dispatch(setApiLoading(false))
       setTimeout(() => {
-        dispatch(openVideoUploadDialog({open:false}))
-      }, 1500)
+        dispatch(openVideoUploadDialog({ open: false }))
+      }, 500)
       setTimeout(() => {
         dispatch(setRefresh(true))
-      }, 2000)
+      }, 1000)
     }
   }
 
@@ -258,18 +255,21 @@ export default function SourceStep(props: {
       VersionNumber: 0
     }
 
-    const uploadedDocument = await apiUploadDocument(uploadDocumentInfo, getAxiosConfig(startAt,"json"))
+    const uploadedDocument = await apiUploadDocument(uploadDocumentInfo, getAxiosConfig(startAt, 'json'))
 
     try {
-        await apiUploadDocumentProcess(uploadedDocument.data.Id)
+      await apiUploadDocumentProcess(uploadedDocument.data.Id)
     } catch (e) {
       console.error(e)
       dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
     } finally {
       dispatch(setApiLoading(false))
-      setTimeout(()=>{
-        dispatch(setPaginationIndex({pageIndex:0}))
-      },2000)
+      setTimeout(() => {
+        dispatch(openVideoUploadDialog({ open: false }))
+      }, 500)
+      setTimeout(() => {
+        dispatch(setRefresh(true))
+      }, 1000)
     }
 
 
@@ -444,7 +444,7 @@ export default function SourceStep(props: {
           </Box>
         </Box>
 
-       {/* <Box>
+        {/* <Box>
           <Typography>From Netflix</Typography>
           <Radio
             checked={vState.type === 'netflix'}

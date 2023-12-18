@@ -1,14 +1,15 @@
 import * as React from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Paper,
   Table,
   TableBody,
   TableCell,
+  tableCellClasses,
   TableContainer,
   TableHead,
   TableRow,
-  tableCellClasses,
   Typography
 } from '@mui/material'
 import useTablePagination from '@hooks/use-table-pagination'
@@ -16,15 +17,14 @@ import MediaDrawer from '@components/multi-media/drawer'
 import { TDocumentRowType, TVideoRowType } from '@interfaces/types'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
-import { EDocumentColumn,  EVideoColumn } from '@interfaces/enums'
+import { EDocumentColumn, EVideoColumn } from '@interfaces/enums'
 import VideoRow from '@sections/videos/components/row'
 import DocumentRow from '@sections/documents/components/row'
-import {  useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { resToVideoRowAdapter } from '@interfaces/apis/data-adapter/data-video'
 import { apiGetVideoContents } from '@interfaces/apis/videos'
 import { setPaginationTotalCount } from '@store/reducers/page/reducers'
-import { setApiData, setApiError, setApiLoading, setRefresh } from '@store/reducers/api/reducers'
+import { setApiData, setApiError, setApiLoading, setRefresh, setRefreshSubDoc } from '@store/reducers/api/reducers'
 import { apiGetDocumentContents } from '@interfaces/apis/documents'
 import { resToDocumentRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 import DocumentApprovalDlg from '@components/dialog/document-approval-dlg'
@@ -62,8 +62,8 @@ export const MediaWrapper = (props: IMediaProps) => {
       </Box>
       <CustomPagination />
       <MediaDrawer />
-    {/*  -------document approva dlg---------*/}
-      <DocumentApprovalDlg/>
+      {/*  -------document approva dlg---------*/}
+      <DocumentApprovalDlg />
       <VideoApprovalDlg />
     </Box>
   )
@@ -88,7 +88,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
   const refresh = appState.api.refresh
   const skip = appState.pagination.pageSize * (appState.pagination.pageIndex - 1)
 
-  const fetchPageData =async () => {
+  const fetchPageData = async () => {
     try {
       dispatch(setApiLoading(true))
 
@@ -121,6 +121,8 @@ export const MediaActionwrapper = (props: IActionPros) => {
       setState(prevState => ({ ...prevState, rows: [] }))
     } finally {
       dispatch(setRefresh(false))
+      if (props.type!=='video')
+      dispatch(setRefreshSubDoc(undefined))
     }
   }
   /* eslint-disable */
@@ -147,7 +149,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
           },
           borderSpacing: '0 0.3rem',
           borderCollapse: 'separate',
-          px:'0rem'
+          px: '0rem'
         }}
       >
         {/* TableHead */}
@@ -156,16 +158,16 @@ export const MediaActionwrapper = (props: IActionPros) => {
             <TableCell />
             {Object.values(
               props.type === 'video' ? EVideoColumn : EDocumentColumn
-            ).map((item, index) =>{
-              return  (
-                <TableCell key={index} sx={{padding:'8px'}}>
+            ).map((item, index) => {
+              return (
+                <TableCell key={index} sx={{ padding: '8px' }}>
                   <Typography
                     sx={{
                       padding: 0,
                       whiteSpace: 'wrap',
                       fontSize: '12px',
                       color: '#808080',
-                      fontWeight:'500 !important'
+                      fontWeight: '500 !important'
                     }}
                   >
                     {item}

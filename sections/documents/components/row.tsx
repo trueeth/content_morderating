@@ -20,6 +20,7 @@ import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import { EDocumentApprovalDlg, EProcessingStatus } from '@interfaces/enums'
 import RowStatus from '@components/multi-media/common/status-item'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
+import { setRefreshSubDoc } from '@store/reducers/api/reducers'
 
 function DocumentRow(props: {
   row: TDocumentRowType
@@ -87,26 +88,27 @@ function DocumentRow(props: {
   }
 
   useEffect(() => {
-    if (appState.api.refresh && props.rowIndex === appState.drawer.rowIndex) {
+    if (vState.openSummary && props.rowIndex === appState.drawer.rowIndex) {
       (async () => {
         try {
           const resDetails = await fetchDetails()
-          openMediaSubDrawer({open:true,drawerData:resDetails.data })
+          dispatch(openMediaSubDrawer({ drawerData: resDetails.data }))
+          setState(prevState => ({ ...prevState, openSummary: true }))
         } catch (e) {
           console.error(e)
-          dispatch(openSnackbarError('Get error, while fetching document details'))
           return
         }
+        dispatch(setRefreshSubDoc(false))
       })()
     }
-  }, [appState.api.refresh])
+  }, [appState.api.refreshSubDoc])
 
 
   const rowActions = [
     // { title: 'Classification' },
     // { title: 'Reports' },
     {
-      title: 'Reports',
+      title: 'Approval',
       action: () => dispatch(openDocumentApproval({
         type: EDocumentApprovalDlg.document,
         docIndex: props.rowIndex

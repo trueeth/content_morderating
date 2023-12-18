@@ -1,16 +1,17 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import { StepIcon } from '@mui/material';
-import React, { useState } from 'react';
-import { CUploadSteps } from '@interfaces/constant';
-import TabPanel from '@components/common/tab-panel';
-import TypeStep from './type-step';
-import StatusStep from './status-step';
-import SourceStep from './source-step';
-import LaunchStep from './launch-step';
+import { Box, StepIcon } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import Stepper from '@mui/material/Stepper'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+import React, { useEffect, useState } from 'react'
+import { CUploadSteps } from '@interfaces/constant'
+import TabPanel from '@components/common/tab-panel'
+import TypeStep from './type-step'
+import StatusStep from './status-step'
+import SourceStep from './source-step'
+import LaunchStep from './launch-step'
+import { setUploadProgress } from '@store/reducers/upload/reducers'
+import { useDispatch } from 'react-redux'
 
 // Styled component for StepWrapper
 export const StepWrapper = styled(Box)({
@@ -19,22 +20,22 @@ export const StepWrapper = styled(Box)({
   backgroundColor: 'rgb(0 0 0 / 2%)',
   display: 'flex',
   justifyContent: 'center',
-  padding: '1.5rem 0.5rem',
-});
+  padding: '1.5rem 0.5rem'
+})
 
 // Main UploadStepper component
 export default function UploadStepper() {
-  const [activeStep, setActiveStep] = React.useState(0);
-
+  const [activeStep, setActiveStep] = React.useState(0)
+  const dispatch = useDispatch()
   // Handler the next step in the stepper
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+    setActiveStep((prevActiveStep) => prevActiveStep + 1)
+  }
 
   // Handler for going back to the previous step in the stepper
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+    setActiveStep((prevActiveStep) => prevActiveStep - 1)
+  }
 
   // Initial state for the component
   const initialState = {
@@ -43,10 +44,14 @@ export default function UploadStepper() {
       newTitle: '',
       type: 'new',
       replaceItem: null,
-      languageType:0
-    },
-  };
-  const [vState, setState] = useState(initialState);
+      languageType: 0
+    }
+  }
+  const [vState, setState] = useState(initialState)
+
+  useEffect(() => {
+    dispatch(setUploadProgress({ progress: 0, remaining: 0 }))
+  }, [])
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -58,13 +63,13 @@ export default function UploadStepper() {
           width: { xs: '90%', md: '80%' },
           mx: 'auto',
           mb: 2,
-          '& .MuiStepIcon-active': { color: 'red' },
+          '& .MuiStepIcon-active': { color: 'red' }
         }}
       >
         {/* Mapping over steps and creating Step components */}
         {CUploadSteps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: React.ReactNode } = {};
+          const stepProps: { completed?: boolean } = {}
+          const labelProps: { optional?: React.ReactNode } = {}
 
           return (
             <Step
@@ -73,14 +78,14 @@ export default function UploadStepper() {
               sx={{
                 '& span': {
                   sm: { fontSize: '.7rem' },
-                  xs: { fontSize: '.5rem' },
+                  xs: { fontSize: '.5rem' }
                 },
                 '& .Mui-completed path': {
-                  color: 'var(--Primary2)',
+                  color: 'var(--Primary2)'
                 },
                 '& .Mui-active circle': {
-                  color: 'var(--Primary2)',
-                },
+                  color: 'var(--Primary2)'
+                }
               }}
             >
               <StepLabel
@@ -98,7 +103,7 @@ export default function UploadStepper() {
                 {label}
               </StepLabel>
             </Step>
-          );
+          )
         })}
       </Stepper>
 
@@ -107,8 +112,8 @@ export default function UploadStepper() {
         {/* TypeStep component */}
         <TypeStep
           handleNext={(val) => {
-            setState({ ...vState, mediaType: val });
-            handleNext();
+            setState({ ...vState, mediaType: val })
+            handleNext()
           }}
         ></TypeStep>
       </TabPanel>
@@ -117,8 +122,8 @@ export default function UploadStepper() {
         <StatusStep
           mediaType={vState.mediaType}
           handleNext={(val) => {
-            setState({ ...vState, newOld: val });
-            handleNext();
+            setState({ ...vState, newOld: val })
+            handleNext()
           }}
           handleBack={handleBack}
         ></StatusStep>
@@ -136,5 +141,5 @@ export default function UploadStepper() {
         <LaunchStep></LaunchStep>
       </TabPanel>
     </Box>
-  );
+  )
 }

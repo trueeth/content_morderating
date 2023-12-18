@@ -6,6 +6,7 @@ const initialState = {
   loading: false,
   error: '',
   refresh:false,
+  refreshSubDoc:false,
 }
 
 export interface IApiSlice {
@@ -13,6 +14,7 @@ export interface IApiSlice {
   loading?: boolean,
   error?: string,
   refresh:boolean,
+  refreshSubDoc:boolean,
 }
 
 const apiSlice = createSlice({
@@ -37,7 +39,12 @@ const apiSlice = createSlice({
       if (action.payload!==undefined)
         state.refresh=action.payload
       else state.refresh=true
-    }
+    },
+    setRefreshSubDoc(state,action){
+      if (action.payload!==undefined)
+        state.refreshSubDoc=action.payload
+      else state.refreshSubDoc=!state.refreshSubDoc
+    },
   }
 })
 
@@ -47,4 +54,5 @@ export const {
   setApiData,
   setApiError,
   setRefresh,
+  setRefreshSubDoc,
 } = apiSlice.actions

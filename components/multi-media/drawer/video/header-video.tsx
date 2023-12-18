@@ -1,12 +1,12 @@
-import { Box,  Typography } from '@mui/material'
-import {  useSelector } from 'react-redux'
+import { Box, Typography } from '@mui/material'
+import { useSelector } from 'react-redux'
 import { IAppSlice } from '@store/reducers'
 import { IReduxState } from '@store/index'
 import { format, parseISO } from 'date-fns'
 import { useMemo } from 'react'
 import { EClassificationType, ESeverity } from '@interfaces/enums'
 import { TResVideo } from '@interfaces/apis/api.types'
-import { HeaderUpdate } from '@components/multi-media/drawer/header-update'
+import { HeaderUpdate } from '@components/multi-media/drawer/video/header-update'
 import RowApproval from '@components/multi-media/common/approval-item'
 
 
@@ -33,36 +33,37 @@ export default function DrawerVideoHeader() {
 
       let rowVideoData = data[rowIndex] as TResVideo.TVideoContent
 
-      const subRowData = rowVideoData.VideoSummary?.SceneSummaries[subRowIndex]
-
-      const submissionDate = format(parseISO(data[rowIndex].UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
+      const subRowData = rowVideoData?.VideoSummary?.SceneSummaries[subRowIndex]
+      let submissionDate = ''
+      if (data[rowIndex]?.UploadedOnUtc !== undefined)
+        submissionDate = format(parseISO(data[rowIndex]?.UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
 
       let classifications: EClassificationType[] = []
 
-      if (subRowData.SexualSeverity !== ESeverity.none)
+      if (subRowData?.SexualSeverity !== ESeverity.none)
         classifications.push(EClassificationType.sexual)
 
-      if (subRowData.ViolenceSeverity !== ESeverity.none)
+      if (subRowData?.ViolenceSeverity !== ESeverity.none)
         classifications.push(EClassificationType.violance)
 
-      if (subRowData.SelfHarmSeverity !== ESeverity.none)
+      if (subRowData?.SelfHarmSeverity !== ESeverity.none)
         classifications.push(EClassificationType.selfHarm)
 
-      if (subRowData.HateSeverity !== ESeverity.none)
+      if (subRowData?.HateSeverity !== ESeverity.none)
         classifications.push(EClassificationType.hate)
 
       memoValue = {
         Index: subRowIndex + 1,
-        Name: rowVideoData.Name,
+        Name: rowVideoData?.Name,
         Description: 'Later, Muhammad bin Abdulaziz is appointed Crown Prince and assumes\n' +
           '            many tasks and responsibilities in the government. Mohammed bin\n' +
           '            Nayef is then appointed Crown Prince and Deputy Prime Minister, but\n' +
           '            he is dismissed in 2017 and Mohammed bin Salman',
-        Status: subRowData.ModeratorApprovalStatus,
-        Rating: rowVideoData.VideoSummary?.Rating,
+        Status: subRowData?.ModeratorApprovalStatus,
+        Rating: rowVideoData?.VideoSummary?.Rating,
         Classification: classifications,
         SubmissionDate: submissionDate,
-        AiApproval: subRowData.AutomaticApprovalStatus
+        AiApproval: subRowData?.AutomaticApprovalStatus
       }
     } catch (e) {
       console.error(e)
@@ -113,7 +114,7 @@ export default function DrawerVideoHeader() {
       >
         <Box>
           <Typography>STATUS : &nbsp;</Typography>
-          <RowApproval approval={memorizedVideoValue.Status}/>
+          <RowApproval approval={memorizedVideoValue.Status} />
         </Box>
         <Box>
           <Typography>RATING : &nbsp;</Typography>
@@ -133,7 +134,7 @@ export default function DrawerVideoHeader() {
         </Box>
         <Box>
           <Typography>AI APPROVAL : &nbsp; </Typography>
-          <RowApproval approval={memorizedVideoValue.AiApproval}/>
+          <RowApproval approval={memorizedVideoValue.AiApproval} />
         </Box>
       </Box>
       <Box>

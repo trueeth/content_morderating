@@ -53,7 +53,7 @@ export default function VideoApprovalDlg() {
 
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
-      approvalStatus = EModeratorApprovalStatus.inReview
+      approvalStatus = EModeratorApprovalStatus.approved
     if (approvalStatus === approvalConst[1])
       approvalStatus = EModeratorApprovalStatus.rejected
 
@@ -81,7 +81,7 @@ export default function VideoApprovalDlg() {
       dispatch(openSnackbarSuccess('Success updating approval status'))
       setTimeout(() => {
         dispatch(setRefresh(true))
-      }, 2000)
+      }, 1000)
     } catch (e) {
       console.error(e)
       dispatch(openSnackbarError('Get Error while updating approval status'))

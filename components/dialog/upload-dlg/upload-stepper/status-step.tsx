@@ -104,7 +104,8 @@ export default function StatusStep(props: {
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     borderColor: 'var(--Primary1)'
                   },
-                  bgcolor: 'white'
+                  bgcolor: 'white',
+                  pl:'1rem'
                 }}
               >
                 {

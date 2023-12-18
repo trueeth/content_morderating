@@ -5,7 +5,7 @@ import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import TableCell from '@mui/material/TableCell'
 import * as React from 'react'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -34,18 +34,23 @@ export default function DrawerTabQuestions() {
 
   const dispatch = useDispatch()
 
+  const [vState, setState]=useState({memoValue:[]})
+
+  useEffect(() => {
+    const gptResponse =appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
+    setState(prevState => ({...prevState, memoValue: gptResponse}))
+  }, [appState.drawer.drawerData])
+
+  // const memoValue = useMemo(()=>{
+  //   console.log('-----memo-questions-----')
+  //   console.log('memoValue:', appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers)
+  //   return appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
+  // },[
+  //   appState.drawer.drawerData
+  // ])
 
 
-  const memoValue = useMemo(()=>{
-    return appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
-  },[
-    appState?.api?.refresh,
-    appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers,
-    appState.drawer.drawerData
-  ])
-
-
-  if (!memoValue || memoValue.length == 0)
+  if (!vState.memoValue || vState.memoValue.length == 0)
     return (
       <Typography>No answers</Typography>
     )
@@ -112,7 +117,7 @@ export default function DrawerTabQuestions() {
             }
           }}
         >
-          {memoValue.map((val, questionIndex) =>
+          {vState.memoValue.map((val, questionIndex) =>
             <TableRow key={questionIndex}>
               <TableCell>
                 <Typography sx={{ textAlign: 'center' }}>
@@ -149,10 +154,10 @@ export default function DrawerTabQuestions() {
                         let buttonHoverColor=''
                         switch (val.ModeratorApprovalStatus){
                           case EModeratorApprovalStatus.rejected:
-                            buttonBackColor='rgba(213,162,239,0.39)';
-                            buttonHoverColor='rgba(160,31,236,0.39)'
+                            buttonBackColor='rgba(244,0,0,0.51)';
+                            buttonHoverColor='#f40000'
                             break
-                          case EModeratorApprovalStatus.inReview:
+                          case EModeratorApprovalStatus.new:
                             buttonBackColor='rgba(250,224,159,0.39)';
                             buttonHoverColor='rgba(252,195,16,0.39)'
                             break
@@ -212,7 +217,7 @@ export default function DrawerTabQuestions() {
                     questionIndex: questionIndex
                   }))}
                 >
-                  {'Reports'}
+                  {'Approval'}
                 </Button>
               </TableCell>
             </TableRow>

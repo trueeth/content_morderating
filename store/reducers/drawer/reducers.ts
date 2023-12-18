@@ -4,9 +4,9 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   mediaSubOpen: false,
   type: 'video',
-  rowIndex: 0,
+  rowIndex: -1,
   subRowIndex: 0,
-  drawerData:null
+  drawerData: null
 }
 
 export interface IDrawerSlice {
@@ -22,14 +22,15 @@ const drawerSlice = createSlice({
   initialState,
   reducers: {
     openMediaSubDrawer(state, action) {
-      state.mediaSubOpen = action.payload.open
-      if (action.payload.type!==undefined)
+      if (action.payload.open !== undefined)
+        state.mediaSubOpen = action.payload.open
+      if (action.payload.type !== undefined)
         state.type = action.payload.type
-      if (action.payload.rowIndex!==undefined)
+      if (action.payload.rowIndex !== undefined)
         state.rowIndex = action.payload.rowIndex
-      if (action.payload.subRowIndex!==undefined)
+      if (action.payload.subRowIndex !== undefined)
         state.subRowIndex = action.payload.subRowIndex
-      if (action.payload.drawerData!==undefined)
+      if (action.payload.drawerData !== undefined)
         state.drawerData = action.payload.drawerData
     }
   }

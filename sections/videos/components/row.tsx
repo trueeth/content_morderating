@@ -56,7 +56,7 @@ function VideoRow(props: {
       action: () => router.push(`/videos/${appState.api.data[props.rowIndex].Id}`)
     },
     {
-      title: 'Reports',
+      title: 'Approval',
       action:()=>dispatch(openVideoApproval({rowIndex:props.rowIndex}))
     }
   ]

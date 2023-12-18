@@ -56,7 +56,7 @@ export default function DocumentApprovalDlg() {
 
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
-      approvalStatus = EModeratorApprovalStatus.inReview
+      approvalStatus = EModeratorApprovalStatus.approved
     if (approvalStatus === approvalConst[1])
       approvalStatus = EModeratorApprovalStatus.rejected
 
@@ -90,7 +90,7 @@ export default function DocumentApprovalDlg() {
 
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
-      approvalStatus = EModeratorApprovalStatus.inReview
+      approvalStatus = EModeratorApprovalStatus.approved
     if (approvalStatus === approvalConst[1])
       approvalStatus = EModeratorApprovalStatus.rejected
 
@@ -111,7 +111,7 @@ export default function DocumentApprovalDlg() {
 
     let approvalStatus = approvalConst[vState.approval]
     if (approvalStatus === approvalConst[0])
-      approvalStatus = EModeratorApprovalStatus.inReview
+      approvalStatus = EModeratorApprovalStatus.approved
     if (approvalStatus === approvalConst[1])
       approvalStatus = EModeratorApprovalStatus.rejected
 
@@ -152,11 +152,10 @@ export default function DocumentApprovalDlg() {
     try {
       await apiUpdateApproval()
       dispatch(openSnackbarSuccess('Success updating approval status'))
-      dispatch(openMediaSubDrawer({ open: false }))
       dispatch(openDocumentApproval({ open: false }))
       setTimeout(() => {
         dispatch(setRefresh(true))
-      }, 2000)
+      }, 1000)
     } catch (e) {
       console.error(e)
       dispatch(openSnackbarError('Get Error while updating approval status'))
@@ -185,6 +184,37 @@ export default function DocumentApprovalDlg() {
   }, [dlgState])
 
 
+
+  const setApprovalStatus = (val: any) => {
+    if (val === approvalConst[1]) {
+      setState(prevState => ({ ...prevState, approval: 1 }))
+    }
+    else {
+      setState(prevState => ({ ...prevState, approval: 0 }))
+    }
+  }
+
+
+  useEffect(() => {
+    const gptResponse = documentDetailState?.GptResponse[dlgState.topicIndex]
+    switch (dlgState.type) {
+      case EDocumentApprovalDlg.document:
+        setApprovalStatus(documentState?.ModeratorApprovalStatus)
+        break
+      case EDocumentApprovalDlg.topic:
+        setApprovalStatus(gptResponse?.AiApproval)
+        break
+      case EDocumentApprovalDlg.question:
+        setApprovalStatus(gptResponse?.answers[dlgState?.questionIndex]?.ModeratorApprovalStatus)
+        break
+      case EDocumentApprovalDlg.page:
+        setApprovalStatus(gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.ModeratorApprovalStatus)
+        break
+      default:
+        break
+    }
+  }, [appState.dialog.documentApproval])
+
   /* eslint-disable */
   const memoValue = useMemo(() => {
     let tempMemo = {
@@ -196,37 +226,25 @@ export default function DocumentApprovalDlg() {
     }
     const gptResponse = documentDetailState?.GptResponse[dlgState.topicIndex]
 
-    const setApprovalStatus = (val: any) => {
-      if (val === approvalConst[1])
-        setState(prevState => ({ ...prevState, approval: 1 }))
-      else
-        setState(prevState => ({ ...prevState, approval: 0 }))
-    }
-
     switch (dlgState.type) {
       case EDocumentApprovalDlg.document:
         tempMemo.title = 'Document Approval'
         tempMemo.description = `Book ${documentState?.Name}`
-        setApprovalStatus(documentState?.ModeratorApprovalStatus)
         break
       case EDocumentApprovalDlg.topic:
         tempMemo.title = 'Topic Approval'
         tempMemo.description = `Book ${documentState?.Name}, Topic ${gptResponse?.Topic?.Name}`
-        setApprovalStatus(gptResponse?.AiApproval)
         break
       case EDocumentApprovalDlg.question:
         tempMemo.title = 'Question Approval'
         tempMemo.description = `Question: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
         tempMemo.visibleQuestion = true
-        console.log(gptResponse?.answers[dlgState?.questionIndex]?.ModeratorApprovalStatus)
-        setApprovalStatus(gptResponse?.answers[dlgState?.questionIndex]?.ModeratorApprovalStatus)
         break
       case EDocumentApprovalDlg.page:
         tempMemo.title = `Page ${gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber} Approval`
         tempMemo.pageInfo = gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex] as TResDocument.TGptAnswerPageNumber
         tempMemo.description = `Question: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
         tempMemo.visibleQuestion = true
-        setApprovalStatus(gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.ModeratorApprovalStatus)
         break
       default:
         break
@@ -241,6 +259,7 @@ export default function DocumentApprovalDlg() {
     documentDetailState?.GptResponse[dlgState.topicIndex]?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber,
     appState?.api?.refresh
   ])
+
   /*eslint-enable*/
 
   return (
