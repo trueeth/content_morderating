@@ -1,212 +1,212 @@
 {
-  "video": "مستوى",
-  "document": "مستوى",
+  "video": "فيديو",
+  "document": "وثيقة",
 
-  "dashboard": "مستوى",
-  "multimedia": "مستوى",
-  "reports": "مستوى",
-  "access": "مستوى",
-  "settings": "مستوى",
-  "videos": "مستوى",
-  "documents": "مستوى",
-  "upload": "مستوى",
+  "dashboard": "لوحة القيادة",
+  "multimedia": "الوسائط المتعددة",
+  "reports": "التقارير",
+  "access": "وصول",
+  "settings": "إعدادات",
+  "videos": "أشرطة فيديو",
+  "documents": "وثائق",
+  "upload": "رفع",
 
-  "name": "مستوى",
-  "status": "مستوى",
-  "rating": "مستوى",
-  "classification": "مستوى",
-  "moderator-status": "مستوى",
-  "ai-approval": "مستوى",
-  "submission-date": "مستوى",
-  "actions": "مستوى",
+  "name": "اسم",
+  "status": "حالة",
+  "rating": "تقييم",
+  "classification": "تصنيف",
+  "moderator-status": "حالة المشرف",
+  "ai-approval": "موافقة منظمة العفو الدولية",
+  "submission-date": "تاريخ التقديم",
+  "actions": "أجراءات",
 
   "column": {
-    "name": "مستوى",
-    "status": "مستوى",
-    "rating": "مستوى",
-    "classification": "مستوى",
-    "moderator status": "مستوى",
-    "ai approval": "مستوى",
-    "actions": "مستوى",
-    "language": "مستوى",
-    "submission date": "مستوى",
+    "name": "اسم",
+    "status": "حالة",
+    "rating": "تقييم",
+    "classification": "تصنيف",
+    "moderator status": "حالة المشرف",
+    "ai approval": "موافقة منظمة العفو الدولية",
+    "actions": "أجراءات",
+    "language": "لغة",
+    "submission date": "تاريخ التقديم",
 
-    "scene number": "مستوى",
-    "scene status": "مستوى",
-    "ai classification": "مستوى",
+    "scene number": "رقم المشهد",
+    "scene status": "حالة المشهد",
+    "ai classification": "تصنيف منظمة العفو الدولية",
 
-    "topic number": "مستوى",
-    "topic name": "مستوى",
+    "topic number": "رقم الموضوع",
+    "topic name": "اسم الموضوع",
 
-    "question": "مستوى",
-    "moderator approval": "مستوى",
-    "ai detection": "مستوى",
-    "pages": "مستوى"
+    "question": "سؤال",
+    "moderator approval": "موافقة الوسيط",
+    "ai detection": "كشف الذكاء الاصطناعي",
+    "pages": "الصفحات"
   },
 
   "rowActions": {
-    "insight": "مستوى",
-    "approval": "مستوى",
-    "log out": "مستوى"
+    "insight": "بصيرة",
+    "approval": "موافقة",
+    "log out": "تسجيل خروج"
   },
 
   "rowStatus": {
-    "new": "مستوى",
-    "uploaded": "مستوى",
-    "processing": "مستوى",
-    "processed": "مستوى",
-    "failed": "مستوى",
-    "not assigned": "مستوى"
+    "new": "جديد",
+    "uploaded": "تم الرفع",
+    "processing": "يعالج",
+    "processed": "معالجتها",
+    "failed": "فشل",
+    "not assigned": "غيرمعتمد"
   },
 
   "rowRating": {
-    "none" : "مستوى",
-    "g" : "مستوى",
-    "pg" : "مستوى",
-    "pg12" : "مستوى",
-    "pg15" : "مستوى",
-    "r18" : "مستوى",
-    "r15" : "مستوى",
-    "missing" : "مستوى",
-    "not assigned": "مستوى"
+    "none" : "لا أحد",
+    "g" : "ز",
+    "pg" : "ص",
+    "pg12" : "الصفحة 12",
+    "pg15" : "الصفحة 15",
+    "r18" : "ص18",
+    "r15" : "ص15",
+    "missing" : "مفتقد",
+    "not assigned": "غيرمعتمد"
   },
 
   "rowApproval": {
-    "new" : "مستوى",
-    "inreview" : "مستوى",
-    "approved" : "مستوى",
-    "rejected" : "مستوى",
-    "pending" : "مستوى",
-    "none": "مستوى",
-    "not assigned": "مستوى"
+    "new" : "جديد",
+    "inreview" : "في مراجعة",
+    "approved" : "موافقة",
+    "rejected" : "مرفوض",
+    "pending" : "قيد الانتظار",
+    "none": "لا أحد",
+    "not assigned": "غيرمعتمد"
   },
 
 
   "rowClassification": {
-    "sexual": "مستوى",
-    "violence": "مستوى",
-    "hate": "مستوى",
-    "selfharm": "مستوى",
-    "not assigned": "مستوى"
+    "sexual": "جنسي",
+    "violence": "عنف",
+    "hate": "يكره",
+    "selfharm": "الأذى الذاتي",
+    "not assigned": "غيرمعتمد"
   },
 
   "uploadDlg": {
-    "upload media": "مستوى",
-    "closeWarnning-msg": "مستوى",
+    "upload media": "تحميل الوسائط",
+    "closeWarnning-msg": "من فضلك لا تقم بتحديث الصفحة. نحن نقوم بمعالجة طلبك!",
     "step": {
-      "media type": "مستوى",
-      "new or old": "مستوى",
-      "source": "مستوى",
-      "launch": "مستوى",
-      "mediaType-question": "مستوى",
-      "titleEmpty-msg": "مستوى",
-      "name-placeHolder": "مستوى",
+      "media type": "نوع الوسائط",
+      "new or old": "جديد أو قديم",
+      "source": "مصدر",
+      "launch": "يطلق",
+      "mediaType-question": "ماذا تريد تحميله؟",
+      "titleEmpty-msg": "العنوان فارغ",
+      "name-placeHolder": "أدخل الاسم",
 
-      "sourceFile-question": "مستوى",
-      "Upload from your PC": "مستوى",
-      "Drag your file here or": "مستوى",
-      "Browse": "مستوى",
-      "Maximum file size 2GB": "مستوى",
-      "Start the Upload": "مستوى",
+      "sourceFile-question": "أين هو الملف المصدر",
+      "Upload from your PC": "تحميل من جهاز الكمبيوتر الخاص بك",
+      "Drag your file here or": "اسحب ملفك هنا أو",
+      "Browse": "تصفح",
+      "Maximum file size 2GB": "الحد الأقصى لحجم الملف 2 جيجابايت",
+      "Start the Upload": "ابدأ التحميل",
 
-      "Video Upload": "مستوى",
-      "Document Upload": "مستوى",
-      "Uploading": "مستوى",
-      "Analyzing": "مستوى",
-      "Indexing": "مستوى",
-      "Scoring": "مستوى",
-      "disclaimer": "مستوى"
+      "Video Upload": "تحميل الفيديو",
+      "Document Upload": "تحميل الوثيقة",
+      "Uploading": "جارٍ التحميل",
+      "Analyzing": "تحليل",
+      "Indexing": "الفهرسة",
+      "Scoring": "التهديف",
+      "disclaimer": "لا تترك هذه الصفحة حتى تنتهي المرحلة الأولى من التحميل."
     },
     "msg": {
-      "uploadFileProcessError": "مستوى",
-      "uploadFileSuccess": "مستوى",
-      "uploadFileError": "مستوى",
-      "validNoFile": "مستوى",
-      "validVideoFile": "مستوى",
-      "validPdfFile": "مستوى",
-      "validOverFile": "مستوى"
+      "uploadFileProcessError": "آسف! حدث خطأ ما أثناء معالجة الملف الذي تم تحميله.",
+      "uploadFileSuccess": "تم تحميل الملف بنجاح.",
+      "uploadFileError": "آسف! حدث خطأ ما أثناء تحميل الملف.",
+      "validNoFile": "لم يتم اختيار أي ملف",
+      "validVideoFile": "الرجاء تحديد فيديو صالح",
+      "validPdfFile": "الرجاء تحديد ملف pdf صالح",
+      "validOverFile": "الرجاء إعادة تحديد الملف. حجم الملف يزيد عن 2 جيجا بايت"
     }
   },
 
   "drawer": {
     "video": {
-      "Video for the": "مستوى",
-      "Scene": "مستوى",
-      "STATUS": "مستوى",
-      "RATING": "مستوى",
-      "AI CLASSIFICATION": "مستوى",
-      "SUBMISSION DATE": "مستوى",
-      "AI APPROVAL": "مستوى",
+      "Video for the": "فيديو ل",
+      "Scene": "مشهد",
+      "STATUS": "حالة",
+      "RATING": "تقييم",
+      "AI CLASSIFICATION": "تصنيف الذكاء الاصطناعي",
+      "SUBMISSION DATE": "تاريخ التقديم",
+      "AI APPROVAL": "موافقة الذكاء الاصطناعي",
 
-      "Update Scene Status": "مستوى",
-      "Update Topic": "مستوى",
-      "Write your note": "مستوى"
+      "Update Scene Status": "تحديث حالة المشهد",
+      "Update Topic": "تحديث الموضوع",
+      "Write your note": "اكتب ملاحظتك"
     },
     "msg": {
-      "updateVideoSceneSuccess": "مستوى",
-      "updateVideoSceneError": "مستوى",
-      "updateApprovalStatusSuccess": "مستوى",
-      "updateApprovalStatusError": "مستوى"
+      "updateVideoSceneSuccess": "تم تحديث بيانات ملخص مشهد الفيديو بنجاح",
+      "updateVideoSceneError": "حدث خطأ أثناء تحديث ملخص مشهد الفيديو",
+      "updateApprovalStatusSuccess": "تم بنجاح تحديث حالة الموافقة",
+      "updateApprovalStatusError": "حدث خطأ أثناء تحديث حالة الموافقة"
     },
 
-    "No answers": "مستوى",
-    "Answer found": "مستوى",
-    "Answer not found": "مستوى",
+    "No answers": "لا أجوبة",
+    "Answer found": "تم العثور على الإجابة",
+    "Answer not found": "لم يتم العثور على الجواب",
 
-    "Play the Scene": "مستوى",
-    "Activities": "مستوى",
-    "Overview": "مستوى",
-    "Questions": "مستوى",
+    "Play the Scene": "لعب المشهد",
+    "Activities": "أنشطة",
+    "Overview": "ملخص",
+    "Questions": "أسئلة",
 
-    "History": "مستوى",
-    "No History yet": "مستوى",
-    "Book": "مستوى",
-    "Topic": "مستوى"
+    "History": "تاريخ",
+    "No History yet": "لا يوجد تاريخ بعد",
+    "Book": "كتاب",
+    "Topic": "عنوان"
   },
 
   "updateApproval": {
-    "Approval": "مستوى",
-    "Moderator Approval": "مستوى",
-    "Meida Rating": "مستوى",
-    "Notes": "مستوى",
-    "Enter the notes": "مستوى",
+    "Approval": "موافقة",
+    "Moderator Approval": "موافقة المشرف",
+    "Meida Rating": "تقييم ميدا",
+    "Notes": "ملحوظات",
+    "Enter the notes": "أدخل الملاحظات",
 
-    "Document Approval": "مستوى",
-    "Book": "مستوى",
-    "Topic": "مستوى",
-    "Question": "مستوى",
-    "Page": "مستوى",
-    "Topic Approval": "مستوى",
-    "Question Approval": "مستوى",
+    "Document Approval": "الموافقة على الوثيقة",
+    "Book": "كتاب",
+    "Topic": "عنوان",
+    "Question": "سؤال",
+    "Page": "صفحة",
+    "Topic Approval": "الموافقة على الموضوع",
+    "Question Approval": "الموافقة على السؤال",
 
-    "Ai opinion": "مستوى",
-    "AiOpinion-answer": "مستوى",
-    "Snippet": "مستوى",
-    "findAnswer-question": "مستوى",
+    "Ai opinion": "أي رأي",
+    "AiOpinion-answer": "تعرض الصفحة السؤال بطريقة $no بأي حال من الأحوال بناءً على نتائج Ai",
+    "Snippet": "مقتطف",
+    "findAnswer-question": "هل وجدت إجابة لهذا السؤال في الكتاب؟",
 
     "msg": {
-      "updateSuccess": "مستوى",
-      "updateError": "مستوى"
+      "updateSuccess": "تم بنجاح تحديث حالة الموافقة",
+      "updateError": "حدث خطأ أثناء تحديث حالة الموافقة"
     }
   },
 
-  "This part will come soon": "مستوى",
+  "This part will come soon": "سيأتي هذا الجزء قريبا",
 
-  "scene": "مستوى",
-  "topic": "مستوى",
+  "scene": "مشهد",
+  "topic": "عنوان",
 
-  "next": "مستوى",
-  "back": "مستوى",
-  "update": "مستوى",
+  "next": "التالي",
+  "back": "خلف",
+  "update": "تحديث",
 
-  "Yes": "مستوى",
-  "No": "مستوى",
+  "Yes": "نعم",
+  "No": "لا",
 
-  "processing": "مستوى",
-  "not assigned": "مستوى",
+  "processing": "يعالج",
+  "not assigned": "غيرمعتمد",
 
-  "arabic": "مستوى",
-  "english": "مستوى",
+  "arabic": "عربي",
+  "english": "إنجليزي",
 
-  "admin": "مستوى"
+  "admin": "مسؤل"
 }
