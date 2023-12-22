@@ -13,6 +13,7 @@ import TableBody from '@mui/material/TableBody'
 import { TResDocument } from '@interfaces/apis/api.types'
 import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import RowApproval from '@components/multi-media/common/approval-item'
+import { useTranslate } from '../../../../locales'
 
 
 // interface IHistoryRow {
@@ -30,7 +31,7 @@ export default function DrawerTabQuestions() {
 
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
-
+  const {t}=useTranslate()
 
   const dispatch = useDispatch()
 
@@ -52,7 +53,7 @@ export default function DrawerTabQuestions() {
 
   if (!vState.memoValue || vState.memoValue.length == 0)
     return (
-      <Typography>No answers</Typography>
+      <Typography>{t('drawer.No answers')}</Typography>
     )
   return (
     <Box
@@ -95,16 +96,18 @@ export default function DrawerTabQuestions() {
             <TableCell sx={{ minWidth: '50px', textAlign: 'center' }}>#</TableCell>
             {CQuestionsColumns.map((val, index) => {
                 if (index === 2)
-                  return <TableCell className='menu-title' style={{ minWidth: '100px' }} key={index}>{val}</TableCell>
+                  return <TableCell className='menu-title text-capitalize' style={{ minWidth: '100px' }} key={index}>
+                    {t(`column.${val.toLowerCase()}`)}
+                </TableCell>
                 if (index === 3)
-                  return <TableCell className='menu-title' style={{ minWidth: '100px' }} key={index}>{val}</TableCell>
+                  return <TableCell className='menu-title text-capitalize' style={{ minWidth: '100px' }} key={index}>{t(`column.${val.toLowerCase()}`)}</TableCell>
                 if (index === 4)
-                  return <TableCell className='menu-title' style={{ maxWidth: '200px', minWidth: '150px' }}
-                                    key={index}>{val}</TableCell>
+                  return <TableCell className='menu-title text-capitalize' style={{ maxWidth: '200px', minWidth: '150px' }}
+                                    key={index}>{t(`column.${val.toLowerCase()}`)}</TableCell>
                 if (index === 0)
-                  return <TableCell className='menu-title' style={{ maxWidth: '200px', minWidth: '50px' }}
-                                    key={index}>{val}</TableCell>
-                return <TableCell className='menu-title' style={{ minWidth: '80px' }} key={index}>{val}</TableCell>
+                  return <TableCell className='menu-title text-capitalize' style={{ maxWidth: '200px', minWidth: '50px' }}
+                                    key={index}>{t(`column.${val.toLowerCase()}`)}</TableCell>
+                return <TableCell className='menu-title text-capitalize' style={{ minWidth: '80px' }} key={index}>{t(`column.${val.toLowerCase()}`)}</TableCell>
               }
             )}
           </TableRow>
@@ -134,7 +137,7 @@ export default function DrawerTabQuestions() {
                 <RowApproval approval={val.AiApproval} />
               </TableCell>
               <TableCell>
-                {val.answerFound ? 'Answer found' : 'Answer not found'}
+                {val.answerFound ? t('drawer.Answer found') : t('drawer.Answer not found')}
               </TableCell>
               <TableCell>
                 <Box
@@ -217,7 +220,7 @@ export default function DrawerTabQuestions() {
                     questionIndex: questionIndex
                   }))}
                 >
-                  {'Approval'}
+                  {t('updateApproval.Approval')}
                 </Button>
               </TableCell>
             </TableRow>

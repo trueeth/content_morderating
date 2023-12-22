@@ -1,6 +1,5 @@
-import { createTheme } from '@mui/material/styles'
 
-const theme = createTheme({
+const theme = {
   components: {
     MuiButtonBase: {
       defaultProps: {
@@ -87,7 +86,10 @@ const theme = createTheme({
             '& > .MuiTableCell-root': {
               padding: '0px !important'
             }
-          }
+          },
+          '& .MuiTableRow-root:nth-child(odd)': {
+            height:'60px'
+          },
         }
       }
     },
@@ -126,6 +128,7 @@ const theme = createTheme({
       }
     }
   }
-})
+}
+
 
 export default theme

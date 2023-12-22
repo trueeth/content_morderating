@@ -5,10 +5,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { IReduxState } from '@store/index';
 import { IAppSlice } from '@store/reducers';
+import { useTranslate } from '../../../../locales'
 
 // Component for the Launch step in the upload process
-export default function LaunchStep() {
-  
+export default function LaunchStep(props:any) {
+
+  const {t}=useTranslate()
   // Fetching app state
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
 
@@ -26,7 +28,7 @@ export default function LaunchStep() {
       >
         {/* Heading for the step */}
         <Typography textAlign="center" my={2} variant="h6">
-          Video Upload
+          {props.data.mediaType==='Video'?t('uploadDlg.step.Video Upload'):t('uploadDlg.step.Document Upload')}
         </Typography>
 
         {/* Linear progress bar showing the upload progress */}
@@ -53,10 +55,10 @@ export default function LaunchStep() {
             },
           }}
         >
-          <Typography>Uploading</Typography>
-          <Typography>Analyzing</Typography>
-          <Typography>Indexing</Typography>
-          <Typography>Scoring</Typography>
+          <Typography>{t('uploadDlg.step.Uploading')}</Typography>
+          <Typography>{t('uploadDlg.step.Analyzing')}</Typography>
+          <Typography>{t('uploadDlg.step.Indexing')}</Typography>
+          <Typography>{t('uploadDlg.step.Scoring')}</Typography>
         </Box>
 
         {/* Disclaimer text */}
@@ -69,7 +71,7 @@ export default function LaunchStep() {
             fontSize: '14px',
           }}
         >
-          Disclaimer: Do not leave this page until the first stage of upload is done.
+          {t('uploadDlg.step.disclaimer')}
         </Typography>
       </Box>
     </StepWrapper>

@@ -1,8 +1,12 @@
 import {  EModeratorApprovalStatus } from '@interfaces/index'
 import Box from '@mui/material/Box'
 import clsx from 'clsx'
+import { useTranslate } from '../../../locales'
 
 const RowApproval = (props: { approval: string }) => {
+  const {t}=useTranslate()
+
+  const title=props.approval?props.approval:'Not Assigned'
   return (
     <Box
       className={clsx(
@@ -11,13 +15,13 @@ const RowApproval = (props: { approval: string }) => {
         props.approval === EModeratorApprovalStatus.new && 'new',
         props.approval === EModeratorApprovalStatus.rejected && 'reject',
         props.approval === EModeratorApprovalStatus.inReview && 'review',
-        'text-center'
+        'text-center text-capitalize'
       )}
       style={{
         width:'fit-content'
       }}
     >
-      {props.approval?props.approval:'Not Assigned'}
+      {t(`rowApproval.${title.toLowerCase()}`)}
     </Box>
   )
 }

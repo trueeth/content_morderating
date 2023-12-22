@@ -8,10 +8,14 @@ import { EClassificationType, ESeverity } from '@interfaces/enums'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { HeaderUpdate } from '@components/multi-media/drawer/video/header-update'
 import RowApproval from '@components/multi-media/common/approval-item'
+import { useTranslate } from '../../../../locales'
+import RowRating from '@components/multi-media/common/rating-item'
 
 
 export default function DrawerVideoHeader() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+
+  const {t}=useTranslate()
 
   const memorizedVideoValue = useMemo(() => {
 
@@ -88,8 +92,8 @@ export default function DrawerVideoHeader() {
           padding: '1rem 2rem',
           width: '100%'
         }}>
-          Video for the{' '}
-          <strong>{memorizedVideoValue.Name}</strong>, Scene #
+          {t('drawer.video.Video for the')}{' '}
+          <strong>{memorizedVideoValue.Name}</strong>, {t('drawer.video.Scene')} #
           {memorizedVideoValue.Index}
         </Typography>
       </header>
@@ -113,27 +117,27 @@ export default function DrawerVideoHeader() {
         }}
       >
         <Box>
-          <Typography>STATUS : &nbsp;</Typography>
+          <Typography>{t('drawer.video.STATUS')} : &nbsp;</Typography>
           <RowApproval approval={memorizedVideoValue.Status} />
         </Box>
         <Box>
-          <Typography>RATING : &nbsp;</Typography>
-          <Typography> {memorizedVideoValue.Rating}</Typography>
+          <Typography>{t('drawer.video.RATING')} : &nbsp;</Typography>
+          <RowRating rating={memorizedVideoValue.Rating}/>
         </Box>
         <Box>
-          <Typography>AI CLASSIFICATION : &nbsp; </Typography>
+          <Typography>{t('drawer.video.AI CLASSIFICATION')} : &nbsp; </Typography>
           <Typography>
             {memorizedVideoValue.Classification?.length > 0 ? memorizedVideoValue.Classification?.join(',') : 'Not Assigned'}
           </Typography>
         </Box>
         <Box>
-          <Typography>SUBMISSION DATE : &nbsp;</Typography>
+          <Typography>{t('drawer.video.SUBMISSION DATE')} : &nbsp;</Typography>
           <Typography>
             {memorizedVideoValue.SubmissionDate}
           </Typography>
         </Box>
         <Box>
-          <Typography>AI APPROVAL : &nbsp; </Typography>
+          <Typography>{t('drawer.video.AI APPROVAL')} : &nbsp; </Typography>
           <RowApproval approval={memorizedVideoValue.AiApproval} />
         </Box>
       </Box>

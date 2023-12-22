@@ -10,6 +10,7 @@ import { TVideoSubRowType } from '@interfaces/types'
 import { EVideoDetail } from '@interfaces/enums'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import RowApproval from '@components/multi-media/common/approval-item'
+import { useTranslate } from '../../../locales'
 
 
 // Define the table row component outside of the VideoSubtable to prevent unnecessary re-renders
@@ -39,6 +40,7 @@ const VideoSubtable = (props: {
 
   // const [checked, setChecked] = React.useState(false)
   const dispatch = useDispatch()
+  const {t}=useTranslate()
 
   // Handler, opening of a specific scene's details
   const openScene = ({ rowIndex, subRowIndex }) => () => {
@@ -102,15 +104,15 @@ const VideoSubtable = (props: {
             if (index===0)
               return (
                 <TableCell key={index} sx={{width:'15%'}}>
-                  <Typography sx={{ fontSize: '13px', color: '#000' }}>
-                    {item}
+                  <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase'>
+                    {t(`column.${item.toLowerCase()}`)}
                   </Typography>
                 </TableCell>
               )
             return (
               <TableCell key={index} sx={{width:'20%'}}>
-                <Typography sx={{ fontSize: '13px', color: '#000' }}>
-                  {item}
+                <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase'>
+                  {t(`column.${item.toLowerCase()}`)}
                 </Typography>
               </TableCell>
             )
@@ -126,26 +128,34 @@ const VideoSubtable = (props: {
           }
         }}
       >
-        {props.rows.map((row, index) => (
-          <CustomizedTableRow key={index} keyValue={index}
-                              onClick={openScene({ rowIndex: props.rowIndex, subRowIndex: index })}>
-            {/* <Checkbox /> */}
-            <Typography>{`Scene #${index + 1}`}</Typography>
-            <RowApproval approval={row.moderatorStatus} />
-            <Typography>{row.violationType}</Typography>
-            <Typography whiteSpace='nowrap'>{row.status}</Typography>
-            {/* <Typography>{row.description}</Typography> */}
-            {/* <Button
+        {props.rows.map((row, index) =>{
+          const classificationValues=row.violationType.toLowerCase().split(", ")
+          const displayClassification=classificationValues.map((val,index)=>{
+            if (index===classificationValues.length-1) return t(`rowClassification.${val}`)
+            return (t(`rowClassification.${val}`)+', ')
+          })
+          return (
+            <CustomizedTableRow key={index} keyValue={index}
+                                onClick={openScene({ rowIndex: props.rowIndex, subRowIndex: index })}>
+              {/* <Checkbox /> */}
+              <Typography className='text-capitalize' >{`${t('scene')} #${index + 1}`}</Typography>
+              <RowApproval approval={row.moderatorStatus} />
+              <Typography  className='text-capitalize'>{displayClassification}</Typography>
+              <Typography whiteSpace='nowrap' className='text-capitalize'>{t(`rowApproval.${row.status.toLowerCase()}`)}</Typography>
+              {/* <Typography>{row.description}</Typography> */}
+              {/* <Button
               id={`scene-button-${index}`}
               aria-controls="basic-menu"
               aria-haspopup="true"
               aria-expanded={false}
             > */}
-            {/*<MoreHoriz className={'action-more-horiz'} />*/}
-            {/* -
+              {/*<MoreHoriz className={'action-more-horiz'} />*/}
+              {/* -
             </Button> */}
-          </CustomizedTableRow>
-        ))}
+            </CustomizedTableRow>
+          )
+          }
+        )}
       </TableBody>
     </Table>
   )

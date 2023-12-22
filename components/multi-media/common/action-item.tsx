@@ -56,6 +56,7 @@ export default function RowAction(props: IProps) {
             sx={{
               fontSize: '0.8rem'
             }}
+            className='text-capitalize'
           >
             {val.title}
           </MenuItem>

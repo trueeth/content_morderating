@@ -6,10 +6,12 @@ import { format, parseISO } from 'date-fns'
 import React, { useMemo } from 'react'
 import { TResDocument } from '@interfaces/apis/api.types'
 import RowApproval from '@components/multi-media/common/approval-item'
+import { useTranslate } from '../../../../locales'
 
 
 export default function DrawerDocumentHeader() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+  const {t}=useTranslate()
 
   /* eslint-disable */
   const memorizedVideoValue = useMemo(() => {
@@ -70,7 +72,7 @@ export default function DrawerDocumentHeader() {
           }}
           className='menu-title'
         >
-          <strong>{memorizedVideoValue.Name}</strong>&nbsp; Book, &nbsp; Topic  &nbsp; &nbsp;
+          <strong>{memorizedVideoValue.Name}</strong>&nbsp; {t('drawer.Book')}, &nbsp; {t('drawer.Topic')}  &nbsp; &nbsp;
           {memorizedVideoValue.Topic}
         </Typography>
       </header>
@@ -96,7 +98,7 @@ export default function DrawerDocumentHeader() {
         }}
       >
         <Box>
-          <Typography>LANGUAGE : &nbsp;</Typography>
+          <Typography className='text-uppercase'>{t('column.language')} : &nbsp;</Typography>
           <Typography> {memorizedVideoValue.Language}</Typography>
         </Box>
         {/*<Box>*/}
@@ -118,7 +120,7 @@ export default function DrawerDocumentHeader() {
         {/*  <RowApproval approval={memorizedVideoValue.ModeratorApproval} />*/}
         {/*</Box>*/}
         <Box>
-          <Typography>AI APPROVAL : &nbsp; </Typography>
+          <Typography className='text-uppercase'>{t('column.ai approval')} : &nbsp; </Typography>
           <RowApproval approval={memorizedVideoValue.AiApproval} />
         </Box>
       </Box>

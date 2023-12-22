@@ -20,6 +20,7 @@ import { IAppSlice } from '@store/reducers'
 import { useRouter } from 'next/navigation'
 import { openVideoApproval } from '@store/reducers/dialog/reducers'
 import { EProcessingStatus } from '@interfaces/enums'
+import { useTranslate } from '../../../locales'
 
 function VideoRow(props: {
   row: TVideoRowType,
@@ -31,6 +32,8 @@ function VideoRow(props: {
   }>({ openSummary: false })
 
   const router = useRouter()
+
+  const {t}=useTranslate()
 
   const dispatch=useDispatch()
 
@@ -53,11 +56,11 @@ function VideoRow(props: {
   const rowActions = [
     // { title: 'Classification' },
     {
-      title: 'Insights',
+      title: t(`rowActions.insight`),
       action: () => router.push(`/videos/${appState.api.data[props.rowIndex].Id}`)
     },
     {
-      title: 'Approval',
+      title: t("rowActions.approval"),
       action:()=>dispatch(openVideoApproval({rowIndex:props.rowIndex}))
     }
   ]
@@ -125,7 +128,7 @@ function VideoRow(props: {
           {
             props.row.status=== EProcessingStatus.processed?
             <RowAction actions={rowActions} />:
-              <Typography sx={{fontSize:'.7rem'}}>Processing</Typography>
+              <Typography sx={{fontSize:'.7rem'}} className='text-capitalize'> {t('processing')} </Typography>
           }
         </TableCell>
       </TableRow>

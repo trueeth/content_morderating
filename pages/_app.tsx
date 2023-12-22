@@ -4,12 +4,14 @@ import type { AppProps } from 'next/app'
 import Layout from '@components/layout/layout'
 import Providers from '../Providers'
 import index from '../store'
-import { ThemeProvider } from '@mui/material/styles'
-import React, { ReactElement, ReactNode } from 'react'
+import { ThemeProvider, createTheme, ThemeOptions } from '@mui/material/styles'
+import React, { ReactElement, ReactNode, useMemo } from 'react'
 import { NextPage } from 'next'
 import { AuthProvider } from '@components/auth/context/auth-provider'
 import AuthGuard from '@components/auth/guard/auth-guard'
-import theme from '@interfaces/theme'
+import themeOptions from '@interfaces/theme'
+import '/locales/i18n'
+import { LocalizationProvider, useLocales } from '../locales'
 
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -27,18 +29,30 @@ function MyApp(props: AppPropsWithLayout) {
     Component.getLayout ??
     ((page) => (
       <AuthGuard>
-        <Layout title="VideoApp">{page}</Layout>
+        <Layout title='VideoApp'>{page}</Layout>
       </AuthGuard>
     ))
 
+  const { currentLang } = useLocales();
+
+  const theme=createTheme(themeOptions as ThemeOptions)
+
+  const themeWithLocale = useMemo(
+    () => createTheme
+    (theme, currentLang.systemValue),
+    [currentLang.systemValue, theme]
+  );
+
   return (
-    <Providers store={index}>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          {(() => getLayout(<Component {...pageProps} />))()}
-        </ThemeProvider>
-      </AuthProvider>
-    </Providers>
+    <LocalizationProvider>
+      <Providers store={index}>
+        <AuthProvider>
+          <ThemeProvider theme={themeWithLocale}>
+            {(() => getLayout(<Component {...pageProps} />))()}
+          </ThemeProvider>
+        </AuthProvider>
+      </Providers>
+    </LocalizationProvider>
   )
 }
 

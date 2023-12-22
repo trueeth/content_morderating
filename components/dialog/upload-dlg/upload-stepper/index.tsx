@@ -12,6 +12,7 @@ import SourceStep from './source-step'
 import LaunchStep from './launch-step'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { useDispatch } from 'react-redux'
+import { useTranslate } from '../../../../locales'
 
 // Styled component for StepWrapper
 export const StepWrapper = styled(Box)({
@@ -27,6 +28,7 @@ export const StepWrapper = styled(Box)({
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
   const dispatch = useDispatch()
+  const {t}=useTranslate()
   // Handler the next step in the stepper
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -100,7 +102,7 @@ export default function UploadStepper() {
                   />
                 )}
               >
-                {label}
+                {t(`uploadDlg.step.${label.toLowerCase()}`)}
               </StepLabel>
             </Step>
           )
@@ -138,7 +140,9 @@ export default function UploadStepper() {
       </TabPanel>
       <TabPanel index={activeStep} value={3}>
         {/* LaunchStep component */}
-        <LaunchStep></LaunchStep>
+        <LaunchStep
+          data={vState}
+        />
       </TabPanel>
     </Box>
   )

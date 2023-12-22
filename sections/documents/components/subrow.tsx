@@ -13,6 +13,7 @@ import { TResDocument } from '@interfaces/apis/api.types'
 import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import RowApproval from '@components/multi-media/common/approval-item'
+import { useTranslate } from '../../../locales'
 
 const DocumentSubrow = (props: {
   rowDetails:TResDocument.TDocumentContentDetail
@@ -22,6 +23,8 @@ const DocumentSubrow = (props: {
 
   const { rowDetails } = props
   const dispatch = useDispatch()
+
+  const {t}=useTranslate()
 
   const openScene = (index:number) => () => {
     dispatch(
@@ -118,15 +121,15 @@ const DocumentSubrow = (props: {
             if (index===0)
               return (
                 <TableCell key={index} sx={{width:'15%'}}>
-                  <Typography sx={{ fontSize: '13px', color: '#000' }}>
-                   {item}
+                  <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase'>
+                   {t(`column.${item.toLowerCase()}`)}
                   </Typography>
                 </TableCell>
               )
             return (
               <TableCell key={index} sx={{width:'20%'}}>
-                <Typography sx={{ fontSize: '13px', color: '#000' }}>
-                  {item}
+                <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase' >
+                  {t(`column.${item.toLowerCase()}`)}
                 </Typography>
               </TableCell>
             )
@@ -149,7 +152,7 @@ const DocumentSubrow = (props: {
           return (
             <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
               {/*<Checkbox />*/}
-              <Typography>Topic # {(index + 1)}</Typography>
+              <Typography className='text-capitalize' >{t('topic')} # {(index + 1)}</Typography>
               <Typography>{row.topic}</Typography>
               <RowApproval approval={row.aiApproval}/>
             </CustomizedTableRow>

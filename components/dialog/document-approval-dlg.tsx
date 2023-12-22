@@ -21,9 +21,8 @@ import {
   apiUpdateApprovalDocument
 } from '@interfaces/apis/documents'
 import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
-import { setPaginationIndex } from '@store/reducers/page/reducers'
-import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import { setRefresh } from '@store/reducers/api/reducers'
+import { useTranslate } from '../../locales'
 
 
 type TState = {
@@ -43,6 +42,7 @@ export default function DocumentApprovalDlg() {
     notes: ''
   }
 
+  const { t } = useTranslate()
   const [vState, setState] = useState<TState>(InitialState)
 
   const dispatch = useDispatch()
@@ -151,14 +151,14 @@ export default function DocumentApprovalDlg() {
     }
     try {
       await apiUpdateApproval()
-      dispatch(openSnackbarSuccess('Success updating approval status'))
+      dispatch(openSnackbarSuccess(t('updateApproval.msg.updateSuccess')))
       dispatch(openDocumentApproval({ open: false }))
       setTimeout(() => {
         dispatch(setRefresh(true))
       }, 1000)
     } catch (e) {
       console.error(e)
-      dispatch(openSnackbarError('Get Error while updating approval status'))
+      dispatch(openSnackbarError(t('updateApproval.msg.updateError')))
     } finally {
       setState(InitialState)
     }
@@ -184,12 +184,10 @@ export default function DocumentApprovalDlg() {
   }, [dlgState])
 
 
-
   const setApprovalStatus = (val: any) => {
     if (val === approvalConst[1]) {
       setState(prevState => ({ ...prevState, approval: 1 }))
-    }
-    else {
+    } else {
       setState(prevState => ({ ...prevState, approval: 0 }))
     }
   }
@@ -228,22 +226,22 @@ export default function DocumentApprovalDlg() {
 
     switch (dlgState.type) {
       case EDocumentApprovalDlg.document:
-        tempMemo.title = 'Document Approval'
-        tempMemo.description = `Book ${documentState?.Name}`
+        tempMemo.title = t('updateApproval.Document Approval')
+        tempMemo.description = `${t('updateApproval.Book')} ${documentState?.Name}`
         break
       case EDocumentApprovalDlg.topic:
-        tempMemo.title = 'Topic Approval'
-        tempMemo.description = `Book ${documentState?.Name}, Topic ${gptResponse?.Topic?.Name}`
+        tempMemo.title = t('updateApproval.Topic Approval')
+        tempMemo.description = `${t('updateApproval.Book')} ${documentState?.Name}, ${t('updateApproval.Topic')} ${gptResponse?.Topic?.Name}`
         break
       case EDocumentApprovalDlg.question:
-        tempMemo.title = 'Question Approval'
-        tempMemo.description = `Question: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
+        tempMemo.title = t('updateApproval.Question Approval')
+        tempMemo.description = `${t('updateApproval.Question')}: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
         tempMemo.visibleQuestion = true
         break
       case EDocumentApprovalDlg.page:
-        tempMemo.title = `Page ${gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber} Approval`
+        tempMemo.title = `${t('updateApproval.Page')} ${gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex]?.pageNumber} ${t('updateApproval.Page')}`
         tempMemo.pageInfo = gptResponse?.answers[dlgState?.questionIndex]?.pageNumbers[dlgState?.pageIndex] as TResDocument.TGptAnswerPageNumber
-        tempMemo.description = `Question: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
+        tempMemo.description = `${t('updateApproval.Question')}: ${gptResponse?.answers[dlgState?.questionIndex]?.question}`
         tempMemo.visibleQuestion = true
         break
       default:
@@ -354,7 +352,7 @@ export default function DocumentApprovalDlg() {
                   {/*------ai opinion----------*/}
                   <Grid item xs={12} md={10}>
                     <Typography>
-                      Ai Opinion&nbsp;:
+                      {t('updateApproval.Ai opinion')}&nbsp;:
                     </Typography>
                     <Typography sx={{ paddingLeft: '2rem' }}>
                       The page portrays the question in
@@ -365,7 +363,7 @@ export default function DocumentApprovalDlg() {
                   {/*------snippet----------*/}
                   <Grid item xs={12} md={10}>
                     <Typography>
-                      Snippet&nbsp;:
+                      {t('updateApproval.Snippet')}&nbsp;:
                     </Typography>
                     <Typography sx={{ paddingLeft: '2rem' }}>
                       {memoValue.pageInfo?.snippet}
@@ -373,7 +371,7 @@ export default function DocumentApprovalDlg() {
                   </Grid>
                   {/*-------moderator approval---------*/}
                   <Grid item xs={12} md={10}>
-                    <Typography>Moderator Approval :</Typography>
+                    <Typography>{t('updateApproval.Moderator Approval')} :</Typography>
                     <CustomToggleButtonGroup
                       groupName={approvalConst}
                       sx={{
@@ -391,27 +389,30 @@ export default function DocumentApprovalDlg() {
                   </Grid>
                   {/*------answer for the book----------*/}
                   <Grid item xs={12} md={10} sx={{ marginTop: '1rem' }}>
-                    <Typography>Did you find an answer for this question in the book ?</Typography> <RadioGroup
-                    row
-                    sx={{
-                      justifyContent: 'left',
-                      '& span': {
-                        fontSize: '.75rem'
-                      }
-                    }}
-                    value={vState.answer}
-                    onChange={(e, v) => {
-                      setState(prevState => ({ ...prevState, answer: v }))
-                    }}
-                  >
-                    <FormControlLabel value='Yes' control={<Radio />} label='Yes' />
-                    {/*<FormControlLabel value="Audio" control={<Radio />} label="Audio" />*/}
-                    <FormControlLabel value='No' control={<Radio />} label='No' sx={{ marginLeft: '1rem' }} />
-                  </RadioGroup>
+                    <Typography>
+                      {t('updateApproval.findAnswer-question')}
+                    </Typography>
+                    <RadioGroup
+                      row
+                      sx={{
+                        justifyContent: 'left',
+                        '& span': {
+                          fontSize: '.75rem'
+                        }
+                      }}
+                      value={vState.answer}
+                      onChange={(e, v) => {
+                        setState(prevState => ({ ...prevState, answer: v }))
+                      }}
+                    >
+                      <FormControlLabel value='Yes' control={<Radio />} label={t('Yes')} />
+                      {/*<FormControlLabel value="Audio" control={<Radio />} label="Audio" />*/}
+                      <FormControlLabel value='No' control={<Radio />} label={t('No')} sx={{ marginLeft: '1rem' }} />
+                    </RadioGroup>
                   </Grid>
                   {/*------notes----------*/}
                   <Grid item xs={12} md={10} sx={{ marginTop: '1rem', marginBottom: '2rem' }}>
-                    <Typography>Notes:</Typography>
+                    <Typography>{t('updateApproval.Notes')}:</Typography>
                     <PrimaryTextField
                       sx={{
                         marginTop: '.5rem',
@@ -428,7 +429,7 @@ export default function DocumentApprovalDlg() {
                           }))
                       }
                       multiline
-                      placeholder='Enter the notes' />
+                      placeholder={t('updateApproval.Enter the notes')} />
                   </Grid>
                 </Grid>
 
@@ -519,7 +520,7 @@ export default function DocumentApprovalDlg() {
               >
                 {/*------moderator approval-----------*/}
                 <Grid item xs={12} md={12}>
-                  <Typography sx={{ pb: '.3rem' }}>Moderator Approval :</Typography>
+                  <Typography sx={{ pb: '.3rem' }}>{t('updateApproval.Moderator Approval')} :</Typography>
                   <CustomToggleButtonGroup
                     groupName={approvalConst}
                     sx={{
@@ -543,7 +544,7 @@ export default function DocumentApprovalDlg() {
                           xs={12}
                           md={12}
                           sx={{ marginTop: '1rem' }}>
-                      <Typography>Did you find an answer for this question in the book ?</Typography>
+                      <Typography>{t('updateApproval.AiOpinion-answer')}</Typography>
                       <RadioGroup
                         row
                         sx={{
@@ -559,18 +560,18 @@ export default function DocumentApprovalDlg() {
                         <FormControlLabel
                           value='Yes'
                           control={<Radio />}
-                          label='Yes' />
+                          label={t('Yes')} />
                         <FormControlLabel
                           value='No'
                           control={<Radio />}
-                          label='No' />
+                          label={t('No')} />
                       </RadioGroup>
                     </Grid>
                     : null
                 }
                 {/*----------notes-----------*/}
                 <Grid item xs={12} md={12}>
-                  <Typography>Notes:</Typography>
+                  <Typography>{t('updateApproval.Notes')}:</Typography>
                   <PrimaryTextField
                     sx={{
                       marginTop: '.5rem',
@@ -587,7 +588,7 @@ export default function DocumentApprovalDlg() {
                         }))
                     }
                     multiline
-                    placeholder='Enter the notes' />
+                    placeholder={t('updateApproval.Enter the notes')} />
                 </Grid>
               </Grid>
             </Box>
@@ -596,11 +597,12 @@ export default function DocumentApprovalDlg() {
           <PrimaryButton
             sx={{
               mt: '2rem',
-              padding: '.5rem 2rem'
+              padding: '.5rem 2rem',
+              textTransform:'capitalize !important'
             }}
             onClick={handleUpdate}
           >
-            Update
+            {t('update')}
           </PrimaryButton>
         </Box>
       </Dialog>

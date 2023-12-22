@@ -29,6 +29,7 @@ import { apiGetDocumentContents } from '@interfaces/apis/documents'
 import { resToDocumentRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 import DocumentApprovalDlg from '@components/dialog/document-approval-dlg'
 import VideoApprovalDlg from '@components/dialog/video-approval-dlg'
+import { useTranslate } from '../../locales'
 
 // MediaWrapper component
 interface IMediaProps {
@@ -80,6 +81,8 @@ export const MediaActionwrapper = (props: IActionPros) => {
   }>({
     rows: []
   })
+
+  const {t}=useTranslate()
 
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -169,8 +172,9 @@ export const MediaActionwrapper = (props: IActionPros) => {
                       color: '#808080',
                       fontWeight: '500 !important'
                     }}
+                    className='text-uppercase'
                   >
-                    {item}
+                    {t(`column.${item.toLowerCase()}`)}
                   </Typography>
                 </TableCell>
               )

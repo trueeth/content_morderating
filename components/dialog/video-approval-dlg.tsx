@@ -12,15 +12,13 @@ import { IAppSlice } from '@store/reducers'
 import { openDocumentApproval, openVideoApproval } from '@store/reducers/dialog/reducers'
 import { EMediaRating, EModeratorApprovalStatus } from '@interfaces/enums'
 import CustomToggleButtonGroup from '@components/common/toggle-button'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import { PrimaryTextField } from '@components/common/text-field'
 import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
-import { setPaginationIndex } from '@store/reducers/page/reducers'
-import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import { apiUpdateApprovalVideoSummary } from '@interfaces/apis/videos'
 import { TResVideo } from '@interfaces/apis/api.types'
 import MenuItem from '@mui/material/MenuItem'
 import { setRefresh } from '@store/reducers/api/reducers'
+import { useTranslate } from '../../locales'
 
 
 type TState = {
@@ -32,6 +30,8 @@ type TState = {
 
 export default function VideoApprovalDlg() {
 
+
+  const {t}=useTranslate()
 
   const InitialState = {
     open: false,
@@ -78,13 +78,13 @@ export default function VideoApprovalDlg() {
   const handleUpdate = async () => {
     try {
       await updateApprovalVideo()
-      dispatch(openSnackbarSuccess('Success updating approval status'))
+      dispatch(openSnackbarSuccess(t('drawer.msg.updateApprovalStatusSuccess')))
       setTimeout(() => {
         dispatch(setRefresh(true))
       }, 1000)
     } catch (e) {
       console.error(e)
-      dispatch(openSnackbarError('Get Error while updating approval status'))
+      dispatch(openSnackbarError(t('drawer.msg.updateApprovalStatusError')))
     } finally {
       dispatch(openVideoApproval({ open: false }))
       setState(InitialState)
@@ -138,7 +138,7 @@ export default function VideoApprovalDlg() {
       rating:EMediaRating.none
     }
 
-    tempMemo.title=`${videoState?.Name} Approval`
+    tempMemo.title=`${videoState?.Name} ${t('updateApproval.Approval')}`
 
     setApprovalStatus(videoState?.VideoSummary?.ModeratorApprovalStatus)
 
@@ -218,7 +218,7 @@ export default function VideoApprovalDlg() {
               >
                 {/*------moderator approval-----------*/}
                 <Grid item xs={12} md={12}>
-                  <Typography sx={{ pb: '.3rem' }}>Moderator Approval :</Typography>
+                  <Typography sx={{ pb: '.3rem' }}>{t('updateApproval.Moderator Approval')} :</Typography>
                   <CustomToggleButtonGroup
                     groupName={approvalConst}
                     sx={{
@@ -241,7 +241,7 @@ export default function VideoApprovalDlg() {
                           xs={12}
                           md={12}
                           sx={{ marginTop: '1rem' }}>
-                      <Typography>Meida Rating</Typography>
+                      <Typography>{t('updateApproval.Meida Rating')}</Typography>
                       <Select
                         value={vState.rating}
                         onChange={(e)=>setState(prevState => ({...prevState, rating:Number(e.target.value)}))}
@@ -249,19 +249,22 @@ export default function VideoApprovalDlg() {
                           width: '80%',
                           fontSize: '.8rem',
                           pl:'1rem',
-                          mt:'.5rem'
+                          mt:'.5rem',
+                          '& .MuiOutlinedInput-input': {
+                            textTransform:"capitalize !important"
+                          }
                         }}
                       >
                         {Object.values(EMediaRating).map((val, index) => (
-                          <MenuItem key={index} value={index} sx={{ fontSize: '.8rem' }}>
-                            {val}
+                          <MenuItem key={index} value={index} sx={{ fontSize: '.8rem', textTransform:'capitalize !important' }}>
+                            {t(`rowRating.${val.toLowerCase()}`)}
                           </MenuItem>
                         ))}
                       </Select>
                     </Grid>
                 {/*----------notes-----------*/}
                 <Grid item xs={12} md={12}>
-                  <Typography>Notes:</Typography>
+                  <Typography>{t('updateApproval.Notes')}:</Typography>
                   <PrimaryTextField
                     sx={{
                       marginTop: '.5rem',
@@ -278,7 +281,7 @@ export default function VideoApprovalDlg() {
                         }))
                     }
                     multiline
-                    placeholder='Enter the notes' />
+                    placeholder={t('updateApproval.Enter the notes')} />
                 </Grid>
               </Grid>
             </Box>
@@ -287,11 +290,12 @@ export default function VideoApprovalDlg() {
           <PrimaryButton
             sx={{
               mt: '2rem',
-              padding: '.5rem 2rem'
+              padding: '.5rem 2rem',
+              textTransform: 'capitalize !important'
             }}
             onClick={handleUpdate}
           >
-            Update
+            {t('update')}
           </PrimaryButton>
         </Box>
       </Dialog>

@@ -8,6 +8,7 @@ import { PrimaryTextField } from '@components/common/text-field'
 import { openSnackbarError } from '@store/reducers/snackbar/reducers'
 import { useDispatch } from 'react-redux'
 import { CLanguage } from '@interfaces/constant'
+import { useTranslate } from '../../../../locales'
 
 export default function StatusStep(props: {
   handleNext: (any) => void
@@ -20,6 +21,7 @@ export default function StatusStep(props: {
     replaceItem:null,
     languageType: 0
   })
+  const {t}=useTranslate()
 
   const handleLanguageType = (event: any) => {
     setState({ ...vState, languageType: event.target.value })
@@ -32,7 +34,7 @@ export default function StatusStep(props: {
 
   const handleNext = () => {
     if (vState.newTitle == '' && vState.type == 'new') {
-      dispatch(openSnackbarError('Title is empty'))
+      dispatch(openSnackbarError(t('uploadDlg.step.titleEmpty-msg')))
       return
     }
     props.handleNext(vState)
@@ -63,7 +65,7 @@ export default function StatusStep(props: {
         }}
       >
         <Box sx={{paddingTop:'1.5rem'}}>
-          <Typography>Name</Typography>
+          <Typography className='text-capitalize' > {t('name')}</Typography>
           {/*<Radio*/}
           {/*  checked={vState.type === 'new'}*/}
           {/*  onChange={handleType}*/}
@@ -71,7 +73,7 @@ export default function StatusStep(props: {
           {/*/>*/}
         </Box>
         <PrimaryTextField
-          placeholder="Enter the name"
+          placeholder={t('uploadDlg.step.name-placeHolder')}
           value={vState.newTitle}
           onChange={(event) =>
             setState({ ...vState, newTitle: event.target.value })
@@ -91,8 +93,8 @@ export default function StatusStep(props: {
           props.mediaType==='Document'?
             <>
               <Box sx={{paddingTop:'1.5rem'}}>
-                <Typography>
-                  Language
+                <Typography className='text-capitalize' >
+                  {t('column.language')}
                 </Typography>
               </Box>
               <Select
@@ -103,6 +105,9 @@ export default function StatusStep(props: {
                   height: '40px',
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     borderColor: 'var(--Primary1)'
+                  },
+                  '& .MuiOutlinedInput-input':{
+                    textTransform:'capitalize !important'
                   },
                   bgcolor: 'white',
                   pl:'1rem'
@@ -119,8 +124,9 @@ export default function StatusStep(props: {
                       }}
                       key={index}
                       value={index}
+                      className='text-capitalize'
                     >
-                      {val}
+                      {t(val.toLowerCase())}
                     </MenuItem>))
                 }
               </Select>
@@ -136,10 +142,12 @@ export default function StatusStep(props: {
             '& .MuiButton-root': { width: '100px' }
           }}
         >
-          <PrimaryButton onClick={props.handleBack} active={false}>
-            Back
+          <PrimaryButton onClick={props.handleBack} active={false} className='text-capitalize' >
+            {t('back')}
           </PrimaryButton>
-          <PrimaryButton onClick={handleNext}>Next</PrimaryButton>
+          <PrimaryButton onClick={handleNext} className='text-capitalize'>
+            {t('next')}
+          </PrimaryButton>
         </Box>
       </Box>
     </StepWrapper>

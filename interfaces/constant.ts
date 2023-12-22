@@ -1,19 +1,17 @@
-import {
-  InsertDriveFileOutlined,
-} from '@mui/icons-material'
 
 const iconUrl = (icon: string) => `/assets/images/icon/${icon}.svg`;
 
 
-export const CHeaderTabs: Array<{ icon:string; title: string, url?: string, dialog?: string }> = [
-  { icon: iconUrl('dashboard'), title: 'Dashboard', url: 'dashboard' },
-  { icon: iconUrl('dashboard'), title: 'Videos', url: 'videos' },
-  { icon: iconUrl('dashboard'), title: 'Documents', url: 'documents' },
-  { icon: iconUrl('report'), title: 'Reports', url: 'reports' },
-  { icon: iconUrl('access'), title: 'Access', url: 'access' },
-  { icon: iconUrl('setting'), title: 'Settings', url: 'settings' },
-  { icon: iconUrl('upload'), title: 'Upload', dialog: 'upload' }
+export const CHeaderTabs: Array<{ icon:string; title: string, url?: string, dialog?: string, key?:string }> = [
+  { icon: iconUrl('dashboard'), title: 'Dashboard', key: 'Dashboard', url: 'dashboard' },
+  { icon: iconUrl('dashboard'), title: 'Videos',  key: 'Videos',url: 'videos' },
+  { icon: iconUrl('dashboard'), title: 'Documents',key: 'Documents', url: 'documents' },
+  { icon: iconUrl('report'), title: 'Reports',key: 'Reports', url: 'reports' },
+  { icon: iconUrl('access'), title: 'Access', key: 'Access', url: 'access' },
+  { icon: iconUrl('setting'), title: 'Settings',key: 'Settings', url: 'settings' },
+  { icon: iconUrl('upload'), title: 'Upload', key: 'Upload', url: 'upload' }
 ]
+
 
 
 export const CSceneState = [

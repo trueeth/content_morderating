@@ -24,6 +24,7 @@ import { EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@inte
 import { CLanguage } from '@interfaces/constant'
 import { readFileAsBytes, uint8ArrayToBase64 } from '@utils/file'
 import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
+import { useTranslate } from '../../../../locales'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -78,6 +79,7 @@ export default function SourceStep(props: {
   })
   const dispatch = useDispatch()
   // const router = useRouter()
+  const {t}=useTranslate()
 
   const getAxiosConfig = (startAt: number, type = 'form') => {
 
@@ -185,7 +187,7 @@ export default function SourceStep(props: {
       await apiUploadedVideoProcess(uploadId.data.Id)
     } catch (e) {
       console.error(e)
-      dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
+      dispatch(openSnackbarWarning(t('uploadDlg.msg.uploadFileProcessError')))
     } finally {
       dispatch(setApiLoading(false))
       setTimeout(() => {
@@ -261,7 +263,7 @@ export default function SourceStep(props: {
       await apiUploadDocumentProcess(uploadedDocument.data.Id)
     } catch (e) {
       console.error(e)
-      dispatch(openSnackbarWarning('Sorry! Something went wrong while processing uploaded file.'))
+      dispatch(openSnackbarWarning(t('uploadDlg.msg.uploadFileProcessError')))
     } finally {
       dispatch(setApiLoading(false))
       setTimeout(() => {
@@ -290,10 +292,10 @@ export default function SourceStep(props: {
       } else {
         await uploadDocument()
       }
-      dispatch(openSnackbarSuccess('File was uploaded successfully:'))
+      dispatch(openSnackbarSuccess(t('uploadDlg.msg.uploadFileSuccess')))
     } catch (e) {
       console.error(e)
-      dispatch(openSnackbarWarning('Sorry! Something went wrong while uploading file.'))
+      dispatch(openSnackbarWarning(t('uploadDlg.msg.uploadFileError')))
       dispatch(setApiLoading(false))
     }
 
@@ -338,21 +340,21 @@ export default function SourceStep(props: {
 
   const handleStartUpload = async () => {
     if (!vState.uploadFile) {
-      dispatch(openSnackbarError('No file was chosen'))
+      dispatch(openSnackbarError(t('uploadDlg.msg.validNoFile')))
       return
     }
     /** File validation */
     if (props.data.mediaType == 'Video' && vState.uploadFile.type.indexOf('video') < 0) {
-      dispatch(openSnackbarError('Please select a valid video'))
+      dispatch(openSnackbarError(t('uploadDlg.msg.validVideoFile')))
       return
     }
     if (props.data.mediaType == 'Document' && vState.uploadFile.type.indexOf('pdf') < 0) {
-      dispatch(openSnackbarError('Please select a valid pdf'))
+      dispatch(openSnackbarError(t('uploadDlg.msg.validPdfFile')))
       return
     }
 
     if (vState.uploadFile.size / (1024 * 1024 * 2048) > 1) {
-      dispatch(openSnackbarError('Please reselect file. File size is over 2GB'))
+      dispatch(openSnackbarError(t('uploadDlg.msg.validOverFile')))
       return
     }
 
@@ -385,7 +387,9 @@ export default function SourceStep(props: {
           }
         }}
       >
-        <Typography>Where is the source file</Typography>
+        <Typography>
+          {t('uploadDlg.step.sourceFile-question')}
+        </Typography>
 
         {/*<Box>
           <Typography>Upload from URL option</Typography>
@@ -402,7 +406,7 @@ export default function SourceStep(props: {
         />*/}
 
         <Box sx={{ paddingBottom: '.5rem' }}>
-          <Typography>Upload from your PC</Typography>
+          <Typography>{t('uploadDlg.step.Upload from your PC')}</Typography>
           {/*<Radio
             checked={vState.type === 'pc'}
             onChange={handleType}
@@ -435,11 +439,15 @@ export default function SourceStep(props: {
                     color: '#333'
                   }}
                 >
-                  Drag your file here or
+                  {t('Drag your file here or')}
                 </Typography>
-                <Typography style={{ color: 'var(--Primary1)' }}>Browse</Typography>
+                <Typography style={{ color: 'var(--Primary1)' }}>
+                  {t('Browse')}
+                </Typography>
               </Box>
-              <Typography>Maximum file size 2GB</Typography>
+              <Typography>
+                {t('Maximum file size 2GB')}
+              </Typography>
             </Box>
           </Box>
         </Box>
@@ -469,8 +477,8 @@ export default function SourceStep(props: {
             }
           }}
         >
-          <PrimaryButton active={false} onClick={props.handleBack}>
-            Back
+          <PrimaryButton active={false} onClick={props.handleBack} className='text-capitalize'>
+            {t('back')}
           </PrimaryButton>
           <PrimaryButton
             sx={{
@@ -480,8 +488,9 @@ export default function SourceStep(props: {
               }
             }}
             onClick={handleStartUpload}
+            className='text-capitalize'
           >
-            Start the Upload
+            {t('uploadDlg.step.Start the Upload')}
           </PrimaryButton>
         </Box>
       </Box>

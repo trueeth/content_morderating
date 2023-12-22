@@ -9,6 +9,7 @@ import { IAppSlice } from '@store/reducers'
 import { CDrawerDocumentTabs, CDrawerVideoTabs } from '@interfaces/constant'
 import Typography from '@mui/material/Typography'
 import DrawerTabQuestions from '@components/multi-media/drawer/document/tab-questions'
+import { useTranslate } from '../../../locales'
 
 export default function DrawerTab() {
   const [vState, setState] = React.useState({
@@ -16,6 +17,8 @@ export default function DrawerTab() {
     // pageNumber:0,
     // questionIndex:0,
   })
+
+  const {t}=useTranslate()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setState({ ...vState, tabIndex: newValue })
@@ -78,7 +81,7 @@ export default function DrawerTab() {
         }}
       >
         {drawerTabs.map((val, index) =>
-          <Tab label={val} key={index} />
+          <Tab label={t(`drawer.${val}`)} key={index} />
         )}
       </Tabs>
       <Box>

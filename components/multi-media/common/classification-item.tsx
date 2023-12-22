@@ -1,10 +1,13 @@
 import { EClassificationType } from '@interfaces/index'
 import * as React from 'react'
 import Box from '@mui/material/Box'
+import { useTranslate } from '../../../locales'
 
 const RowClassification = (props: {
   classifications?: EClassificationType[]
 }) => {
+  const {t}=useTranslate()
+
   return (
     <React.Fragment>
       {props.classifications.length>0 ?props.classifications.map((item, index) => {
@@ -13,7 +16,7 @@ const RowClassification = (props: {
             {item}
           </Box>
         )
-      }):<Box className={'not-assigned text-7'} >Not Assigned</Box>}
+      }):<Box className={'not-assigned text-7 text-capitalize'} >{t('not assigned')}</Box>}
     </React.Fragment>
   )
 }

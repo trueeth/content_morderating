@@ -21,6 +21,7 @@ import { EDocumentApprovalDlg, EProcessingStatus } from '@interfaces/enums'
 import RowStatus from '@components/multi-media/common/status-item'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import { setRefreshSubDoc } from '@store/reducers/api/reducers'
+import { useTranslate } from '../../../locales'
 
 function DocumentRow(props: {
   row: TDocumentRowType
@@ -31,6 +32,7 @@ function DocumentRow(props: {
 
   const { row } = props
   const dispatch = useDispatch()
+  const {t}=useTranslate()
 
 
   const [vState, setState] = React.useState<{
@@ -108,7 +110,7 @@ function DocumentRow(props: {
     // { title: 'Classification' },
     // { title: 'Reports' },
     {
-      title: 'Approval',
+      title: t(`rowActions.approval`),
       action: () => dispatch(openDocumentApproval({
         type: EDocumentApprovalDlg.document,
         docIndex: props.rowIndex
@@ -171,8 +173,8 @@ function DocumentRow(props: {
         </TableCell>
 
         <TableCell>
-          <Box className={'flex'} maxWidth={'100px'}>
-            {row.language}
+          <Box className={'flex text-capitalize'} maxWidth={'100px'}>
+            {t(row.language.toLowerCase())}
           </Box>
         </TableCell>
 
@@ -202,14 +204,15 @@ function DocumentRow(props: {
               fontSize: '.7rem',
               '&:hover': {
                 backgroundColor: '#4fc1d7'
-              }
+              },
+              textTransform:'capitalize !important'
             }}
             // onClick={() => props.handlePageNum(val.pageNumber, questionIndex)}
             onClick={rowActions[0].action}
           >
             {rowActions[0].title}
           </Button>:
-            <Typography sx={{fontSize:'.7rem'}}>Processing</Typography>
+            <Typography sx={{fontSize:'.7rem'}} className='text-capitalize'>{t('processing')}</Typography>
           }
         </TableCell>
       </TableRow>

@@ -1,37 +1,28 @@
-import {
-  AppBar,
-  Box,
-  ClickAwayListener,
-  Drawer,
-  Grow,
-  IconButton,
-  MenuList,
-  Popper,
-  SvgIcon,
-  Typography
-} from '@mui/material'
+import { AppBar, Box, Drawer, IconButton, Typography } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
 import Image from 'next/image'
-import LogoImage from '../../public/assets/images/logo.png'
-import UserLogo from '../../public/assets/images/user.png'
-import { ExpandMore } from '@mui/icons-material'
+import LogoImage from '@public/assets/images/logo.png'
+import UserLogo from '@public/assets/images/user.png'
 import MenuIcon from '@mui/icons-material/Menu'
-import MenuItem from '@mui/material/MenuItem'
 import { TopButton } from '@components/common/styled-button'
-import { CHeaderTabs } from '@interfaces/index'
 import { useDispatch } from 'react-redux'
 import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import useMounted from '../../hooks/use-mounted'
-import Paper from '@mui/material/Paper'
+import useMounted from '@hooks/use-mounted'
 import { useAuthContext } from '@components/auth/hooks'
 import RowAction from '@components/multi-media/common/action-item'
 import { openSnackbarInfo } from '@store/reducers/snackbar/reducers'
+import SvgColor from '@components/common/svg-color'
+import DropMenu from '@components/layout/header/drop-menu'
+import LanguagePopover from '@components/layout/header/language-popover'
+import { useTranslate } from '../../../locales'
+import { CHeaderTabs } from '@interfaces/constant'
 
 function UserAction() {
   const { logout } = useAuthContext()
+  const {t}=useTranslate()
   // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
   const handleLogout = async () => {
@@ -45,7 +36,7 @@ function UserAction() {
 
   const rowActions = [
     {
-      title: 'Log Out',
+      title: t('rowActions.log out'),
       action: handleLogout
     }
     // {
@@ -60,124 +51,11 @@ function UserAction() {
   )
 }
 
-const DropMenu = () => {
-  const anchorRef = React.useRef<HTMLButtonElement>(null)
-  const [open, setOpen] = React.useState(false)
-  const router = useRouter()
-
-  const dispatch = useDispatch()
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen)
-  }
-
-  const handleClose = (event: Event | React.SyntheticEvent) => {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target as HTMLElement)
-    ) {
-      return
-    }
-
-    setOpen(false)
-  }
-
-  const handleMenuClose = (
-    event: Event | React.SyntheticEvent,
-    type: string
-  ) => {
-    router.push({ pathname: '../' + type.toLowerCase(), query: null })
-    handleClose(event)
-  }
-
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault()
-      setOpen(false)
-    } else if (event.key === 'Escape') {
-      setOpen(false)
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open)
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current!.focus()
-    }
-    prevOpen.current = open
-  }, [open])
-  return (
-    <React.Fragment>
-      <TopButton
-        ref={anchorRef}
-        id='composition-button'
-        aria-controls={open ? 'composition-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup='true'
-        onClick={handleToggle}
-        main={true}
-        active={
-          router.pathname === `/videos` || router.pathname === `/documents`
-        }
-      >
-        <Box
-          component='img'
-          src='/assets/images/icon/slide.svg'
-          sx={{
-            width: 20,
-            height: 20,
-            flexShrink: 0
-            // filter:'brightness(0) invert(1)'
-          }}
-        />
-        <Typography ml={0.5} className='menu-title'>Multimedia</Typography>
-        <SvgIcon component={ExpandMore} className='ml-5' />
-      </TopButton>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        placement='bottom-start'
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom-start' ? 'left top' : 'left bottom'
-            }}
-          >
-            <Paper
-              sx={{
-                marginLeft: 2
-              }}
-            >
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id='composition-menu'
-                  aria-labelledby='composition-button'
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem className='menu-title' onClick={(e) => handleMenuClose(e, 'videos')}>
-                    Videos
-                  </MenuItem>
-                  <MenuItem className='menu-title' onClick={(e) => handleMenuClose(e, 'documents')}>
-                    Documents
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </React.Fragment>
-  )
-}
 
 const Header = () => {
+
+  const { t } = useTranslate()
+
   const hasMounted = useMounted()
   const isDesktop = useMediaQuery('(min-width: 1224px)')
   const username = localStorage.getItem('username')
@@ -187,6 +65,7 @@ const Header = () => {
   const [vState, setState] = useState({ mobileMenuOpen: false })
 
   const dispatch = useDispatch()
+
 
   const handleHeader = (title: string, url?: string) => () => {
     switch (title) {
@@ -203,7 +82,7 @@ const Header = () => {
       //   if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
       //   break
       default:
-        dispatch(openSnackbarInfo('Sorry, this part will come soon.'))
+        dispatch(openSnackbarInfo(t('This part will come soon')))
         break
     }
   }
@@ -239,29 +118,30 @@ const Header = () => {
             sx={{ flexDirection: { xs: 'column', md: 'row' } }}
           >
             {CHeaderTabs.map((item, index) => {
-              if (item.title === 'Videos') {
+              if (item.key === 'Videos') {
                 return <DropMenu key={index}></DropMenu>
-              } else if (item.title === 'Documents') {
+              } else if (item.key === 'Documents') {
                 return <div key={index} />
               } else {
                 return (
-                  <Box key={index} onClick={handleHeader(item.title, item.url)}>
+                  <Box key={index} onClick={handleHeader(item.key, item.url)}>
                     <TopButton
-                      main={'Upload' !== item.title}
+                      main={'Upload' !== item.key}
                       active={
-                        router.pathname === `/${item.title.toLowerCase()}`
+                        router.pathname === `/${item.url.toLowerCase()}`
                       }
                     >
-                      <Box
-                        component='img'
+
+                      <SvgColor
                         src={item.icon}
                         sx={{
                           width: 20,
                           height: 20,
-                          flexShrink: 0
+                          flexShrink: 0,
+                          color: 'white'
                         }}
                       />
-                      <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
+                      <Typography ml={0.5} className='menu-title text-capitalize'>{t(item.title.toLowerCase())}</Typography>
                     </TopButton>
                   </Box>
                 )
@@ -269,6 +149,7 @@ const Header = () => {
             })}
           </Box>
           {/* ---- profile --- */}
+
           <Box
             sx={{
               display: 'flex',
@@ -276,6 +157,11 @@ const Header = () => {
               bgcolor: 'var(--Primary3)'
             }}
           >
+
+            <Box sx={{ bgcolor: 'var(--Secondary)', display: 'flex' }}>
+              <LanguagePopover />
+            </Box>
+
             <Box sx={{ p: 2, display: 'flex' }}>
               <Box
                 className='user-logo'
@@ -284,17 +170,19 @@ const Header = () => {
               </Box>
               <Box sx={{ ml: 2 }}>
                 {username &&
-                  <Typography fontSize={14} whiteSpace='nowrap' width={70} sx={{ fontWeight: '500 !important', textTransform:'capitalize !important' }}>
+                  <Typography fontSize={14} whiteSpace='nowrap' width={70}
+                              sx={{ fontWeight: '500 !important', textTransform: 'capitalize !important' }}>
                     {username}
                   </Typography>}
-                <Typography fontSize={10} sx={{ fontWeight: '400 !important' }}>Admin</Typography>
+                <Typography fontSize={10} sx={{ fontWeight: '400 !important' }} className='text-capitalize'>
+                  {t('admin')}
+                </Typography>
               </Box>
+
               <UserAction />
             </Box>
-            <Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-               {/*<Image src={Headset} alt={'headset'} width={24}></Image>*/}
-            </Box>
           </Box>
+
         </Box>
       </AppBar>
     )
@@ -361,8 +249,7 @@ const Header = () => {
                     main={item.title !== 'Upload'}
                     active={router.pathname === `/${item.title.toLowerCase()}`}
                   >
-                    <Box
-                      component='img'
+                    <SvgColor
                       src={item.icon}
                       sx={{
                         width: 20,

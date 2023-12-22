@@ -1,0 +1,215 @@
+{
+  "video": "video",
+  "document": "document",
+
+  "dashboard": "dashboard",
+  "multimedia": "multimedia",
+  "reports": "reports",
+  "access": "access",
+  "settings": "settings",
+  "videos": "videos",
+  "documents": "documents",
+  "upload": "upload",
+
+  "name": "name",
+  "status": "status",
+  "rating": "rating",
+  "classification": "classification",
+  "moderator-status": "moderator status",
+  "ai-approval": "ai approval",
+  "submission-date": "submission date",
+  "actions": "actions",
+
+  "column": {
+    "name": "name",
+    "status": "status",
+    "rating": "rating",
+    "classification": "classification",
+    "moderator status": "moderator status",
+    "ai approval": "ai approval",
+    "actions": "actions",
+    "language": "language",
+    "submission date": "submission date",
+
+    "scene number": "scene number",
+    "scene status": "scene status",
+    "ai classification": "ai classification",
+
+    "topic number": "topic number",
+    "topic name": "topic name",
+
+    "question": "question",
+    "moderator approval": "moderator approval",
+    "ai detection": "ai detection",
+    "pages": "pages"
+  },
+
+  "rowActions": {
+    "insight": "insight",
+    "approval": "approval",
+    "log out": "log out"
+  },
+
+  "rowStatus": {
+    "new": "new",
+    "uploaded": "uploaded",
+    "processing": "processing",
+    "processed": "processed",
+    "failed": "failed",
+    "not assigned": "not assigned"
+  },
+
+  "rowRating": {
+    "none" : "none",
+    "g" : "g",
+    "pg" : "pg",
+    "pg12" : "pg12",
+    "pg15" : "pg15",
+    "r18" : "r18",
+    "r15" : "r15",
+    "missing" : "missing",
+    "not assigned":"not assigned"
+  },
+
+  "rowApproval": {
+    "new" : "new",
+    "inreview" : "in review",
+    "approved" : "approved",
+    "rejected" : "rejected",
+    "pending" : "pending",
+    "none":"none",
+    "not assigned": "not assigned"
+  },
+
+
+  "rowClassification": {
+    "sexual": "sexual",
+    "violence": "violence",
+    "hate": "hate",
+    "selfharm": "self harm",
+    "not assigned": "not assigned"
+  },
+
+  "uploadDlg": {
+    "upload media": "upload media",
+    "closeWarnning-msg": "Please don't refresh page. We're processing your request!",
+    "step": {
+      "media type": "MEDIA TYPE",
+      "new or old": "NEW OR OLD",
+      "source": "SOURCE",
+      "launch": "LAUNCH",
+      "mediaType-question": "What do you want to upload?",
+      "titleEmpty-msg": "Title is empty",
+      "name-placeHolder": "Enter the name",
+
+      "sourceFile-question": "Where is the source file",
+      "Upload from your PC": "Upload from your PC",
+      "Drag your file here or": "Drag your file here or",
+      "Browse": "Browse",
+      "Maximum file size 2GB": "Maximum file size 2GB",
+      "Start the Upload": "Start the Upload",
+
+      "Video Upload": "Video Upload",
+      "Document Upload": "Document Upload",
+      "Uploading": "Uploading",
+      "Analyzing": "Analyzing",
+      "Indexing": "Indexing",
+      "Scoring": "Scoring",
+      "disclaimer": "Disclaimer: Do not leave this page until the first stage of upload is done."
+    },
+    "msg": {
+      "uploadFileProcessError": "Sorry! Something went wrong while processing uploaded file.",
+      "uploadFileSuccess": "File was uploaded successfully.",
+      "uploadFileError": "Sorry! Something went wrong while uploading file.",
+      "validNoFile": "No file was chosen",
+      "validVideoFile": "Please select a valid video",
+      "validPdfFile": "Please select a valid pdf",
+      "validOverFile": "Please reselect file. File size is over 2GB"
+    }
+  },
+
+  "drawer": {
+    "video": {
+      "Video for the": "Video for the",
+      "Scene": "Scene",
+      "STATUS": "STATUS",
+      "RATING": "RATING",
+      "AI CLASSIFICATION": "AI CLASSIFICATION",
+      "SUBMISSION DATE": "SUBMISSION DATE",
+      "AI APPROVAL": "AI APPROVAL",
+
+      "Update Scene Status": "Update Scene Status",
+      "Update Topic": "Update Topic",
+      "Write your note": "Write your note"
+    },
+    "msg": {
+      "updateVideoSceneSuccess": "Success, updated VideoSceneSummary data",
+      "updateVideoSceneError": "Error, updating VideoSceneSummary",
+      "updateApprovalStatusSuccess": "Success updating approval status",
+      "updateApprovalStatusError": "Get Error while updating approval status"
+    },
+
+    "No answers": "No answers",
+    "Answer found": "Answer found",
+    "Answer not found": "Answer not found",
+
+    "Play the Scene": "Play the Scene",
+    "Activities": "Activities",
+    "Overview": "Overview",
+    "Questions": "Questions",
+
+    "History": "History",
+    "No History yet": "No History yet",
+    "Book": "Book",
+    "Topic": "Topic"
+  },
+
+  "updateApproval": {
+    "Approval": "Approval",
+    "Moderator Approval": "Moderator Approval",
+    "Meida Rating": "Meida Rating",
+    "Notes": "Notes",
+    "Enter the notes": "Enter the notes",
+
+    "Document Approval": "Document Approval",
+    "Book": "Book",
+    "Topic": "Topic",
+    "Question": "Question",
+    "Page": "Page",
+    "Topic Approval": "Topic Approval",
+    "Question Approval": "Question Approval",
+
+    "Ai opinion": "Ai opinion",
+    "AiOpinion-answer": "The page portrays the question in ${no} way based on the Ai findings",
+    "Snippet": "Snippet",
+    "findAnswer-question": "Did you find an answer for this question in the book ?",
+
+    "msg": {
+      "updateSuccess": "Success updating approval status",
+      "updateError": "Get Error while updating approval status"
+    }
+  },
+
+  "auth": {
+  },
+
+  "This part will come soon": "This part will come soon",
+
+  "scene": "scene",
+  "topic": "topic",
+
+  "next": "next",
+  "back": "back",
+  "update": "update",
+
+  "Yes": "Yes",
+  "No": "No",
+
+  "processing": "processing",
+  "not assigned": "not assigned",
+
+  "arabic": "arabic",
+  "english": "english",
+
+  "admin": "admin"
+}

@@ -1,5 +1,6 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { useTranslate } from '../../locales'
 
 interface IProps {
   groupName: string[]
@@ -10,6 +11,7 @@ interface IProps {
 
 export default function CustomToggleButtonGroup(props: IProps) {
   const [vState, setState] = useState({ tabIndex: 0 })
+  const {t}=useTranslate()
 
   const setTabIndex = (e: any, newValue: number) => {
     if (newValue !== null) {
@@ -38,12 +40,13 @@ export default function CustomToggleButtonGroup(props: IProps) {
       {props.groupName.map((val, index) => (
         <ToggleButton
           sx={{
-            padding: '7px 20px'
+            padding: '7px 20px',
+            textTransform:'capitalize !important'
           }}
           value={index}
           key={index}
         >
-          {val}
+          {t(`rowApproval.${val.toLowerCase()}`)}
         </ToggleButton>
       ))}
     </ToggleButtonGroup>

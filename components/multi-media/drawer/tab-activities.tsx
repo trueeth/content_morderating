@@ -1,15 +1,9 @@
-import {
-  Box,
-  TextField,
-  Typography
-} from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import IconButton from '@mui/material/IconButton'
 import { Slideshow } from '@mui/icons-material'
 import { DrawerHistories } from '@interfaces/apis/_mock'
-import { useSelector } from 'react-redux'
-import { IReduxState } from '@store/index'
-import { IAppSlice } from '@store/reducers'
+import { useTranslate } from '../../../locales'
 
 
 interface IHistoryRow {
@@ -95,6 +89,7 @@ export default function DrawerTabActivities() {
 
   // const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
+  const { t } = useTranslate()
 
   return (
     <Box
@@ -108,7 +103,7 @@ export default function DrawerTabActivities() {
 
       {/*------------History--------*/}
       <Box>
-        <Typography ml={3} sx={{ textAlign: 'center', marginLeft: '0' }}>History</Typography>
+        <Typography ml={3} sx={{ textAlign: 'center', marginLeft: '0' }}>{t(`drawer.History`)}</Typography>
         <Box>
           {DrawerHistories.length > 0 ?
             DrawerHistories.map((item, index) => (
@@ -119,7 +114,7 @@ export default function DrawerTabActivities() {
                 description={item.description}
               />
             )) :
-            <Typography sx={{ textAlign: 'center', paddingTop: '2rem' }}>No History yet</Typography>
+            <Typography sx={{ textAlign: 'center', paddingTop: '2rem' }}>{t('drawer.No History yet')}</Typography>
           }
         </Box>
       </Box>

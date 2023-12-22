@@ -3,10 +3,12 @@ import { Box, Radio, RadioGroup, Typography } from '@mui/material'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { PrimaryButton } from '@components/common/styled-button'
 import React, { useState } from 'react'
+import { useTranslate } from '../../../../locales'
 
 
 export default function TypeStep(props: { handleNext: (any) => void }) {
   const [vState, setState] = useState('Video')
+  const {t}=useTranslate()
   const handleNext = () => {
     props.handleNext(vState)
   }
@@ -34,7 +36,7 @@ export default function TypeStep(props: { handleNext: (any) => void }) {
             fontSize: '1rem'
           }}
         >
-          What do you want to upload?
+          {t('uploadDlg.step.mediaType-question')}
         </Typography>
         <RadioGroup
           row
@@ -42,13 +44,29 @@ export default function TypeStep(props: { handleNext: (any) => void }) {
           value={vState}
           onChange={handleChange}
         >
-          <FormControlLabel value="Video" control={<Radio />} label="Video" />
+          <FormControlLabel
+            value="Video"
+            control={<Radio />}
+            sx={{
+              '& .MuiFormControlLabel-label': {
+                textTransform:'capitalize !important'
+              }
+          }}
+            label={t('video')} />
           {/*<FormControlLabel value="Audio" control={<Radio />} label="Audio" />*/}
-          <FormControlLabel value="Document" control={<Radio />} label="Document" />
+          <FormControlLabel
+            value="Document"
+            control={<Radio />}
+            sx={{
+              '& .MuiFormControlLabel-label': {
+                textTransform:'capitalize !important'
+              }
+            }}
+            label={t('document')} />
         </RadioGroup>
         <Box sx={{ textAlign: 'center' }}>
-          <PrimaryButton onClick={handleNext} sx={{ width: '100px' }}>
-            Next
+          <PrimaryButton onClick={handleNext} sx={{ width: '100px' }} className='text-capitalize' >
+            {t('next')}
           </PrimaryButton>
         </Box>
       </Box>

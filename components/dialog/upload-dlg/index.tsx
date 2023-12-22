@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
@@ -10,18 +11,19 @@ import { IAppSlice } from '@store/reducers'
 import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
 import { IReduxState } from '@store/index'
 import UploadStepper from '@components/dialog/upload-dlg/upload-stepper'
-import { useEffect } from 'react'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { openSnackbarWarning } from '@store/reducers/snackbar/reducers'
+import { useTranslate } from '../../../locales'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
+  const { t } = useTranslate()
 
   // console.error(appState)
   const handleClose = () => {
     if (appState.api.loading)
-      dispatch(openSnackbarWarning('Please don\'t refresh page. We\'re processing your request!'))
+      dispatch(openSnackbarWarning(t('uploadDlg.closeWarnning-msg')))
     else
       dispatch(openVideoUploadDialog({ open: false }))
   }
@@ -71,10 +73,11 @@ export default function UploadDialog() {
                 mr: 1,
                 color: '#333'
               }}
+              className='text-capitalize'
             >
-              {vState.tabIndex === 0 ? 'Upload Media' : 'History'}
+              {vState.tabIndex === 0 ? t('uploadDlg.upload media') : 'History'}
             </Typography>
-            <Tooltip title={vState.tabIndex === 0 ? 'Upload Media' : 'History'}>
+            <Tooltip className='text-capitalize' title={vState.tabIndex === 0 ? t('uploadDlg.upload media') : 'History'}>
               <InfoIcon sx={{ color: 'grey', width: '16px' }} />
             </Tooltip>
           </Box>

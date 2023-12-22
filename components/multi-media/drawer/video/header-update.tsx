@@ -11,6 +11,7 @@ import { Box, Button, TextField, ToggleButton, ToggleButtonGroup, Typography } f
 import { styled } from '@mui/system'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { setRefresh } from '@store/reducers/api/reducers'
+import { useTranslate } from '../../../../locales'
 
 
 const CssTextField = styled(TextField)({
@@ -38,6 +39,7 @@ export const HeaderUpdate = () => {
   }
 
   const router = useRouter()
+  const {t}=useTranslate()
 
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -79,12 +81,12 @@ export const HeaderUpdate = () => {
     }
     try {
       await apiUpdateVideoSceneSummary(urlParam, parmas)
-      dispatch(openSnackbarSuccess('Success, updated VideoSceneSummary data'))
+      dispatch(openSnackbarSuccess(t('drawer.msg.updateVideoSceneSuccess')))
       setTimeout(() => {
         dispatch(setRefresh(true))
       }, 1000)
     } catch (e) {
-      dispatch(openSnackbarError('Error, updating VideoSceneSummary'))
+      dispatch(openSnackbarError(t('drawer.msg.updateVideoSceneError')))
     }
   }
 
@@ -103,7 +105,7 @@ export const HeaderUpdate = () => {
   /* eslint-enable */
 
   const updateDocumentQuestion = async () => {
-    dispatch(openSnackbarInfo('This part will come soon'))
+    dispatch(openSnackbarInfo(t('This part will come soon')))
   }
   const handleUpdate = appState.drawer.type === 'video' ? updateVideoScene : updateDocumentQuestion
 
@@ -123,7 +125,7 @@ export const HeaderUpdate = () => {
         fontSize: '.9rem',
         marginTop: '1rem',
         padding: '1rem'
-      }}>{appState.drawer.type === 'video' ? 'Update Scene Status' : 'Update Topic'}</Typography>
+      }}>{appState.drawer.type === 'video' ? t('Update Scene Status') : t('Update Topic')}</Typography>
 
       {/*---------Button group---------*/}
       <Box
@@ -144,10 +146,11 @@ export const HeaderUpdate = () => {
               key={index}
               sx={{
                 width: '130px',
-                height: '33px'
+                height: '33px',
+                textTransform:'capitalize !important'
               }}
             >
-              {item}
+              {t(`rowApproval.${item.toLowerCase()}`)}
             </ToggleButton>
           ))}
         </ToggleButtonGroup>
@@ -166,7 +169,7 @@ export const HeaderUpdate = () => {
       >
         <CssTextField
           fullWidth
-          placeholder='Write your note'
+          placeholder={t('drawer.video.Write your note')}
           sx={{ mr: 2 }}
           InputProps={{
             sx: {
@@ -187,11 +190,12 @@ export const HeaderUpdate = () => {
             backgroundColor: 'var(--Primary1)',
             width: '130px',
             height: '33px',
-            '&:hover': { backgroundColor: 'var(--Primary1)' }
+            '&:hover': { backgroundColor: 'var(--Primary1)' },
+            textTransform:'capitalize !important'
           }}
           onClick={handleUpdate}
         >
-          Update
+          {t('update')}
         </Button>
       </Box>
     </Box>

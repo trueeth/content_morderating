@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import Head from 'next/head'
-import Header from './header'
+import Index from './header'
 import UploadDialog from '../dialog/upload-dlg'
 import { Alert, Container, Snackbar } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
@@ -47,7 +47,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <script src="https://amp.azure.net/libs/amp/2.3.6/azuremediaplayer.min.js" async></script>
       </Head>
       <header className={'w-full'}>
-        <Header />
+        <Index />
       </header>
       <UploadDialog />
 

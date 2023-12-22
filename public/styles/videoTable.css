@@ -30,8 +30,17 @@
   text-transform: uppercase;
   line-height: 0.875rem; /* 100% */
 }
+
 .text-uppercase {
   text-transform: uppercase !important;
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
 }
 
 .status-failed {
