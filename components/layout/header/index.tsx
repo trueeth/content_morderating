@@ -181,6 +181,10 @@ const Header = () => {
 
               <UserAction />
             </Box>
+
+            {/*<Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              <Image src={Headset} alt={'headset'} width={24}></Image>
+            </Box>*/}
           </Box>
 
         </Box>

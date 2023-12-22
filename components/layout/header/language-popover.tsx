@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { TopButton } from '@components/common/styled-button'
 import { ClickAwayListener, Grow, MenuList, Popper, Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import MenuItem from '@mui/material/MenuItem'
 import Box from '@mui/material/Box'
-import { useTranslate } from '../../../locales'
+import { useLocales, useTranslate } from '../../../locales'
+import IconButton from '@mui/material/IconButton'
 
 const LanguagePopover = () => {
   const anchorRef = React.useRef<HTMLButtonElement>(null)
@@ -12,6 +12,7 @@ const LanguagePopover = () => {
 
 
   const { onChangeLang } = useTranslate()
+  const { currentLang } = useLocales()
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen)
@@ -55,28 +56,33 @@ const LanguagePopover = () => {
   }, [open])
   return (
     <React.Fragment>
-      <TopButton
-        ref={anchorRef}
-        id='composition-button'
-        aria-controls={open ? 'composition-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup='true'
-        onClick={handleToggle}
-        main={true}
+      <Box
         sx={{
-          padding: 0, minWidth: 0
+          display:"flex"
         }}
       >
-        <Box
-          component='img'
-          src='/assets/images/icon/language.svg'
-          sx={{
-            width: 24,
-            height: 24,
-            color:'#3ec0d8'
-          }}
-        />
-      </TopButton>
+        <IconButton
+          ref={anchorRef}
+          onClick={handleToggle}
+        >
+          <Box
+            component='span'
+            className='svg-color'
+            sx={{
+              width: 24,
+              height: 24,
+              display: 'inline-block',
+              bgcolor: 'currentColor',
+              mask: `url(/assets/images/icon/language.svg) no-repeat center / contain`,
+              WebkitMask: `url(/assets/images/icon/language.svg) no-repeat center / contain`,
+              color: open ? '#3ec0d8' : 'white',
+              '&:hover': {
+                color: '#3ec0d8'
+              }
+            }}
+          />
+        </IconButton>
+      </Box>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
@@ -105,7 +111,10 @@ const LanguagePopover = () => {
                   aria-labelledby='composition-button'
                   onKeyDown={handleListKeyDown}
                 >
-                  <MenuItem className='menu-title' onClick={(e) => handleMenuClose(e, 'en')}>
+                  <MenuItem
+                    className='menu-title'
+                    onClick={(e) => handleMenuClose(e, 'en')}
+                  >
 
                     <Box
                       component='img'
@@ -115,7 +124,15 @@ const LanguagePopover = () => {
                         height: 24
                       }}
                     />
-                    <Typography ml={0.5} className='menu-title'>English</Typography>
+                    <Typography
+                      ml={0.5}
+                      className='menu-title'
+                      sx={{
+                        color:currentLang.value=='en'?'#75598d':'inherit'
+                      }}
+                    >
+                      English
+                    </Typography>
                   </MenuItem>
                   <MenuItem className='menu-title' onClick={(e) => handleMenuClose(e, 'ar')}>
 
@@ -127,7 +144,15 @@ const LanguagePopover = () => {
                         height: 24
                       }}
                     />
-                    <Typography ml={0.5} className='menu-title'>Arabic</Typography>
+                    <Typography
+                      ml={0.5}
+                      className='menu-title'
+                      sx={{
+                        color:currentLang.value=='ar'?'#75598d':'inherit'
+                      }}
+                    >
+                      Arabic
+                    </Typography>
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>
