@@ -89,6 +89,7 @@ function DocumentRow(props: {
     }
   }
 
+  /*eslint-disable*/
   useEffect(() => {
     if (vState.openSummary && props.rowIndex === appState.drawer.rowIndex) {
       (async () => {
@@ -104,7 +105,7 @@ function DocumentRow(props: {
       })()
     }
   }, [appState.api.refreshSubDoc])
-
+/*eslint-enable*/
 
   const rowActions = [
     // { title: 'Classification' },

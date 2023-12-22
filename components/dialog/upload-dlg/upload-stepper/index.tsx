@@ -53,7 +53,7 @@ export default function UploadStepper() {
 
   useEffect(() => {
     dispatch(setUploadProgress({ progress: 0, remaining: 0 }))
-  }, [])
+  }, [dispatch])
 
   return (
     <Box sx={{ width: '100%' }}>

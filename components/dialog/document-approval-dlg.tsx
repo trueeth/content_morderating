@@ -192,7 +192,7 @@ export default function DocumentApprovalDlg() {
     }
   }
 
-
+  /* eslint-disable */
   useEffect(() => {
     const gptResponse = documentDetailState?.GptResponse[dlgState.topicIndex]
     switch (dlgState.type) {
@@ -213,7 +213,7 @@ export default function DocumentApprovalDlg() {
     }
   }, [appState.dialog.documentApproval])
 
-  /* eslint-disable */
+
   const memoValue = useMemo(() => {
     let tempMemo = {
       title: '',

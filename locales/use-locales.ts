@@ -44,6 +44,7 @@ export function useTranslate() {
 
   const settings = useSettingsContext();
 
+  /*eslint-disable*/
   const onChangeLang = useCallback(
     (newlang: string) => {
       i18n.changeLanguage(newlang);
@@ -51,6 +52,7 @@ export function useTranslate() {
     },
     [i18n, settings]
   );
+  /*eslint-enable*/
 
   return {
     t,

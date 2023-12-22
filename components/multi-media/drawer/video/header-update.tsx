@@ -35,7 +35,8 @@ export const HeaderUpdate = () => {
     event: React.MouseEvent<HTMLElement>,
     newState: string | null
   ) => {
-    setState(prevState => ({ ...prevState, moderatorStatus: newState }))
+    if (newState)
+      setState(prevState => ({ ...prevState, moderatorStatus: newState }))
   }
 
   const router = useRouter()

@@ -37,10 +37,12 @@ export default function DrawerTabQuestions() {
 
   const [vState, setState]=useState({memoValue:[]})
 
+  /*eslint-disable*/
   useEffect(() => {
     const gptResponse =appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
     setState(prevState => ({...prevState, memoValue: gptResponse}))
   }, [appState.drawer.drawerData])
+  /*eslint-enable*/
 
   // const memoValue = useMemo(()=>{
   //   console.log('-----memo-questions-----')

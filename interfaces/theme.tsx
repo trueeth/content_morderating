@@ -29,9 +29,17 @@ const theme = {
           },
           backgroundColor: 'var(--Secondry-L)',
           border: 'none',
-          '&.Mui-selected, &.Mui-selected:hover': {
+          // '&.Mui-selected, &.Mui-selected:hover': {
+          //   color: 'white',
+          //   backgroundColor: 'var(--Primary1)'
+          // },
+          '&.Mui-selected:nth-of-type(1)': {
             color: 'white',
-            backgroundColor: 'var(--Primary1)'
+            backgroundColor: '#2caa70'
+          },
+          '&.Mui-selected:nth-of-type(2)': {
+            color: 'white',
+            backgroundColor: '#ff8787'
           }
         }
       }
