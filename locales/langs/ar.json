@@ -1,45 +1,45 @@
 {
   "video": "فيديو",
-  "document": "وثيقة",
+  "document": "كتاب",
 
-  "dashboard": "لوحة القيادة",
+  "dashboard": "لوحة المعلومات",
   "multimedia": "الوسائط المتعددة",
   "reports": "التقارير",
   "access": "وصول",
   "settings": "إعدادات",
-  "videos": "أشرطة فيديو",
-  "documents": "وثائق",
+  "videos": "المحتوى المرئي",
+  "documents": "المحتوى المكتوب",
   "upload": "رفع",
 
   "name": "اسم",
   "status": "حالة",
   "rating": "تقييم",
   "classification": "تصنيف",
-  "moderator-status": "حالة المشرف",
-  "ai-approval": "موافقة منظمة العفو الدولية",
+  "moderator-status": "حالة المراقب",
+  "ai-approval": "موافقة الذكاء الصناعي",
   "submission-date": "تاريخ التقديم",
-  "actions": "أجراءات",
+  "actions": "اجراءات",
 
   "column": {
     "name": "اسم",
     "status": "حالة",
     "rating": "تقييم",
     "classification": "تصنيف",
-    "moderator status": "حالة المشرف",
-    "ai approval": "موافقة منظمة العفو الدولية",
-    "actions": "أجراءات",
-    "language": "لغة",
+    "moderator status": "حالة المراقب",
+    "ai approval": "موافقة الذكاء الصناعي",
+    "actions": "اجراءات",
+    "language": "اللغة",
     "submission date": "تاريخ التقديم",
 
     "scene number": "رقم المشهد",
     "scene status": "حالة المشهد",
-    "ai classification": "تصنيف منظمة العفو الدولية",
+    "ai classification": "تصنيف الذكاء الصناعي",
 
     "topic number": "رقم الموضوع",
     "topic name": "اسم الموضوع",
 
     "question": "سؤال",
-    "moderator approval": "موافقة الوسيط",
+    "moderator approval": "موافقة المراقب",
     "ai detection": "كشف الذكاء الاصطناعي",
     "pages": "الصفحات"
   },
@@ -53,54 +53,54 @@
   "rowStatus": {
     "new": "جديد",
     "uploaded": "تم الرفع",
-    "processing": "يعالج",
-    "processed": "معالجتها",
-    "failed": "فشل",
+    "processing": "جاري المعالجة",
+    "processed": "تمت المعالجة",
+    "failed": "حصلت مشكلة أثناء المعالجة",
     "not assigned": "غيرمعتمد"
   },
 
   "rowRating": {
-    "none" : "لا أحد",
-    "g" : "ز",
-    "pg" : "ص",
-    "pg12" : "الصفحة 12",
-    "pg15" : "الصفحة 15",
-    "r18" : "ص18",
-    "r15" : "ص15",
-    "missing" : "مفتقد",
+    "none": "none",
+    "g": "g",
+    "pg": "pg",
+    "pg12": "pg12",
+    "pg15": "pg15",
+    "r18": "r18",
+    "r15": "r15",
+    "missing": "غير موجود",
     "not assigned": "غيرمعتمد"
   },
 
   "rowApproval": {
     "new" : "جديد",
-    "inreview" : "في مراجعة",
-    "approved" : "موافقة",
+    "inreview" : "قيد المراجعة",
+    "approved" : "تمت الموافقة",
     "rejected" : "مرفوض",
     "pending" : "قيد الانتظار",
-    "none": "لا أحد",
-    "not assigned": "غيرمعتمد"
+    "none": "لايوجد",
+    "not assigned": "غير معتمد"
   },
 
 
   "rowClassification": {
-    "sexual": "جنسي",
-    "violence": "عنف",
-    "hate": "يكره",
-    "selfharm": "الأذى الذاتي",
-    "not assigned": "غيرمعتمد"
+    "sexual": "محتوى اباحي",
+    "violence": "محتوى العنف",
+    "hate": "محتوى الكره",
+    "selfharm": "محتوى الأذى الذاتي",
+    "not assigned": "غير معتمد"
   },
 
   "uploadDlg": {
-    "upload media": "تحميل الوسائط",
+    "upload media": "رفع المحتوى",
     "closeWarnning-msg": "من فضلك لا تقم بتحديث الصفحة. نحن نقوم بمعالجة طلبك!",
     "step": {
-      "media type": "نوع الوسائط",
+      "media type": "نوع المحتوى",
       "new or old": "جديد أو قديم",
-      "source": "مصدر",
-      "launch": "يطلق",
-      "mediaType-question": "ماذا تريد تحميله؟",
+      "source": "المصدر",
+      "launch": "اطلاق",
+      "mediaType-question": "مالذي تريد رفعه؟",
       "titleEmpty-msg": "العنوان فارغ",
-      "name-placeHolder": "أدخل الاسم",
+      "name-placeHolder": "أدخل الاسم المحتوى",
 
       "sourceFile-question": "أين هو الملف المصدر",
       "Upload from your PC": "تحميل من جهاز الكمبيوتر الخاص بك",
@@ -109,20 +109,20 @@
       "Maximum file size 2GB": "الحد الأقصى لحجم الملف 2 جيجابايت",
       "Start the Upload": "ابدأ التحميل",
 
-      "Video Upload": "تحميل الفيديو",
-      "Document Upload": "تحميل الوثيقة",
+      "Video Upload": "تحميل المحتوى المرئي",
+      "Document Upload": "تحميل المحتوى المكتوب",
       "Uploading": "جارٍ التحميل",
       "Analyzing": "تحليل",
       "Indexing": "الفهرسة",
-      "Scoring": "التهديف",
-      "disclaimer": "لا تترك هذه الصفحة حتى تنتهي المرحلة الأولى من التحميل."
+      "Scoring": "التقييم",
+      "disclaimer": "الرجاء عدم اغلاق هذه الصفحة حتى تنتهي المرحلة الأولى من التحميل."
     },
     "msg": {
       "uploadFileProcessError": "آسف! حدث خطأ ما أثناء معالجة الملف الذي تم تحميله.",
       "uploadFileSuccess": "تم تحميل الملف بنجاح.",
       "uploadFileError": "آسف! حدث خطأ ما أثناء تحميل الملف.",
       "validNoFile": "لم يتم اختيار أي ملف",
-      "validVideoFile": "الرجاء تحديد فيديو صالح",
+      "validVideoFile": "الرجاء تحديد المحتوى بالصيغة الصحيحة",
       "validPdfFile": "الرجاء تحديد ملف pdf صالح",
       "validOverFile": "الرجاء إعادة تحديد الملف. حجم الملف يزيد عن 2 جيجا بايت"
     }
@@ -149,11 +149,11 @@
       "updateApprovalStatusError": "حدث خطأ أثناء تحديث حالة الموافقة"
     },
 
-    "No answers": "لا أجوبة",
+    "No answers": "لا يوجد أجوبة",
     "Answer found": "تم العثور على الإجابة",
     "Answer not found": "لم يتم العثور على الجواب",
 
-    "Play the Scene": "لعب المشهد",
+    "Play the Scene": "تشغيل المشهد",
     "Activities": "أنشطة",
     "Overview": "ملخص",
     "Questions": "أسئلة",
@@ -161,17 +161,17 @@
     "History": "تاريخ",
     "No History yet": "لا يوجد تاريخ بعد",
     "Book": "كتاب",
-    "Topic": "عنوان"
+    "Topic": "موضوع"
   },
 
   "updateApproval": {
     "Approval": "موافقة",
-    "Moderator Approval": "موافقة المشرف",
-    "Meida Rating": "تقييم ميدا",
-    "Notes": "ملحوظات",
+    "Moderator Approval": "موافقة المراقب",
+    "Meida Rating": "تقييم المحتوى",
+    "Notes": "ملاحظات",
     "Enter the notes": "أدخل الملاحظات",
 
-    "Document Approval": "الموافقة على الوثيقة",
+    "Document Approval": "الموافقة على الكتاب",
     "Book": "كتاب",
     "Topic": "عنوان",
     "Question": "سؤال",
@@ -179,7 +179,7 @@
     "Topic Approval": "الموافقة على الموضوع",
     "Question Approval": "الموافقة على السؤال",
 
-    "Ai opinion": "أي رأي",
+    "Ai opinion": "رأ] الذكاء الاصطناعي",
     "AiOpinion-answer": "تعرض الصفحة السؤال بطريقة $no بأي حال من الأحوال بناءً على نتائج Ai",
     "Snippet": "مقتطف",
     "findAnswer-question": "هل وجدت إجابة لهذا السؤال في الكتاب؟",
@@ -193,7 +193,7 @@
   "This part will come soon": "سيأتي هذا الجزء قريبا",
 
   "scene": "مشهد",
-  "topic": "عنوان",
+  "topic": "موضوع",
 
   "next": "التالي",
   "back": "خلف",
@@ -202,8 +202,8 @@
   "Yes": "نعم",
   "No": "لا",
 
-  "processing": "يعالج",
-  "not assigned": "غيرمعتمد",
+  "processing": "قيد المعالجة",
+  "not assigned": "غير معتمد",
 
   "arabic": "عربي",
   "english": "إنجليزي",
