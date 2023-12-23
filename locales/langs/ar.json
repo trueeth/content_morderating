@@ -8,76 +8,76 @@
   "access": "وصول",
   "settings": "إعدادات",
   "videos": "المحتوى المرئي",
-  "documents": "المحتوى المكتوب",
+  "documents": "المحتوى المقروء",
   "upload": "رفع",
 
-  "name": "اسم",
-  "status": "حالة",
-  "rating": "تقييم",
-  "classification": "تصنيف",
-  "moderator-status": "حالة المراقب",
-  "ai-approval": "موافقة الذكاء الصناعي",
+  "name": "الاسم",
+  "status": "الحالة",
+  "rating": "التقييم",
+  "classification": "التصنيف",
+  "moderator-status": "الحالة حسب المراقب",
+  "ai-approval": "مراجعة الذكاء الاصطناعي",
   "submission-date": "تاريخ التقديم",
   "actions": "اجراءات",
 
   "column": {
-    "name": "اسم",
-    "status": "حالة",
-    "rating": "تقييم",
-    "classification": "تصنيف",
-    "moderator status": "حالة المراقب",
-    "ai approval": "موافقة الذكاء الصناعي",
-    "actions": "اجراءات",
+    "name": "الاسم",
+    "status": "الحالة",
+    "rating": "التقييم",
+    "classification": "التصنيف",
+    "moderator status": "الحالة حسب المراقب",
+    "ai approval": "مراجعة الذكاء الاصطناعي",
+    "actions": "الاجراءات",
     "language": "اللغة",
     "submission date": "تاريخ التقديم",
 
     "scene number": "رقم المشهد",
     "scene status": "حالة المشهد",
-    "ai classification": "تصنيف الذكاء الصناعي",
+    "ai classification": "تصنيف الذكاء الاصطناعي",
 
     "topic number": "رقم الموضوع",
     "topic name": "اسم الموضوع",
 
-    "question": "سؤال",
+    "question": "السؤال",
     "moderator approval": "موافقة المراقب",
     "ai detection": "كشف الذكاء الاصطناعي",
     "pages": "الصفحات"
   },
 
   "rowActions": {
-    "insight": "بصيرة",
-    "approval": "موافقة",
+    "insight": "التفاصيل",
+    "approval": "الموافقة",
     "log out": "تسجيل خروج"
   },
 
   "rowStatus": {
-    "new": "جديد",
+    "new": "قيد الإنتظار",
     "uploaded": "تم الرفع",
     "processing": "جاري المعالجة",
     "processed": "تمت المعالجة",
     "failed": "حصلت مشكلة أثناء المعالجة",
-    "not assigned": "غيرمعتمد"
+    "not assigned": "غير معتمد"
   },
 
   "rowRating": {
     "none": "none",
-    "g": "g",
-    "pg": "pg",
-    "pg12": "pg12",
-    "pg15": "pg15",
-    "r18": "r18",
-    "r15": "r15",
+    "g": "G",
+    "pg": "PG",
+    "pg12": "PG12",
+    "pg15": "PG15",
+    "r18": "R18",
+    "r15": "R15",
     "missing": "غير موجود",
-    "not assigned": "غيرمعتمد"
+    "not assigned": "غير معتمد"
   },
 
   "rowApproval": {
-    "new" : "جديد",
-    "inreview" : "قيد المراجعة",
-    "approved" : "تمت الموافقة",
-    "rejected" : "مرفوض",
-    "pending" : "قيد الانتظار",
-    "none": "لايوجد",
+    "new": "قيد الإنتظار",
+    "inreview": "قيد المراجعة",
+    "approved": "تمت المراجعة",
+    "rejected": "الموضوع مذكور",
+    "pending": "قيد الانتظار",
+    "none": "لا يوجد",
     "not assigned": "غير معتمد"
   },
 
@@ -97,11 +97,11 @@
       "media type": "نوع المحتوى",
       "new or old": "جديد أو قديم",
       "source": "المصدر",
-      "launch": "اطلاق",
+      "launch": "انتهاء",
       "mediaType-question": "مالذي تريد رفعه؟",
       "titleEmpty-msg": "العنوان فارغ",
-      "duplicateId-msg": "اسم الفيديو مكرر، يرجى المحاولة مرة أخرى باستخدام اسم الفيديو الجديد",
-      "name-placeHolder": "أدخل الاسم المحتوى",
+      "duplicateId-msg": "اسم الفيديو موجود بالفعل. الرجاء اختيار اسم آخر والرفع مجدداً.",
+      "name-placeHolder": "أدخل الاسم للمحتوى",
 
       "sourceFile-question": "أين هو الملف المصدر",
       "Upload from your PC": "تحميل من جهاز الكمبيوتر الخاص بك",
@@ -113,7 +113,7 @@
       "Video Upload": "تحميل المحتوى المرئي",
       "Document Upload": "تحميل المحتوى المكتوب",
       "Uploading": "جارٍ التحميل",
-      "Analyzing": "تحليل",
+      "Analyzing": "التحليل",
       "Indexing": "الفهرسة",
       "Scoring": "التقييم",
       "disclaimer": "الرجاء عدم اغلاق هذه الصفحة حتى تنتهي المرحلة الأولى من التحميل."
@@ -132,12 +132,12 @@
   "drawer": {
     "video": {
       "Video for the": "فيديو ل",
-      "Scene": "مشهد",
-      "STATUS": "حالة",
-      "RATING": "تقييم",
+      "Scene": "المشهد",
+      "STATUS": "الحالة",
+      "RATING": "التقييم",
       "AI CLASSIFICATION": "تصنيف الذكاء الاصطناعي",
       "SUBMISSION DATE": "تاريخ التقديم",
-      "AI APPROVAL": "موافقة الذكاء الاصطناعي",
+      "AI APPROVAL": "مراجعة الذكاء الاصطناعي",
 
       "Update Scene Status": "تحديث حالة المشهد",
       "Update Topic": "تحديث الموضوع",
@@ -155,34 +155,34 @@
     "Answer not found": "لم يتم العثور على الجواب",
 
     "Play the Scene": "تشغيل المشهد",
-    "Activities": "أنشطة",
-    "Overview": "ملخص",
-    "Questions": "أسئلة",
+    "Activities": "الأنشطة",
+    "Overview": "الملخص",
+    "Questions": "الأسئلة",
 
     "History": "تاريخ",
     "No History yet": "لا يوجد تاريخ بعد",
-    "Book": "كتاب",
-    "Topic": "موضوع"
+    "Book": "الكتاب",
+    "Topic": "الموضوع"
   },
 
   "updateApproval": {
-    "Approval": "موافقة",
+    "Approval": "الموافقة",
     "Moderator Approval": "موافقة المراقب",
     "Meida Rating": "تقييم المحتوى",
-    "Notes": "ملاحظات",
+    "Notes": "الملاحظات",
     "Enter the notes": "أدخل الملاحظات",
 
     "Document Approval": "الموافقة على الكتاب",
-    "Book": "كتاب",
-    "Topic": "عنوان",
-    "Question": "سؤال",
-    "Page": "صفحة",
+    "Book": "الكتاب",
+    "Topic": "العنوان",
+    "Question": "السؤال",
+    "Page": "الصفحة",
     "Topic Approval": "الموافقة على الموضوع",
     "Question Approval": "الموافقة على السؤال",
 
-    "Ai opinion": "رأ] الذكاء الاصطناعي",
+    "Ai opinion": "نتائج مراجعة الذكاء الاصطناعي",
     "AiOpinion-answer": "تعرض الصفحة السؤال بطريقة $no بأي حال من الأحوال بناءً على نتائج Ai",
-    "Snippet": "مقتطف",
+    "Snippet": "المقتطف",
     "findAnswer-question": "هل وجدت إجابة لهذا السؤال في الكتاب؟",
 
     "msg": {
@@ -193,11 +193,11 @@
 
   "This part will come soon": "سيأتي هذا الجزء قريبا",
 
-  "scene": "مشهد",
-  "topic": "موضوع",
+  "scene": "المشهد",
+  "topic": "الموضوع",
 
   "next": "التالي",
-  "back": "خلف",
+  "back": "للخلف",
   "update": "تحديث",
 
   "Yes": "نعم",
@@ -206,8 +206,8 @@
   "processing": "قيد المعالجة",
   "not assigned": "غير معتمد",
 
-  "arabic": "عربي",
-  "english": "إنجليزي",
+  "arabic": "اللغة العربية",
+  "english": "اللغة الانجليزية",
 
-  "admin": "مسؤل"
+  "admin": "مسؤول النظام"
 }
