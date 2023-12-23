@@ -174,18 +174,18 @@ function DocumentRow(props: {
         </TableCell>
 
         <TableCell>
-          <Box className={'flex text-capitalize justify-inherit'} maxWidth={'100px'}>
+          <Typography className={'flex text-capitalize'}>
             {t(row.language.toLowerCase())}
-          </Box>
+          </Typography>
         </TableCell>
 
         <TableCell>
-          <Box className={'flex item-left approval justify-inherit'}>
+          <Box className={'flex item-left approval'}>
             <RowApproval approval={row.moderator_approval}></RowApproval>
           </Box>
         </TableCell>
         <TableCell>
-          <Box className={'flex item-left approval justify-inherit'}>
+          <Box className={'flex item-left approval'}>
             <RowApproval approval={row.ai_approval}></RowApproval>
           </Box>
         </TableCell>

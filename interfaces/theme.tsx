@@ -1,4 +1,3 @@
-
 const theme = {
   components: {
     MuiButtonBase: {
@@ -70,8 +69,8 @@ const theme = {
     MuiTableBody: {
       styleOverrides: {
         root: {
-          '& .MuiTableCell-head':{
-            paddingLeft:'7px !important',
+          '& .MuiTableCell-head': {
+            paddingLeft: '7px !important'
           },
           '& .MuiTableRow-root': {
             '& > .MuiTableCell-root': {
@@ -96,8 +95,8 @@ const theme = {
             }
           },
           '& .MuiTableRow-root:nth-child(odd)': {
-            height:'60px'
-          },
+            height: '60px'
+          }
         }
       }
     },
@@ -134,7 +133,10 @@ const theme = {
           }
         }
       }
-    }
+    },
+
+
+
   }
 }
 

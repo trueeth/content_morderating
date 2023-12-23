@@ -140,7 +140,7 @@ const VideoSubtable = (props: {
                                   onClick={openScene({ rowIndex: props.rowIndex, subRowIndex: index })}>
                 {/* <Checkbox /> */}
                 <Typography className='text-capitalize'>{`${t('scene')} #${index + 1}`}</Typography>
-                <Box className={'flex justify-inherit'}>
+                <Box className={'flex'}>
                   <RowApproval approval={row.moderatorStatus} />
                 </Box>
                 <Typography className='text-capitalize'>{displayClassification}</Typography>

@@ -14,6 +14,7 @@ import UploadStepper from '@components/dialog/upload-dlg/upload-stepper'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import { useTranslate } from '../../../locales'
+import clsx from 'clsx'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()
@@ -54,6 +55,7 @@ export default function UploadDialog() {
             width: isXs ? '95%' : '80%'
           }
         }}
+        className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
       >
         <Box
           sx={{

@@ -23,6 +23,7 @@ import {
 import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 import { setRefresh } from '@store/reducers/api/reducers'
 import { useTranslate } from '../../locales'
+import clsx from 'clsx'
 
 
 type TState = {
@@ -267,6 +268,7 @@ export default function DocumentApprovalDlg() {
         fullWidth
         maxWidth={memoValue.type !== EDocumentApprovalDlg.page ? 'xs' : 'xl'}
         open={vState.open}
+        className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
         onClose={handleClose}>
         <Box
           sx={{

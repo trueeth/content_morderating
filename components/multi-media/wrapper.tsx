@@ -51,13 +51,13 @@ export const MediaWrapper = (props: IMediaProps) => {
         border: '1px solid var(--Stroke, #E8E8E8)',
         overflow: 'hidden',
         mt: 1,
-        '& th.MuiTableCell-head':{
-            textAlign:appState.setting.lang==='ar'?'right !important':'left !important'
-        },
-        '& td.MuiTableCell-body':{
-          textAlign:appState.setting.lang==='ar'?'right !important':'left !important',
-          justifyContent:appState.setting.lang==='ar'?'flex-end !important':'flex-start !important',
-        }
+        // '& th.MuiTableCell-head':{
+        //     textAlign:appState.setting.lang==='ar'?'right !important':'left !important'
+        // },
+        // '& td.MuiTableCell-body':{
+        //   textAlign:appState.setting.lang==='ar'?'right !important':'left !important',
+        //   justifyContent:appState.setting.lang==='ar'?'flex-end !important':'flex-start !important',
+        // }
       }}
     >
       {props.header}

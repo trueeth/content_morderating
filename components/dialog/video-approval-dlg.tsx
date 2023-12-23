@@ -19,6 +19,7 @@ import { TResVideo } from '@interfaces/apis/api.types'
 import MenuItem from '@mui/material/MenuItem'
 import { setRefresh } from '@store/reducers/api/reducers'
 import { useTranslate } from '../../locales'
+import clsx from 'clsx'
 
 
 type TState = {
@@ -153,6 +154,7 @@ export default function VideoApprovalDlg() {
         fullWidth
         maxWidth='xs'
         open={vState.open}
+        className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
         onClose={handleClose}>
         <Box
           sx={{

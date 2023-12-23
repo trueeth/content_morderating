@@ -8,6 +8,7 @@ import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import DrawerVideoHeader from './video/header-video'
 import DrawerDocumentHeader from '@components/multi-media/drawer/document/header-document'
 import { useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 export default function MediaDrawer() {
   const dispatch = useDispatch()
@@ -38,6 +39,7 @@ export default function MediaDrawer() {
           color: '#333'
         }
       }}
+      className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
     >
       <Box
         sx={{

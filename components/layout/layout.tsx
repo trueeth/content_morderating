@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import Head from 'next/head'
 import Index from './header'
 import UploadDialog from '../dialog/upload-dlg'
@@ -9,6 +9,7 @@ import { IAppSlice } from '@store/reducers'
 import { closeSnackbar } from '@store/reducers/snackbar/reducers'
 import Box from '@mui/material/Box'
 import LoadingIcons from 'react-loading-icons'
+import clsx from 'clsx'
 
 
 type Props = {
@@ -33,12 +34,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
   }
 
 
-
-
-
-
   return (
-    <div className={'pb-50 flex flex-col justify-center item-center'}>
+    <div className={clsx('pb-50 flex flex-col justify-center item-center', appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr',)}>
       <Head>
         <title>{title}</title>
         <link rel='icon' href='/assets/images/favicon.ico' sizes='any' />

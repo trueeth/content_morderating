@@ -66,7 +66,7 @@ const DocumentSubrow = (props: {
     <TableRow key={keyValue}>
       <TableCell />
       {children.map((item, idx) => {
-        if (idx < 2)
+        if (idx < 5)
           return (
             <TableCell onClick={onClick} key={idx}>
               {item}
@@ -153,7 +153,7 @@ const DocumentSubrow = (props: {
                 {/*<Checkbox />*/}
                 <Typography className='text-capitalize'>{t('topic')} # {(index + 1)}</Typography>
                 <Typography>{row.topic}</Typography>
-                <Box className={'flex item-left approval justify-inherit'}>
+                <Box className={'flex item-left approval'}>
                   <RowApproval approval={row.aiApproval} />
                 </Box>
               </CustomizedTableRow>

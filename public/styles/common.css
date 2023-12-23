@@ -1,4 +1,12 @@
 
+.direction-ltr{
+    direction: ltr;
+}
+
+.direction-rtl{
+    direction: rtl;
+}
+
 .flex{
     display: flex;
 }
@@ -88,6 +96,12 @@
 
 .mt-15{
     margin-top: 1.5rem;
+}
+.mt-30{
+    margin-top: 3rem;
+}
+.mt-60{
+    margin-top: 6rem;
 }
 
 .text-center{
