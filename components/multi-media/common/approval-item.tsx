@@ -15,7 +15,7 @@ const RowApproval = (props: { approval: string }) => {
         props.approval === EModeratorApprovalStatus.new && 'new',
         props.approval === EModeratorApprovalStatus.rejected && 'reject',
         props.approval === EModeratorApprovalStatus.inReview && 'review',
-        'text-center text-capitalize'
+        'text-center text-capitalize '
       )}
       style={{
         width:'fit-content'

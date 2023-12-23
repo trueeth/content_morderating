@@ -77,6 +77,10 @@ const Header = () => {
         router.push({ pathname: `../${url.toLowerCase()}`, query: null })
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
+      case 'Dashboard':
+        router.push({ pathname: `../${url.toLowerCase()}`, query: null })
+        if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
+        break
       // default:
       //   router.push({pathname:`../${url.toLowerCase()}`, query:null})
       //   if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
@@ -138,7 +142,7 @@ const Header = () => {
                           width: 20,
                           height: 20,
                           flexShrink: 0,
-                          color: 'white'
+                          color: router.pathname === `/${item.url.toLowerCase()}`?'var(--Primary1)':'white'
                         }}
                       />
                       <Typography ml={0.5} className='menu-title text-capitalize'>{t(item.title.toLowerCase())}</Typography>
@@ -258,7 +262,8 @@ const Header = () => {
                       sx={{
                         width: 20,
                         height: 20,
-                        flexShrink: 0
+                        flexShrink: 0,
+                        color: router.pathname === `/${item.url.toLowerCase()}`?'var(--Primary1)':'white'
                       }}
                     />
                     <Typography ml={0.5} className='menu-title'>{item.title}</Typography>

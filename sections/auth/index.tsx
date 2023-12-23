@@ -29,8 +29,7 @@ export default function AuthSection() {
       await login(vState.username, vState.pwd)
       dispatch(openSnackbarSuccess('Login Success!'))
       localStorage.setItem('username', vState.username);
-      // router.push('/dashboard')
-      await router.push('/videos')
+      router.push('/dashboard')
     } catch (e) {
       setState({ ...vState, username: '', pwd: '', error: true })
     }
@@ -41,8 +40,7 @@ export default function AuthSection() {
   useEffect(() => {
     if (authenticated&&vState.username=='') {
       dispatch(openSnackbarSuccess('Already You are logined!'))
-      // router.push('/dashboard')
-      router.push('/videos')
+      router.push('/dashboard')
     }
   }, [dispatch, authenticated, router, vState.username])
 

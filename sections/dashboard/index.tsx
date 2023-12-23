@@ -1,27 +1,28 @@
-import { Grid } from '@mui/material'
-import SideYear from '@sections/dashboard/year'
-import SideAverage from '@sections/dashboard/average'
-import SideStatistics from '@sections/dashboard/statistics'
-import AnalyticsVideos from '@sections/dashboard/videos'
+import Box from '@mui/material/Box'
+import dynamic from 'next/dynamic'
+const Powerbi = dynamic(
+  () => {
+    return import('./powerbi')
+  },
+  { ssr: false } // This line disables server-side rendering for this component.
+)
 
 export default function DashboardSection() {
+
+
   return (
-    <Grid container spacing={2} alignItems="stretch">
-      <Grid item md={8} xs={12} alignItems="stretch">
-        <SideYear></SideYear>
-      </Grid>
-
-      <Grid item md={4} xs={12} alignItems="stretch">
-        <SideAverage></SideAverage>
-      </Grid>
-
-      <Grid item md={4} xs={12} alignItems="stretch">
-        <SideStatistics></SideStatistics>
-      </Grid>
-
-      <Grid item md={8} xs={12} alignItems="stretch">
-        <AnalyticsVideos></AnalyticsVideos>
-      </Grid>
-    </Grid>
+    <Box sx={{
+      backgroundColor: 'white',
+      boxShadow: '0px 0px 25px 0px #F3F3F3;',
+      borderRadius: '.4rem',
+      border: '1px solid var(--Stroke, #E8E8E8)',
+      overflow: 'hidden',
+      mt: 5,
+      '& >div':{
+        height:'600px !important'
+      }
+    }} height={600}>
+        <Powerbi/>
+    </Box>
   )
 }

@@ -7,7 +7,7 @@ const RowStatus = (props: { status: EProcessingStatus }) => {
   const {t}=useTranslate()
   const title=props.status?props.status:'Not Assigned'
   return (
-    <Box className={`status-${props.status.toLowerCase()} text-capitalize`}>
+    <Box className={`status-${props.status.toLowerCase()} text-capitalize justify-inherit`}>
       {t(`rowStatus.${title.toLowerCase()}`)}
     </Box>
   )

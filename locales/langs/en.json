@@ -100,6 +100,7 @@
       "launch": "LAUNCH",
       "mediaType-question": "What do you want to upload?",
       "titleEmpty-msg": "Title is empty",
+      "duplicateId-msg": "Duplicated Video Name, Please try again with new video name",
       "name-placeHolder": "Enter the name",
 
       "sourceFile-question": "Where is the source file",

@@ -4,36 +4,35 @@ import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import * as React from 'react'
-import { Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { TDocumentSubRowType } from '@interfaces/types'
-import { EDocDetail, EDocumentApprovalDlg } from '@interfaces/enums'
+import { EDocDetail } from '@interfaces/enums'
 import { useDispatch } from 'react-redux'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 import { TResDocument } from '@interfaces/apis/api.types'
 import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
-import { openDocumentApproval } from '@store/reducers/dialog/reducers'
 import RowApproval from '@components/multi-media/common/approval-item'
 import { useTranslate } from '../../../locales'
 
 const DocumentSubrow = (props: {
-  rowDetails:TResDocument.TDocumentContentDetail
-  rowIndex:number
+  rowDetails: TResDocument.TDocumentContentDetail
+  rowIndex: number
 }) => {
 
 
   const { rowDetails } = props
   const dispatch = useDispatch()
 
-  const {t}=useTranslate()
+  const { t } = useTranslate()
 
-  const openScene = (index:number) => () => {
+  const openScene = (index: number) => () => {
     dispatch(
       openMediaSubDrawer({
-        open:true,
+        open: true,
         type: 'document',
         rowIndex: props.rowIndex,
-        subRowIndex:index,
-        drawerData:props.rowDetails
+        subRowIndex: index,
+        drawerData: props.rowDetails
       })
     )
   }
@@ -43,18 +42,18 @@ const DocumentSubrow = (props: {
     return null
   }
 
-  const memoRows =(()=>{
-    let rows:TDocumentSubRowType[]
+  const memoRows = (() => {
+    let rows: TDocumentSubRowType[]
     rows = resToDocumentSubRowAdapter(rowDetails)
     return rows
   })()
 
 
-  const rowActions=[
+  const rowActions = [
     // { title: 'Classification' },
     // { title: 'Reports' },
     {
-      title: 'Approval' ,
+      title: 'Approval'
       // action:()=>dispatch(openDocumentApproval({
       //   type:EDocumentApprovalDlg.topic,
       //   docIndex:props.rowIndex,
@@ -67,14 +66,14 @@ const DocumentSubrow = (props: {
     <TableRow key={keyValue}>
       <TableCell />
       {children.map((item, idx) => {
-        if (idx<2)
+        if (idx < 2)
           return (
             <TableCell onClick={onClick} key={idx}>
               {item}
             </TableCell>
           )
         return (
-          <TableCell  key={idx}>
+          <TableCell key={idx}>
             {item}
           </TableCell>
         )
@@ -85,7 +84,7 @@ const DocumentSubrow = (props: {
 
   return (
     <Table
-      size="small"
+      size='small'
       sx={{
         cursor: 'pointer',
         borderCollapse: 'collapse',
@@ -94,7 +93,7 @@ const DocumentSubrow = (props: {
         '& .MuiTableCell-root': {
           borderTop: 'none !important',
           maxWidth: '400px',
-          height: '45px',
+          height: '45px'
         }
       }}
     >
@@ -105,7 +104,7 @@ const DocumentSubrow = (props: {
               whiteSpace: 'nowrap',
               color: '#333',
               fontSize: '12px',
-              height: '50px',
+              height: '50px'
             }
           }}
         >
@@ -116,19 +115,19 @@ const DocumentSubrow = (props: {
           {/*    inputProps={{ 'aria-label': 'controlled' }}*/}
           {/*  />*/}
           {/*</TableCell>*/}
-          <TableCell sx={{width:'7%'}} />
+          <TableCell sx={{ width: '7%' }} />
           {Object.values(EDocDetail).map((item, index) => {
-            if (index===0)
+            if (index === 0)
               return (
-                <TableCell key={index} sx={{width:'15%'}}>
+                <TableCell key={index} sx={{ width: '15%' }}>
                   <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase'>
-                   {t(`column.${item.toLowerCase()}`)}
+                    {t(`column.${item.toLowerCase()}`)}
                   </Typography>
                 </TableCell>
               )
             return (
-              <TableCell key={index} sx={{width:'20%'}}>
-                <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase' >
+              <TableCell key={index} sx={{ width: '20%' }}>
+                <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase'>
                   {t(`column.${item.toLowerCase()}`)}
                 </Typography>
               </TableCell>
@@ -141,23 +140,25 @@ const DocumentSubrow = (props: {
         sx={{
           '& .MuiTypography-root': {
             color: '#6f6f6f !important',
-            fontSize:'.8rem'
+            fontSize: '.8rem'
           }
         }}
       >
-        {memoRows.length>0?
+        {memoRows.length > 0 ?
           memoRows.map((row, index) => {
-          if (index==null)
-            return null
-          return (
-            <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
-              {/*<Checkbox />*/}
-              <Typography className='text-capitalize' >{t('topic')} # {(index + 1)}</Typography>
-              <Typography>{row.topic}</Typography>
-              <RowApproval approval={row.aiApproval}/>
-            </CustomizedTableRow>
-          )
-        }):
+            if (index == null)
+              return null
+            return (
+              <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>
+                {/*<Checkbox />*/}
+                <Typography className='text-capitalize'>{t('topic')} # {(index + 1)}</Typography>
+                <Typography>{row.topic}</Typography>
+                <Box className={'flex item-left approval justify-inherit'}>
+                  <RowApproval approval={row.aiApproval} />
+                </Box>
+              </CustomizedTableRow>
+            )
+          }) :
           null
         }
       </TableBody>

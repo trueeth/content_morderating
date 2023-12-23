@@ -116,13 +116,13 @@ function VideoRow(props: {
         <TableCell><RowStatus status={props.row.status}></RowStatus></TableCell>
         <TableCell><RowRating rating={props.row.rating}></RowRating></TableCell>
         <TableCell>
-          <Box className={'flex'}>
+          <Box className={'flex justify-inherit'}>
             <RowClassification classifications={props.row.classification}></RowClassification>
           </Box>
         </TableCell>
-        <TableCell><Box className={'flex  approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
-        <TableCell><Box className={'flex  approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
-        <TableCell><Box className={'flex'} minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
+        <TableCell><Box className={'flex  approval justify-inherit'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'flex  approval justify-inherit'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'flex justify-inherit'} minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
         {/* <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell> */}
         <TableCell>
           {

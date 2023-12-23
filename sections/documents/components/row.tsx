@@ -174,25 +174,32 @@ function DocumentRow(props: {
         </TableCell>
 
         <TableCell>
-          <Box className={'flex text-capitalize'} maxWidth={'100px'}>
+          <Box className={'flex text-capitalize justify-inherit'} maxWidth={'100px'}>
             {t(row.language.toLowerCase())}
           </Box>
         </TableCell>
 
         <TableCell>
-          <Box className={'flex item-left approval'}>
+          <Box className={'flex item-left approval justify-inherit'}>
             <RowApproval approval={row.moderator_approval}></RowApproval>
           </Box>
         </TableCell>
         <TableCell>
-          <Box className={'flex item-left approval'}>
+          <Box className={'flex item-left approval justify-inherit'}>
             <RowApproval approval={row.ai_approval}></RowApproval>
           </Box>
         </TableCell>
         <TableCell>
-          <Box className={'flex'}>
+          <Typography
+            sx={{
+              margin: 0,
+              whiteSpace: 'wrap',
+              fontSize: '0.875rem',
+              overflow: 'hidden'
+            }}
+          >
             {row.submissionDate}
-          </Box>
+          </Typography>
         </TableCell>
         <TableCell>
           {/*<RowAction actions={rowActions} />*/}

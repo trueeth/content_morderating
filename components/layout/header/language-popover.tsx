@@ -5,6 +5,8 @@ import MenuItem from '@mui/material/MenuItem'
 import Box from '@mui/material/Box'
 import { useLocales, useTranslate } from '../../../locales'
 import IconButton from '@mui/material/IconButton'
+import { setLang } from '@store/reducers/setting/reducers'
+import { useDispatch } from 'react-redux'
 
 const LanguagePopover = () => {
   const anchorRef = React.useRef<HTMLButtonElement>(null)
@@ -13,6 +15,7 @@ const LanguagePopover = () => {
 
   const { onChangeLang } = useTranslate()
   const { currentLang } = useLocales()
+  const dispatch=useDispatch()
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen)
@@ -34,6 +37,7 @@ const LanguagePopover = () => {
     type: string
   ) => {
     onChangeLang(type)
+    dispatch(setLang(type))
     handleClose(event)
   }
 

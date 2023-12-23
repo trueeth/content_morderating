@@ -100,6 +100,7 @@
       "launch": "اطلاق",
       "mediaType-question": "مالذي تريد رفعه؟",
       "titleEmpty-msg": "العنوان فارغ",
+      "duplicateId-msg": "اسم الفيديو مكرر، يرجى المحاولة مرة أخرى باستخدام اسم الفيديو الجديد",
       "name-placeHolder": "أدخل الاسم المحتوى",
 
       "sourceFile-question": "أين هو الملف المصدر",
