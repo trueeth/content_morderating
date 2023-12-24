@@ -37,11 +37,13 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
   useEffect(() => {
     const currentLang = localStorage.getItem('i18nextLng')
     dispatch(setLang(currentLang))
+    if (currentLang === 'ar')
+      document.dir = 'rtl'
   }, [])
 
   return (
     <div
-      className={clsx('pb-50 flex flex-col justify-center item-center', appState.setting.lang === 'ar' && 'direction-rtl', appState.setting.lang === 'en' && 'direction-ltr')}>
+      className={clsx('pb-50 flex flex-col justify-center item-center')}>
       <Head>
         <title>{title}</title>
         <link rel='icon' href='/assets/images/favicon.ico' sizes='any' />

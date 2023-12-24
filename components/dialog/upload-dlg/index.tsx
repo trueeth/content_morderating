@@ -55,7 +55,6 @@ export default function UploadDialog() {
             width: isXs ? '95%' : '80%'
           }
         }}
-        className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
       >
         <Box
           sx={{

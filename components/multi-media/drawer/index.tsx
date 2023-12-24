@@ -39,7 +39,6 @@ export default function MediaDrawer() {
           color: '#333'
         }
       }}
-      className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
     >
       <Box
         sx={{

@@ -154,7 +154,6 @@ export default function VideoApprovalDlg() {
         fullWidth
         maxWidth='xs'
         open={vState.open}
-        className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
         onClose={handleClose}>
         <Box
           sx={{

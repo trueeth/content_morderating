@@ -24,6 +24,7 @@ export default function LaunchStep(props:any) {
           alignItems: 'center',
           justifyContent: 'center',
           rowGap: 1,
+          width:'60%',
         }}
       >
         {/* Heading for the step */}
@@ -36,6 +37,7 @@ export default function LaunchStep(props:any) {
           sx={{
             width: { xs: '90%', md: '80%' },
           }}
+          className='stepper-state'
         >
           <LinearProgress
             variant="determinate"
@@ -54,6 +56,7 @@ export default function LaunchStep(props:any) {
               color: '#333',
             },
           }}
+          className='stepper-state-title'
         >
           <Typography>{t('uploadDlg.step.Uploading')}</Typography>
           <Typography>{t('uploadDlg.step.Analyzing')}</Typography>

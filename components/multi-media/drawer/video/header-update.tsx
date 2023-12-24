@@ -170,11 +170,11 @@ export const HeaderUpdate = () => {
       >
         <CssTextField
           fullWidth
+          multiline
           placeholder={t('drawer.video.Write your note')}
           sx={{ mr: 2 }}
           InputProps={{
             sx: {
-              height: '33px',
               fontSize: '0.8rem',
               padding: '11px'
             }

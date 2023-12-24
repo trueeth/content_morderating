@@ -64,7 +64,7 @@ export default function DrawerVideoHeader() {
           '            Nayef is then appointed Crown Prince and Deputy Prime Minister, but\n' +
           '            he is dismissed in 2017 and Mohammed bin Salman',
         Status: subRowData?.ModeratorApprovalStatus,
-        Rating: rowVideoData?.VideoSummary?.Rating,
+        Rating: subRowData?.Rating,
         Classification: classifications,
         SubmissionDate: submissionDate,
         AiApproval: subRowData?.AutomaticApprovalStatus

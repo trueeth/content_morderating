@@ -140,10 +140,10 @@ export default function SourceStep(props: {
     } finally {
       dispatch(setApiLoading(false))
       setTimeout(() => {
-        dispatch(openVideoUploadDialog({ open: false }))
+        // dispatch(openVideoUploadDialog({ open: false }))
       }, 500)
       setTimeout(() => {
-        dispatch(setRefresh(true))
+        // dispatch(setRefresh(true))
       }, 1000)
     }
   }

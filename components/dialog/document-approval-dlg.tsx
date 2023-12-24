@@ -23,7 +23,6 @@ import {
 import { openSnackbarError, openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 import { setRefresh } from '@store/reducers/api/reducers'
 import { useTranslate } from '../../locales'
-import clsx from 'clsx'
 
 
 type TState = {
@@ -268,7 +267,6 @@ export default function DocumentApprovalDlg() {
         fullWidth
         maxWidth={memoValue.type !== EDocumentApprovalDlg.page ? 'xs' : 'xl'}
         open={vState.open}
-        className={clsx(appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr')}
         onClose={handleClose}>
         <Box
           sx={{
@@ -372,7 +370,7 @@ export default function DocumentApprovalDlg() {
                     </Typography>
                   </Grid>
                   {/*-------moderator approval---------*/}
-                  <Grid item xs={12} md={10}>
+                  {/*  <Grid item xs={12} md={10}>
                     <Typography>{t('updateApproval.Moderator Approval')} :</Typography>
                     <CustomToggleButtonGroup
                       groupName={approvalConst}
@@ -388,7 +386,7 @@ export default function DocumentApprovalDlg() {
                       value={vState.approval}
                       handleChange={(val) => setState({ ...vState, approval: val })}
                     />
-                  </Grid>
+                  </Grid>*/}
                   {/*------answer for the book----------*/}
                   <Grid item xs={12} md={10} sx={{ marginTop: '1rem' }}>
                     <Typography>
@@ -596,16 +594,18 @@ export default function DocumentApprovalDlg() {
             </Box>
           }
 
-          <PrimaryButton
-            sx={{
-              mt: '2rem',
-              padding: '.5rem 2rem',
-              textTransform:'capitalize !important'
-            }}
-            onClick={handleUpdate}
-          >
-            {t('update')}
-          </PrimaryButton>
+          {memoValue.type !== EDocumentApprovalDlg.page ?
+            <PrimaryButton
+              sx={{
+                mt: '2rem',
+                padding: '.5rem 2rem',
+                textTransform: 'capitalize !important'
+              }}
+              onClick={handleUpdate}
+            >
+              {t('update')}
+            </PrimaryButton> :
+            <Box sx={{height:'50px'}}></Box>}
         </Box>
       </Dialog>
     </React.Fragment>

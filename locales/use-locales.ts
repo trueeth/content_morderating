@@ -48,6 +48,7 @@ export function useTranslate() {
   const onChangeLang = useCallback(
     (newlang: string) => {
       i18n.changeLanguage(newlang);
+      document.dir=i18n.dir(newlang)
       // settings.onChangeDirectionByLang(newlang);
     },
     [i18n, settings]

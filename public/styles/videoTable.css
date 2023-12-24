@@ -239,77 +239,88 @@
     padding: 12px 7px !important;
 }
 
-.direction-rtl .MuiTableRow-root > td.MuiTableCell-root:first-of-type {
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary{
+    padding: 7px 10px 0 7px;
+}
+
+[dir="rtl"] .MuiTableRow-root > td.MuiTableCell-root:first-of-type {
     border-left: none;
     border-right: 1px solid #ccc;
     border-radius: 0 6px 6px 0;
 }
 
-.direction-rtl .MuiTableRow-root > td.MuiTableCell-root:last-of-type {
+[dir="rtl"] .MuiTableRow-root > td.MuiTableCell-root:last-of-type {
     border-right: none;
     border-left: 1px solid #ccc;
     border-radius: 6px 0 0 6px;
 }
-.direction-rtl .MuiTableBody-root .MuiTableRow-root > th.MuiTableCell-root:first-of-type {
+[dir="rtl"] .MuiTableBody-root .MuiTableRow-root > th.MuiTableCell-root:first-of-type {
     border-left: none;
     border-right: 1px solid #ccc;
     border-radius: 0 6px 6px 0;
 }
 
-.direction-rtl .MuiTableBody-root .MuiTableRow-root > th.MuiTableCell-root:last-of-type {
+[dir="rtl"] .MuiTableBody-root .MuiTableRow-root > th.MuiTableCell-root:last-of-type {
     border-right: none;
     border-left: 1px solid #ccc;
     border-radius: 6px 0 0 6px;
 }
 
-.direction-rtl .MuiPagination-ul li:first-of-type{
+[dir="rtl"] .MuiPagination-ul li:first-of-type{
     transform: scaleX(-1);
 }
-.direction-rtl .MuiPagination-ul li:last-of-type{
+[dir="rtl"] .MuiPagination-ul li:last-of-type{
     transform: scaleX(-1);
-}
-.direction-rtl .flex{
-    justify-content: flex-end;
 }
 
-/*.direction-rtl.MuiDrawer-root .MuiTabs-scroller{*/
+/*[dir="rtl.MuiDrawer-root .MuiTabs-scroller{*/
 /*    padding-right: 1rem;*/
 /*}*/
-.direction-rtl.MuiDrawer-root .MuiToggleButtonGroup-root{
+[dir="rtl"] .MuiDrawer-root .MuiToggleButtonGroup-root{
     padding-right: 2rem;
 }
-.direction-rtl .MuiToggleButtonGroup-root>.MuiButtonBase-root:first-of-type{
+[dir="rtl"] .MuiToggleButtonGroup-root>.MuiButtonBase-root:first-of-type{
     border-radius: 0 4px 4px 0;
 }
-.direction-rtl .MuiToggleButtonGroup-root>.MuiButtonBase-root:last-of-type{
+[dir="rtl"] .MuiToggleButtonGroup-root>.MuiButtonBase-root:last-of-type{
     border-radius: 4px 0 0 4px;
 }
 
-.direction-rtl.MuiDialog-root .MuiInputBase-root.MuiOutlinedInput-root>div:first-of-type{
+[dir="rtl"] .MuiDialog-root .MuiInputBase-root.MuiOutlinedInput-root>div:first-of-type{
     padding-right: 2rem !important;
 }
-.direction-rtl.MuiDialog-root .MuiList-root{
-    direction: rtl;
-}
 
-.direction-rtl .user-logo+div.MuiBox-root{
+
+[dir="rtl"] .user-logo+div.MuiBox-root{
     padding-right: 1rem;
 }
-.direction-rtl .svg-color+p{
+[dir="rtl"] .svg-color+p{
     padding-right: .5rem;
 }
-.direction-rtl .MuiStepConnector-root.MuiStepConnector-horizontal{
+[dir="rtl"] .MuiStepConnector-root.MuiStepConnector-horizontal{
     left: calc(50% + 20px);
     right: calc(-50% + 20px);
 }
 
-.direction-rtl .title-drag{
+[dir="rtl"] .title-drag{
     padding-right: .5rem;
 }
-.direction-rtl .title-drag>div>p{
+[dir="rtl"] .title-drag>div>p{
     padding-right: .5rem;
 }
 
-.direction-rtl .MuiPaper-root .MuiSvgIcon-root {
-    margin-left: 1rem;
+[dir="rtl"] .stepper-state{
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .stepper-state-title{
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] p{
+    text-align: right ;
+}
+
+[dir="rtl"] td{
+    text-align: right !important;
 }

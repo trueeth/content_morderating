@@ -144,8 +144,9 @@ const VideoSubtable = (props: {
                   <RowApproval approval={row.moderatorStatus} />
                 </Box>
                 <Typography className='text-capitalize'>{displayClassification}</Typography>
-                <Typography whiteSpace='nowrap'
-                            className='text-capitalize'>{t(`rowApproval.${row.status.toLowerCase()}`)}</Typography>
+                <Box className={'flex'}>
+                  <RowApproval approval={row.status} />
+                </Box>
                 {/* <Typography>{row.description}</Typography> */}
                 {/* <Button
               id={`scene-button-${index}`}
