@@ -113,7 +113,7 @@ const Header = () => {
           }}
         >
           {/*-----logo----*/}
-          <Box ml={4}>
+          <Box ml={4} mr={2}>
             <Image src={LogoImage} alt='logo' />
           </Box>
 

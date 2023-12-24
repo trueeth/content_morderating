@@ -23,7 +23,7 @@ const DocumentSubrow = (props: {
   const { rowDetails } = props
   const dispatch = useDispatch()
 
-  const { t } = useTranslate()
+  const { t, i18n } = useTranslate()
 
   const openScene = (index: number) => () => {
     dispatch(
@@ -82,6 +82,8 @@ const DocumentSubrow = (props: {
     </TableRow>
   )
 
+  const isArabic = i18n.language === 'ar';
+
   return (
     <Table
       size='small'
@@ -104,7 +106,9 @@ const DocumentSubrow = (props: {
               whiteSpace: 'nowrap',
               color: '#333',
               fontSize: '12px',
-              height: '50px'
+              height: '50px',
+              textAlign: isArabic && 'right !important',
+              paddingRight: '8px !important',
             }
           }}
         >
@@ -140,7 +144,8 @@ const DocumentSubrow = (props: {
         sx={{
           '& .MuiTypography-root': {
             color: '#6f6f6f !important',
-            fontSize: '.8rem'
+            fontSize: '.8rem',
+            textAlign: isArabic && 'right !important',
           }
         }}
       >
@@ -153,7 +158,7 @@ const DocumentSubrow = (props: {
                 {/*<Checkbox />*/}
                 <Typography className='text-capitalize'>{t('topic')} # {(index + 1)}</Typography>
                 <Typography>{row.topic}</Typography>
-                <Box className={'flex item-left approval'}>
+                <Box className={'item-left approval'}>
                   <RowApproval approval={row.aiApproval} />
                 </Box>
               </CustomizedTableRow>

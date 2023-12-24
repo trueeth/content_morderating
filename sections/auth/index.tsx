@@ -9,9 +9,11 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
 import { apiIdentifyAuth } from '@interfaces/apis/auth'
+import { useTranslate } from '../../locales'
 // import { GetServerSideProps } from 'next'
 
 export default function AuthSection() {
+  const { t } = useTranslate()
   const { login } = useAuthContext()
   const router = useRouter()
   const [vState, setState] = useState({ username: '', pwd: '', error: false })
@@ -54,7 +56,7 @@ export default function AuthSection() {
       }}
     >
       <Head>
-        <title>VideoApp</title>
+        <title>{t('app_title')}</title>
         <link rel="icon" href="/assets/images/favicon.ico" sizes="any" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
