@@ -130,6 +130,7 @@ const LanguagePopover = () => {
                     />
                     <Typography
                       ml={0.5}
+                      mr={0.5}
                       className='menu-title'
                       sx={{
                         color:currentLang.value=='en'?'#75598d':'inherit'
@@ -150,6 +151,7 @@ const LanguagePopover = () => {
                     />
                     <Typography
                       ml={0.5}
+                      mr={0.5}
                       className='menu-title'
                       sx={{
                         color:currentLang.value=='ar'?'#75598d':'inherit'

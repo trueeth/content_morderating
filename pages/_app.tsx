@@ -11,6 +11,8 @@ import { AuthProvider } from '@components/auth/context/auth-provider'
 import AuthGuard from '@components/auth/guard/auth-guard'
 import themeOptions from '@interfaces/theme'
 import '/locales/i18n'
+import { useTranslation } from 'react-i18next'
+
 import { LocalizationProvider, useLocales } from '../locales'
 
 
@@ -25,15 +27,17 @@ type AppPropsWithLayout = AppProps & {
 function MyApp(props: AppPropsWithLayout) {
   const { pageProps, Component } = props
 
+  const { currentLang } = useLocales();
+  const { t } = useTranslation();
+
   const getLayout =
     Component.getLayout ??
     ((page) => (
       <AuthGuard>
-        <Layout title='VideoApp'>{page}</Layout>
+        <Layout title={t('app_title')}>{page}</Layout>
       </AuthGuard>
     ))
 
-  const { currentLang } = useLocales();
 
   const theme=createTheme(themeOptions as ThemeOptions)
 

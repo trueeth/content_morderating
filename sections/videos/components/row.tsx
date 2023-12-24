@@ -5,7 +5,7 @@ import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
+import { KeyboardArrowDown, KeyboardArrowRight, KeyboardArrowLeft } from '@mui/icons-material'
 import { TVideoRowType } from '@interfaces/types'
 import RowStatus from '@components/multi-media/common/status-item'
 import RowRating from '@components/multi-media/common/rating-item'
@@ -33,7 +33,7 @@ function VideoRow(props: {
 
   const router = useRouter()
 
-  const {t}=useTranslate()
+  const { t, i18n } = useTranslate()
 
   const dispatch=useDispatch()
 
@@ -65,14 +65,20 @@ function VideoRow(props: {
     }
   ]
 
+  const isArabic = i18n.language === 'ar';
+
   return (
     <React.Fragment>
       {/* Main row */}
       <TableRow
         sx={{
           '& > .MuiTableCell-root': {
+            textAlign: isArabic && 'right !important',
             '&:first-of-type': {
-              borderBottomLeftRadius: vState.openSummary ? '0px !important' : '10px'
+              borderBottomLeftRadius: vState.openSummary ? '0px !important' : '10px',
+              '& .MuiSvgIcon-root' : {
+                marginLeft: '0px !important',
+              }
             },
             '&:last-of-type': {
               borderBottomRightRadius: vState.openSummary ? '0px !important' : '10px'
@@ -90,9 +96,8 @@ function VideoRow(props: {
             >
               {vState.openSummary ? <KeyboardArrowDown sx={{
                 fontSize: '1.2rem'
-              }} /> : <KeyboardArrowRight sx={{
-                fontSize: '1.2rem'
-              }} />}
+              }} /> : isArabic ? <KeyboardArrowLeft sx={{ fontSize: '1.2rem' }} /> :
+              <KeyboardArrowRight sx={{ fontSize: '1.2rem' }} />}
             </IconButton> :
             null}
         </TableCell>
@@ -116,13 +121,13 @@ function VideoRow(props: {
         <TableCell><RowStatus status={props.row.status}></RowStatus></TableCell>
         <TableCell><RowRating rating={props.row.rating}></RowRating></TableCell>
         <TableCell>
-          <Box className={'flex'}>
+          <Box>
             <RowClassification classifications={props.row.classification}></RowClassification>
           </Box>
         </TableCell>
-        <TableCell><Box className={'flex  approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
-        <TableCell><Box className={'flex  approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
-        <TableCell><Box className={'flex'} minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
+        <TableCell><Box className={'approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
         {/* <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell> */}
         <TableCell>
           {

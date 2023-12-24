@@ -5,7 +5,7 @@ import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { KeyboardArrowDown, KeyboardArrowRight } from '@mui/icons-material'
+import { KeyboardArrowDown, KeyboardArrowRight, KeyboardArrowLeft } from '@mui/icons-material'
 import { TDocumentRowType } from '@interfaces/types'
 import RowApproval from '@components/multi-media/common/approval-item'
 import { Button, Typography } from '@mui/material'
@@ -32,7 +32,7 @@ function DocumentRow(props: {
 
   const { row } = props
   const dispatch = useDispatch()
-  const {t}=useTranslate()
+  const { t, i18n } = useTranslate()
 
 
   const [vState, setState] = React.useState<{
@@ -119,16 +119,22 @@ function DocumentRow(props: {
     }
   ]
 
+  const isArabic = i18n.language === 'ar';
+
   return (
     <React.Fragment>
       {/*-------main row-----------*/}
       <TableRow
         sx={{
           '& > .MuiTableCell-root': {
+            textAlign: isArabic && 'right !important',
             '&:first-of-type': {
               borderBottomLeftRadius: vState.openSummary
                 ? '0px !important'
-                : '10px'
+                : '10px',
+              '& .MuiSvgIcon-root' : {
+                marginLeft: '0px !important',
+              }
             },
             '&:last-of-type': {
               borderBottomRightRadius: vState.openSummary
@@ -146,9 +152,8 @@ function DocumentRow(props: {
           >
             {vState.openSummary ? <KeyboardArrowDown sx={{
               fontSize: '1.2rem'
-            }} /> : <KeyboardArrowRight sx={{
-              fontSize: '1.2rem'
-            }} />}
+            }} /> : isArabic ? <KeyboardArrowLeft sx={{ fontSize: '1.2rem' }} /> :
+            <KeyboardArrowRight sx={{ fontSize: '1.2rem', marginLeft: '0' }} />}
           </IconButton>}
         </TableCell>
 
@@ -174,18 +179,18 @@ function DocumentRow(props: {
         </TableCell>
 
         <TableCell>
-          <Typography className={'flex text-capitalize text-8'}>
+          <Typography className={'text-capitalize text-8'}>
             {t(row.language.toLowerCase())}
           </Typography>
         </TableCell>
 
         <TableCell>
-          <Box className={'flex item-left approval'}>
+          <Box className={'item-left approval'}>
             <RowApproval approval={row.moderator_approval}></RowApproval>
           </Box>
         </TableCell>
         <TableCell>
-          <Box className={'flex item-left approval'}>
+          <Box className={'item-left approval'}>
             <RowApproval approval={row.ai_approval}></RowApproval>
           </Box>
         </TableCell>

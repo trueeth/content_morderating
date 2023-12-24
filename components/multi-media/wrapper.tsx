@@ -91,7 +91,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
     rows: []
   })
 
-  const {t}=useTranslate()
+  const { t, i18n } = useTranslate()
 
   const dispatch = useDispatch()
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -147,6 +147,9 @@ export const MediaActionwrapper = (props: IActionPros) => {
     if (refresh)
       fetchPageData()
   }, [refresh])
+
+  const isArabic = i18n.language === 'ar';
+
   /* eslint-enable */
   return (
     <TableContainer
@@ -172,7 +175,7 @@ export const MediaActionwrapper = (props: IActionPros) => {
               props.type === 'video' ? EVideoColumn : EDocumentColumn
             ).map((item, index) => {
               return (
-                <TableCell key={index} sx={{ padding: '8px' }}>
+                <TableCell key={index} sx={{ padding: '8px', textAlign: isArabic && 'right !important' }}>
                   <Typography
                     sx={{
                       padding: 0,

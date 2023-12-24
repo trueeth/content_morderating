@@ -41,7 +41,7 @@ const VideoSubtable = (props: {
 
   // const [checked, setChecked] = React.useState(false)
   const dispatch = useDispatch()
-  const { t } = useTranslate()
+  const { t, i18n } = useTranslate()
 
   // Handler, opening of a specific scene's details
   const openScene = ({ rowIndex, subRowIndex }) => () => {
@@ -66,6 +66,8 @@ const VideoSubtable = (props: {
     return null
   }
 
+  const isArabic = i18n.language === 'ar';
+
   return (
     <Table
       size='small'
@@ -89,7 +91,8 @@ const VideoSubtable = (props: {
               whiteSpace: 'nowrap',
               color: '#333',
               fontSize: '.8rem',
-              height: '50px'
+              height: '50px',
+              textAlign: isArabic && 'right !important',
             }
           }}
         >
@@ -125,7 +128,8 @@ const VideoSubtable = (props: {
         sx={{
           '& .MuiTypography-root': {
             color: '#6f6f6f !important',
-            fontSize: '.8rem'
+            fontSize: '.8rem',
+            textAlign: isArabic && 'right !important',
           }
         }}
       >
@@ -140,7 +144,7 @@ const VideoSubtable = (props: {
                                   onClick={openScene({ rowIndex: props.rowIndex, subRowIndex: index })}>
                 {/* <Checkbox /> */}
                 <Typography className='text-capitalize'>{`${t('scene')} #${index + 1}`}</Typography>
-                <Box className={'flex'}>
+                <Box>
                   <RowApproval approval={row.moderatorStatus} />
                 </Box>
                 <Typography className='text-capitalize'>{displayClassification}</Typography>
