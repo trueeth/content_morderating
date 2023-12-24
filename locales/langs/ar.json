@@ -193,7 +193,24 @@
     }
   },
 
+  "auth": {
+  },
+
+  "toggle": {
+    "approved": "موافقة",
+    "rejected": "مرفوض"
+  },
+
+  "opinion": {
+    "positive": "إيجابي",
+    "negative": "سلبي",
+    "natural": "طبيعي",
+    "no answer": "لا اجابة"
+  },
+
   "This part will come soon": "سيأتي هذا الجزء قريبا",
+
+  "Update Scene Status": "تحديث حالة المشهد",
 
   "scene": "المشهد",
   "topic": "الموضوع",

@@ -22,7 +22,7 @@ import { CHeaderTabs } from '@interfaces/constant'
 
 function UserAction() {
   const { logout } = useAuthContext()
-  const {t}=useTranslate()
+  const { t } = useTranslate()
   // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
   const handleLogout = async () => {
@@ -142,10 +142,11 @@ const Header = () => {
                           width: 20,
                           height: 20,
                           flexShrink: 0,
-                          color: router.pathname === `/${item.url.toLowerCase()}`?'var(--Primary1)':'white'
+                          color: router.pathname === `/${item.url.toLowerCase()}` ? 'var(--Primary1)' : 'white'
                         }}
                       />
-                      <Typography ml={0.5} className='menu-title text-capitalize'>{t(item.title.toLowerCase())}</Typography>
+                      <Typography ml={0.5}
+                                  className='menu-title text-capitalize'>{t(item.title.toLowerCase())}</Typography>
                     </TopButton>
                   </Box>
                 )
@@ -242,9 +243,6 @@ const Header = () => {
                 flexDirection: 'column',
                 gap: 1,
                 my: 2,
-                '& .MuiBox-root': {
-                  width: '150px'
-                }
               }}
             >
               <Box>
@@ -263,7 +261,7 @@ const Header = () => {
                         width: 20,
                         height: 20,
                         flexShrink: 0,
-                        color: router.pathname === `/${item.url.toLowerCase()}`?'var(--Primary1)':'white'
+                        color: router.pathname === `/${item.url.toLowerCase()}` ? 'var(--Primary1)' : 'white'
                       }}
                     />
                     <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
@@ -278,22 +276,45 @@ const Header = () => {
             sx={{
               display: 'flex',
               justifyContent: 'right',
-              bgcolor: 'var(--Primary3)',
-              maxWidth: '300px'
+              bgcolor: 'var(--Primary3)'
             }}
           >
-            <Box sx={{ py: 2, px: 1, display: 'flex' }}>
-              <Image src={UserLogo} alt='logo' />
-              <Box sx={{ ml: 1 }}>
-                {username && <Typography fontSize={14} whiteSpace='nowrap'>
-                  {username}
-                </Typography>}
-                <Typography fontSize={10}>Admin</Typography>
+
+            <Box sx={{ bgcolor: 'var(--Secondary)', display: 'flex' }}>
+              <LanguagePopover />
+            </Box>
+
+            <Box
+              sx={{
+                p: {
+                  sm: 2,
+                  xs: 1
+                },
+                display: 'flex',
+
+              }}>
+              <Box
+                className='user-logo'
+              >
+                <Image src={UserLogo} width={33} alt='logo' />
               </Box>
+              <Box sx={{ ml: 2 }}>
+                {username &&
+                  <Typography fontSize={14} whiteSpace='nowrap' width={70}
+                              sx={{ fontWeight: '500 !important', textTransform: 'capitalize !important' }}>
+                    {username}
+                  </Typography>}
+                <Typography fontSize={10} sx={{ fontWeight: '400 !important' }} className='text-capitalize'>
+                  {t('admin')}
+                </Typography>
+              </Box>
+
+              <UserAction />
             </Box>
-            <Box sx={{ px: 1, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              {/* <HeadsetMicIcon /> */}
-            </Box>
+
+            {/*<Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
+              <Image src={Headset} alt={'headset'} width={24}></Image>
+            </Box>*/}
           </Box>
         </Box>
       </AppBar>

@@ -102,7 +102,12 @@ export default function DrawerTabActivities() {
 
 
       {/*------------History--------*/}
-      <Box>
+      <Box
+        sx={{
+          display:'flex',
+          flexDirection:'column',
+          alignItems:'center'
+        }}>
         <Typography ml={3} sx={{ textAlign: 'center', marginLeft: '0' }}>{t(`drawer.History`)}</Typography>
         <Box>
           {DrawerHistories.length > 0 ?

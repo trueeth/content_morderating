@@ -151,7 +151,7 @@ export const HeaderUpdate = () => {
                 textTransform:'capitalize !important'
               }}
             >
-              {t(`rowApproval.${item.toLowerCase()}`)}
+              {t(`toggle.${item.toLowerCase()}`)}
             </ToggleButton>
           ))}
         </ToggleButtonGroup>

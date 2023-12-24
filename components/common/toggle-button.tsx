@@ -46,7 +46,7 @@ export default function CustomToggleButtonGroup(props: IProps) {
           value={index}
           key={index}
         >
-          {t(`rowApproval.${val.toLowerCase()}`)}
+          {t(`toggle.${val.toLowerCase()}`)}
         </ToggleButton>
       ))}
     </ToggleButtonGroup>

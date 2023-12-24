@@ -196,6 +196,18 @@
   "auth": {
   },
 
+  "toggle": {
+    "approved" : "approved",
+    "rejected" : "rejected"
+  },
+
+  "opinion": {
+    "positive": "positive",
+    "negative": "negative",
+    "natural": "natural",
+    "no answer": "no answer"
+  },
+
   "This part will come soon": "This part will come soon",
   "Update Scene Status": "Update Scene Status",
 

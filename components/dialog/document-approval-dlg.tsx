@@ -354,10 +354,8 @@ export default function DocumentApprovalDlg() {
                     <Typography>
                       {t('updateApproval.Ai opinion')}&nbsp;:
                     </Typography>
-                    <Typography sx={{ paddingLeft: '2rem' }}>
-                      The page portrays the question in
-                      a <strong>{memoValue.pageInfo?.opinion ? memoValue.pageInfo?.opinion : 'no'}</strong> way based on
-                      the Ai findings
+                    <Typography sx={{ paddingLeft: '2rem' }} className='text-capitalize'>
+                      {memoValue.pageInfo?.opinion ? t(`opinion.${memoValue.pageInfo?.opinion.toLowerCase()}`) : t('opinion.no answer')}
                     </Typography>
                   </Grid>
                   {/*------snippet----------*/}
