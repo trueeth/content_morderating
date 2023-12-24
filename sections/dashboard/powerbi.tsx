@@ -49,7 +49,7 @@ export default function Powerbi() {
       },
         panes: {
         filters: {
-        expanded: true,
+        expanded: false,
         visible: true
       }
       },
@@ -58,6 +58,15 @@ export default function Powerbi() {
         navContentPaneEnabled: true
       }
       }}
+        eventHandlers = {
+          new Map([
+            ['loaded', function () {console.log('Report loaded');}],
+            ['rendered', function () {console.log('Report rendered');}],
+            ['error', function (event) {console.log(event.detail);}],
+            ['visualClicked', () => console.log('visual clicked')],
+            ['pageChanged', (event) => console.log(event)],
+          ])
+        }
     />:
   null
 }
