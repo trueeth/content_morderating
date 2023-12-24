@@ -49,8 +49,8 @@ export default function Powerbi() {
               },
               panes: {
                 filters: {
-                  expanded: false,
-                  visible: false
+                  expanded: true,
+                  visible: true
                 }
               },
               background: models.BackgroundType.Transparent,

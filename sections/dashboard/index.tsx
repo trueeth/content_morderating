@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import dynamic from 'next/dynamic'
 import Typography from '@mui/material/Typography'
+import { useTranslate } from '../../locales'
 
 const Powerbi = dynamic(
   () => {
@@ -12,6 +13,7 @@ const Powerbi = dynamic(
 export default function DashboardSection() {
 
   const currentDate = new Date()
+  const {t}=useTranslate()
 
   return (
     <Box>
@@ -36,7 +38,7 @@ export default function DashboardSection() {
           </Typography>
         </Box>
         <Box>
-          <a style={{color:'#8f8f8f', textDecoration:'unset'}} href='mailto:support@microbeaver.com'>Contact Us</a>
+          <a style={{color:'#8f8f8f', textDecoration:'unset'}} href='mailto:support@microbeaver.com'>{t('Contact Us')}</a>
         </Box>
       </Box>
     </Box>
