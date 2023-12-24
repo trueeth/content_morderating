@@ -31,7 +31,7 @@ export default function DashboardSection() {
         <Powerbi />
 
       </Box>
-      <Box className='flex justify-between mt-60'>
+      <Box className='flex justify-between mt-30'>
         <Box>
           <Typography sx={{color:'#8f8f8f', fontSize:'.9rem'}}>
             {currentDate.getFullYear()} © MicroBeaver - microbeaver.com - Version 2023.2.0.0

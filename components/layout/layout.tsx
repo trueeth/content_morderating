@@ -10,6 +10,7 @@ import { closeSnackbar } from '@store/reducers/snackbar/reducers'
 import Box from '@mui/material/Box'
 import LoadingIcons from 'react-loading-icons'
 import clsx from 'clsx'
+import { setLang } from '@store/reducers/setting/reducers'
 
 
 type Props = {
@@ -33,15 +34,20 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     if (appState.snackbar.open) dispatch(closeSnackbar())
   }
 
+  useEffect(() => {
+    const currentLang = localStorage.getItem('i18nextLng')
+    dispatch(setLang(currentLang))
+  }, [])
 
   return (
-    <div className={clsx('pb-50 flex flex-col justify-center item-center', appState.setting.lang==='ar'&&'direction-rtl', appState.setting.lang==='en'&&'direction-ltr',)}>
+    <div
+      className={clsx('pb-50 flex flex-col justify-center item-center', appState.setting.lang === 'ar' && 'direction-rtl', appState.setting.lang === 'en' && 'direction-ltr')}>
       <Head>
         <title>{title}</title>
         <link rel='icon' href='/assets/images/favicon.ico' sizes='any' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <link href="https://amp.azure.net/libs/amp/2.3.6/skins/amp-default/azuremediaplayer.min.css"  rel="stylesheet" />
-        <script src="https://amp.azure.net/libs/amp/2.3.6/azuremediaplayer.min.js" async></script>
+        <link href='https://amp.azure.net/libs/amp/2.3.6/skins/amp-default/azuremediaplayer.min.css' rel='stylesheet' />
+        <script src='https://amp.azure.net/libs/amp/2.3.6/azuremediaplayer.min.js' async></script>
       </Head>
       <header className={'w-full'}>
         <Index />
@@ -68,24 +74,24 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
           bottom: '30%',
           left: 0,
           right: 0,
-          display:'flex',
-          flexDirection:'column',
-          justifyContent:'center',
-          alignItems:'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
           ...(!appState.api.loading && {
-            display: 'none',
-          }),
+            display: 'none'
+          })
         }}
       >
         <Box sx={{
           '& g': {
-            stroke:'var(--Primary1)'
+            stroke: 'var(--Primary1)'
           },
-          display:'flex',
-          justifyContent:'center',
-          alignItems:'center',
-          color:'var(--Primary1)',
-          flexDirection:'column',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: 'var(--Primary1)',
+          flexDirection: 'column'
         }}>
           <LoadingIcons.Puff height={80} width={80} strokeWidth={3} />
         </Box>
@@ -96,10 +102,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
           width: '100%',
           maxWidth: '1500px !important',
           overflow: 'auto',
-          opacity:'1',
+          opacity: '1',
           ...(appState.api.loading && {
-            opacity: '.6',
-          }),
+            opacity: '.6'
+          })
         }}
       >
         {children}
