@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect } from 'react'
 import Head from 'next/head'
-import Index from './header'
 import UploadDialog from '../dialog/upload-dlg'
 import { Alert, Container, Snackbar } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +10,7 @@ import Box from '@mui/material/Box'
 import LoadingIcons from 'react-loading-icons'
 import clsx from 'clsx'
 import { setLang } from '@store/reducers/setting/reducers'
+import Header from './header'
 
 
 type Props = {
@@ -50,7 +50,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <script src='https://amp.azure.net/libs/amp/2.3.6/azuremediaplayer.min.js' async></script>
       </Head>
       <header className={'w-full'}>
-        <Index />
+        <Header />
       </header>
       <UploadDialog />
 

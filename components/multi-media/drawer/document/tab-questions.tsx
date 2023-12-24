@@ -45,8 +45,6 @@ export default function DrawerTabQuestions() {
   /*eslint-enable*/
 
   // const memoValue = useMemo(()=>{
-  //   console.log('-----memo-questions-----')
-  //   console.log('memoValue:', appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers)
   //   return appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
   // },[
   //   appState.drawer.drawerData

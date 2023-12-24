@@ -174,7 +174,7 @@ function DocumentRow(props: {
         </TableCell>
 
         <TableCell>
-          <Typography className={'flex text-capitalize'}>
+          <Typography className={'flex text-capitalize text-8'}>
             {t(row.language.toLowerCase())}
           </Typography>
         </TableCell>

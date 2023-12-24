@@ -298,3 +298,18 @@
 .direction-rtl .svg-color+p{
     padding-right: .5rem;
 }
+.direction-rtl .MuiStepConnector-root.MuiStepConnector-horizontal{
+    left: calc(50% + 20px);
+    right: calc(-50% + 20px);
+}
+
+.direction-rtl .title-drag{
+    padding-right: .5rem;
+}
+.direction-rtl .title-drag>div>p{
+    padding-right: .5rem;
+}
+
+.direction-rtl .MuiPaper-root .MuiSvgIcon-root {
+    margin-left: 1rem;
+}

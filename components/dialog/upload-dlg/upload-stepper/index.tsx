@@ -46,7 +46,8 @@ export default function UploadStepper() {
       newTitle: '',
       type: 'new',
       replaceItem: null,
-      languageType: 0
+      languageType: 0,
+      uploadId: null,
     }
   }
   const [vState, setState] = useState(initialState)

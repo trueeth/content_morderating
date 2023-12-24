@@ -122,69 +122,18 @@ export default function SourceStep(props: {
 
   const uploadVideo = async () => {
 
-    type TUploadInfo = TResVideo.TVideoContent & {
-      ModeratorNotes?: string,
-      Rating?: string,
-    }
-
-    let uploadVideoInfo: TUploadInfo = {
-      AIClassification: EMediaRating.none,
-      AiClassificationEndTime: null,
-      AiClassificationStartTime: null,
-      AiClassificationStatus: EProcessingStatus.new,
-      AzureIndexerEndTime: null,
-      AzureIndexerStartTime: null,
-      AzureIndexerStatus: EProcessingStatus.new,
-      AzureIndexerVideoId: null,
-      Description: 'trueeth video upload',
-      Duration: null,
-      FileName: null,
-      FrameAnalyticsStatus: EProcessingStatus.new,
-      FrameClassificationEndTime: null,
-      FrameClassificationStartTime: null,
-      FrameExractionEndTime: null,
-      FrameExractionStartTime: null,
-      FrameExtractionStatus: 'New',
-      FrameRate: null,
-      Id: '00000000-0000-0000-0000-000000000000',
-      InternalVideoPath: null,
-      MediaSourceId: '49f5cc65-53c4-4caf-94dc-d1f29e6665ec',
-      ModeratorApprovalStatus: EModeratorApprovalStatus.new,
-      ModeratorClassification: EMediaRating.none,
-      ModeratorNotes: '',
-      Name: props.data.newOld.newTitle,
-      Notes: 'a',
-      OriginalFileName: null,
-      ProcessingStatusPercentage: null,
-      Rating: 'None',
-      SaveToCosmosEndTime: null,
-      SaveToCosmosStartTime: null,
-      SaveToCosmosStatus: EProcessingStatus.new,
-      Status: EProcessingStatus.new,
-      TranscripClassificationEndTime: null,
-      TranscripClassificationStartTime: null,
-      TranscriptAnalyticsStatus: EProcessingStatus.new,
-      TranscriptGenerationEndTime: null,
-      TranscriptGenerationStartTime: null,
-      TranscriptGenerationStatus: EProcessingStatus.new,
-      UploadedOnUtc: '0001-01-01T00:00:00+00:00',
-      VersionNumber: 0,
-      VideoSummary: null
-    }
-
 
     var formData = new FormData()
     formData.append('file', vState.uploadFile)
 
 
-    let uploadId = await apiGetUploadMediaId(uploadVideoInfo)
-
+    let uploadId = props.data.newOld.uploadId
     let startAt = Date.now()
 
 
-    await apiUploadVideo(uploadId.data, formData, getAxiosConfig(startAt))
+    await apiUploadVideo(uploadId, formData, getAxiosConfig(startAt))
     try {
-      await apiUploadedVideoProcess(uploadId.data.Id)
+      await apiUploadedVideoProcess(uploadId.Id)
     } catch (e) {
       console.error(e)
       dispatch(openSnackbarWarning(t('uploadDlg.msg.uploadFileProcessError')))
@@ -426,7 +375,7 @@ export default function SourceStep(props: {
                 }}
               />
             </Box>
-            <Box>
+            <Box className='title-drag'>
               <Box
                 display='flex'
                 sx={{ flexDirection: { xs: 'column', md: 'row' } }}
@@ -439,14 +388,14 @@ export default function SourceStep(props: {
                     color: '#333'
                   }}
                 >
-                  {t('Drag your file here or')}
+                  {t('uploadDlg.step.Drag your file here or')}
                 </Typography>
                 <Typography style={{ color: 'var(--Primary1)' }}>
-                  {t('Browse')}
+                  {t('uploadDlg.step.Browse')}
                 </Typography>
               </Box>
               <Typography>
-                {t('Maximum file size 2GB')}
+                {t('uploadDlg.step.Maximum file size 2GB')}
               </Typography>
             </Box>
           </Box>

@@ -1,5 +1,5 @@
 import { StepWrapper } from './index'
-import { Box,  Select,  Typography } from '@mui/material'
+import { Box, Select, Typography } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useState } from 'react'
@@ -16,18 +16,19 @@ import { apiGetUploadMediaId } from '@interfaces/apis/upload'
 export default function StatusStep(props: {
   handleNext: (any) => void
   handleBack: () => void
-  mediaType?:string
+  mediaType?: string
 }) {
 
-  const initialState={
+  const initialState = {
     newTitle: '',
     type: 'new',
-    replaceItem:null,
-    languageType: 0
+    replaceItem: null,
+    languageType: 0,
+    uploadId: null
   }
 
   const [vState, setState] = useState(initialState)
-  const {t}=useTranslate()
+  const { t } = useTranslate()
 
   const handleLanguageType = (event: any) => {
     setState({ ...vState, languageType: event.target.value })
@@ -44,7 +45,7 @@ export default function StatusStep(props: {
   }
 
 
-  const handleNext = async () =>  {
+  const handleNext = async () => {
     if (vState.newTitle == '' && vState.type == 'new') {
       dispatch(openSnackbarError(t('uploadDlg.step.titleEmpty-msg')))
       return
@@ -93,18 +94,18 @@ export default function StatusStep(props: {
       VersionNumber: 0,
       VideoSummary: null
     }
-
-    if (props.mediaType=='Video'){
-      try{
-        await apiGetUploadMediaId(uploadVideoInfo)
-      }catch (e){
+    let uploadId = null
+    if (props.mediaType == 'Video') {
+      try {
+        uploadId = await apiGetUploadMediaId(uploadVideoInfo)
+      } catch (e) {
         console.log(e)
         setState(initialState)
         dispatch(openSnackbarError(t('uploadDlg.step.duplicateId-msg')))
         return
       }
     }
-    props.handleNext(vState)
+    props.handleNext({ ...vState,uploadId:uploadId?.data })
   }
 
 
@@ -131,8 +132,8 @@ export default function StatusStep(props: {
           }
         }}
       >
-        <Box sx={{paddingTop:'1.5rem'}}>
-          <Typography className='text-capitalize' > {t('name')}</Typography>
+        <Box sx={{ paddingTop: '1.5rem' }}>
+          <Typography className='text-capitalize'> {t('name')}</Typography>
           {/*<Radio*/}
           {/*  checked={vState.type === 'new'}*/}
           {/*  onChange={handleType}*/}
@@ -157,10 +158,10 @@ export default function StatusStep(props: {
         {/*</Box>*/}
 
         {
-          props.mediaType==='Document'?
+          props.mediaType === 'Document' ?
             <>
-              <Box sx={{paddingTop:'1.5rem'}}>
-                <Typography className='text-capitalize' >
+              <Box sx={{ paddingTop: '1.5rem' }}>
+                <Typography className='text-capitalize'>
                   {t('column.language')}
                 </Typography>
               </Box>
@@ -173,15 +174,15 @@ export default function StatusStep(props: {
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     borderColor: 'var(--Primary1)'
                   },
-                  '& .MuiOutlinedInput-input':{
-                    textTransform:'capitalize !important'
+                  '& .MuiOutlinedInput-input': {
+                    textTransform: 'capitalize !important'
                   },
                   bgcolor: 'white',
-                  pl:'1rem'
+                  pl: '1rem'
                 }}
               >
                 {
-                  CLanguage.map((val, index)=>(
+                  CLanguage.map((val, index) => (
                     <MenuItem
                       sx={{
                         '& .MuiTypography-root, input': {
@@ -209,7 +210,7 @@ export default function StatusStep(props: {
             '& .MuiButton-root': { width: '100px' }
           }}
         >
-          <PrimaryButton onClick={props.handleBack} active={false} className='text-capitalize' >
+          <PrimaryButton onClick={props.handleBack} active={false} className='text-capitalize'>
             {t('back')}
           </PrimaryButton>
           <PrimaryButton onClick={handleNext} className='text-capitalize'>

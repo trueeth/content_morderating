@@ -168,7 +168,7 @@
     font-size: .7rem;
 }
 .text-8{
-    font-size: .8rem;
+    font-size: .8rem !important;
 }
 .text-9{
     font-size: .9rem;

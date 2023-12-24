@@ -32,44 +32,49 @@ export default function Powerbi() {
     })()
   }, [i18n.language])
 
+  try {
 
-  return (
-    <>
-      {vState.display ? <PowerBIEmbed
-        embedConfig={{
-        type: 'report',   // Supported types: report, dashboard, tile, visual, qna, paginated report and create
-        embedUrl: vState.setting.embedUrl,
-        accessToken: vState.setting.accessToken,
-        id: vState.setting.id,
-        tokenType: models.TokenType.Embed, // Use models.TokenType.Aad for SaaS embed
-        permissions: models.Permissions.All,
-        settings: {
-        localeSettings: {
-        language: i18n.language
-      },
-        panes: {
-        filters: {
-        expanded: false,
-        visible: true
-      }
-      },
-        background: models.BackgroundType.Transparent,
-        filterPaneEnabled: true,
-        navContentPaneEnabled: true
-      }
-      }}
-        eventHandlers = {
-          new Map([
-            ['loaded', function () {console.log('Report loaded');}],
-            ['rendered', function () {console.log('Report rendered');}],
-            ['error', function (event) {console.log(event.detail);}],
-            ['visualClicked', () => console.log('visual clicked')],
-            ['pageChanged', (event) => console.log(event)],
-          ])
+    return (
+      <>
+        {vState.display ? <PowerBIEmbed
+            embedConfig={{
+              type: 'report',   // Supported types: report, dashboard, tile, visual, qna, paginated report and create
+              embedUrl: vState.setting.embedUrl,
+              accessToken: vState.setting.accessToken,
+              id: vState.setting.id,
+              tokenType: models.TokenType.Embed, // Use models.TokenType.Aad for SaaS embed
+              permissions: models.Permissions.All,
+              settings: {
+                localeSettings: {
+                  language: i18n.language
+                },
+                panes: {
+                  filters: {
+                    expanded: false,
+                    visible: true
+                  }
+                },
+                background: models.BackgroundType.Transparent,
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+              }
+            }}
+            eventHandlers = {
+              new Map([
+                ['loaded', function () {console.log('Report loaded');}],
+                ['rendered', function () {console.log('Report rendered');}],
+                ['error', function (event) {console.log(event.detail);}],
+                ['visualClicked', () => console.log('visual clicked')],
+                ['pageChanged', (event) => console.log(event)],
+              ])
+            }
+          />:
+          null
         }
-    />:
-  null
-}
-</>
-)
+      </>
+    )
+  } catch (e) {
+    return null
+  }
+
 }

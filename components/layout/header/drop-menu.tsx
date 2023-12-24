@@ -67,7 +67,7 @@ const DropMenu = () => {
         onClick={handleToggle}
         main={true}
         active={
-          router.pathname === `/videos` || router.pathname === `/documents`
+          router.pathname.indexOf(`/videos`)>-1 || router.pathname.indexOf(`/documents`) >-1
         }
       >
         <SvgColor
