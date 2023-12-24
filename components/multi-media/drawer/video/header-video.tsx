@@ -15,7 +15,7 @@ import RowRating from '@components/multi-media/common/rating-item'
 export default function DrawerVideoHeader() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  const {t}=useTranslate()
+  const { t } = useTranslate()
 
   const memorizedVideoValue = useMemo(() => {
 
@@ -26,6 +26,7 @@ export default function DrawerVideoHeader() {
       Status?: string,
       Rating?: string,
       Classification?: EClassificationType[],
+      ClassificationString?: string[],
       SubmissionDate?: string,
       AiApproval?: string
     } = {}
@@ -43,18 +44,23 @@ export default function DrawerVideoHeader() {
         submissionDate = format(parseISO(data[rowIndex]?.UploadedOnUtc), 'MM/dd/yyyy hh:mm:ss a')
 
       let classifications: EClassificationType[] = []
+      let classificationsString: string[] = []
 
       if (subRowData?.SexualSeverity !== ESeverity.none)
         classifications.push(EClassificationType.sexual)
+      classificationsString.push('sexual')
 
       if (subRowData?.ViolenceSeverity !== ESeverity.none)
         classifications.push(EClassificationType.violance)
+      classificationsString.push('violence')
 
       if (subRowData?.SelfHarmSeverity !== ESeverity.none)
         classifications.push(EClassificationType.selfHarm)
+      classificationsString.push('self-harm')
 
       if (subRowData?.HateSeverity !== ESeverity.none)
         classifications.push(EClassificationType.hate)
+      classificationsString.push('hate')
 
       memoValue = {
         Index: subRowIndex + 1,
@@ -66,6 +72,7 @@ export default function DrawerVideoHeader() {
         Status: subRowData?.ModeratorApprovalStatus,
         Rating: subRowData?.Rating,
         Classification: classifications,
+        ClassificationString:classificationsString,
         SubmissionDate: submissionDate,
         AiApproval: subRowData?.AutomaticApprovalStatus
       }
@@ -106,6 +113,7 @@ export default function DrawerVideoHeader() {
           gap: 2,
           columnGap: '4rem',
           padding: '0rem 1rem',
+          flexDirection:'column',
           '& .MuiBox-root': {
             display: 'flex',
             alignItems: 'center',
@@ -113,32 +121,43 @@ export default function DrawerVideoHeader() {
               color: 'grey',
               fontSize: '14px'
             }
+          },
+          '>.MuiBox-root':{
+            gap:4
           }
         }}
       >
         <Box>
-          <Typography>{t('drawer.video.STATUS')} : &nbsp;</Typography>
-          <RowApproval approval={memorizedVideoValue.Status} />
+          <Box>
+            <Typography>{t('drawer.video.STATUS')} : &nbsp;</Typography>
+            <RowApproval approval={memorizedVideoValue.Status} />
+          </Box>
+          <Box>
+            <Typography>{t('drawer.video.RATING')} : &nbsp;</Typography>
+            <RowRating rating={memorizedVideoValue.Rating} />
+          </Box>
         </Box>
+
         <Box>
-          <Typography>{t('drawer.video.RATING')} : &nbsp;</Typography>
-          <RowRating rating={memorizedVideoValue.Rating}/>
+          <Box>
+            <Typography>{t('drawer.video.AI CLASSIFICATION')} : &nbsp; </Typography>
+            <Typography className='text-capitalize text-85'>
+              {memorizedVideoValue.ClassificationString?.length > 0 ? memorizedVideoValue.ClassificationString?.map(item=>t(`violence-classification.${item}`)).join(', ') : t('not assigned')}
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography>{t('drawer.video.AI APPROVAL')} : &nbsp; </Typography>
+            <RowApproval approval={memorizedVideoValue.AiApproval} />
+          </Box>
+
         </Box>
-        <Box>
-          <Typography>{t('drawer.video.AI CLASSIFICATION')} : &nbsp; </Typography>
-          <Typography>
-            {memorizedVideoValue.Classification?.length > 0 ? memorizedVideoValue.Classification?.join(',') : 'Not Assigned'}
-          </Typography>
-        </Box>
+
         <Box>
           <Typography>{t('drawer.video.SUBMISSION DATE')} : &nbsp;</Typography>
           <Typography>
             {memorizedVideoValue.SubmissionDate}
           </Typography>
-        </Box>
-        <Box>
-          <Typography>{t('drawer.video.AI APPROVAL')} : &nbsp; </Typography>
-          <RowApproval approval={memorizedVideoValue.AiApproval} />
         </Box>
       </Box>
       <Box>

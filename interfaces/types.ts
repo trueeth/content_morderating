@@ -17,6 +17,7 @@ export type TVideoRowType = {
   status?: EProcessingStatus
   rating?: EMediaRating
   classification?: EClassificationType[]
+  classificationString?: string[]
   submissionDate?: string
   moderator_approval?: string
   ai_approval?: EModeratorApprovalStatus

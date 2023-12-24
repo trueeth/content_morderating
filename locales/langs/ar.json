@@ -208,6 +208,13 @@
     "no answer": "لا اجابة"
   },
 
+  "violence-classification": {
+    "sexual": "إباحي",
+    "self-harm": "مؤذي ذاتياً",
+    "hate": "كره",
+    "violence": "عنف"
+  },
+
   "This part will come soon": "سيأتي هذا الجزء قريبا",
 
   "Update Scene Status": "تحديث حالة المشهد",

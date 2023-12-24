@@ -208,6 +208,13 @@
     "no answer": "no answer"
   },
 
+  "violence-classification": {
+    "sexual": "sexual",
+    "self-harm": "self-harm",
+    "hate": "hate",
+    "violence": "violence"
+  },
+
   "This part will come soon": "This part will come soon",
   "Update Scene Status": "Update Scene Status",
 

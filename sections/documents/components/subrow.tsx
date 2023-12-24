@@ -23,7 +23,7 @@ const DocumentSubrow = (props: {
   const { rowDetails } = props
   const dispatch = useDispatch()
 
-  const { t, i18n } = useTranslate()
+  const { t } = useTranslate()
 
   const openScene = (index: number) => () => {
     dispatch(
@@ -82,7 +82,6 @@ const DocumentSubrow = (props: {
     </TableRow>
   )
 
-  const isArabic = i18n.language === 'ar';
 
   return (
     <Table
@@ -107,7 +106,6 @@ const DocumentSubrow = (props: {
               color: '#333',
               fontSize: '12px',
               height: '50px',
-              textAlign: isArabic && 'right !important',
               paddingRight: '8px !important',
             }
           }}
@@ -145,7 +143,6 @@ const DocumentSubrow = (props: {
           '& .MuiTypography-root': {
             color: '#6f6f6f !important',
             fontSize: '.8rem',
-            textAlign: isArabic && 'right !important',
           }
         }}
       >

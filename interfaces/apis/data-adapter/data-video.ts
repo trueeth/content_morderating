@@ -32,14 +32,23 @@ export const resToVideoRowAdapter = (resData:any) => {
 
 
       let classifications: EClassificationType[] = []
-      if (videoContent.VideoSummary?.SexualSeverity == 'Extreme')
+      let classificationsString: string[] = []
+      if (videoContent.VideoSummary?.SexualSeverity == 'Extreme') {
         classifications.push(EClassificationType.sexual)
-      if (videoContent.VideoSummary?.SelfHarmSeverity == 'Extreme')
+        classificationsString.push('sexual')
+      }
+      if (videoContent.VideoSummary?.SelfHarmSeverity == 'Extreme') {
         classifications.push(EClassificationType.selfHarm)
-      if (videoContent.VideoSummary?.HateSeverity == 'Extreme')
+        classificationsString.push('self-harm')
+      }
+      if (videoContent.VideoSummary?.HateSeverity == 'Extreme') {
         classifications.push(EClassificationType.hate)
-      if (videoContent.VideoSummary?.ViolenceSeverity == 'Extreme')
-        classifications.push(EClassificationType.violance)
+        classificationsString.push('hate')
+      }
+      if (videoContent.VideoSummary?.ViolenceSeverity == 'Extreme') {
+          classifications.push(EClassificationType.violance)
+        classificationsString.push('violence')
+      }
 
       let videoSubRows: TVideoSubRowType[] = []
 
@@ -52,11 +61,6 @@ export const resToVideoRowAdapter = (resData:any) => {
           videoSubRow.moderatorStatus=sceneSummary.ModeratorApprovalStatus
           if (!videoContent.Description)
             videoSubRow.description='Not Assigned'
-
-          // @TODO random data
-          // let vioRand = Math.floor(Math.random() * 5) + 1
-          // if (vioRand > 2) videoSubRow.violationType = EViolationType.saudi
-          // else videoSubRow.violationType = EViolationType.religion
 
 
           let violationType=[]
@@ -87,6 +91,7 @@ export const resToVideoRowAdapter = (resData:any) => {
       videoRow.subRows = videoSubRows
 
       videoRow.classification = classifications
+      videoRow.classificationString=classificationsString
       return videoRow
     })
 

@@ -5,7 +5,7 @@ import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { KeyboardArrowDown, KeyboardArrowRight, KeyboardArrowLeft } from '@mui/icons-material'
+import { KeyboardArrowDown, KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { TVideoRowType } from '@interfaces/types'
 import RowStatus from '@components/multi-media/common/status-item'
 import RowRating from '@components/multi-media/common/rating-item'
@@ -35,7 +35,7 @@ function VideoRow(props: {
 
   const { t, i18n } = useTranslate()
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   // app state
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
@@ -60,12 +60,12 @@ function VideoRow(props: {
       action: () => router.push(`/videos/${appState.api.data[props.rowIndex].Id}`)
     },
     {
-      title: t("rowActions.approval"),
-      action:()=>dispatch(openVideoApproval({rowIndex:props.rowIndex}))
+      title: t('rowActions.approval'),
+      action: () => dispatch(openVideoApproval({ rowIndex: props.rowIndex }))
     }
   ]
 
-  const isArabic = i18n.language === 'ar';
+  const isArabic = i18n.language === 'ar'
 
   return (
     <React.Fragment>
@@ -73,11 +73,10 @@ function VideoRow(props: {
       <TableRow
         sx={{
           '& > .MuiTableCell-root': {
-            textAlign: isArabic && 'right !important',
             '&:first-of-type': {
               borderBottomLeftRadius: vState.openSummary ? '0px !important' : '10px',
-              '& .MuiSvgIcon-root' : {
-                marginLeft: '0px !important',
+              '& .MuiSvgIcon-root': {
+                marginLeft: '0px !important'
               }
             },
             '&:last-of-type': {
@@ -97,7 +96,7 @@ function VideoRow(props: {
               {vState.openSummary ? <KeyboardArrowDown sx={{
                 fontSize: '1.2rem'
               }} /> : isArabic ? <KeyboardArrowLeft sx={{ fontSize: '1.2rem' }} /> :
-              <KeyboardArrowRight sx={{ fontSize: '1.2rem' }} />}
+                <KeyboardArrowRight sx={{ fontSize: '1.2rem' }} />}
             </IconButton> :
             null}
         </TableCell>
@@ -120,20 +119,38 @@ function VideoRow(props: {
         {/*<TableCell><RowType type={props.row.type}></RowType></TableCell>*/}
         <TableCell><RowStatus status={props.row.status}></RowStatus></TableCell>
         <TableCell><RowRating rating={props.row.rating}></RowRating></TableCell>
-        <TableCell>
-          <Box>
+        {/*<TableCell>
+          <Box className='flex'>
             <RowClassification classifications={props.row.classification}></RowClassification>
           </Box>
+        </TableCell>*/}
+        <TableCell>
+          <Box className='flex'>
+            {
+              props.row.classificationString.length>0?(
+
+                <Typography sx={{fontSize:'.8rem'}} className='text-capitalize'>
+                  {props.row.classificationString.map(item=>t(`violence-classification.${item}`)).join(", ")}
+                </Typography>
+              ):
+                <Typography sx={{fontSize:'.7rem', color:'#00000091'}} className='text-capitalize' >
+                  {t('not assigned')}
+                </Typography>
+            }
+
+          </Box>
         </TableCell>
-        <TableCell><Box className={'approval'}><RowApproval approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
-        <TableCell><Box className={'approval'}><RowApproval approval={props.row.ai_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'approval'}><RowApproval
+          approval={props.row.moderator_approval}></RowApproval></Box></TableCell>
+        <TableCell><Box className={'approval'}><RowApproval
+          approval={props.row.ai_approval}></RowApproval></Box></TableCell>
         <TableCell><Box minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
         {/* <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell> */}
         <TableCell>
           {
-            props.row.status=== EProcessingStatus.processed?
-            <RowAction actions={rowActions} />:
-              <Typography sx={{fontSize:'.7rem'}} className='text-capitalize'> {t('processing')} </Typography>
+            props.row.status === EProcessingStatus.processed ?
+              <RowAction actions={rowActions} /> :
+              <Typography sx={{ fontSize: '.7rem' }} className='text-capitalize'> {t('processing')} </Typography>
           }
         </TableCell>
       </TableRow>

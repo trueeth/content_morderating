@@ -119,7 +119,7 @@ function DocumentRow(props: {
     }
   ]
 
-  const isArabic = i18n.language === 'ar';
+  const isArabic = i18n.language === 'ar'
 
   return (
     <React.Fragment>
@@ -127,7 +127,6 @@ function DocumentRow(props: {
       <TableRow
         sx={{
           '& > .MuiTableCell-root': {
-            textAlign: isArabic && 'right !important',
             '&:first-of-type': {
               borderBottomLeftRadius: vState.openSummary
                 ? '0px !important'
