@@ -1,5 +1,4 @@
 import { Typography, Box, Button } from '@mui/material';
-import { useAuthContext } from '@components/auth/hooks';
 import { PrimaryTextField } from '@components/common/text-field';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
@@ -10,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers';
 import { apiIdentifyAuth } from '@interfaces/apis/auth';
 import { useTranslate } from '../../locales';
+import { useAuthContext } from '@components/auth/hooks/use-auth-context'
 
 
 export default function AuthSection() {

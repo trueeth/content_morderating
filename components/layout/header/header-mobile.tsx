@@ -2,7 +2,6 @@ import { AppBar, Box, Drawer, IconButton, Typography } from '@mui/material'
 import Image from 'next/image'
 import LogoImage from '@public/assets/images/logo.png'
 import { CHeaderTabs } from '@interfaces/constant'
-import DropMenu from '@components/layout/header/drop-menu'
 import { TopButton } from '@components/common/styled-button'
 import SvgColor from '@components/common/svg-color'
 import LanguagePopover from '@components/layout/header/language-popover'
@@ -12,7 +11,6 @@ import { useRouter } from 'next/router'
 import { useTranslate } from '../../../locales'
 import { UserAction } from '@components/layout/header/index'
 import MenuIcon from '@mui/icons-material/Menu'
-import { useState } from 'react'
 
 
 interface IProps {

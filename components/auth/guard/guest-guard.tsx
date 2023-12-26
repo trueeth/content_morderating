@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from 'react'
 
 import { useSearchParams, useRouter } from 'next/navigation'
+import { useAuthContext } from '@components/auth/hooks/use-auth-context'
 
-import { useAuthContext } from '../hooks'
 
 
 type Props = {
