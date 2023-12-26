@@ -30,10 +30,6 @@ export default function UploadDialog() {
 
   const isXs = useMediaQuery('(max-width:500px)')
 
-  const uploadGroups = [
-    'Upload',
-    'History'
-  ]
 
   useEffect(() => {
     dispatch(setUploadProgress({ progress: 0, remaining: 0 }))

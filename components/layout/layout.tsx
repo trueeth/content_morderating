@@ -39,7 +39,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     dispatch(setLang(currentLang))
     if (currentLang === 'ar')
       document.dir = 'rtl'
-  }, [])
+  }, [dispatch])
 
   return (
     <div

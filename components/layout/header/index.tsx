@@ -19,8 +19,10 @@ import LanguagePopover from '@components/layout/header/language-popover'
 import { useTranslate } from '../../../locales'
 import { CHeaderTabs } from '@interfaces/constant'
 import { useAuthContext } from '@components/auth/hooks/use-auth-context'
+import HeaderDesktop from '@components/layout/header/header-desktop'
+import HeaderMobile from '@components/layout/header/header-mobile'
 
-function UserAction() {
+export function UserAction() {
   const { logout } = useAuthContext()
   const { t } = useTranslate()
 
@@ -59,7 +61,7 @@ const Header = () => {
   const [vState, setState] = useState({ mobileMenuOpen: false })
   const dispatch = useDispatch()
 
-  const handleHeader =  (title: string, url?: string) => async () => {
+  const handleHeader = async (title: string, url?: string) =>  {
     switch (title) {
       case 'Upload':
         dispatch(openVideoUploadDialog({ open: true }))
@@ -79,223 +81,18 @@ const Header = () => {
     }
   }
 
-  const handleMobileDrawer = (open: boolean) => () => {
+  const handleMobileDrawer = (open: boolean) =>  {
     setState({ ...vState, mobileMenuOpen: open })
   }
 
-  const HeaderDesktop = () => {
-    return (
-      <AppBar
-        position='fixed'
-        elevation={0}
-        sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
-      >
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            color: '#ececec',
-            flexDirection: { md: 'row' }
-          }}
-        >
-          <Box ml={4} mr={2}>
-            <Image src={LogoImage} alt='logo' />
-          </Box>
-
-          <Box
-            className={'flex h-full justify-center item-center'}
-            sx={{ flexDirection: { xs: 'column', md: 'row' } }}
-          >
-            {CHeaderTabs.map((item, index) => {
-              if (item.key === 'Videos') {
-                return <DropMenu key={index}></DropMenu>
-              } else if (item.key === 'Documents') {
-                return <div key={index} />
-              } else {
-                return (
-                  <Box key={index} onClick={handleHeader(item.key, item.url)}>
-                    <TopButton
-                      main={'Upload' !== item.key}
-                      active={
-                        router.pathname === `/${item.url.toLowerCase()}`
-                      }
-                    >
-                      <SvgColor
-                        src={item.icon}
-                        sx={{
-                          width: 20,
-                          height: 20,
-                          flexShrink: 0,
-                          color: router.pathname === `/${item.url.toLowerCase()}` ? 'var(--Primary1)' : 'white'
-                        }}
-                      />
-                      <Typography ml={0.5}
-                                  className='menu-title text-capitalize'>{t(item.title.toLowerCase())}</Typography>
-                    </TopButton>
-                  </Box>
-                )
-              }
-            })}
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'right',
-              bgcolor: 'var(--Primary3)'
-            }}
-          >
-            <Box sx={{ bgcolor: 'var(--Secondary)', display: 'flex' }}>
-              <LanguagePopover />
-            </Box>
-
-            <Box sx={{ p: 2, display: 'flex' }}>
-              <Box
-                className='user-logo'
-              >
-                <Image src={UserLogo} width={33} alt='logo' />
-              </Box>
-              <Box sx={{ ml: 2 }}>
-                {username &&
-                  <Typography fontSize={14} whiteSpace='nowrap' width={70}
-                              sx={{ fontWeight: '500 !important', textTransform: 'capitalize !important' }}>
-                    {username}
-                  </Typography>}
-                <Typography fontSize={10} sx={{ fontWeight: '400 !important' }} className='text-capitalize'>
-                  {t('admin')}
-                </Typography>
-              </Box>
-              <UserAction />
-            </Box>
-          </Box>
-
-        </Box>
-      </AppBar>
-    )
-  }
-
-  const HeaderMobile = () => {
-    return (
-      <AppBar
-        position='fixed'
-        elevation={0}
-        sx={{ bgcolor: 'var(--Secondary)', width: '100%' }}
-      >
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            color: '#ececec',
-            flexDirection: { md: 'row' }
-          }}
-        >
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleMobileDrawer(true)}
-            edge='start'
-            sx={{ ml: 2, ...(isDesktop && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Drawer
-            anchor='top'
-            open={vState.mobileMenuOpen}
-            onClose={handleMobileDrawer(false)}
-            sx={{
-              '& .MuiPaper-root': {
-                backgroundColor: 'var(--Primary3)'
-              }
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                gap: 1,
-                my: 2,
-              }}
-            >
-              <Box>
-                <Image src={LogoImage} alt='logo' />
-              </Box>
-
-              {CHeaderTabs.map((item, index) => (
-                <Box key={index} onClick={handleHeader(item.title, item?.url)}>
-                  <TopButton
-                    main={item.title !== 'Upload'}
-                    active={router.pathname === `/${item.title.toLowerCase()}`}
-                  >
-                    <SvgColor
-                      src={item.icon}
-                      sx={{
-                        width: 20,
-                        height: 20,
-                        flexShrink: 0,
-                        color: router.pathname === `/${item.url.toLowerCase()}` ? 'var(--Primary1)' : 'white'
-                      }}
-                    />
-                    <Typography ml={0.5} className='menu-title'>{item.title}</Typography>
-                  </TopButton>
-                </Box>
-              ))}
-            </Box>
-          </Drawer>
-
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'right',
-              bgcolor: 'var(--Primary3)'
-            }}
-          >
-
-            <Box sx={{ bgcolor: 'var(--Secondary)', display: 'flex' }}>
-              <LanguagePopover />
-            </Box>
-
-            <Box
-              sx={{
-                p: {
-                  sm: 2,
-                  xs: 1
-                },
-                display: 'flex',
-
-              }}>
-              <Box
-                className='user-logo'
-              >
-                <Image src={UserLogo} width={33} alt='logo' />
-              </Box>
-              <Box sx={{ ml: 2 }}>
-                {username &&
-                  <Typography fontSize={14} whiteSpace='nowrap' width={70}
-                              sx={{ fontWeight: '500 !important', textTransform: 'capitalize !important' }}>
-                    {username}
-                  </Typography>}
-                <Typography fontSize={10} sx={{ fontWeight: '400 !important' }} className='text-capitalize'>
-                  {t('admin')}
-                </Typography>
-              </Box>
-
-              <UserAction />
-            </Box>
-          </Box>
-        </Box>
-      </AppBar>
-    )
-  }
 
   return (
     <React.Fragment>
-      {hasMounted && isDesktop ? <HeaderDesktop /> : <HeaderMobile />}
+      {
+        hasMounted && isDesktop ?
+          <HeaderDesktop username={username} handleHeader={handleHeader} /> :
+          <HeaderMobile username={username} mobileMenuOpen={vState.mobileMenuOpen} handleMobileDrawer={handleMobileDrawer} handleHeader={handleHeader} />
+      }
     </React.Fragment>
   )
 }

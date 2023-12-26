@@ -138,7 +138,7 @@ export class AzurePlayer extends React.Component<PlayerProps> {
   }
 
   createVideoPlayer = (amp: any) => {
-    const video = amp(
+    return amp(
       this.videoRef,
       {
         nativeControlsForTouch: false,
@@ -157,8 +157,6 @@ export class AzurePlayer extends React.Component<PlayerProps> {
           .dispatchEvent(new Event(`${this.props.compId}-loaded`))
       }
     )
-
-    return video
   }
 
   waitForAmp() {

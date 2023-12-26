@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
 import { TopButton } from '@components/common/styled-button'
 import SvgColor from '@components/common/svg-color'
 import { ClickAwayListener, Grow, MenuList, Popper, SvgIcon, Typography } from '@mui/material'

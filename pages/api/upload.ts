@@ -33,10 +33,9 @@ const parseForm = async (
       uploadDir,
       filename: (_name, _ext, part) => {
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`
-        const fileNames = `${part.name || 'unknown'}-${uniqueSuffix}.${
+        return `${part.name || 'unknown'}-${uniqueSuffix}.${
           mime.getExtension(part.mimetype || '') || 'unknown'
         }`
-        return fileNames
       },
       filter: (part) => {
         return part.name === 'media'
