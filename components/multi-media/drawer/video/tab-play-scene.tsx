@@ -13,15 +13,6 @@ import { AzurePlayer } from '@components/azure-player/azure-player'
 import { TResVideo } from '@interfaces/apis/api.types'
 
 
-// const options = {
-//   cMapUrl: '/cmaps/',
-//   standardFontDataUrl: '/standard_fonts/'
-// }
-//
-// const maxWidth = 800
-//
-// type PDFFile = string | File | null
-
 const timeToSeconds = (time:string) => {
   const parts = time.split(':')
   const hours = parseInt(parts[0], 10) || 0
@@ -85,7 +76,6 @@ export default function DrawerTabPlayScene() {
             left: '45% !important'
           },
           '& #vid-1': {
-            // position:'relative',
             marginTop: '0',
             left: 0,
             top: 0,

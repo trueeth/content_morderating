@@ -8,7 +8,7 @@ import { PrimaryTextField } from '@components/common/text-field'
 import { openSnackbarError } from '@store/reducers/snackbar/reducers'
 import { useDispatch } from 'react-redux'
 import { CLanguage } from '@interfaces/constant'
-import { useTranslate } from '../../../../locales'
+import { useTranslate } from "../../../../locales"
 import { EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
 import { TResVideo } from '@interfaces/apis/api.types'
 import { apiGetUploadMediaId } from '@interfaces/apis/upload'
@@ -33,9 +33,6 @@ export default function StatusStep(props: {
   const handleLanguageType = (event: any) => {
     setState({ ...vState, languageType: event.target.value })
   }
-  // const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setState({ ...vState, type: event.target.value })
-  // }
 
   const dispatch = useDispatch()
 

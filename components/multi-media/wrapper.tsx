@@ -93,18 +93,14 @@ export const MediaActionwrapper = (props: IActionPros) => {
     try {
       dispatch(setApiLoading(true))
 
-      // Choose the correct API function based on the media type
       const apiFunction = props.type === 'video' ? apiGetVideoContents : apiGetDocumentContents
 
       const resData = await apiFunction({ '$take': take, '$skip': skip, '$orderbyexpression': 'UploadedOnUtc desc' })
 
       if (resData.data !== null) {
-        // Update pagination information and API data
         dispatch(setPaginationTotalCount(resData.data.TotalCount))
         dispatch(setApiData(resData.data.Content))
 
-
-        // Adapt API response data and update local state
         let mappingRows = []
         let resToRowAdapter = props.type === 'video' ? resToVideoRowAdapter : resToDocumentRowAdapter
 
@@ -112,11 +108,9 @@ export const MediaActionwrapper = (props: IActionPros) => {
 
         setState(prevState => ({ ...prevState, rows: mappingRows }))
       } else {
-        // No data available
         setState(prevState => ({ ...prevState, rows: [] }))
       }
     } catch (e) {
-      // Handle API error
       console.error('Error of getContents:', e)
       dispatch(setApiError(e))
       setState(prevState => ({ ...prevState, rows: [] }))
@@ -128,7 +122,6 @@ export const MediaActionwrapper = (props: IActionPros) => {
   }
   /* eslint-disable */
   useEffect(() => {
-    // Fetch data when component mounts or pagination change
     fetchPageData()
   }, [dispatch, take, skip, props.type])
 
@@ -136,9 +129,8 @@ export const MediaActionwrapper = (props: IActionPros) => {
     if (refresh)
       fetchPageData()
   }, [refresh])
-
-
   /* eslint-enable */
+
   return (
     <TableContainer
       component={Paper}

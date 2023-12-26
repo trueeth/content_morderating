@@ -3,9 +3,7 @@ import * as React from 'react';
 import TableActionWrapper from '@components/common/table-wrapper';
 import { RoleData } from '@interfaces/apis/_mock';
 
-/**
- * Functional component representing the Roles table.
- */
+
 export default function Roles() {
   const headerData = {
     title: 'Roles',

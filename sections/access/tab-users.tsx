@@ -9,9 +9,7 @@ import Image from 'next/image';
 import { UserData } from '@interfaces/apis/_mock';
 import AddUserDlg from '@components/dialog/add-user-dlg';
 
-/**
- * Functional component representing the Users table.
- */
+
 export default function Users() {
   const [vState, setState] = useState({ openDlg: false, sortBy: 0 });
 

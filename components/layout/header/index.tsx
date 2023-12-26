@@ -11,7 +11,6 @@ import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useMounted from '@hooks/use-mounted'
-import { useAuthContext } from '@components/auth/hooks'
 import RowAction from '@components/multi-media/common/action-item'
 import { openSnackbarInfo } from '@store/reducers/snackbar/reducers'
 import SvgColor from '@components/common/svg-color'
@@ -19,6 +18,7 @@ import DropMenu from '@components/layout/header/drop-menu'
 import LanguagePopover from '@components/layout/header/language-popover'
 import { useTranslate } from '../../../locales'
 import { CHeaderTabs } from '@interfaces/constant'
+import { useAuthContext } from '@components/auth/hooks/use-auth-context'
 
 function UserAction() {
   const { logout } = useAuthContext()

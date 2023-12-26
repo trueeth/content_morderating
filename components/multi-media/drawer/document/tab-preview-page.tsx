@@ -67,7 +67,6 @@ export default function DrawerTabPreviewPage(props: IProps) {
               left: '45% !important'
             },
             '& #vid-1': {
-              // position:'relative',
               marginTop: '0',
               left: 0,
               top: 0,
@@ -90,7 +89,6 @@ export default function DrawerTabPreviewPage(props: IProps) {
         <div
           ref={containerRef}
           style={{
-            // overflowY: 'auto',
             height: '600px'
           }}
         >

@@ -138,10 +138,8 @@ export default function SourceStep(props: {
     } finally {
       dispatch(setApiLoading(false))
       setTimeout(() => {
-        // dispatch(openVideoUploadDialog({ open: false }))
       }, 500)
       setTimeout(() => {
-        // dispatch(setRefresh(true))
       }, 1000)
     }
   }
@@ -279,10 +277,6 @@ export default function SourceStep(props: {
   useEffect(() => {
     handleFileSelect(acceptedFiles[0])
   }, [acceptedFiles.length, acceptedFiles])
-
-  // const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setState({ ...vState, type: event.target.value })
-  // }
 
 
   const handleStartUpload = async () => {

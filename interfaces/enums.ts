@@ -1,20 +1,16 @@
 export enum EVideoColumn {
   name = 'NAME',
-  // type = 'TYPE',
   status = 'STATUS',
   rating = 'RATING',
   classification = 'CLASSIFICATION',
   moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
   submissionDate = 'SUBMISSION DATE',
-  // flaggedScenes = 'FLAGGED SCENES',
   actions = 'ACTIONS'
 }
 export enum EDocumentColumn {
   name = 'NAME',
   processingStatus = 'STATUS',
-  // type = 'TYPE',
-  // status = 'SUBMITED BY',
   language = 'LANGUAGE',
   moderator_approval = 'MODERATOR STATUS',
   ai_approval = 'AI APPROVAL',
@@ -95,15 +91,12 @@ export enum EVideoDetail {
   status = 'SCENE STATUS',
   aiclassification = 'AI CLASSIFICATION',
   aiapproval = 'AI APPROVAL',
-  // description = 'DESCRIPTION',
-  // action = 'ACTIONS'
 }
 
 export enum EDocDetail {
   topicNumber = 'TOPIC NUMBER',
   topic = 'TOPIC NAME',
   status = 'AI CLASSIFICATION',
-  // action = 'ACTIONS'
 }
 
 export enum EMediaType {
@@ -118,7 +111,6 @@ export enum EDocumentRecognitionStatus {
   processing = 'Processing'
 }
 
-// @TODO wil modify
 export enum EModeratorApprovalStatus {
   new = 'New',
   inReview = 'InReview',

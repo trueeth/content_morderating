@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
 import { useRouter } from 'next/router'
+import { useAuthContext } from '@components/auth/hooks/use-auth-context'
 
-import { useAuthContext } from '../hooks'
 
 // ----------------------------------------------------------------------
 

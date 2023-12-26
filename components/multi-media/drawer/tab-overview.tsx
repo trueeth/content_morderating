@@ -1,7 +1,6 @@
 import { Box, Typography } from '@mui/material'
 
 export default function DrawerTabOverview() {
-  // const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   return (
     <Box

@@ -14,8 +14,6 @@ import { useTranslate } from '../../../locales'
 export default function DrawerTab() {
   const [vState, setState] = React.useState({
     tabIndex: 0
-    // pageNumber:0,
-    // questionIndex:0,
   })
 
   const {t}=useTranslate()
@@ -63,7 +61,6 @@ export default function DrawerTab() {
       <Tabs
         value={vState.tabIndex}
         onChange={handleChange}
-        // variant="fullWidth"
         scrollButtons='auto'
         aria-label='scrollable prevent tabs example'
         sx={{

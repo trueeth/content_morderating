@@ -5,10 +5,7 @@ import Groups from '@sections/access/tab-group';
 import Roles from '@sections/access/tab-roles';
 import CustomToggleButtonGroup from '@components/common/toggle-button';
 
-/**
- * Functional component representing the AccessSection.
- * It provides a tabbed interface to switch between Users, Groups, and Roles.
- */
+
 export default function AccessSection() {
   const [vState, setState] = useState({ tabIndex: 0 });
 

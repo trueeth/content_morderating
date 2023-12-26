@@ -8,9 +8,7 @@ import RowAction from '@components/multi-media/common/action-item';
 import { GroupData } from '@interfaces/apis/_mock';
 import AddGroupDlg from '@components/dialog/add-group-dlg';
 
-/**
- * Functional component representing the Users table.
- */
+
 export default function Users() {
   const [vState, setState] = useState({ openDlg: false, sortBy: 0 });
 

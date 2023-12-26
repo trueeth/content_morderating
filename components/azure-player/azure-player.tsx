@@ -117,7 +117,6 @@ export class AzurePlayer extends React.Component<PlayerProps> {
       this.props.events.length > 0
     ) {
       this.props.events.forEach((event) => {
-        // this.videoPlayer.currentTime(10)
         if (mediaPlayerEvents.includes(event.domEvent)) {
           let elem = document.querySelector(
             `video[id*="${this.props.compId}"]`
@@ -215,7 +214,6 @@ export class AzurePlayer extends React.Component<PlayerProps> {
               this.videoRef = input
             }}
             tabIndex={0}
-            // to remove the back background during loading
             style={{ backgroundColor: 'transparent' }}
           />
         </APContainer>

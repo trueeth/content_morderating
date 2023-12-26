@@ -1,25 +1,6 @@
 import request from '@interfaces/apis/base-api/request'
 import { TResDocument, TResVideo } from '@interfaces/apis/api.types'
 
-
-export declare namespace TResUpload {
-  type getMediaSources = {
-    Content: TMediaSource[]
-    PageSize: number
-    TotalCount: number
-  }
-
-  type TMediaSource = {
-    Name: string
-    Id: string
-    Description: string
-  }
-}
-
-export const apiGetMediaSourceItems = () => {
-  return request.get<TResUpload.getMediaSources>('application/media-sources')
-}
-
 type TUploadInfo=  TResVideo.TVideoContent & {
   ModeratorNotes?: string,
   Rating?:string,
@@ -59,4 +40,3 @@ export const apiUploadDocumentProcess = (params:any)=>{
     '/analyses/transcribe'
   )
 }
-

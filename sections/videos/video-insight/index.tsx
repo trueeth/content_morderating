@@ -30,7 +30,7 @@ const VideoInsightSection = () => {
       console.error(e)
       dispatch(openSnackbarError('Get WidgetPlayer Error'))
     } finally {
-      dispatch(setApiLoading(false)) // Hide loading indicator
+      dispatch(setApiLoading(false))
     }
   }
 

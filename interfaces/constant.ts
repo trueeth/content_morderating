@@ -15,7 +15,6 @@ export const CHeaderTabs: Array<{ icon:string; title: string, url?: string, dial
 
 
 export const CSceneState = [
-  // 'Not Assigned',
   'Approved',
   'Rejected'
 ]
@@ -28,7 +27,6 @@ export const CDrawerVideoTabs = [
 export const CDrawerDocumentTabs = [
   'Overview',
   'Questions',
-  // 'Summary',
   'Activities'
 ]
 
@@ -37,7 +35,6 @@ export const CQuestionsColumns = [
   'Moderator Approval',
   'Ai Approval',
   'Ai Detection',
-  // 'Moderator Detection',
   'Pages',
   'Actions'
 ]

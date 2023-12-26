@@ -16,19 +16,7 @@ import RowApproval from '@components/multi-media/common/approval-item'
 import { useTranslate } from '../../../../locales'
 
 
-// interface IHistoryRow {
-//   writerName: string
-//   writeDate: string
-//   description: string
-// }
-
-
-// interface IProps {
-//   // handlePageNum?: (val:number, index:number) => void
-// }
-
 export default function DrawerTabQuestions() {
-
 
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
   const {t}=useTranslate()
@@ -44,17 +32,11 @@ export default function DrawerTabQuestions() {
   }, [appState.drawer.drawerData])
   /*eslint-enable*/
 
-  // const memoValue = useMemo(()=>{
-  //   return appState.drawer.drawerData?.GptResponse[appState.drawer.subRowIndex].answers as TResDocument.TGptAnswer[]
-  // },[
-  //   appState.drawer.drawerData
-  // ])
-
-
   if (!vState.memoValue || vState.memoValue.length == 0)
     return (
       <Typography>{t('drawer.No answers')}</Typography>
     )
+
   return (
     <Box
       sx={{
@@ -64,7 +46,6 @@ export default function DrawerTabQuestions() {
         marginTop: '-1rem'
       }}
     >
-
       <Table
         size='small'
         sx={{
@@ -182,7 +163,6 @@ export default function DrawerTabQuestions() {
                                 backgroundColor: buttonHoverColor
                               }
                             }}
-                            // onClick={() => props.handlePageNum(val.pageNumber, questionIndex)}
                             onClick={() => dispatch(openDocumentApproval({
                               type: EDocumentApprovalDlg.page,
                               docIndex: appState.drawer.rowIndex,
@@ -212,7 +192,6 @@ export default function DrawerTabQuestions() {
                       backgroundColor: '#4fc1d7'
                     }
                   }}
-                  // onClick={() => props.handlePageNum(val.pageNumber, questionIndex)}
                   onClick={() => dispatch(openDocumentApproval({
                     type: EDocumentApprovalDlg.question,
                     docIndex: appState.drawer.rowIndex,

@@ -28,10 +28,6 @@ const theme = {
           },
           backgroundColor: 'var(--Secondry-L)',
           border: 'none',
-          // '&.Mui-selected, &.Mui-selected:hover': {
-          //   color: 'white',
-          //   backgroundColor: 'var(--Primary1)'
-          // },
           '&.Mui-selected:nth-of-type(1)': {
             color: 'white',
             backgroundColor: '#2caa70'
