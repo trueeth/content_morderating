@@ -15,7 +15,6 @@ const DropMenu = () => {
   const router = useRouter()
 
   const { t } = useTranslate();
-  const dispatch = useDispatch()
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen)
   }

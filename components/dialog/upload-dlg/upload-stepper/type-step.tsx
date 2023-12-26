@@ -53,7 +53,6 @@ export default function TypeStep(props: { handleNext: (any) => void }) {
               }
           }}
             label={t('video')} />
-          {/*<FormControlLabel value="Audio" control={<Radio />} label="Audio" />*/}
           <FormControlLabel
             value="Document"
             control={<Radio />}

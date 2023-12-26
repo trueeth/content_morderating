@@ -8,8 +8,7 @@ import {
 
 // date-pickers
 import {
-  enUS as enUSDate,
-  zhCN as zhCNDate,
+  enUS as enUSDate
 } from '@mui/x-date-pickers/locales';
 // core
 import {

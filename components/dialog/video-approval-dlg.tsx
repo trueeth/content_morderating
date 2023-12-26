@@ -3,13 +3,13 @@ import { useEffect, useMemo, useState } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 
-import { Grid, Radio, RadioGroup, Select, Tooltip, Typography } from '@mui/material'
+import { Grid, Select, Tooltip, Typography } from '@mui/material'
 import { PrimaryButton } from '@components/common/styled-button'
 import InfoIcon from '@mui/icons-material/Info'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
-import { openDocumentApproval, openVideoApproval } from '@store/reducers/dialog/reducers'
+import { openVideoApproval } from '@store/reducers/dialog/reducers'
 import { EMediaRating, EModeratorApprovalStatus } from '@interfaces/enums'
 import CustomToggleButtonGroup from '@components/common/toggle-button'
 import { PrimaryTextField } from '@components/common/text-field'
@@ -19,7 +19,6 @@ import { TResVideo } from '@interfaces/apis/api.types'
 import MenuItem from '@mui/material/MenuItem'
 import { setRefresh } from '@store/reducers/api/reducers'
 import { useTranslate } from '../../locales'
-import clsx from 'clsx'
 
 
 type TState = {

@@ -1,26 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit'
-import thunkMiddleware from 'redux-thunk'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import thunkMiddleware from 'redux-thunk';
+import appReducer, { IAppSlice } from './reducers';
+import { useDispatch } from 'react-redux';
 
-import appReducer from './reducers'
-
-import { useDispatch } from 'react-redux'
-import { IAppSlice } from './reducers'
-
+// Define the shape of the Redux state
 export interface IReduxState {
-  app: IAppSlice
+  app: IAppSlice;
 }
 
-const index = configureStore({
+// Configure the Redux store with appReducer and additional middleware
+const store = configureStore({
   reducer: {
-    app: appReducer
+    app: appReducer,
   },
+  // Use getDefaultMiddleware to apply additional middleware
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(thunkMiddleware)
-})
+    getDefaultMiddleware({ serializableCheck: false }).concat(thunkMiddleware),
+});
 
-export type RootState = ReturnType<typeof index.getState>
-export type AppDispatch = typeof index.dispatch
+// Define the types for RootState and AppDispatch based on the store
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+// Custom hook to access the dispatch function
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 
-export default index
+// Export the configured store as the default export
+export default store;

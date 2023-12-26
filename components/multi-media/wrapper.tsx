@@ -29,7 +29,7 @@ import { apiGetDocumentContents } from '@interfaces/apis/documents'
 import { resToDocumentRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 import DocumentApprovalDlg from '@components/dialog/document-approval-dlg'
 import VideoApprovalDlg from '@components/dialog/video-approval-dlg'
-import { useLocales, useTranslate } from '../../locales'
+import { useTranslate } from '../../locales'
 
 // MediaWrapper component
 interface IMediaProps {

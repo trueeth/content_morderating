@@ -39,7 +39,6 @@ export const HeaderUpdate = () => {
       setState(prevState => ({ ...prevState, moderatorStatus: newState }))
   }
 
-  const router = useRouter()
   const {t}=useTranslate()
 
   const dispatch = useDispatch()

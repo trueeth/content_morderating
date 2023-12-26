@@ -42,7 +42,5 @@ export default paginationSlice.reducer
 export const {
   setPaginationIndex,
   setPaginationTotalCount,
-  setPaginationSize,
-  setPagination,
   setPageinit
 } = paginationSlice.actions

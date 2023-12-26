@@ -14,7 +14,6 @@ import UploadStepper from '@components/dialog/upload-dlg/upload-stepper'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import { useTranslate } from '../../../locales'
-import clsx from 'clsx'
 
 export default function UploadDialog() {
   const dispatch = useDispatch()
@@ -96,17 +95,10 @@ export default function UploadDialog() {
                 mb: 3
               }}
             >
-              {/*<CustomToggleButtonGroup*/}
-              {/*  groupName={uploadGroups}*/}
-              {/*  handleChange={(val) => setState({ ...vState, tabIndex: val })}*/}
-              {/*/>*/}
             </Box>
             <TabPanel value={vState.tabIndex} index={0}>
               <UploadStepper></UploadStepper>
             </TabPanel>
-            {/*<TabPanel value={vState.tabIndex} index={1}>*/}
-            {/*  <HistoryTable></HistoryTable>*/}
-            {/*</TabPanel>*/}
           </Box>
         </Box>
       </Dialog>

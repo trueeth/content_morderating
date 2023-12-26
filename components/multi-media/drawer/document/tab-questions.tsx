@@ -5,7 +5,7 @@ import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
 import TableCell from '@mui/material/TableCell'
 import * as React from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -153,8 +153,8 @@ export default function DrawerTabQuestions() {
                     val.pageNumbers.map((val, index) =>
                       {
 
-                        let buttonBackColor=''
-                        let buttonHoverColor=''
+                        let buttonBackColor: string
+                        let buttonHoverColor: string
                         switch (val.ModeratorApprovalStatus){
                           case EModeratorApprovalStatus.rejected:
                             buttonBackColor='rgba(244,0,0,0.51)';

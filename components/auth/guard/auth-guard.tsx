@@ -31,7 +31,7 @@ function Container({ children }: Props) {
       await router.push('/auth')
     } else {
       setChecked(true)
-      if (router.pathname == '/') router.push('/dashboard')
+      if (router.pathname == '/') await router.push('/dashboard')
     }
   }, [authenticated, router])
 

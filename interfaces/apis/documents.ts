@@ -13,11 +13,6 @@ export const apiUpdateApprovalDocument = (urlConfig?: any, params?:object) => {
   return request.post<any>(`analysis/documents/${urlConfig.documentId}/approval`, params)
 }
 
-// @TODO I will add
-export const apiUpdateApprovalDocTopic = (urlConfig?: any, params?:object) => {
-  // return request.post<any>(`analysis/documents/${urlConfig.documentId}/topics/${urlConfig.topicId}/questions/${urlConfig.questionId}/approval`, params)
-}
-
 
 export const apiUpdateApprovalDocQuestion = (urlConfig?: any, params?:object) => {
   return request.post<any>(`analysis/documents/${urlConfig.documentId}/topics/${urlConfig.topicId}/questions/${urlConfig.questionId}/approval`, params)

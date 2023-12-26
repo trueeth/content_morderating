@@ -50,9 +50,6 @@ export default function DrawerTab() {
         <DrawerTabQuestions
         ></DrawerTabQuestions>
       </TabPanel>
-      {/*<TabPanel value={vState.tabIndex} index={2}>*/}
-      {/*  <DrawerTabPreviewPage pageNum ={vState.pageNumber} questionIndex={vState.questionIndex}></DrawerTabPreviewPage>*/}
-      {/*</TabPanel>*/}
       <TabPanel value={vState.tabIndex} index={2}>
         <DrawerTabActivities></DrawerTabActivities>
       </TabPanel>

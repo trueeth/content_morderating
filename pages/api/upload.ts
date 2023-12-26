@@ -5,7 +5,6 @@ import * as dateFn from 'date-fns'
 import formidable from 'formidable'
 import { mkdir, stat } from 'fs/promises'
 
-// const FormidableError = formidable.errors.FormidableError;
 
 const parseForm = async (
   req: NextApiRequest
@@ -69,7 +68,7 @@ const handler = async (
   }
   // Just after the "Method Not Allowed" code
   try {
-    const { fields, files } = await parseForm(req)
+    const { files } = await parseForm(req)
 
     const file = files.media
     let url = Array.isArray(file)

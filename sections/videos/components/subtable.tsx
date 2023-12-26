@@ -94,13 +94,6 @@ const VideoSubtable = (props: {
             }
           }}
         >
-          {/* <TableCell>
-            <Checkbox
-              checked={checked}
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-            />
-          </TableCell> */}
           <TableCell sx={{ width: '7%' }} />
           {Object.values(EVideoDetail).map((item, index) => {
             if (index === 0)
@@ -139,7 +132,6 @@ const VideoSubtable = (props: {
             return (
               <CustomizedTableRow key={index} keyValue={index}
                                   onClick={openScene({ rowIndex: props.rowIndex, subRowIndex: index })}>
-                {/* <Checkbox /> */}
                 <Typography className='text-capitalize'>{`${t('scene')} #${index + 1}`}</Typography>
                 <Box>
                   <RowApproval approval={row.moderatorStatus} />
@@ -148,16 +140,6 @@ const VideoSubtable = (props: {
                 <Box className={'flex'}>
                   <RowApproval approval={row.status} />
                 </Box>
-                {/* <Typography>{row.description}</Typography> */}
-                {/* <Button
-              id={`scene-button-${index}`}
-              aria-controls="basic-menu"
-              aria-haspopup="true"
-              aria-expanded={false}
-            > */}
-                {/*<MoreHoriz className={'action-more-horiz'} />*/}
-                {/* -
-            </Button> */}
               </CustomizedTableRow>
             )
           }

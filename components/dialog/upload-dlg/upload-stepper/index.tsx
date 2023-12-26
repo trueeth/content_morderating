@@ -58,7 +58,6 @@ export default function UploadStepper() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      {/* Stepper component */}
       <Stepper
         activeStep={activeStep}
         alternativeLabel

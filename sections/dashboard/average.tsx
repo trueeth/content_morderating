@@ -105,7 +105,6 @@ export default function SideAverage() {
               sx={{
                 color: '#474747',
                 fontSize: '0.75rem'
-                // backgroundColor:'#F9F9FF'
               }}
             >
               {item}

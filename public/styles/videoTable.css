@@ -250,6 +250,10 @@
     border-radius: 0 6px 6px 0;
 }
 
+[dir="rtl"] .MuiTableRow-root > td.MuiTableCell-root:first-of-type > p.MuiTypography-root {
+    text-align: center;
+}
+
 [dir="rtl"] .MuiTableRow-root > td.MuiTableCell-root:last-of-type {
     border-right: none;
     border-left: 1px solid #ccc;
@@ -274,9 +278,6 @@
     transform: scaleX(-1);
 }
 
-/*[dir="rtl.MuiDrawer-root .MuiTabs-scroller{*/
-/*    padding-right: 1rem;*/
-/*}*/
 [dir="rtl"] .MuiDrawer-root .MuiToggleButtonGroup-root{
     padding-right: 2rem;
 }

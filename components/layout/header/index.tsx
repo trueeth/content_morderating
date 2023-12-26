@@ -67,18 +67,18 @@ const Header = () => {
   const dispatch = useDispatch()
 
 
-  const handleHeader = (title: string, url?: string) => () => {
+  const handleHeader =  (title: string, url?: string) => async () => {
     switch (title) {
       case 'Upload':
         dispatch(openVideoUploadDialog({ open: true }))
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
       case 'Videos':
-        router.push({ pathname: `../${url.toLowerCase()}`, query: null })
+        await router.push({ pathname: `../${url.toLowerCase()}`, query: null })
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
       case 'Dashboard':
-        router.push({ pathname: `../${url.toLowerCase()}`, query: null })
+        await router.push({ pathname: `../${url.toLowerCase()}`, query: null })
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
       // default:
@@ -186,10 +186,6 @@ const Header = () => {
 
               <UserAction />
             </Box>
-
-            {/*<Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              <Image src={Headset} alt={'headset'} width={24}></Image>
-            </Box>*/}
           </Box>
 
         </Box>
@@ -311,10 +307,6 @@ const Header = () => {
 
               <UserAction />
             </Box>
-
-            {/*<Box sx={{ px: 2.5, bgcolor: 'var(--Secondary)', py: 2.5 }}>
-              <Image src={Headset} alt={'headset'} width={24}></Image>
-            </Box>*/}
           </Box>
         </Box>
       </AppBar>

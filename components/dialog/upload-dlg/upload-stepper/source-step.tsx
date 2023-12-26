@@ -10,17 +10,15 @@ import Image from 'next/image'
 import { useDispatch } from 'react-redux'
 import { openSnackbarError, openSnackbarSuccess, openSnackbarWarning } from '@store/reducers/snackbar/reducers'
 import {
-  apiGetUploadMediaId,
   apiUploadDocument,
   apiUploadDocumentProcess,
   apiUploadedVideoProcess,
   apiUploadVideo
 } from '@interfaces/apis/upload'
-import { TResVideo } from '@interfaces/apis/api.types'
 import { AxiosRequestConfig } from 'axios'
 import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { setApiLoading, setRefresh } from '@store/reducers/api/reducers'
-import { EMediaRating, EModeratorApprovalStatus, EProcessingStatus } from '@interfaces/enums'
+import { EProcessingStatus } from '@interfaces/enums'
 import { CLanguage } from '@interfaces/constant'
 import { readFileAsBytes, uint8ArrayToBase64 } from '@utils/file'
 import { openVideoUploadDialog } from '@store/reducers/dialog/reducers'
@@ -339,29 +337,9 @@ export default function SourceStep(props: {
         <Typography>
           {t('uploadDlg.step.sourceFile-question')}
         </Typography>
-
-        {/*<Box>
-          <Typography>Upload from URL option</Typography>
-          <Radio
-            checked={vState.type === 'url'}
-            onChange={handleType}
-            value={'url'}
-          />
-        </Box>
-        <PrimaryTextField
-          fullWidth={true}
-          placeholder='Enter  URL'
-          disabled={vState.type !== 'url'}
-        />*/}
-
         <Box sx={{ paddingBottom: '.5rem' }}>
           <Typography>{t('uploadDlg.step.Upload from your PC')}</Typography>
-          {/*<Radio
-            checked={vState.type === 'pc'}
-            onChange={handleType}
-            value={'pc'}
-          />*/}
-        </Box>
+                  </Box>
         <Box {...getRootProps({ style })}>
           <input {...getInputProps()} />
           <Box className='flex'>
@@ -400,20 +378,6 @@ export default function SourceStep(props: {
             </Box>
           </Box>
         </Box>
-
-        {/* <Box>
-          <Typography>From Netflix</Typography>
-          <Radio
-            checked={vState.type === 'netflix'}
-            onChange={handleType}
-            value={'netflix'}
-          />
-        </Box>
-        <PrimaryTextField
-          placeholder='Enter the full movie name'
-          disabled={vState.type !== 'netflix'}
-        />*/}
-
         <Box
           sx={{
             mt: 2,

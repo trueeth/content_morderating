@@ -105,7 +105,7 @@ export default function StatusStep(props: {
         return
       }
     }
-    props.handleNext({ ...vState,uploadId:uploadId?.data })
+    props.handleNext({ ...vState, uploadId: uploadId?.data })
   }
 
 
@@ -134,11 +134,6 @@ export default function StatusStep(props: {
       >
         <Box sx={{ paddingTop: '1.5rem' }}>
           <Typography className='text-capitalize'> {t('name')}</Typography>
-          {/*<Radio*/}
-          {/*  checked={vState.type === 'new'}*/}
-          {/*  onChange={handleType}*/}
-          {/*  value={'new'}*/}
-          {/*/>*/}
         </Box>
         <PrimaryTextField
           placeholder={t('uploadDlg.step.name-placeHolder')}
@@ -147,16 +142,6 @@ export default function StatusStep(props: {
             setState({ ...vState, newTitle: event.target.value })
           }
         />
-        {/*<Typography>OR</Typography>*/}
-        {/*<Box mt={-2}>*/}
-        {/*  <Typography>Replace{!isXs && 'existing one'}</Typography>*/}
-        {/*  <Radio*/}
-        {/*    checked={vState.type === 'old'}*/}
-        {/*    onChange={handleType}*/}
-        {/*    value={'old'}*/}
-        {/*  />*/}
-        {/*</Box>*/}
-
         {
           props.mediaType === 'Document' ?
             <>

@@ -16,6 +16,6 @@ type TResBiWorkspace={
   }
 }
 
-export const apiGetBiWorkSpaceConfig = (urlConfig?: any, params?:object) => {
+export const apiGetBiWorkSpaceConfig = (urlConfig?: any) => {
   return request.get<TResBiWorkspace>(`reporting/power-bi/workspaces/${urlConfig.workspaceId}/reports/${urlConfig.id}`)
 }

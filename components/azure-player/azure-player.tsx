@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { CSSMediaWrapper } from './media-css'
 import { PlayerDefaultProps, PlayerProps } from './models/azure-player-props'

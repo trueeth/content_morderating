@@ -9,7 +9,6 @@ import { KeyboardArrowDown, KeyboardArrowLeft, KeyboardArrowRight } from '@mui/i
 import { TVideoRowType } from '@interfaces/types'
 import RowStatus from '@components/multi-media/common/status-item'
 import RowRating from '@components/multi-media/common/rating-item'
-import RowClassification from '@components/multi-media/common/classification-item'
 import RowApproval from '@components/multi-media/common/approval-item'
 import RowAction from '@components/multi-media/common/action-item'
 import VideoSubtable from './subtable'
@@ -54,7 +53,6 @@ function VideoRow(props: {
 
   // Actions to be displayed for each row
   const rowActions = [
-    // { title: 'Classification' },
     {
       title: t(`rowActions.insight`),
       action: () => router.push(`/videos/${appState.api.data[props.rowIndex].Id}`)
@@ -116,14 +114,8 @@ function VideoRow(props: {
         </TableCell>
 
         {/* Type, Status, Rating, Classification, Approvals, Submission Date, Flagged Scenes, Actions */}
-        {/*<TableCell><RowType type={props.row.type}></RowType></TableCell>*/}
         <TableCell><RowStatus status={props.row.status}></RowStatus></TableCell>
         <TableCell><RowRating rating={props.row.rating}></RowRating></TableCell>
-        {/*<TableCell>
-          <Box className='flex'>
-            <RowClassification classifications={props.row.classification}></RowClassification>
-          </Box>
-        </TableCell>*/}
         <TableCell>
           <Box className='flex'>
             {
@@ -145,7 +137,6 @@ function VideoRow(props: {
         <TableCell><Box className={'approval'}><RowApproval
           approval={props.row.ai_approval}></RowApproval></Box></TableCell>
         <TableCell><Box minWidth={'180px'}>{props.row.submissionDate}</Box></TableCell>
-        {/* <TableCell><RowFlaggedscenes value={props.row.flaggedScenes ? props.row.flaggedScenes : 0}></RowFlaggedscenes></TableCell> */}
         <TableCell>
           {
             props.row.status === EProcessingStatus.processed ?

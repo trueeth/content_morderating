@@ -94,26 +94,10 @@ export default function DrawerTabPreviewPage(props: IProps) {
             height: '600px'
           }}
         >
-          {/*<Document*/}
-          {/*  file={file}*/}
-          {/*  onLoadSuccess={onDocumentLoadSuccess}*/}
-          {/*  options={options}*/}
-          {/*>*/}
-          {/*  {Array.from(new Array(numPages), (el, index) => (*/}
-          {/*    <Page*/}
-          {/*      key={`page_${index + 1}`}*/}
-          {/*      pageNumber={index + 1}*/}
-          {/*      width={maxWidth}*/}
-          {/*    />*/}
-          {/*  ))}*/}
-          {/*</Document>*/}
           <iframe id='pdfid' width='100%' style={{ height: 'inherit' }}
                   src={`${appState.drawer.drawerData?.PdfUrl}#page=${props.pageNum}`}
                   scrolling='no'></iframe>
         </div>
-        {/*<Typography>*/}
-        {/*  Page {pageNumber} of {numPages}*/}
-        {/*</Typography>*/}
       </Box>
     </>
   )

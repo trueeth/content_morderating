@@ -4,7 +4,6 @@ import React, { useMemo, useReducer, useCallback, useEffect } from 'react'
 
 import { AuthContext } from './auth-context'
 import { AuthUserType, ActionMapType, AuthStateType } from '../types'
-import { setLang } from '@store/reducers/setting/reducers'
 
 // ----------------------------------------------------------------------
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 
-import { useRouter } from 'next/router'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 
 import { useAuthContext } from '../hooks'
 
@@ -22,7 +21,6 @@ function Container({ children }: Props) {
 
   const searchParams = useSearchParams()
 
-  // const returnTo = searchParams.get('returnTo') || '/dashboard'
   const returnTo = searchParams.get('returnTo') || '/videos'
 
   const { authenticated } = useAuthContext()

@@ -1,50 +1,51 @@
-import { Typography, Box, Button } from '@mui/material'
-import { useAuthContext } from '@components/auth/hooks'
-import { PrimaryTextField } from '@components/common/text-field'
-import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
-import LoginImg from '@public/assets/images/login.png'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
-import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers'
-import { apiIdentifyAuth } from '@interfaces/apis/auth'
-import { useTranslate } from '../../locales'
-// import { GetServerSideProps } from 'next'
+import { Typography, Box, Button } from '@mui/material';
+import { useAuthContext } from '@components/auth/hooks';
+import { PrimaryTextField } from '@components/common/text-field';
+import Head from 'next/head';
+import React, { useEffect, useState } from 'react';
+import LoginImg from '@public/assets/images/login.png';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers';
+import { apiIdentifyAuth } from '@interfaces/apis/auth';
+import { useTranslate } from '../../locales';
 
+/**
+ * Functional component representing the authentication section.
+ */
 export default function AuthSection() {
-  const { t } = useTranslate()
-  const { login } = useAuthContext()
-  const router = useRouter()
-  const [vState, setState] = useState({ username: '', pwd: '', error: false })
-  const dispatch = useDispatch()
-  const handleUserInput = ({ key, value }: {
-    key: any,
-    value: any
-  }) => {
-    setState({ ...vState, [key]: value })
-  }
+  const { t } = useTranslate();
+  const { login, authenticated } = useAuthContext();
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [vState, setState] = useState({ username: '', pwd: '', error: false });
 
+  // Update the state based on user input
+  const handleUserInput = ({ key, value }: { key: string; value: string }) => {
+    setState({ ...vState, [key]: value });
+  };
+
+  // Handle the login process
   const handleLogin = async () => {
-    try{
-      await apiIdentifyAuth({Username:vState.username,Password:vState.pwd})
-      await login(vState.username, vState.pwd)
-      dispatch(openSnackbarSuccess('Login Success!'))
+    try {
+      await apiIdentifyAuth({ Username: vState.username, Password: vState.pwd });
+      await login(vState.username, vState.pwd);
+      dispatch(openSnackbarSuccess('Login Success!'));
       localStorage.setItem('username', vState.username);
-      router.push('/dashboard')
+      await router.push('/dashboard');
     } catch (e) {
-      setState({ ...vState, username: '', pwd: '', error: true })
+      setState({ ...vState, username: '', pwd: '', error: true });
     }
-  }
-
-  const { authenticated } = useAuthContext()
+  };
 
   useEffect(() => {
-    if (authenticated&&vState.username=='') {
-      dispatch(openSnackbarSuccess('Already You are logined!'))
-      router.push('/dashboard')
+    // Redirect if already authenticated
+    if (authenticated && vState.username === '') {
+      dispatch(openSnackbarSuccess('Already You are logged in!'));
+      router.push('/dashboard');
     }
-  }, [dispatch, authenticated, router, vState.username])
+  }, [dispatch, authenticated, router, vState.username]);
 
   return (
     <Box
@@ -52,10 +53,11 @@ export default function AuthSection() {
         display: 'flex',
         justifyContent: 'center',
         height: '100vh',
-        mt: 12
+        mt: 12,
       }}
     >
       <Head>
+        {/* Head element for metadata */}
         <title>{t('app_title')}</title>
         <link rel="icon" href="/assets/images/favicon.ico" sizes="any" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -71,19 +73,21 @@ export default function AuthSection() {
           alignItems: 'center',
           flexDirection: 'column',
           '& .MuiTypography-root': {
-            color: '#6c757ddf'
-          }
+            color: '#6c757ddf',
+          },
         }}
       >
+        {/* Logo image */}
         <Image src={LoginImg} width={300} height={60} alt="login" />
+        {/* Title */}
         <Typography fontSize={16} color="#333" mt={5}>
           Sign In
         </Typography>
-        <Typography
-          sx={{ px: 4, mt: 2, fontSize: '13px', textAlign: 'center' }}
-        >
-          Enter your email address and password to access admin panel
+        {/* Description */}
+        <Typography sx={{ px: 4, mt: 2, fontSize: '13px', textAlign: 'center' }}>
+          Enter your email address and password to access the admin panel
         </Typography>
+        {/* Error message if login fails */}
         {vState.error ? (
           <Typography
             fontSize={14}
@@ -92,13 +96,14 @@ export default function AuthSection() {
               mt: 2,
               color: 'red !important',
               textAlign: 'left',
-              width: '80%'
+              width: '80%',
             }}
           >
             Incorrect Username or password
           </Typography>
         ) : null}
 
+        {/* Username input */}
         <Box sx={{ mt: 4, width: '80%' }}>
           <Typography fontSize={14} mb={1}>
             Username
@@ -111,11 +116,12 @@ export default function AuthSection() {
               '& .MuiOutlinedInput-root': {
                 bgcolor: '#fff',
                 boxShadow: 'none',
-                border: 'none'
-              }
+                border: 'none',
+              },
             }}
           />
         </Box>
+        {/* Password input */}
         <Box sx={{ mt: 3, width: '80%' }}>
           <Box mb={1} display="flex" justifyContent="space-between">
             <Typography fontSize={14}>Password</Typography>
@@ -130,11 +136,12 @@ export default function AuthSection() {
               '& .MuiOutlinedInput-root': {
                 bgcolor: '#fff',
                 boxShadow: 'none',
-                border: 'none'
-              }
+                border: 'none',
+              },
             }}
           />
         </Box>
+        {/* Login button */}
         <Button
           onClick={handleLogin}
           sx={{
@@ -142,13 +149,12 @@ export default function AuthSection() {
             color: 'white',
             px: 3,
             mt: 3,
-            '&:hover': { bgcolor: '#536de6' }
+            '&:hover': { bgcolor: '#536de6' },
           }}
         >
           Log In
         </Button>
       </Box>
     </Box>
-  )
+  );
 }
-
