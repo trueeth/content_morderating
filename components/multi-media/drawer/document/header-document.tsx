@@ -76,9 +76,6 @@ export default function DrawerDocumentHeader() {
           {memorizedVideoValue.Topic}
         </Typography>
       </header>
-      {/*<Typography>*/}
-      {/*  {memorizedVideoValue.Description}*/}
-      {/*</Typography>*/}
       <Box
         sx={{
           mt: 2,
@@ -101,24 +98,6 @@ export default function DrawerDocumentHeader() {
           <Typography className='text-uppercase'>{t('column.language')} : &nbsp;</Typography>
           <Typography> {memorizedVideoValue.Language}</Typography>
         </Box>
-        {/*<Box>*/}
-        {/*  <Typography>PROCESSING STATUS : &nbsp;</Typography>*/}
-        {/*  <Typography color='var(--Secondary)'> {memorizedVideoValue.ProcessingStatus}</Typography>*/}
-        {/*</Box>*/}
-        {/*<Box>*/}
-        {/*  <Typography>RATING : &nbsp;</Typography>*/}
-        {/*  <Typography> {memorizedVideoValue.Rating}</Typography>*/}
-        {/*</Box>*/}
-        {/*<Box>*/}
-        {/*  <Typography>SUBMISSION DATE : &nbsp;</Typography>*/}
-        {/*  <Typography>*/}
-        {/*    {memorizedVideoValue.SubmissionDate}*/}
-        {/*  </Typography>*/}
-        {/*</Box>*/}
-        {/*<Box>*/}
-        {/*  <Typography>MODERATOR APPROVAL : &nbsp; </Typography>*/}
-        {/*  <RowApproval approval={memorizedVideoValue.ModeratorApproval} />*/}
-        {/*</Box>*/}
         <Box>
           <Typography className='text-uppercase'>{t('column.ai approval')} : &nbsp; </Typography>
           <RowApproval approval={memorizedVideoValue.AiApproval} />
@@ -131,30 +110,6 @@ export default function DrawerDocumentHeader() {
           padding: 0
         }}
       >
-        {/*<Typography sx={{
-          backgroundColor: 'var(--Secondry-L)',
-          marginLeft: '-1rem',
-          marginRight: '-1rem',
-          color: 'black',
-          fontSize: '.9rem',
-          marginTop: '1rem',
-          padding: '1rem',
-        }}>{'Summary'}</Typography>*/}
-
-
-        {/*  -----------summary text-----------*/}
-        {/*<Box
-          sx={{
-            m: '1rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexDirection: { xs: 'column', md: 'row' },
-            gap: 2
-          }}
-        >
-          <Typography>{appState.drawer.drawerData?.Summary}</Typography>
-        </Box>*/}
       </Box>
 
     </Box>

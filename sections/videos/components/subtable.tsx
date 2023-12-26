@@ -14,7 +14,6 @@ import { useTranslate } from '../../../locales'
 import { Box } from '@mui/system'
 
 
-// Define the table row component outside of the VideoSubtable to prevent unnecessary re-renders
 
 const CustomizedTableRow = ({ children, onClick, keyValue }) => (
   <TableRow key={keyValue}>
@@ -39,11 +38,9 @@ const VideoSubtable = (props: {
   rowIndex: number
 }) => {
 
-  // const [checked, setChecked] = React.useState(false)
   const dispatch = useDispatch()
   const { t } = useTranslate()
 
-  // Handler, opening of a specific scene's details
   const openScene = ({ rowIndex, subRowIndex }) => () => {
     dispatch(
       openMediaSubDrawer({
@@ -55,13 +52,6 @@ const VideoSubtable = (props: {
     )
   }
 
-  // Handler of the state of the checkbox
-  // const handleChange = (e: any) => {
-  //   setChecked(e.target.checked)
-  // }
-
-
-  // Return early if there are no rows to render
   if (!props.rows || props.rows.length === 0) {
     return null
   }

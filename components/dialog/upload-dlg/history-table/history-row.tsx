@@ -4,7 +4,6 @@ import { Typography, TableRow, TableCell, IconButton } from '@mui/material'
 import { ManageSearch, Slideshow } from '@mui/icons-material'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
-
 import { THistoryRowType } from '@interfaces/types'
 import LinearProgress from '@mui/material/LinearProgress'
 import clsx from 'clsx'
@@ -38,7 +37,6 @@ function HistoryRow(props: { row: THistoryRowType }) {
 
   return (
     <React.Fragment>
-      {/*-------main row-----------*/}
       <TableRow>
         <TableCell className={'text-8'} sx={{ minWidth: '200px' }}>
           {row.name}

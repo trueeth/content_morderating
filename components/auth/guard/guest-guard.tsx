@@ -4,7 +4,6 @@ import { useSearchParams, useRouter } from 'next/navigation'
 
 import { useAuthContext } from '../hooks'
 
-// ----------------------------------------------------------------------
 
 type Props = {
   children: React.ReactNode

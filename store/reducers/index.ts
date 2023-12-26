@@ -7,7 +7,6 @@ import paginationReducers, { IPaginationSlice } from '@store/reducers/page/reduc
 import apiReducers, { IApiSlice } from '@store/reducers/api/reducers';
 import settingReducers, { ISettingSlice } from '@store/reducers/setting/reducers';
 
-// Define the shape of the Redux state for the entire application
 export interface IAppSlice {
   dialog: IDialogSlice;
   drawer: IDrawerSlice;
@@ -18,7 +17,6 @@ export interface IAppSlice {
   setting: ISettingSlice;
 }
 
-// Combine individual reducers into a single appReducer
 const appReducer = combineReducers({
   dialog: dialogReducer,
   drawer: drawerReducer,
@@ -29,5 +27,4 @@ const appReducer = combineReducers({
   setting: settingReducers,
 });
 
-// Export the combined appReducer
 export default appReducer;

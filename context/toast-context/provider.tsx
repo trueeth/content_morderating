@@ -14,7 +14,6 @@ export const ToastsProvider = ({ children }) => {
       setToasts((prevToasts) => {
         const id = kebabCase(title)
 
-        // Remove any existing toasts with the same id
         const currentToasts = prevToasts.filter(
           (prevToast) => prevToast.id !== id
         )

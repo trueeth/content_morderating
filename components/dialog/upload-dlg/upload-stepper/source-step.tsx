@@ -290,7 +290,6 @@ export default function SourceStep(props: {
       dispatch(openSnackbarError(t('uploadDlg.msg.validNoFile')))
       return
     }
-    /** File validation */
     if (props.data.mediaType == 'Video' && vState.uploadFile.type.indexOf('video') < 0) {
       dispatch(openSnackbarError(t('uploadDlg.msg.validVideoFile')))
       return

@@ -5,13 +5,8 @@ import React, { useMemo, useReducer, useCallback, useEffect } from 'react'
 import { AuthContext } from './auth-context'
 import { AuthUserType, ActionMapType, AuthStateType } from '../types'
 
-// ----------------------------------------------------------------------
 
-// NOTE:
-// We only build demo at basic level.
-// Customer will need to do some extra handling yourself if you want to extend the logic and other features...
 
-// ----------------------------------------------------------------------
 
 enum Types {
   INITIAL = 'INITIAL',
@@ -85,7 +80,6 @@ type Props = {
 export function AuthProvider({ children }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  // LOGIN
   const login = useCallback(async (email: string, password: string) => {
     dispatch({
       type: Types.LOGIN,
@@ -99,7 +93,6 @@ export function AuthProvider({ children }: Props) {
     })
   }, [])
 
-  // LOGOUT
   const logout = useCallback(async () => {
     dispatch({
       type: Types.LOGOUT
@@ -123,10 +116,6 @@ export function AuthProvider({ children }: Props) {
   }, [initialize])
 
   // ----------------------------------------------------------------------
-
-  // const checkAuthenticated = state.user ? 'authenticated' : 'unauthenticated'
-
-  // const status = checkAuthenticated
 
   const memoizedValue = useMemo(
     () => ({

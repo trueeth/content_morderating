@@ -38,7 +38,6 @@ export default function AddReportDlg({
           p: 3
         }}
       >
-        {/*---------title-----------*/}
         <Box sx={{ display: 'flex', py: '2rem' }}>
           <Typography
             sx={{

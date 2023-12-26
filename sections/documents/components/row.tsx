@@ -31,13 +31,7 @@ import RowStatus from '@components/multi-media/common/status-item'
 import { EDocumentApprovalDlg, EProcessingStatus } from '@interfaces/enums'
 import { openMediaSubDrawer } from '@store/reducers/drawer/reducers'
 
-/**
- * Functional component representing a row in the Document section.
- *
- * @param {Object} props - The properties passed to the component.
- * @param {Object} props.row - The document row data.
- * @param {number} props.rowIndex - The index of the document row.
- */
+
 function DocumentRow(props) {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
   const { row } = props;
@@ -130,7 +124,6 @@ function DocumentRow(props) {
 
   return (
     <React.Fragment>
-      {/* -------main row----------- */}
       <TableRow
         sx={{
           '& > .MuiTableCell-root': {
@@ -239,8 +232,6 @@ function DocumentRow(props) {
           )}
         </TableCell>
       </TableRow>
-
-      {/* ---------sub common-------- */}
       <TableRow className='media-row'>
         <TableCell
           style={{

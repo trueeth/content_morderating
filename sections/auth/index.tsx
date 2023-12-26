@@ -11,9 +11,7 @@ import { openSnackbarSuccess } from '@store/reducers/snackbar/reducers';
 import { apiIdentifyAuth } from '@interfaces/apis/auth';
 import { useTranslate } from '../../locales';
 
-/**
- * Functional component representing the authentication section.
- */
+
 export default function AuthSection() {
   const { t } = useTranslate();
   const { login, authenticated } = useAuthContext();
@@ -21,12 +19,10 @@ export default function AuthSection() {
   const dispatch = useDispatch();
   const [vState, setState] = useState({ username: '', pwd: '', error: false });
 
-  // Update the state based on user input
   const handleUserInput = ({ key, value }: { key: string; value: string }) => {
     setState({ ...vState, [key]: value });
   };
 
-  // Handle the login process
   const handleLogin = async () => {
     try {
       await apiIdentifyAuth({ Username: vState.username, Password: vState.pwd });
@@ -40,7 +36,6 @@ export default function AuthSection() {
   };
 
   useEffect(() => {
-    // Redirect if already authenticated
     if (authenticated && vState.username === '') {
       dispatch(openSnackbarSuccess('Already You are logged in!'));
       router.push('/dashboard');
@@ -57,7 +52,6 @@ export default function AuthSection() {
       }}
     >
       <Head>
-        {/* Head element for metadata */}
         <title>{t('app_title')}</title>
         <link rel="icon" href="/assets/images/favicon.ico" sizes="any" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -77,17 +71,13 @@ export default function AuthSection() {
           },
         }}
       >
-        {/* Logo image */}
         <Image src={LoginImg} width={300} height={60} alt="login" />
-        {/* Title */}
         <Typography fontSize={16} color="#333" mt={5}>
           Sign In
         </Typography>
-        {/* Description */}
         <Typography sx={{ px: 4, mt: 2, fontSize: '13px', textAlign: 'center' }}>
           Enter your email address and password to access the admin panel
         </Typography>
-        {/* Error message if login fails */}
         {vState.error ? (
           <Typography
             fontSize={14}
@@ -102,8 +92,6 @@ export default function AuthSection() {
             Incorrect Username or password
           </Typography>
         ) : null}
-
-        {/* Username input */}
         <Box sx={{ mt: 4, width: '80%' }}>
           <Typography fontSize={14} mb={1}>
             Username
@@ -121,7 +109,6 @@ export default function AuthSection() {
             }}
           />
         </Box>
-        {/* Password input */}
         <Box sx={{ mt: 3, width: '80%' }}>
           <Box mb={1} display="flex" justifyContent="space-between">
             <Typography fontSize={14}>Password</Typography>
@@ -141,7 +128,6 @@ export default function AuthSection() {
             }}
           />
         </Box>
-        {/* Login button */}
         <Button
           onClick={handleLogin}
           sx={{

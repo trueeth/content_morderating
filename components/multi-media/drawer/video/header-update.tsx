@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { CSceneState } from '@interfaces/constant'
-import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { IReduxState } from '@store/index'
 import { IAppSlice } from '@store/reducers'
@@ -59,9 +58,6 @@ export const HeaderUpdate = () => {
 
     let parmasStatus = EModeratorApprovalStatus.new
     switch (vState.moderatorStatus) {
-      // case CSceneState[0]:
-      //   parmasStatus = EModeratorApprovalStatus.inReview
-      //   break
       case CSceneState[0]:
         parmasStatus = EModeratorApprovalStatus.approved
         break
@@ -71,6 +67,7 @@ export const HeaderUpdate = () => {
       default:
         break
     }
+
     let parmas = {
       'SceneSummaryId': rowVideoData?.VideoSummary?.SceneSummaries[subRowIndex].Id,
       'OnModeratorModifiedUtc': isoString,
@@ -126,8 +123,6 @@ export const HeaderUpdate = () => {
         marginTop: '1rem',
         padding: '1rem'
       }}>{appState.drawer.type === 'video' ? t('Update Scene Status') : t('Update Topic')}</Typography>
-
-      {/*---------Button group---------*/}
       <Box
         sx={{
           pl: '1rem',
@@ -156,7 +151,6 @@ export const HeaderUpdate = () => {
         </ToggleButtonGroup>
       </Box>
 
-      {/*  -----------update-----------*/}
       <Box
         sx={{
           m: '1rem',

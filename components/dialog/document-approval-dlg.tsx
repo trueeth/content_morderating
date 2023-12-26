@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
-
 import { Grid, Radio, RadioGroup, Tooltip, Typography } from '@mui/material'
 import { PrimaryButton } from '@components/common/styled-button'
 import InfoIcon from '@mui/icons-material/Info'
@@ -71,20 +70,6 @@ export default function DocumentApprovalDlg() {
 
   }
   const updateApprovalDocTopic = async () => {
-
-    // let approvalStatus = approvalConst[vState.approval];
-    // if (approvalStatus===approvalConst[0])
-    //   approvalStatus=EModeratorApprovalStatus.inReview
-    //
-    // const params = {
-    //   DocumentId: appState.api.data[dlgState.docIndex].Id,
-    //   Rating: 'None',
-    //   ModeratorApprovalStatus: approvalConst[vState.approval],
-    //   ModeratorNotes: vState.notes
-    // }
-
-    // await apiUpdateApprovalDocTopic({documentId:params.DocumentId}, params)
-
   }
   const updateApprovalDocQuestion = async () => {
 
@@ -172,7 +157,6 @@ export default function DocumentApprovalDlg() {
   const dlgState = appState.dialog.documentApproval
 
   const approvalConst = [
-    // 'Not Assigned',
     'Approved',
     'Rejected'
   ]
@@ -262,7 +246,6 @@ export default function DocumentApprovalDlg() {
 
   return (
     <React.Fragment>
-      {/*----------- document approval dialog ---------*/}
       <Dialog
         fullWidth
         maxWidth={memoValue.type !== EDocumentApprovalDlg.page ? 'xs' : 'xl'}
@@ -281,7 +264,6 @@ export default function DocumentApprovalDlg() {
             }
           }}
         >
-          {/*---------title-----------*/}
           <Box sx={{ display: 'flex', pt: '2rem', pb: '1rem' }}>
             <Typography
               sx={{
@@ -298,19 +280,13 @@ export default function DocumentApprovalDlg() {
             </Tooltip>
           </Box>
 
-          {/*---------- Document description ----------*/}
           <Box sx={{ paddingBottom: '1rem' }}>
             <Typography sx={{ textAlign: 'center' }}>
               {memoValue.description}
             </Typography>
           </Box>
 
-          {/*-------------Dialog main content------------*/}
-
           {memoValue.type === EDocumentApprovalDlg.page ?
-            /*
-            * Dialog content while there is a specific page
-            * */
             <Box sx={{
               height: '620px',
               overflow: 'auto',
@@ -323,9 +299,6 @@ export default function DocumentApprovalDlg() {
               }
             }}
             >
-              {/*
-                Main grid of dialog
-              */}
               <Grid
                 container
                 spacing={2}
@@ -340,16 +313,12 @@ export default function DocumentApprovalDlg() {
                   }
                 }}
               >
-                {/*
-                Left side content of Dialog
-                */}
                 <Grid item xs={12} md={3} sx={{
                   '& .MuiGrid-item': {
                     flexBasis: '10%',
                     paddingTop: '1rem'
                   }
                 }}>
-                  {/*------ai opinion----------*/}
                   <Grid item xs={12} md={10}>
                     <Typography>
                       {t('updateApproval.Ai opinion')}&nbsp;:
@@ -358,7 +327,6 @@ export default function DocumentApprovalDlg() {
                       {memoValue.pageInfo?.opinion ? t(`opinion.${memoValue.pageInfo?.opinion.toLowerCase()}`) : t('opinion.no answer')}
                     </Typography>
                   </Grid>
-                  {/*------snippet----------*/}
                   <Grid item xs={12} md={10}>
                     <Typography>
                       {t('updateApproval.Snippet')}&nbsp;:
@@ -367,25 +335,6 @@ export default function DocumentApprovalDlg() {
                       {memoValue.pageInfo?.snippet}
                     </Typography>
                   </Grid>
-                  {/*-------moderator approval---------*/}
-                  {/*  <Grid item xs={12} md={10}>
-                    <Typography>{t('updateApproval.Moderator Approval')} :</Typography>
-                    <CustomToggleButtonGroup
-                      groupName={approvalConst}
-                      sx={{
-                        marginTop: '.5rem',
-                        '& button': {
-                          fontSize: '.75rem',
-                          whiteSpace: 'nowrap',
-                          padding: '.4rem .6rem',
-                          minWidth: '40%'
-                        }
-                      }}
-                      value={vState.approval}
-                      handleChange={(val) => setState({ ...vState, approval: val })}
-                    />
-                  </Grid>*/}
-                  {/*------answer for the book----------*/}
                   <Grid item xs={12} md={10} sx={{ marginTop: '1rem' }}>
                     <Typography>
                       {t('updateApproval.findAnswer-question')}
@@ -404,11 +353,9 @@ export default function DocumentApprovalDlg() {
                       }}
                     >
                       <FormControlLabel value='Yes' control={<Radio />} label={t('Yes')} />
-                      {/*<FormControlLabel value="Audio" control={<Radio />} label="Audio" />*/}
                       <FormControlLabel value='No' control={<Radio />} label={t('No')} sx={{ marginLeft: '1rem' }} />
                     </RadioGroup>
                   </Grid>
-                  {/*------notes----------*/}
                   <Grid item xs={12} md={10} sx={{ marginTop: '1rem', marginBottom: '2rem' }}>
                     <Typography>{t('updateApproval.Notes')}:</Typography>
                     <PrimaryTextField
@@ -430,10 +377,6 @@ export default function DocumentApprovalDlg() {
                       placeholder={t('updateApproval.Enter the notes')} />
                   </Grid>
                 </Grid>
-
-                {/*
-                Right side content of Dialog - preview the page
-                */}
                 <Grid item
                       xs={12}
                       md={9}
@@ -455,7 +398,6 @@ export default function DocumentApprovalDlg() {
                           left: '45% !important'
                         },
                         '& #vid-1': {
-                          // position:'relative',
                           marginTop: '0',
                           left: 0,
                           top: 0,
@@ -477,7 +419,6 @@ export default function DocumentApprovalDlg() {
                   >
                     <div
                       style={{
-                        // overflowY: 'auto',
                         height: '600px',
                         width: '100%'
                       }}
@@ -491,7 +432,6 @@ export default function DocumentApprovalDlg() {
 
               </Grid>
             </Box>
-            /*----------Dialog content ------------*/
             : <Box sx={{
               overflow: 'auto',
               border: '1px solid #e2e2e2',
@@ -516,7 +456,6 @@ export default function DocumentApprovalDlg() {
                   }
                 }}
               >
-                {/*------moderator approval-----------*/}
                 <Grid item xs={12} md={12}>
                   <Typography sx={{ pb: '.3rem' }}>{t('updateApproval.Moderator Approval')} :</Typography>
                   <CustomToggleButtonGroup
@@ -534,7 +473,6 @@ export default function DocumentApprovalDlg() {
                     handleChange={(val) => setState({ ...vState, approval: val })}
                   />
                 </Grid>
-                {/*------------answer for the book------------*/}
                 {
                   memoValue.visibleQuestion ?
 
@@ -567,7 +505,6 @@ export default function DocumentApprovalDlg() {
                     </Grid>
                     : null
                 }
-                {/*----------notes-----------*/}
                 <Grid item xs={12} md={12}>
                   <Typography>{t('updateApproval.Notes')}:</Typography>
                   <PrimaryTextField

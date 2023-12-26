@@ -98,7 +98,6 @@ export default function VideoApprovalDlg() {
   const dlgState = appState.dialog.videoApproval
 
   const approvalConst = [
-    // 'Not Assigned',
     'Approved',
     'Rejected'
   ]
@@ -148,7 +147,6 @@ export default function VideoApprovalDlg() {
 
   return (
     <React.Fragment>
-      {/*----------- document approval dialog ---------*/}
       <Dialog
         fullWidth
         maxWidth='xs'
@@ -167,7 +165,6 @@ export default function VideoApprovalDlg() {
             }
           }}
         >
-          {/*---------title-----------*/}
           <Box sx={{ display: 'flex', pt: '2rem', pb: '1rem' }}>
             <Typography
               sx={{
@@ -183,15 +180,11 @@ export default function VideoApprovalDlg() {
               <InfoIcon sx={{ color: 'grey', width: '16px', ml: 1, mt: -1 }} />
             </Tooltip>
           </Box>
-
-          {/*---------- Document description ----------*/}
           <Box sx={{ paddingBottom: '1rem' }}>
             <Typography sx={{ textAlign: 'center' }}>
               {memoValue.description}
             </Typography>
           </Box>
-
-          {/*-------------Dialog main content------------*/}
            <Box sx={{
               overflow: 'auto',
               border: '1px solid #e2e2e2',
@@ -216,7 +209,6 @@ export default function VideoApprovalDlg() {
                   }
                 }}
               >
-                {/*------moderator approval-----------*/}
                 <Grid item xs={12} md={12}>
                   <Typography sx={{ pb: '.3rem' }}>{t('updateApproval.Moderator Approval')} :</Typography>
                   <CustomToggleButtonGroup
@@ -234,9 +226,6 @@ export default function VideoApprovalDlg() {
                     handleChange={(val) => setState({ ...vState, approval: val })}
                   />
                 </Grid>
-                {/*------------media rating------------*/}
-
-
                     <Grid item
                           xs={12}
                           md={12}
@@ -262,7 +251,6 @@ export default function VideoApprovalDlg() {
                         ))}
                       </Select>
                     </Grid>
-                {/*----------notes-----------*/}
                 <Grid item xs={12} md={12}>
                   <Typography>{t('updateApproval.Notes')}:</Typography>
                   <PrimaryTextField
@@ -285,8 +273,6 @@ export default function VideoApprovalDlg() {
                 </Grid>
               </Grid>
             </Box>
-
-
           <PrimaryButton
             sx={{
               mt: '2rem',

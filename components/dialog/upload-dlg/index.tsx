@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { Tooltip, Typography, useMediaQuery } from '@mui/material'
 import InfoIcon from '@mui/icons-material/Info'
@@ -20,7 +19,6 @@ export default function UploadDialog() {
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
   const { t } = useTranslate()
 
-  // console.error(appState)
   const handleClose = () => {
     if (appState.api.loading)
       dispatch(openSnackbarWarning(t('uploadDlg.closeWarnning-msg')))
@@ -64,7 +62,6 @@ export default function UploadDialog() {
             p: 3
           }}
         >
-          {/*---------title-----------*/}
           <Box sx={{ display: 'flex', py: '2rem' }}>
             <Typography
               sx={{
@@ -81,8 +78,6 @@ export default function UploadDialog() {
               <InfoIcon sx={{ color: 'grey', width: '16px' }} />
             </Tooltip>
           </Box>
-
-          {/*  -----------select tab----------*/}
           <Box
             sx={{
               width: '100%'

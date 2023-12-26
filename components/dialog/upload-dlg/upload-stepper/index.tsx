@@ -14,7 +14,6 @@ import { setUploadProgress } from '@store/reducers/upload/reducers'
 import { useDispatch } from 'react-redux'
 import { useTranslate } from '../../../../locales'
 
-// Styled component for StepWrapper
 export const StepWrapper = styled(Box)({
   borderRadius: '.625rem',
   border: '1px solid var(--Stroke)',
@@ -24,22 +23,18 @@ export const StepWrapper = styled(Box)({
   padding: '1.5rem 0.5rem'
 })
 
-// Main UploadStepper component
 export default function UploadStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
   const dispatch = useDispatch()
   const {t}=useTranslate()
-  // Handler the next step in the stepper
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
 
-  // Handler for going back to the previous step in the stepper
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
-  // Initial state for the component
   const initialState = {
     mediaType: '',
     newOld: {
@@ -68,7 +63,6 @@ export default function UploadStepper() {
           '& .MuiStepIcon-active': { color: 'red' }
         }}
       >
-        {/* Mapping over steps and creating Step components */}
         {CUploadSteps.map((label, index) => {
           const stepProps: { completed?: boolean } = {}
           const labelProps: { optional?: React.ReactNode } = {}
@@ -92,7 +86,6 @@ export default function UploadStepper() {
             >
               <StepLabel
                 {...labelProps}
-                // Customizing StepIconComponent to use StepIcon
                 StepIconComponent={(props) => (
                   <StepIcon
                     {...props}
@@ -109,9 +102,7 @@ export default function UploadStepper() {
         })}
       </Stepper>
 
-      {/* Rendering different steps based on the activeStep */}
       <TabPanel index={activeStep} value={0}>
-        {/* TypeStep component */}
         <TypeStep
           handleNext={(val) => {
             setState({ ...vState, mediaType: val })
@@ -120,7 +111,6 @@ export default function UploadStepper() {
         ></TypeStep>
       </TabPanel>
       <TabPanel index={activeStep} value={1}>
-        {/* StatusStep component */}
         <StatusStep
           mediaType={vState.mediaType}
           handleNext={(val) => {
@@ -131,7 +121,6 @@ export default function UploadStepper() {
         ></StatusStep>
       </TabPanel>
       <TabPanel index={activeStep} value={2}>
-        {/* SourceStep component */}
         <SourceStep
           handleBack={handleBack}
           handleNext={handleNext}
@@ -139,7 +128,6 @@ export default function UploadStepper() {
         ></SourceStep>
       </TabPanel>
       <TabPanel index={activeStep} value={3}>
-        {/* LaunchStep component */}
         <LaunchStep
           data={vState}
         />

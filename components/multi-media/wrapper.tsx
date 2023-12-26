@@ -31,7 +31,6 @@ import DocumentApprovalDlg from '@components/dialog/document-approval-dlg'
 import VideoApprovalDlg from '@components/dialog/video-approval-dlg'
 import { useTranslate } from '../../locales'
 
-// MediaWrapper component
 interface IMediaProps {
   header: React.ReactNode;
   content: React.ReactNode;
@@ -64,14 +63,12 @@ export const MediaWrapper = (props: IMediaProps) => {
       </Box>
       <CustomPagination />
       <MediaDrawer />
-      {/*  -------document approva dlg---------*/}
       <DocumentApprovalDlg />
       <VideoApprovalDlg />
     </Box>
   )
 }
 
-// MediaActionwrapper component
 interface IActionPros {
   type: 'video' | 'document';
 }
@@ -158,7 +155,6 @@ export const MediaActionwrapper = (props: IActionPros) => {
           px: '0rem'
         }}
       >
-        {/* TableHead */}
         <TableHead>
           <TableRow>
             <TableCell />
@@ -184,11 +180,8 @@ export const MediaActionwrapper = (props: IActionPros) => {
             })}
           </TableRow>
         </TableHead>
-
-        {/* TableBody */}
         <TableBody>
           {vState.rows.map((row, index) => (
-            // Render VideoRow or DocumentRow based on the media type
             props.type === 'video' ? (
               <VideoRow key={index} row={row as TVideoRowType} rowIndex={index} />
             ) : (

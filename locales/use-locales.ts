@@ -23,7 +23,6 @@ export function useLocales() {
 
 
 export type SettingsContextProps ={
-  // Direction by lang
   onChangeDirectionByLang: (lang: string) => void;
 }
 
@@ -37,7 +36,6 @@ export const useSettingsContext = () => {
   return context;
 };
 
-// ----------------------------------------------------------------------
 
 export function useTranslate() {
   const { t, i18n, ready } = useTranslation();
@@ -49,7 +47,6 @@ export function useTranslate() {
     (newlang: string) => {
       i18n.changeLanguage(newlang);
       document.dir=i18n.dir(newlang)
-      // settings.onChangeDirectionByLang(newlang);
     },
     [i18n, settings]
   );

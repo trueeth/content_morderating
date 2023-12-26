@@ -66,7 +66,6 @@ const handler = async (
     })
     return
   }
-  // Just after the "Method Not Allowed" code
   try {
     const { files } = await parseForm(req)
 

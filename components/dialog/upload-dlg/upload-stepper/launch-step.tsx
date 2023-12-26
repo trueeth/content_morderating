@@ -7,16 +7,12 @@ import { IReduxState } from '@store/index';
 import { IAppSlice } from '@store/reducers';
 import { useTranslate } from '../../../../locales'
 
-// Component for the Launch step in the upload process
 export default function LaunchStep(props:any) {
-
   const {t}=useTranslate()
-  // Fetching app state
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app);
 
   return (
     <StepWrapper>
-      {/* Container for LaunchStep content */}
       <Box
         sx={{
           display: 'flex',
@@ -27,12 +23,9 @@ export default function LaunchStep(props:any) {
           width:'60%',
         }}
       >
-        {/* Heading for the step */}
         <Typography textAlign="center" my={2} variant="h6">
           {props.data.mediaType==='Video'?t('uploadDlg.step.Video Upload'):t('uploadDlg.step.Document Upload')}
         </Typography>
-
-        {/* Linear progress bar showing the upload progress */}
         <Box
           sx={{
             width: { xs: '90%', md: '80%' },
@@ -44,8 +37,6 @@ export default function LaunchStep(props:any) {
             value={appState.upload.progress}
           />
         </Box>
-
-        {/* Displaying step labels for larger screens */}
         <Box
           sx={{
             display: { xs: 'none', md: 'flex' },
@@ -63,8 +54,6 @@ export default function LaunchStep(props:any) {
           <Typography>{t('uploadDlg.step.Indexing')}</Typography>
           <Typography>{t('uploadDlg.step.Scoring')}</Typography>
         </Box>
-
-        {/* Disclaimer text */}
         <Typography
           sx={{
             mt: 3,

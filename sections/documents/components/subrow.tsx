@@ -13,7 +13,6 @@ import RowApproval from '@components/multi-media/common/approval-item'
 import { useTranslate } from '../../../locales'
 import { resToDocumentSubRowAdapter } from '@interfaces/apis/data-adapter/data-document'
 
-// DocumentSubrow component definition
 const DocumentSubrow = (props: {
   rowDetails: TResDocument.TDocumentContentDetail;
   rowIndex: number;
@@ -22,7 +21,6 @@ const DocumentSubrow = (props: {
   const dispatch = useDispatch()
   const { t } = useTranslate()
 
-  // Function to open the media sub-drawer
   const openScene = (index: number) => () => {
     dispatch(
       openMediaSubDrawer({
@@ -35,17 +33,14 @@ const DocumentSubrow = (props: {
     )
   }
 
-  // If rowDetails is undefined or null, return null
   if (!rowDetails) {
     return null
   }
 
-  // Convert rowDetails to TDocumentSubRowType using an adapter function
   const memoRows = (() => {
     return resToDocumentSubRowAdapter(rowDetails)
   })()
 
-  // CustomizedTableRow component definition
   const CustomizedTableRow = ({ children, onClick, keyValue }) => (
     <TableRow key={keyValue}>
       <TableCell />
@@ -82,7 +77,6 @@ const DocumentSubrow = (props: {
       }}
     >
       <TableHead>
-        {/* Table header row */}
         <TableRow
           sx={{
             '& .MuiTableCell-root': {
@@ -95,7 +89,6 @@ const DocumentSubrow = (props: {
           }}
         >
           <TableCell sx={{ width: '7%' }} />
-          {/* Iterate over EDocDetail values to create header cells */}
           {Object.values(EDocDetail).map((item, index) => (
             <TableCell key={index} sx={{ width: index === 0 ? '15%' : '20%' }}>
               <Typography sx={{ fontSize: '13px', color: '#000' }} className='text-uppercase'>
@@ -114,7 +107,6 @@ const DocumentSubrow = (props: {
           }
         }}
       >
-        {/* Render rows based on memoRows */}
         {memoRows.length > 0
           ? memoRows.map((row, index) =>
             <CustomizedTableRow key={index} keyValue={index} onClick={openScene(index)}>

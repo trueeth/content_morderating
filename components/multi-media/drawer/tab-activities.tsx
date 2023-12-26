@@ -19,19 +19,6 @@ const HistoryDescription = styled('div')({
   fontSize: '0.7rem'
 })
 
-// const CssTextField = styled(TextField)({
-//   '& .MuiOutlinedInput-root': {
-//     '& fieldset': {
-//       borderColor: '#eee'
-//     },
-//     '&:hover fieldset': {
-//       borderColor: '#eee'
-//     },
-//     '&.Mui-focused fieldset': {
-//       borderColor: 'var(--Primary1)'
-//     }
-//   }
-// })
 
 const HistoryRow = (props: IHistoryRow) => {
   return (
@@ -85,9 +72,6 @@ const HistoryRow = (props: IHistoryRow) => {
 }
 
 export default function DrawerTabActivities() {
-  // const [vState, setState] = useState({ moderatorStatus: 'Processing', notes: '' })
-
-  // const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
   const { t } = useTranslate()
 
@@ -99,9 +83,6 @@ export default function DrawerTabActivities() {
         padding: 0
       }}
     >
-
-
-      {/*------------History--------*/}
       <Box
         sx={{
           display:'flex',

@@ -22,7 +22,6 @@ export type AuthStateType = {
   auth: string
 }
 
-// ----------------------------------------------------------------------
 
 type CanRemove = {
   login?: (email: string, password: string) => Promise<void>

@@ -4,20 +4,16 @@ import { useTranslation } from 'react-i18next'
 import { apiGetBiWorkSpaceConfig } from '@interfaces/apis/dashboard'
 import { models } from 'powerbi-client'
 
-// Dynamic import for PowerBIEmbed component with client-side rendering
 const PowerBIEmbed = dynamic(() => import('powerbi-client-react').then((mod) => mod.PowerBIEmbed), {
-  ssr: false // Disables server-side rendering for this component.
+  ssr: false
 })
 
-/**
- * Functional component representing the PowerBI integration.
- */
+
 export default function Powerbi() {
   const { i18n } = useTranslation()
   const [vState, setState] = useState({ setting: { embedUrl: '', accessToken: '', id: '' }, display: false })
 
   useEffect(() => {
-    // Fetch PowerBI workspace configuration based on language change
     (async () => {
       setState((prevState) => ({ ...prevState, display: false }))
 
@@ -41,17 +37,16 @@ export default function Powerbi() {
     })()
   }, [i18n.language])
 
-  // Render PowerBIEmbed component if display is true
   return (
     <>
       {vState.display ? (
         <PowerBIEmbed
           embedConfig={{
-            type: 'report', // Supported types: report, dashboard, tile, visual, qna, paginated report, and create
+            type: 'report',
             embedUrl: vState.setting.embedUrl,
             accessToken: vState.setting.accessToken,
             id: vState.setting.id,
-            tokenType: models.TokenType.Embed, // Use models.TokenType.Aad for SaaS embed
+            tokenType: models.TokenType.Embed,
             permissions: models.Permissions.All,
             settings: {
               localeSettings: {

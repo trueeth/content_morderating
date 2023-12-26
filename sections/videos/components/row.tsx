@@ -36,22 +36,18 @@ function VideoRow(props: {
 
   const dispatch = useDispatch()
 
-  // app state
   const appState = useSelector<IReduxState, IAppSlice>((state) => state.app)
 
-  // To reset the openSummary state when pageIndex changes
   useEffect(() => {
     setState(prevState => ({ ...prevState, openSummary: false }))
   }, [appState.pagination.pageIndex])
 
-  // Handler openSummary state
   const handleDetail = () => {
     if (props.row.subRows.length > 0) {
       setState(prevState => ({ ...prevState, openSummary: !prevState.openSummary }))
     }
   }
 
-  // Actions to be displayed for each row
   const rowActions = [
     {
       title: t(`rowActions.insight`),
@@ -67,7 +63,6 @@ function VideoRow(props: {
 
   return (
     <React.Fragment>
-      {/* Main row */}
       <TableRow
         sx={{
           '& > .MuiTableCell-root': {
@@ -83,7 +78,6 @@ function VideoRow(props: {
           }
         }}
       >
-        {/* Expand/Collapse button */}
         <TableCell>
           {props.row.subRows.length > 0 ?
             <IconButton
@@ -98,8 +92,6 @@ function VideoRow(props: {
             </IconButton> :
             null}
         </TableCell>
-
-        {/* Name cell */}
         <TableCell sx={{ minWidth: '200px', maxWidth: '250px' }}>
           <Typography
             sx={{
@@ -112,8 +104,6 @@ function VideoRow(props: {
             {props.row.name}
           </Typography>
         </TableCell>
-
-        {/* Type, Status, Rating, Classification, Approvals, Submission Date, Flagged Scenes, Actions */}
         <TableCell><RowStatus status={props.row.status}></RowStatus></TableCell>
         <TableCell><RowRating rating={props.row.rating}></RowRating></TableCell>
         <TableCell>
@@ -145,8 +135,6 @@ function VideoRow(props: {
           }
         </TableCell>
       </TableRow>
-
-      {/* Subrow */}
       <TableRow className='media-row'>
         <TableCell
           style={{
@@ -155,7 +143,6 @@ function VideoRow(props: {
           }}
           colSpan={12}
         >
-          {/* Subtable */}
           <Collapse in={vState.openSummary} timeout='auto' unmountOnExit>
             <VideoSubtable rows={props.row.subRows} rowIndex={props.rowIndex}></VideoSubtable>
           </Collapse>

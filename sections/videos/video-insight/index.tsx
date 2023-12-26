@@ -7,23 +7,16 @@ import { openSnackbarError } from '@store/reducers/snackbar/reducers'
 import { useRouter } from 'next/router'
 import { Grid } from '@mui/material'
 
-// Component to display video insights and player based on the video ID from the URL
 const VideoInsightSection = () => {
 
   const [vState, setState] = useState({ playerUrl: '', insightsUrl: '' })
-
   const dispatch = useDispatch()
-
   const router = useRouter()
-
-  // Extract videoId from the URL query parameters 
   const videoId = router.query.id as string
 
   const fetchData = async () => {
-
-    dispatch(setApiLoading(true)) // Show loading indicator
+    dispatch(setApiLoading(true))
     try {
-
       const [resDataPlayer, resDataInsights] = await Promise.all([
         apiGetVideoAnalysesWidgetPlayer(videoId),
         apiGetVideoAnalysesWidgetInsight(videoId)
@@ -41,10 +34,8 @@ const VideoInsightSection = () => {
     }
   }
 
-  // Fetch data when component mounts or videoId changes
   useEffect(() => {
     if (!videoId) return
-    // Function to fetch data from insights, palyer Url
     fetchData()
 // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoId, dispatch])
@@ -66,7 +57,6 @@ const VideoInsightSection = () => {
             }
           }}
         >
-          {/* iFrame for video insights */}
           <iframe className='embed-responsive-item'
                   width='100%'
                   height='780'
@@ -87,7 +77,6 @@ const VideoInsightSection = () => {
               borderRadius: '.2rem'
             }
           }}>
-          {/* iFrame for the video player */}
           <iframe
             width='100%'
             height='400'

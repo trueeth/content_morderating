@@ -7,7 +7,6 @@ body {
   font-size: 1rem;
   letter-spacing: 1px;
   overflow-x: hidden;
-  /*font-family: Square !important;*/
   color: #ececec;
 }
 
@@ -75,7 +74,6 @@ input[type='number']::-webkit-inner-spin-button {
   overflow: hidden;
 }
 
-/*----------------Index style end---------------------*/
 
 /*-----------------Dashboard chart style-----------------*/
 

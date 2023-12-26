@@ -23,11 +23,9 @@ import { CHeaderTabs } from '@interfaces/constant'
 function UserAction() {
   const { logout } = useAuthContext()
   const { t } = useTranslate()
-  // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
   const handleLogout = async () => {
     try {
-      // setAnchorEl(null)
       await logout()
     } catch (error) {
       console.error(error)
@@ -39,9 +37,6 @@ function UserAction() {
       title: t('rowActions.log out'),
       action: handleLogout
     }
-    // {
-    //   title: 'Profile'
-    // }
   ]
 
   return (
@@ -61,11 +56,8 @@ const Header = () => {
   const username = localStorage.getItem('username')
 
   const router = useRouter()
-
   const [vState, setState] = useState({ mobileMenuOpen: false })
-
   const dispatch = useDispatch()
-
 
   const handleHeader =  (title: string, url?: string) => async () => {
     switch (title) {
@@ -81,10 +73,6 @@ const Header = () => {
         await router.push({ pathname: `../${url.toLowerCase()}`, query: null })
         if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
         break
-      // default:
-      //   router.push({pathname:`../${url.toLowerCase()}`, query:null})
-      //   if (!isDesktop) setState({ ...vState, mobileMenuOpen: false })
-      //   break
       default:
         dispatch(openSnackbarInfo(t('This part will come soon')))
         break
@@ -112,7 +100,6 @@ const Header = () => {
             flexDirection: { md: 'row' }
           }}
         >
-          {/*-----logo----*/}
           <Box ml={4} mr={2}>
             <Image src={LogoImage} alt='logo' />
           </Box>
@@ -135,7 +122,6 @@ const Header = () => {
                         router.pathname === `/${item.url.toLowerCase()}`
                       }
                     >
-
                       <SvgColor
                         src={item.icon}
                         sx={{
@@ -153,8 +139,6 @@ const Header = () => {
               }
             })}
           </Box>
-          {/* ---- profile --- */}
-
           <Box
             sx={{
               display: 'flex',
@@ -162,7 +146,6 @@ const Header = () => {
               bgcolor: 'var(--Primary3)'
             }}
           >
-
             <Box sx={{ bgcolor: 'var(--Secondary)', display: 'flex' }}>
               <LanguagePopover />
             </Box>
@@ -183,7 +166,6 @@ const Header = () => {
                   {t('admin')}
                 </Typography>
               </Box>
-
               <UserAction />
             </Box>
           </Box>
@@ -230,7 +212,6 @@ const Header = () => {
               }
             }}
           >
-            {/*-----logo----*/}
             <Box
               sx={{
                 display: 'flex',
@@ -267,7 +248,6 @@ const Header = () => {
             </Box>
           </Drawer>
 
-          {/* ---- profile --- */}
           <Box
             sx={{
               display: 'flex',
